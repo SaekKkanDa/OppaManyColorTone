@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "prettier",
+    "stylelint-config-prettier"
+  ]
+}

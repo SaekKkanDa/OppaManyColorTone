@@ -1,11 +1,15 @@
-import ResetStyle from '@Styles/ResetStyle';
+import { ThemeProvider } from 'styled-components';
 import AppRouter from './Router';
+import GlobalStyle from '@Styles/GlobalStyle';
+import theme from '@Styles/theme';
 
 function App() {
     return (
         <>
-            <ResetStyle />
-            <AppRouter></AppRouter>
+            <GlobalStyle />
+            <ThemeProvider theme={theme}>
+                <AppRouter />
+            </ThemeProvider>
         </>
     );
 }

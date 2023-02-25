@@ -1,15 +1,24 @@
 import { initializeApp } from 'firebase/app';
-import dotenv from 'dotenv';
+import { getFirestore } from 'firebase/firestore';
 
-dotenv.config();
+const {
+    VITE_FIREBASE_API_KEY,
+    VITE_FIREBASE_AUTH_DOMAIN,
+    VITE_FIREBASE_DATABASE_URL,
+    VITE_FIREBASE_PROJECT_ID,
+    VITE_FIREBASE_STORAGE_BUCKET,
+    VITE_FIREBASE_MEASUREMENT_ID,
+    VITE_FIREBASE_APP_ID,
+} = import.meta.env;
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FB_API_KEY,
-    authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FB_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FB_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FB_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FB_API_ID,
+    apiKey: VITE_FIREBASE_API_KEY,
+    authDomain: VITE_FIREBASE_AUTH_DOMAIN,
+    databaseURL: VITE_FIREBASE_DATABASE_URL,
+    projectId: VITE_FIREBASE_PROJECT_ID,
+    storageBucket: VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: VITE_FIREBASE_MEASUREMENT_ID,
+    appId: VITE_FIREBASE_APP_ID,
 };
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);

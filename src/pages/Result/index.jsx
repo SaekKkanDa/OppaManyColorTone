@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { resultData } from '@Constant/resultData';
+import { flexCustom } from '@Styles/theme';
 
 function ResultPage() {
     const {
@@ -82,8 +83,7 @@ function ResultPage() {
 }
 
 const $Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flexCustom('column', 'inherit', 'flex-start')}
     box-sizing: border-box;
     max-width: 400px;
     margin: 0 auto;
@@ -179,22 +179,18 @@ const $Styling = styled.img`
 `;
 
 const $StylingWrapper = styled.div`
-    display: flex;
-    justify-content: center;
+    ${flexCustom('column', 'center', 'center')};
     margin: 0 auto;
     width: min(64.25vw, 257px);
 `;
 
 const $CelebritiesWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
+    ${flexCustom('row', 'inherit', 'space-between')};
     margin-top: 9px;
-    justify-content: space-between;
 `;
 
 const $CelebrityWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flexCustom('column', 'inherit', 'inherit')};
 `;
 
 const $CelebrityName = styled.div`
@@ -233,10 +229,8 @@ function MenuSubPage() {
 }
 
 const $MenuContainer = styled.div`
-    display: flex;
-    flex-direction: row;
+    ${flexCustom('row', 'inherit', 'space-around')}
     margin-top: 73px;
-    justify-content: space-around;
 `;
 
 const $MenuItemWrapper = styled.div`

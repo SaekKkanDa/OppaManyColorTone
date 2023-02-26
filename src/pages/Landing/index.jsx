@@ -7,11 +7,12 @@ import {
     LandingContentDiv,
     LandingTitle,
     LandingSubTitle,
-    LandingColorDiv,
     LandingUserCountDiv,
     LangingStartButton,
     LandingPersonalColorExplanationText,
 } from './style';
+import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import ColorSpinner from '@Components/Spinner/ColorSpinner';
 
 function LandingPage() {
     const navigate = useNavigate();
@@ -43,7 +44,8 @@ function LandingPage() {
                 <LandingContentDiv>
                     <LandingTitle>오빠! 톤 많아?</LandingTitle>
                     <LandingSubTitle>퍼스널 컬러 자가진단</LandingSubTitle>
-                    <LandingColorDiv></LandingColorDiv>
+                    <ColorImgSpinner />
+                    {/* <ColorSpinner /> */}
                     <LandingUserCountDiv>
                         지금까지 {numberOfUsers}명이 진단했어요!
                     </LandingUserCountDiv>

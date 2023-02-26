@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
-import AvatarEditor from 'react-avatar-editor'
-import {useRecoilState} from 'recoil'
-import { CropImage } from "../../recoil/app";
-import { useNavigate } from 'react-router-dom';
-import {
-    $FlexContainer,
-    $InputScale,
-    $Span ,
-    $ScaleBox
-} from './style';
-import theme, { Button } from '@Styles/theme';
+import { useEffect, useState } from 'react';
+import AvatarEditor from 'react-avatar-editor';
+import { useRecoilState } from 'recoil';
+import { CropImage } from '../../recoil/app';
+import { $FlexContainer, $InputScale, $Span, $ScaleBox } from './style';
+import { Button } from '@Styles/theme';
 
-function FaceDetectionPage({imageFile,setIsModalOpen}) {
-
-    const navigate = useNavigate();
-    const [image,setImage] = useState('');
+function FaceDetectionPage({ imageFile, setIsModalOpen }) {
+    const [image, setImage] = useState('');
     const [scale, setScale] = useState(1);
     const [editor, setEditor] = useState(null);
     const [cropImage, setCropImage] = useRecoilState(CropImage);
 
-  
-    useEffect(()=>{
+    useEffect(() => {
         const file = imageFile;
-        
+
         if (!file.type.startsWith('image/')) {
             console.error('Selected file is not an image');
             return;
@@ -32,23 +23,22 @@ function FaceDetectionPage({imageFile,setIsModalOpen}) {
         reader.readAsDataURL(file);
         reader.onload = () => {
             setImage(reader.result);
-
         };
-    },[imageFile])
-   
-    const OnChange = (event) =>{
-        const {name, value} = event.target;
+    }, [imageFile]);
+
+    const OnChange = (event) => {
+        const { name, value } = event.target;
 
         switch (name) {
             case 'scale':
-                const v = Math.floor(value/5)/10 +1
+                const v = Math.floor(value / 5) / 10 + 1;
                 setScale(value);
                 break;
 
             default:
                 break;
         }
-    }
+    };
     const handleSave = () => {
         if (editor) {
             try {
@@ -60,16 +50,15 @@ function FaceDetectionPage({imageFile,setIsModalOpen}) {
             } catch (error) {
                 window.alert('이미지 크롭 개발 중 입니다.');
             }
-          
-        }else{
+        } else {
             window.alert('이미지가 없습니다.');
         }
     };
 
     return (
         <$FlexContainer>
-            <div >
-                 <AvatarEditor
+            <div>
+                <AvatarEditor
                     ref={setEditor}
                     image={image}
                     width={200}
@@ -82,15 +71,21 @@ function FaceDetectionPage({imageFile,setIsModalOpen}) {
                 />
             </div>
             <$ScaleBox>
-                <$Span >-</$Span > 
-                <$InputScale type="range" name="scale"  id="" onChange={OnChange}  min={0.1} max={3.0} step={0.1} />
-                <$Span >+</$Span > 
+                <$Span>-</$Span>
+                <$InputScale
+                    type="range"
+                    name="scale"
+                    id=""
+                    onChange={OnChange}
+                    min={0.1}
+                    max={3.0}
+                    step={0.1}
+                />
+                <$Span>+</$Span>
             </$ScaleBox>
             <Button onClick={handleSave}>확인</Button>
-
         </$FlexContainer>
     );
-    
 }
 
 export default FaceDetectionPage;

@@ -31,10 +31,9 @@ export const LandingSubTitle = styled.div`
     text-align: center;
 `;
 
-export const LandingColorDiv = styled.div`
+export const LandingColorDiv2 = styled.div`
     width: 284px;
     height: 284px;
-    background-color: pink;
     margin-top: 90px;
 `;
 

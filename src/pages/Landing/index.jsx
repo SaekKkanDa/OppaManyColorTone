@@ -1,0 +1,64 @@
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase';
+import {
+    LandingWrap,
+    LandingContentDiv,
+    LandingTitle,
+    LandingSubTitle,
+    LandingUserCountDiv,
+    LangingStartButton,
+    LandingPersonalColorExplanationText,
+} from './style';
+import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import ColorSpinner from '@Components/Spinner/ColorSpinner';
+
+function LandingPage() {
+    const navigate = useNavigate();
+
+    const [numberOfUsers, setNumberOfUsers] = useState(0);
+    const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
+
+    useEffect(() => {
+        getNumberOfUsers();
+    }, []);
+
+    const getNumberOfUsers = async () => {
+        const docSnap = await getDoc(docRef);
+        setNumberOfUsers(docSnap.data().numberOfUsers);
+    };
+
+    const addNumberOfUsers = () => {
+        setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
+    };
+
+    const onClickStartButton = () => {
+        navigate('/image-upload');
+        addNumberOfUsers();
+    };
+
+    return (
+        <>
+            <LandingWrap>
+                <LandingContentDiv>
+                    <LandingTitle>오빠! 톤 많아?</LandingTitle>
+                    <LandingSubTitle>퍼스널 컬러 자가진단</LandingSubTitle>
+                    <ColorImgSpinner />
+                    {/* <ColorSpinner /> */}
+                    <LandingUserCountDiv>
+                        지금까지 {numberOfUsers}명이 진단했어요!
+                    </LandingUserCountDiv>
+                    <LangingStartButton onClick={onClickStartButton}>
+                        시작하기
+                    </LangingStartButton>
+                    <LandingPersonalColorExplanationText>
+                        퍼스널 컬러 설명 보기
+                    </LandingPersonalColorExplanationText>
+                </LandingContentDiv>
+            </LandingWrap>
+        </>
+    );
+}
+
+export default LandingPage;

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import AvatarEditor from 'react-avatar-editor'
+import {useRecoilState} from 'recoil'
+import { CropImage } from "../../recoil/app";
+
 
 function FaceDetectionPage() {
     const [image,setImage] = useState('');
     const [scale, setScale] = useState(1);
     const [editor, setEditor] = useState(null);
-    const [newImage,setNewImage] = useState(undefined)
+    const [newImage,setNewImage] = useState(undefined);
+    const [cropImage, setCropImage] = useRecoilState(CropImage);
+    useEffect(()=>{},cropImage)
     const OnImageChange = (event) =>{
         const file = event.target.files[0];
         if (!file.type.startsWith('image/')) {

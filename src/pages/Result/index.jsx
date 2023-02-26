@@ -24,7 +24,7 @@ function ResultPage() {
         worstColors,
         stylingURL,
         celebrities,
-    } = resultData['springLight'];
+    } = resultData['winter'];
 
     const wrapperRef = useRef();
 

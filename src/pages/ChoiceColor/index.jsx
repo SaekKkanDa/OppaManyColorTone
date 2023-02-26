@@ -11,15 +11,13 @@ import {
   $StatusContent,
   $Explain,
   $ColorBox,
-  $Color
+  $Color,
 } from './style'
-
 
 function ChoiceColor() {
   const [num, setNum] = useState(0)
   const selectedType = useRef([])
-  const img = useRecoilValue(CropImage)
-  // console.log(CropImage)
+  let userImg = useRecoilValue(CropImage)
   
   const navigate = useNavigate()
   const selectedColor= useMemo(() => colorData[num], [num])
@@ -59,6 +57,14 @@ function ChoiceColor() {
     setResult(finalResult)
     if(num === 8) {
       navigate('/result')
+      img = ''
+    }
+  }
+
+  const handleResultClick = () => {
+    if(num === 8) {
+      navigate('/result')
+      img = ''
     }
   }
   
@@ -75,12 +81,14 @@ function ChoiceColor() {
           <$Color 
             key={item.id}
             color={item.color}
-            onClick={() => handleNextClick(item.type)}/>
+            onClick={() => handleNextClick(item.type)}>
+              <img src={userImg} alt='사용자 이미지' />
+          </$Color>
           )
         )
       }
     </$ColorBox> 
-    <Button onClick={()=>navigate('/result')}>다음으로</Button>
+    <Button onClick={handleResultClick}>다음으로</Button>
   </$Wrapper>
   )
 }

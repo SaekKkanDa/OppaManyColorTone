@@ -13,9 +13,10 @@ async function loadKakaoSDK() {
 
 
 export async function initKakaoSDK() {
+
     await loadKakaoSDK();
-    // HJ TODO: 환경 변수로 변경
-    Kakao.init('a8ab006bce5c7bba25c0fbc32aa76482')
+    const { VITE_KAKAO_API_KEY } = import.meta.env;
+    Kakao.init(VITE_KAKAO_API_KEY)
 }
 
 export function shareKakaoDefault() {
@@ -32,8 +33,8 @@ export function shareKakaoDefault() {
             imageUrl:
                 'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
             link: {
-                mobileWebUrl: 'https://developers.kakao.com',
-                webUrl: 'https://developers.kakao.com',
+                mobileWebUrl: location.href,
+                webUrl: location.href,
             },
         },
         social: {
@@ -45,8 +46,8 @@ export function shareKakaoDefault() {
             {
                 title: '나의 퍼스널 컬러 찾기',
                 link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com',
+                    mobileWebUrl: location.href,
+                    webUrl: location.href,
                 },
             }
         ],

@@ -14,13 +14,13 @@ export const $LandingTitleDiv = styled.div`
     ${flexCustom('column')}
 `;
 
-export const $LandingTitle = styled.span`
+export const $LandingTitle = styled.h1`
     font-size: min(14.75vw, 52px);
     font-weight: 700;
     text-align: center;
 `;
 
-export const $LandingSubTitle = styled.span`
+export const $LandingSubTitle = styled.h2`
     font-size: min(9.5vw, 32px);
     font-weight: 700;
     margin-top: 2vh;

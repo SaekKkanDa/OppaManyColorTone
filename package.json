@@ -22,6 +22,7 @@
     "react-avatar-editor": "^13.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
+    "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
     "stylelint-config-prettier": "^9.0.5"
   },

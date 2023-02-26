@@ -1,6 +1,11 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+
 import { resultData } from '@Constant/resultData';
 import { flexCustom } from '@Styles/theme';
+
+import { updateClipboard } from '@Utils/clipboard';
 
 function ResultPage() {
     const {
@@ -202,27 +207,50 @@ const $CelebrityName = styled.div`
 
 function MenuSubPage() {
     // HJ TODO: 각각 기능 추가
-    const menuItemList = [
-        { name: '결과저장', imageURL: '/stylingSummerLight.png' },
-        { name: '링크복사', imageURL: '/stylingSummerLight.png' },
-        { name: '카카오톡', imageURL: '/stylingSummerLight.png' },
-        { name: '공유하기', imageURL: '/stylingSummerLight.png' },
-    ];
+
+    const HandleLinkCopyClick = async () => {
+        try {
+            await updateClipboard(location.href);
+            // HJ TODO: 커스텀 alert 등록
+            alert('클립보드 복사에 성공했습니다.');
+        } catch (err) {
+            console.error(err);
+            alert('클립보드 복사에 실패했습니다');
+        }
+    };
 
     return (
         <>
             <$MenuContainer>
-                {menuItemList.map(({ name, imageURL }) => {
-                    return (
-                        <$MenuItemWrapper key={name}>
-                            <$MenuItemImgWrapper>
-                                <$MenuItemImg src={imageURL} />
-                            </$MenuItemImgWrapper>
-                            <$MenuItemName>{name}</$MenuItemName>
-                        </$MenuItemWrapper>
-                    );
-                })}
+                <$MenuItemWrapperButton>
+                    <$MenuItemImgWrapper>
+                        <$MenuItemImg src="/stylingSummerLight.png" />
+                    </$MenuItemImgWrapper>
+                    <$MenuItemName>결과저장</$MenuItemName>
+                </$MenuItemWrapperButton>
+
+                <$MenuItemWrapperButton onClick={HandleLinkCopyClick}>
+                    <$MenuItemImgWrapper>
+                        <FontAwesomeIcon icon={faLink} color={'white'} />
+                    </$MenuItemImgWrapper>
+                    <$MenuItemName>링크복사</$MenuItemName>
+                </$MenuItemWrapperButton>
+
+                <$MenuItemWrapperButton>
+                    <$MenuItemImgWrapper>
+                        <$MenuItemImg src="/stylingSummerLight.png" />
+                    </$MenuItemImgWrapper>
+                    <$MenuItemName>카카오톡</$MenuItemName>
+                </$MenuItemWrapperButton>
+
+                <$MenuItemWrapperButton>
+                    <$MenuItemImgWrapper>
+                        <$MenuItemImg src="/stylingSummerLight.png" />
+                    </$MenuItemImgWrapper>
+                    <$MenuItemName>공유하기</$MenuItemName>
+                </$MenuItemWrapperButton>
             </$MenuContainer>
+
             <$GotoFirstButton>처음으로</$GotoFirstButton>
         </>
     );
@@ -233,14 +261,24 @@ const $MenuContainer = styled.div`
     margin-top: 73px;
 `;
 
-const $MenuItemWrapper = styled.div`
-    width: 48px;
+const $MenuItemWrapperButton = styled.button`
+    ${flexCustom('column', 'center', 'center')}
+    cursor: pointer;
 `;
 
-const $MenuItemImgWrapper = styled.button`
-    border: none;
-    background: none;
-    padding: 0;
+const $MenuItemImgWrapper = styled.div`
+    ${flexCustom('column', 'center', 'center')}
+    border-radius: 50%;
+    background-color: #27272a;
+    padding: 8px;
+    width: 48px;
+    height: 48px;
+    aspect-ratio: 1/1;
+    font-size: 48px;
+
+    svg {
+        width: 100%;
+    }
 `;
 
 const $MenuItemImg = styled.img`
@@ -248,6 +286,7 @@ const $MenuItemImg = styled.img`
 `;
 
 const $MenuItemName = styled.div`
+    margin-top: 2px;
     text-align: center;
     font-size: 12px;
 `;

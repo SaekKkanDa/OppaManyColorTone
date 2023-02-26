@@ -9,15 +9,19 @@ function ColorImgSpinner() {
 }
 
 export const ImgSpinnerWrap = styled.div`
-    width: 284px;
-    height: 284px;
-    margin-top: 90px;
+    max-width: 240px;
+    max-height: 240px;
+    width: 92vw;
+    height: 92vw;
+    margin-top: 7vh;
     display: inherit;
 `;
 
 export const ColorChipImg = styled.img`
-    width: 284px;
-    height: 284px;
+    max-width: 240px;
+    max-height: 240px;
+    width: 92vw;
+    height: 92vw;
     animation: spinner 3s infinite linear;
 
     @keyframes spinner {
@@ -28,11 +32,13 @@ export const ColorChipImg = styled.img`
 `;
 
 export const ThinkImg = styled.img`
-    width: 118px;
-    height: 118px;
+    max-width: 100px;
+    max-height: 100px;
+    width: 32vw;
+    height: 32vw;
     position: absolute;
-    margin-top: 83px;
-    margin-left: 83px;
+    margin-top: 70px;
+    margin-left: 70px;
 `;
 
 export default ColorImgSpinner;

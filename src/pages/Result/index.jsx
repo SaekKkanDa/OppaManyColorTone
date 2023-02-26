@@ -7,6 +7,8 @@ import { flexCustom } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
 
+import useKakaoShare from '@Hooks/useKakaoShare';
+
 function ResultPage() {
     const {
         name,
@@ -93,8 +95,6 @@ const $Wrapper = styled.div`
     max-width: 400px;
     margin: 0 auto;
     padding: 44px 32px 30px 32px;
-
-    border: 1px solid black;
 
     font-family: Inter;
 `;
@@ -206,9 +206,9 @@ const $CelebrityName = styled.div`
 `;
 
 function MenuSubPage() {
-    // HJ TODO: 각각 기능 추가
+    const { isLoading, kakaoShare } = useKakaoShare();
 
-    const HandleLinkCopyClick = async () => {
+    const handleLinkCopyClick = async () => {
         try {
             await updateClipboard(location.href);
             // HJ TODO: 커스텀 alert 등록
@@ -219,36 +219,44 @@ function MenuSubPage() {
         }
     };
 
+    const handleKakaoShare = () => {
+        if (isLoading) {
+            alert('로딩 중 입니다. 다시 시도해주세요 :)');
+        } else {
+            kakaoShare();
+        }
+    };
+
     return (
         <>
             <$MenuContainer>
-                <$MenuItemWrapperButton>
-                    <$MenuItemImgWrapper>
+                <$MenuItemWrapper>
+                    <$MenuItemButton>
                         <$MenuItemImg src="/stylingSummerLight.png" />
-                    </$MenuItemImgWrapper>
+                    </$MenuItemButton>
                     <$MenuItemName>결과저장</$MenuItemName>
-                </$MenuItemWrapperButton>
+                </$MenuItemWrapper>
 
-                <$MenuItemWrapperButton onClick={HandleLinkCopyClick}>
-                    <$MenuItemImgWrapper>
+                <$MenuItemWrapper>
+                    <$MenuItemButton onClick={handleLinkCopyClick}>
                         <FontAwesomeIcon icon={faLink} color={'white'} />
-                    </$MenuItemImgWrapper>
+                    </$MenuItemButton>
                     <$MenuItemName>링크복사</$MenuItemName>
-                </$MenuItemWrapperButton>
+                </$MenuItemWrapper>
 
-                <$MenuItemWrapperButton>
-                    <$MenuItemImgWrapper>
-                        <$MenuItemImg src="/stylingSummerLight.png" />
-                    </$MenuItemImgWrapper>
+                <$MenuItemWrapper>
+                    <$KakaoShareButton onClick={handleKakaoShare}>
+                        <$MenuItemImg src="/kakaoIcon.png" />
+                    </$KakaoShareButton>
                     <$MenuItemName>카카오톡</$MenuItemName>
-                </$MenuItemWrapperButton>
+                </$MenuItemWrapper>
 
-                <$MenuItemWrapperButton>
-                    <$MenuItemImgWrapper>
+                <$MenuItemWrapper>
+                    <$MenuItemButton>
                         <$MenuItemImg src="/stylingSummerLight.png" />
-                    </$MenuItemImgWrapper>
+                    </$MenuItemButton>
                     <$MenuItemName>공유하기</$MenuItemName>
-                </$MenuItemWrapperButton>
+                </$MenuItemWrapper>
             </$MenuContainer>
 
             <$GotoFirstButton>처음으로</$GotoFirstButton>
@@ -261,12 +269,11 @@ const $MenuContainer = styled.div`
     margin-top: 73px;
 `;
 
-const $MenuItemWrapperButton = styled.button`
+const $MenuItemWrapper = styled.div`
     ${flexCustom('column', 'center', 'center')}
-    cursor: pointer;
 `;
 
-const $MenuItemImgWrapper = styled.div`
+const $MenuItemButton = styled.button`
     ${flexCustom('column', 'center', 'center')}
     border-radius: 50%;
     background-color: #27272a;
@@ -275,10 +282,20 @@ const $MenuItemImgWrapper = styled.div`
     height: 48px;
     aspect-ratio: 1/1;
     font-size: 48px;
+    cursor: pointer;
 
     svg {
         width: 100%;
     }
+`;
+
+const $KakaoShareButton = styled.button`
+    ${flexCustom('column', 'center', 'center')}
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
 `;
 
 const $MenuItemImg = styled.img`

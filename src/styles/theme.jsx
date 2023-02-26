@@ -33,7 +33,13 @@ export const Button = styled.button`
     background-color: ${theme.gray[800]};
     color: ${theme.white};
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:disabled {
+        background-color: ${theme.gray[300]};
+        cursor: not-allowed;
+    }
 `;
 
 export const BorderedButton = styled(Button)`

@@ -42,7 +42,7 @@ function ChoiceColor() {
   return (
     <Wrapper>
     <StatusBox>
-      <StatusBar width={`${(num + 2) * 100}px`}/>  
+      <StatusBar width={`${(num + 1) * 25}%`}/>  
     </StatusBox>
     <StatusContent>{(num + 1) * 4}/16 단계</StatusContent>
     <Explain>얼굴과 제일 잘 어울리는 컬러를 선택해주세요.</Explain>

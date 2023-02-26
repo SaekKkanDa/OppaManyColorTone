@@ -1,15 +1,16 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { resultData } from '@Constant/resultData';
 import { flexCustom, BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
+import { captureElement, downloadImage } from '@Utils/capture';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
@@ -25,8 +26,10 @@ function ResultPage() {
         celebrities,
     } = resultData['springLight'];
 
+    const wrapperRef = useRef();
+
     return (
-        <$Wrapper>
+        <$Wrapper ref={wrapperRef}>
             <$Title>
                 당신은 <$TitleBold color={textColor}>{name}</$TitleBold> 입니다
             </$Title>
@@ -88,7 +91,7 @@ function ResultPage() {
                 </$CelebritiesWrapper>
             </$SubDescriptionTitle>
 
-            <MenuSubPage />
+            <MenuSubPage wrapperRef={wrapperRef} />
         </$Wrapper>
     );
 }
@@ -209,9 +212,17 @@ const $CelebrityName = styled.div`
     font-weight: 400;
 `;
 
-function MenuSubPage() {
+function MenuSubPage({ wrapperRef }) {
     const navigate = useNavigate();
     const { isLoading, kakaoShare } = useKakaoShare();
+
+    const handleCapture = async () => {
+        const wrapper = wrapperRef.current;
+        if (!wrapper) return;
+
+        const img = await captureElement(wrapper, 'personal-color-result.png');
+        downloadImage(img, 'personal-color-result.png');
+    };
 
     const handleLinkCopyClick = async () => {
         try {
@@ -249,8 +260,8 @@ function MenuSubPage() {
         <>
             <$MenuContainer>
                 <$MenuItemWrapper>
-                    <$MenuItemButton>
-                        <$MenuItemImg src="/stylingSummerLight.png" />
+                    <$MenuItemButton onClick={handleCapture}>
+                        <FontAwesomeIcon icon={faDownload} color={'white'} />
                     </$MenuItemButton>
                     <$MenuItemName>결과저장</$MenuItemName>
                 </$MenuItemWrapper>
@@ -299,7 +310,7 @@ const $MenuItemButton = styled.button`
     ${flexCustom('column', 'center', 'center')}
     border-radius: 50%;
     background-color: #27272a;
-    padding: 8px;
+    padding: 10px;
     width: 48px;
     height: 48px;
     aspect-ratio: 1/1;
@@ -325,7 +336,7 @@ const $MenuItemImg = styled.img`
 `;
 
 const $MenuItemName = styled.div`
-    margin-top: 2px;
+    margin-top: 4px;
     text-align: center;
     font-size: 12px;
 `;

@@ -1,5 +1,6 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
-import {Button} from '@Styles/theme'
+import { useState, useMemo, useRef } from 'react';
+import styled from 'styled-components';
+import { Button } from '@Styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { colorData } from '@Constant/colorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
@@ -37,15 +38,15 @@ function ChoiceColor() {
     let maxValue = -Infinity;
     let maxKey = null;
 
-    for(let key in result) {
-      const value = result[key];
-      if(value > maxValue) {
-        maxValue = value;
-        maxKey = key
-      }
-    }
-    return maxKey
-  }
+        for (let key in result) {
+            const value = result[key];
+            if (value > maxValue) {
+                maxValue = value;
+                maxKey = key;
+            }
+        }
+        return maxKey;
+    };
 
   //recoil에 최종 결과값 담기
   const setResult = useSetRecoilState(Result)
@@ -94,5 +95,3 @@ function ChoiceColor() {
 }
 
 export default ChoiceColor;
-
-

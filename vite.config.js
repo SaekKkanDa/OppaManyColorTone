@@ -5,22 +5,23 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  esbuild: {
-    loader: "jsx",
-  },
-  server: { port: 3000 },
-  plugins: [react(), babel()],
-  resolve: {
-    alias: {
-      "@Components": path.resolve(__dirname, "./src/components"),
-      "@Pages": path.resolve(__dirname, "./src/pages"),
-      "@Utils": path.resolve(__dirname, "./src/utils"),
-      "@Styles": path.resolve(__dirname, "./src/styles"),
+    esbuild: {
+        loader: "jsx",
     },
-  },
-  build: {
-    rollupOptions: {
-      external: ["firebase-admin"],
+    server: { port: 3000 },
+    plugins: [react(), babel()],
+    resolve: {
+        alias: {
+            "@Components": path.resolve(__dirname, "./src/components"),
+            '@Constant': path.resolve(__dirname, './src/constant'),
+            "@Pages": path.resolve(__dirname, "./src/pages"),
+            "@Utils": path.resolve(__dirname, "./src/utils"),
+            "@Styles": path.resolve(__dirname, "./src/styles"),
+        },
     },
-  },
+    build: {
+        rollupOptions: {
+            external: ["firebase-admin"],
+        },
+    },
 });

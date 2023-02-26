@@ -4,6 +4,7 @@ import MobileLayout from '@Components/Layout/MobileLayout';
 
 import LandingPage from '@Pages/Landing';
 import ImageUploadPage from '@Pages/ImageUpload';
+import ResultPage from '@Pages/Result';
 
 function AppRouter() {
     return (
@@ -11,7 +12,8 @@ function AppRouter() {
             <Routes>
                 <Route element={<MobileLayout />}>
                     <Route path="/" element={<LandingPage />} />
-                    <Route path="/my-image" element={<ImageUploadPage />} />
+                    <Route path="/result" element={<ResultPage />} />
+                    <Route path="/image-upload" element={<ImageUploadPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

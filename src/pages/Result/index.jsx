@@ -134,6 +134,7 @@ const $Description = styled.div`
   font-style: normal;
   font-size: 16px;
   line-height: 24px;
+  text-align: justify;
 `;
 
 const $ColorMatchWrapper = styled.div`

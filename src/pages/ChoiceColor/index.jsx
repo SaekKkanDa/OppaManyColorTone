@@ -56,7 +56,7 @@ function ChoiceColor() {
     setResult(finalResult);
     if (num === 8) {
       navigate('/result');
-      img = '';
+      userImg = '';
     }
   };
 
@@ -68,7 +68,13 @@ function ChoiceColor() {
       <$StatusContent>
         {num + 1}/{colorData.length} 단계
       </$StatusContent>
-      <$Explain>얼굴과 제일 잘 어울리는 컬러를 선택해주세요.</$Explain>
+      <$Explain>
+        얼굴과 잘 어울리는 색을 선택해주세요.
+        <p>
+          얼굴과 색이 하나로 이어진 것처럼 조화로워 보이고, 피부색이 균일하고
+          맑아 보이는 색이 잘 어울리는 색입니다.
+        </p>
+      </$Explain>
       <$ColorBox>
         {selectedColor.map((item) => (
           <$Color

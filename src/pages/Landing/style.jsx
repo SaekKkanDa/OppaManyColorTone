@@ -38,7 +38,7 @@ export const $LandingUserCountDiv = styled.div`
 `;
 
 export const $LangingStartButton = styled(Button)`
-  height: 88px;
+  height: 80px;
   font-size: 40px;
   font-weight: 500;
   cursor: pointer;

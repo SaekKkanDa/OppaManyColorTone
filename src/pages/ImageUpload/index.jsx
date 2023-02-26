@@ -35,7 +35,6 @@ function ImageUploadPage() {
   };
 
   const selectImage = (e) => {
-    console.log(e.target.files[0], e.target.value);
     setImageFile(e.target.files[0]);
 
     setIsModalOpen(true);

@@ -9,6 +9,7 @@ import {
   $FlexContainer,
   $InputScale,
   $ScaleBox,
+  $Guidance,
   $ConfirmButton,
 } from './style';
 
@@ -89,6 +90,11 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
         />
         <FontAwesomeIcon icon={faPlus} size="1x" color={theme.gray[900]} />
       </$ScaleBox>
+      <$Guidance>
+        옷을 제외하고 얼굴과 헤어만 포함되도록
+        <br />
+        영역을 설정해주세요.
+      </$Guidance>
       <$ConfirmButton onClick={handleSave}>확인</$ConfirmButton>
     </$FlexContainer>
   );

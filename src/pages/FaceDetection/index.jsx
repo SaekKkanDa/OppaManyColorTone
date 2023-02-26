@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react";
-import AvatarEditor from 'react-avatar-editor'
-import {useRecoilState} from 'recoil'
-import { CropImage } from "../../recoil/app";
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import AvatarEditor from 'react-avatar-editor';
+import { useRecoilState } from 'recoil';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { CropImage } from '../../recoil/app';
+import theme from '@Styles/theme';
 import {
     $FlexContainer,
     $InputScale,
-    $Span ,
-    $ScaleBox
+    $ScaleBox,
+    $ConfirmButton,
 } from './style';
-import theme, { Button } from '@Styles/theme';
 
-function FaceDetectionPage({imageFile,setIsModalOpen}) {
-
-    const navigate = useNavigate();
-    const [image,setImage] = useState('');
+function FaceDetectionPage({ imageFile, setIsModalOpen }) {
+    const [image, setImage] = useState('');
     const [scale, setScale] = useState(1);
     const [editor, setEditor] = useState(null);
     const [cropImage, setCropImage] = useRecoilState(CropImage);
 
-  
-    useEffect(()=>{
+    useEffect(() => {
         const file = imageFile;
-        
+
         if (!file.type.startsWith('image/')) {
-            console.error('Selected file is not an image');
+            alert('이미지 파일을 선택해 주세요.');
             return;
         }
 
@@ -32,23 +30,22 @@ function FaceDetectionPage({imageFile,setIsModalOpen}) {
         reader.readAsDataURL(file);
         reader.onload = () => {
             setImage(reader.result);
-
         };
-    },[imageFile])
-   
-    const OnChange = (event) =>{
-        const {name, value} = event.target;
+    }, [imageFile]);
+
+    const OnChange = (event) => {
+        const { name, value } = event.target;
 
         switch (name) {
             case 'scale':
-                const v = Math.floor(value/5)/10 +1
-                setScale(value);
+                const scaleValue = Math.floor(value / 5) / 10 + 1;
+                setScale(Number(value));
                 break;
 
             default:
                 break;
         }
-    }
+    };
     const handleSave = () => {
         if (editor) {
             try {
@@ -58,22 +55,21 @@ function FaceDetectionPage({imageFile,setIsModalOpen}) {
                 setCropImage(image);
                 setIsModalOpen(false);
             } catch (error) {
-                window.alert('이미지 크롭 개발 중 입니다.');
+                window.alert('다시 시도해 주세요.');
             }
-          
-        }else{
+        } else {
             window.alert('이미지가 없습니다.');
         }
     };
 
     return (
         <$FlexContainer>
-            <div >
-                 <AvatarEditor
+            <div>
+                <AvatarEditor
                     ref={setEditor}
                     image={image}
-                    width={200}
-                    height={200}
+                    width={100}
+                    height={100}
                     border={100}
                     color={[0, 0, 0, 0.4]} // RGBA
                     scale={scale}
@@ -82,15 +78,28 @@ function FaceDetectionPage({imageFile,setIsModalOpen}) {
                 />
             </div>
             <$ScaleBox>
-                <$Span >-</$Span > 
-                <$InputScale type="range" name="scale"  id="" onChange={OnChange}  min={0.1} max={3.0} step={0.1} />
-                <$Span >+</$Span > 
+                <FontAwesomeIcon
+                    icon={faMinus}
+                    size="1x"
+                    color={theme.gray[900]}
+                />
+                <$InputScale
+                    type="range"
+                    name="scale"
+                    onChange={OnChange}
+                    min={0.5}
+                    max={3.0}
+                    step={0.1}
+                />
+                <FontAwesomeIcon
+                    icon={faPlus}
+                    size="1x"
+                    color={theme.gray[900]}
+                />
             </$ScaleBox>
-            <Button onClick={handleSave}>확인</Button>
-
+            <$ConfirmButton onClick={handleSave}>확인</$ConfirmButton>
         </$FlexContainer>
     );
-    
 }
 
 export default FaceDetectionPage;

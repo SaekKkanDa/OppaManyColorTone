@@ -8,7 +8,7 @@ export default defineConfig({
     esbuild: {
         loader: "jsx",
     },
-    server: { host: "0.0.0.0", port: 3000 },
+    server: { host: "localhost", port: 3000 },
     plugins: [react(), babel()],
     resolve: {
         alias: {

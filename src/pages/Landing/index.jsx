@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import {
-    LandingWrap,
-    LandingContentDiv,
-    LandingTitle,
-    LandingSubTitle,
-    LandingUserCountDiv,
-    LangingStartButton,
-    LandingPersonalColorExplanationText,
+    $LandingWrap,
+    $LandingTitleDiv,
+    $LandingTitle,
+    $LandingSubTitle,
+    $LandingBottomDiv,
+    $LandingUserCountDiv,
+    $LangingStartButton,
+    $LandingPersonalColorExplanationText,
 } from './style';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
-import ColorSpinner from '@Components/Spinner/ColorSpinner';
 
 function LandingPage() {
     const navigate = useNavigate();
@@ -40,23 +40,24 @@ function LandingPage() {
 
     return (
         <>
-            <LandingWrap>
-                <LandingContentDiv>
-                    <LandingTitle>오빠! 톤 많아?</LandingTitle>
-                    <LandingSubTitle>퍼스널 컬러 자가진단</LandingSubTitle>
-                    <ColorImgSpinner />
-                    {/* <ColorSpinner /> */}
-                    <LandingUserCountDiv>
+            <$LandingWrap>
+                <$LandingTitleDiv>
+                    <$LandingTitle>오빠! 톤 많아?</$LandingTitle>
+                    <$LandingSubTitle>퍼스널 컬러 자가진단</$LandingSubTitle>
+                </$LandingTitleDiv>
+                <ColorImgSpinner />
+                <$LandingBottomDiv>
+                    <$LandingUserCountDiv>
                         지금까지 {numberOfUsers}명이 진단했어요!
-                    </LandingUserCountDiv>
-                    <LangingStartButton onClick={onClickStartButton}>
+                    </$LandingUserCountDiv>
+                    <$LangingStartButton onClick={onClickStartButton}>
                         시작하기
-                    </LangingStartButton>
-                    <LandingPersonalColorExplanationText>
+                    </$LangingStartButton>
+                    <$LandingPersonalColorExplanationText>
                         퍼스널 컬러 설명 보기
-                    </LandingPersonalColorExplanationText>
-                </LandingContentDiv>
-            </LandingWrap>
+                    </$LandingPersonalColorExplanationText>
+                </$LandingBottomDiv>
+            </$LandingWrap>
         </>
     );
 }

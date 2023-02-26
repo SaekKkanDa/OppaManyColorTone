@@ -1,61 +1,55 @@
 import styled from 'styled-components';
 import theme, { Button, flexCustom } from '@Styles/theme';
 
-export const LandingWrap = styled.div`
-    width: 100vw;
+export const $LandingWrap = styled.div`
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 400px;
     height: 100vh;
-    ${flexCustom('row', 'center', 'center')}
-`;
-
-export const LandingContentDiv = styled.div`
-    width: 400px;
-    height: 900px;
-    ${flexCustom('column', 'center', 'initial')}
+    ${flexCustom('column', 'center', 'space-around')}
     background-color: ${theme.gray[100]};
-    border-radius: 6px;
 `;
 
-export const LandingTitle = styled.div`
-    height: 66px;
-    font-size: 52px;
+export const $LandingTitleDiv = styled.div`
+    ${flexCustom('column')}
+`;
+
+export const $LandingTitle = styled.span`
+    font-size: min(14.75vw, 52px);
     font-weight: 700;
-    margin-top: 82px;
     text-align: center;
 `;
 
-export const LandingSubTitle = styled.div`
-    height: 46px;
-    font-size: 32px;
+export const $LandingSubTitle = styled.span`
+    font-size: min(9.5vw, 32px);
     font-weight: 700;
-    margin-top: 14px;
+    margin-top: 2vh;
     text-align: center;
 `;
 
-export const LandingColorDiv2 = styled.div`
-    width: 284px;
-    height: 284px;
-    margin-top: 90px;
+export const $LandingBottomDiv = styled.div`
+    ${flexCustom('column')}
 `;
 
-export const LandingUserCountDiv = styled.div`
-    height: 38px;
-    font-size: 20px;
+export const $LandingUserCountDiv = styled.div`
+    font-size: min(5vw, 20px);
     font-weight: 400;
-    margin-top: 90px;
+    margin-bottom: max(2vh, 20px);
 `;
 
-export const LangingStartButton = styled(Button)`
+export const $LangingStartButton = styled(Button)`
     height: 88px;
     font-size: 40px;
     font-weight: 500;
     cursor: pointer;
 `;
 
-export const LandingPersonalColorExplanationText = styled.div`
-    margin-top: 14px;
+export const $LandingPersonalColorExplanationText = styled.div`
     font-size: 16px;
     font-weight: 400;
     color: ${theme.gray[400]};
     text-decoration: underline;
     cursor: pointer;
+    margin-top: max(1vh, 10px);
+    display: none;
 `;

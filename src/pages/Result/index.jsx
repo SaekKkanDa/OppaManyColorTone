@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import { resultData } from '@Constant/resultData';
-import { flexCustom } from '@Styles/theme';
+import { flexCustom, BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
 
@@ -206,6 +208,7 @@ const $CelebrityName = styled.div`
 `;
 
 function MenuSubPage() {
+    const navigate = useNavigate();
     const { isLoading, kakaoShare } = useKakaoShare();
 
     const handleLinkCopyClick = async () => {
@@ -225,6 +228,10 @@ function MenuSubPage() {
         } else {
             kakaoShare();
         }
+    };
+
+    const handleRestart = () => {
+        navigate('/');
     };
 
     return (
@@ -259,7 +266,11 @@ function MenuSubPage() {
                 </$MenuItemWrapper>
             </$MenuContainer>
 
-            <$GotoFirstButton>처음으로</$GotoFirstButton>
+            <$RestartButtonWrapper>
+                <BorderedButton onClick={handleRestart}>
+                    처음으로
+                </BorderedButton>
+            </$RestartButtonWrapper>
         </>
     );
 }
@@ -308,7 +319,7 @@ const $MenuItemName = styled.div`
     font-size: 12px;
 `;
 
-const $GotoFirstButton = styled.button`
+const $RestartButtonWrapper = styled.div`
     margin-top: 29px;
 `;
 

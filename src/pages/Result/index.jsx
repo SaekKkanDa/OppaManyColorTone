@@ -14,7 +14,11 @@ import { captureElement, downloadImage } from '@Utils/capture';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
+import { useRecoilState } from 'recoil';
+import { Result } from '../../recoil/app';
+
 function ResultPage() {
+  const result = useRecoilState(Result)[0];
   const {
     name,
     textColor,
@@ -24,7 +28,7 @@ function ResultPage() {
     worstColors,
     stylingURL,
     celebrities,
-  } = resultData['winter'];
+  } = resultData[result];
 
   const wrapperRef = useRef();
 

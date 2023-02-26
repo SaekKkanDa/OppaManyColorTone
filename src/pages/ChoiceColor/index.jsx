@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import {Button} from '@Styles/theme'
+import { useNavigate } from 'react-router-dom';
 
 // 1 spring, 2 summer, 3 autumn, 4 winter
 const colorPalette = [
@@ -33,12 +34,14 @@ const colorPalette = [
 function ChoiceColor() {
   const [num, setNum] = useState(0)
   const [result, setResult] = useState([])
+
+  const navigate = useNavigate()
   const nextSlide = (id) => {
     result.push(id)
     setResult(result)
     setNum(num + 1)
   }
-  console.log(result)
+  // console.log(result)
   return (
     <Wrapper>
     <StatusBox>
@@ -51,7 +54,7 @@ function ChoiceColor() {
         colorPalette[num].map(item => <Color key={item.id} color={item.color} onClick={() => nextSlide(item.id)}/>)
       }
     </ColorBox>
-    <Button>다음으로</Button>
+    <Button onClick={()=>navigate('/result')}>다음으로</Button>
   </Wrapper>
   )
 }

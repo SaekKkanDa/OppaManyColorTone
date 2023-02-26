@@ -31,7 +31,7 @@ function ResultPage() {
     return (
         <$Wrapper ref={wrapperRef}>
             <$Title>
-                당신은 <$TitleBold color={textColor}>{name}</$TitleBold> 입니다
+                당신은 <$TitleBold color={textColor}>{name}</$TitleBold> 입니다.
             </$Title>
 
             <$ColorGrid>
@@ -102,8 +102,6 @@ const $Wrapper = styled.div`
     max-width: 400px;
     margin: 0 auto;
     padding: 44px 32px 30px 32px;
-
-    font-family: Inter;
 `;
 
 const $Title = styled.h1`
@@ -135,9 +133,7 @@ const $ColorGridItem = styled.div`
 
 const $Description = styled.div`
     margin-top: 21px;
-    font-family: 'Inter';
     font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
 `;
@@ -146,7 +142,7 @@ const $ColorMatchWrapper = styled.div`
     margin-top: 25px;
 `;
 
-const $ColorMatchTitle = styled.div`
+const $ColorMatchTitle = styled.h2`
     font-weight: 700;
     font-size: min(5.25vw, 21px);
 `;
@@ -176,7 +172,7 @@ const $ColorMatchWorstGrid = styled.div`
     gap: 5px;
 `;
 
-const $SubDescriptionTitle = styled.div`
+const $SubDescriptionTitle = styled.h2`
     margin-top: 34px;
     font-size: min(5.25vw, 21px);
     font-weight: 700;
@@ -209,7 +205,8 @@ const $CelebrityName = styled.div`
     margin-bottom: 8px;
     font-size: 16px;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
+    font-family: initial;
 `;
 
 function MenuSubPage({ wrapperRef }) {

@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { Button, flexCustom } from '@Styles/theme';
 
+export const $ClopImage = styled.img`
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+`;
+
 export const $FlexContainer = styled.div`
     position: relative;
     ${flexCustom('column', 'center', 'center')}

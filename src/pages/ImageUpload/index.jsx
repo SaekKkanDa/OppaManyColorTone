@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import FaceDetectionPage from '../FaceDetection';
 import theme from '@Styles/theme';
+import {useRecoilState} from 'recoil'
+import { CropImage } from "../../recoil/app";
+
 import {
     $FlexContainer,
     $Modal,
@@ -14,11 +17,12 @@ import {
     $InputFile,
     $NextButton,
     $Notification,
+    $ClopImage,
 } from './style';
 
 function ImageUploadPage() {
     const [imageFile, setImageFile] = useState(null);
-    const [imagePreviewURL, setImagePreviewURL] = useState('');
+    const [imagePreviewURL, setImagePreviewURL] = useRecoilState(CropImage);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const inputRef = useRef(null);
@@ -67,10 +71,11 @@ function ImageUploadPage() {
                         color={theme.white}
                     />
                 </$ImageLabel>
+                     {imagePreviewURL && (
+                        <$ClopImage src={imagePreviewURL} alt="preview image" />
+                    )}
             </$ImageBox>
-            {/* {imagePreviewURL && (
-                <img src={imagePreviewURL} alt="preview image" />
-            )} */}
+           
 
             <$ImageUploadButton onClick={clickInput}>
                 사진 선택

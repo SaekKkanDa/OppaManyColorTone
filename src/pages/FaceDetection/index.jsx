@@ -11,17 +11,18 @@ import {
 } from './style';
 import theme, { Button } from '@Styles/theme';
 
-//function FaceDetectionPage({image,close}) {
-function FaceDetectionPage() {
+function FaceDetectionPage({imageFile,setIsModalOpen}) {
+
     const navigate = useNavigate();
     const [image,setImage] = useState('');
     const [scale, setScale] = useState(1);
     const [editor, setEditor] = useState(null);
     const [cropImage, setCropImage] = useRecoilState(CropImage);
 
-    const OnImageChange = (event) =>{
-        // const file = image;
-        const file = event.target.files[0];
+  
+    useEffect(()=>{
+        const file = imageFile;
+        
         if (!file.type.startsWith('image/')) {
             console.error('Selected file is not an image');
             return;
@@ -33,7 +34,7 @@ function FaceDetectionPage() {
             setImage(reader.result);
 
         };
-    }
+    },[imageFile])
    
     const OnChange = (event) =>{
         const {name, value} = event.target;
@@ -55,7 +56,7 @@ function FaceDetectionPage() {
                 const image = canvas.toDataURL('image/jpeg');
                 // 이제 이 이미지를 서버로 업로드하거나 상태에 저장할 수 있습니다.
                 setCropImage(image);
-                // close(fasle);
+                setIsModalOpen(false);
             } catch (error) {
                 window.alert('이미지 크롭 개발 중 입니다.');
             }
@@ -67,7 +68,6 @@ function FaceDetectionPage() {
 
     return (
         <$FlexContainer>
-            {/* <input type="file" name="" onChange={OnImageChange} id="" /> */}
             <div >
                  <AvatarEditor
                     ref={setEditor}

@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 	
   body {
     background-color: ${theme.gray[100]};
+    color: ${theme.gray[900]};
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
   }

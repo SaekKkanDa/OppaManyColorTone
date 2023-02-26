@@ -17,6 +17,7 @@ import {
     $InputFile,
     $NextButton,
     $Notification,
+    $ClopImage,
 } from './style';
 
 function ImageUploadPage() {
@@ -70,10 +71,11 @@ function ImageUploadPage() {
                         color={theme.white}
                     />
                 </$ImageLabel>
+                     {imagePreviewURL && (
+                        <$ClopImage src={imagePreviewURL} alt="preview image" />
+                    )}
             </$ImageBox>
-            {imagePreviewURL && (
-                <img src={imagePreviewURL} alt="preview image" />
-            )}
+           
 
             <$ImageUploadButton onClick={clickInput}>
                 사진 선택

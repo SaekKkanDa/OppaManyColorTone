@@ -33,8 +33,8 @@ export function shareKakaoDefault() {
             imageUrl:
                 'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
             link: {
-                mobileWebUrl: 'https://developers.kakao.com',
-                webUrl: 'https://developers.kakao.com',
+                mobileWebUrl: location.href,
+                webUrl: location.href,
             },
         },
         social: {
@@ -46,8 +46,8 @@ export function shareKakaoDefault() {
             {
                 title: '나의 퍼스널 컬러 찾기',
                 link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com',
+                    mobileWebUrl: location.href,
+                    webUrl: location.href,
                 },
             }
         ],

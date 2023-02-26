@@ -244,12 +244,7 @@ function MenuSubPage({ wrapperRef }) {
     };
 
     const handleShare = async () => {
-        try {
-            await webShare();
-        } catch (err) {
-            console.error(err);
-            alert('공유에 실패하였습니다');
-        }
+        await webShare();
     };
 
     const handleRestart = () => {

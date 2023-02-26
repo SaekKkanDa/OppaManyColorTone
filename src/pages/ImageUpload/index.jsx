@@ -73,7 +73,7 @@ function ImageUploadPage() {
                 </$ImageLabel>
                      {imagePreviewURL && (
                         <$ClopImage src={imagePreviewURL} alt="preview image" />
-                    )}
+                    )} 
             </$ImageBox>
            
 

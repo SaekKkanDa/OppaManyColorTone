@@ -1,14 +1,19 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import {Button} from '@Styles/theme'
 import { useNavigate } from 'react-router-dom';
 import { colorData } from '@Constant/colorData';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { CropImage, Result } from "../../recoil/app";
+
+
 
 function ChoiceColor() {
   const [num, setNum] = useState(0)
   const selectedType = useRef([])
+  const img = useRecoilValue(CropImage)
+  // console.log(CropImage)
   
-
   const navigate = useNavigate()
   const selectedColor= useMemo(() => colorData[num], [num])
 
@@ -31,6 +36,7 @@ function ChoiceColor() {
 
   //가장 많이 선택된 type 출력
   const calResult = () => {
+    findMax()
     let maxValue = -Infinity;
     let maxKey = null;
 
@@ -44,13 +50,17 @@ function ChoiceColor() {
     return maxKey
   }
 
-  //리코일에 최종 결과값 담기
+  //recoil에 최종 결과값 담기
+  const setResult = useSetRecoilState(Result)
   const finalResult = calResult()
+  useEffect(() => {
+    setResult(finalResult)
+  })
   
   return (
     <Wrapper>
     <StatusBox>
-      <StatusBar width={`${(num + 1) * 11.1}%`}/>  
+      <StatusBar width={`${(num + 1) * (100 / colorData.length)}%`}/>  
     </StatusBox>
     <StatusContent>{(num + 1)}/{colorData.length} 단계</StatusContent>
     <Explain>얼굴과 제일 잘 어울리는 컬러를 선택해주세요.</Explain>

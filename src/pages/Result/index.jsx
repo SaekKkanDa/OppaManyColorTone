@@ -102,8 +102,6 @@ const $Wrapper = styled.div`
     max-width: 400px;
     margin: 0 auto;
     padding: 44px 32px 30px 32px;
-
-    font-family: Inter;
 `;
 
 const $Title = styled.h1`
@@ -135,9 +133,7 @@ const $ColorGridItem = styled.div`
 
 const $Description = styled.div`
     margin-top: 21px;
-    font-family: 'Inter';
     font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
 `;

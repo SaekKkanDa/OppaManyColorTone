@@ -83,8 +83,8 @@ function ResultPage() {
                     {celebrities.map(({ name, imageURL }, idx) => {
                         return (
                             <$CelebrityWrapper key={name + idx}>
-                                <$CelebrityName>{name}</$CelebrityName>
                                 <$Styling key={name} src={imageURL} />
+                                <$CelebrityName>{name}</$CelebrityName>
                             </$CelebrityWrapper>
                         );
                     })}
@@ -101,7 +101,7 @@ const $Wrapper = styled.div`
     box-sizing: border-box;
     max-width: 400px;
     margin: 0 auto;
-    padding: 44px 32px 30px 32px;
+    padding: 48px 32px 30px 36px;
 `;
 
 const $Title = styled.h1`
@@ -117,7 +117,7 @@ const $TitleBold = styled.span`
 `;
 
 const $ColorGrid = styled.div`
-    margin: 21px auto 0 auto;
+    margin: 24px auto 0 auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -132,14 +132,14 @@ const $ColorGridItem = styled.div`
 `;
 
 const $Description = styled.div`
-    margin-top: 21px;
+    margin-top: 24px;
     font-style: normal;
     font-size: 16px;
     line-height: 24px;
 `;
 
 const $ColorMatchWrapper = styled.div`
-    margin-top: 25px;
+    margin-top: 48px;
 `;
 
 const $ColorMatchTitle = styled.h2`
@@ -148,8 +148,8 @@ const $ColorMatchTitle = styled.h2`
 `;
 
 const $ColorMatchGrid = styled.div`
-    margin-top: 5px;
-    margin-bottom: 30px;
+    margin-top: 12px;
+    margin-bottom: 36px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -165,7 +165,7 @@ const $ColorMatchGridItem = styled.div`
 `;
 
 const $ColorMatchWorstGrid = styled.div`
-    margin-top: 5px;
+    margin-top: 12px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: 1fr;
@@ -173,7 +173,7 @@ const $ColorMatchWorstGrid = styled.div`
 `;
 
 const $SubDescriptionTitle = styled.h2`
-    margin-top: 34px;
+    margin-top: 48px;
     font-size: min(5.25vw, 21px);
     font-weight: 700;
 `;
@@ -188,13 +188,13 @@ const $Styling = styled.img`
 
 const $StylingWrapper = styled.div`
     ${flexCustom('column', 'center', 'center')};
-    margin: 0 auto;
+    margin: 12px auto 0;
     width: min(64.25vw, 257px);
 `;
 
 const $CelebritiesWrapper = styled.div`
     ${flexCustom('row', 'inherit', 'space-between')};
-    margin-top: 9px;
+    margin-top: 20px;
 `;
 
 const $CelebrityWrapper = styled.div`
@@ -202,7 +202,8 @@ const $CelebrityWrapper = styled.div`
 `;
 
 const $CelebrityName = styled.div`
-    margin-bottom: 8px;
+    margin-top: 8px;
+    color: ${({ theme }) => theme.gray[600]};
     font-size: 16px;
     text-align: center;
     font-weight: 500;
@@ -291,7 +292,7 @@ function MenuSubPage({ wrapperRef }) {
 
 const $MenuContainer = styled.div`
     ${flexCustom('row', 'inherit', 'space-around')}
-    margin-top: 73px;
+    margin-top: 72px;
 `;
 
 const $MenuItemWrapper = styled.div`

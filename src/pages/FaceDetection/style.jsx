@@ -1,29 +1,30 @@
 import styled from 'styled-components';
-import { Button, flexCustom } from '@Styles/theme';
-
+import { flexCustom, Button } from '@Styles/theme';
 
 export const $FlexContainer = styled.div`
-    position: relative;
     ${flexCustom('column', 'center', 'center')}
-    padding: 40px 20px;
-    height: 100vh;
-    background-color: rgba(255,255,255,1);
+    padding: 30px 20px;
+    border-radius: 24px;
+    background-color: ${({ theme }) => theme.gray[50]};
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
 export const $ScaleBox = styled.div`
-    margin-bottom:40px;
+    ${flexCustom('row', 'center', 'center')}
+    margin: 16px 0 40px;
 `;
 
 export const $InputScale = styled.input`
-    width: 300px;
-    border-radius: 0px;
-    border-bottom: 2px solid #444;
-    outline: none;
+    margin: 0 8px;
+    width: 240px;
+    border-radius: 1em;
+    background-color: ${({ theme }) => theme.gray[300]};
     transition: background 450ms ease-in;
     -webkit-appearance: none;
-    accent-color: #666;
+    accent-color: ${({ theme }) => theme.gray[500]};
 `;
 
-export const $Span = styled.span`
-    font-size: 25px;
+export const $ConfirmButton = styled(Button)`
+    width: 200px;
 `;

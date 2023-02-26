@@ -15,7 +15,7 @@ export const LandingContentDiv = styled.div`
     border-radius: 6px;
 `;
 
-export const LandingTitle = styled.div`
+export const LandingTitle = styled.h1`
     height: 66px;
     font-size: 52px;
     font-weight: 700;
@@ -23,7 +23,7 @@ export const LandingTitle = styled.div`
     text-align: center;
 `;
 
-export const LandingSubTitle = styled.div`
+export const LandingSubTitle = styled.h2`
     height: 46px;
     font-size: 32px;
     font-weight: 700;

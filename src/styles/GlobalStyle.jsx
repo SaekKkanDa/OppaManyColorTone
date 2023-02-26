@@ -17,13 +17,17 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-family: 'yg-jalnan';
+    font-family: 'Noto Sans KR', sans-serif;
   }
 	
   body {
     background-color: ${theme.gray[100]};
     color: ${theme.gray[900]};
     font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5, h6, button {
+    font-family: 'yg-jalnan';
   }
 `;
 

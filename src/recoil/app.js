@@ -23,11 +23,11 @@ import { atom } from 'recoil';
  * 혹시 사용 방법이 다르거나 어렵거나 하시면 알려주세요
  */
 export const CropImage = atom({
-    key: 'cropImage',
-    default: '',
+  key: 'cropImage',
+  default: '',
 });
 
 export const Result = atom({
-    key: 'result',
-    default: '',
+  key: 'result',
+  default: '',
 });

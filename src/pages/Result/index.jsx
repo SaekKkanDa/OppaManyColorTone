@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 import { resultData } from '@Constant/resultData';
 import { flexCustom, BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
+import { webShare } from '@Utils/share';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
@@ -230,6 +232,15 @@ function MenuSubPage() {
         }
     };
 
+    const handleShare = async () => {
+        try {
+            await webShare();
+        } catch (err) {
+            console.error(err);
+            alert('공유에 실패하였습니다');
+        }
+    };
+
     const handleRestart = () => {
         navigate('/');
     };
@@ -259,8 +270,8 @@ function MenuSubPage() {
                 </$MenuItemWrapper>
 
                 <$MenuItemWrapper>
-                    <$MenuItemButton>
-                        <$MenuItemImg src="/stylingSummerLight.png" />
+                    <$MenuItemButton onClick={handleShare}>
+                        <FontAwesomeIcon icon={faShare} color={'white'} />
                     </$MenuItemButton>
                     <$MenuItemName>공유하기</$MenuItemName>
                 </$MenuItemWrapper>

@@ -241,11 +241,21 @@ const $CelebrityName = styled.div`
 function MenuSubPage({ wrapperRef }) {
   const { isLoading, kakaoShare } = useKakaoShare();
 
-  const handleCapture = async () => {
-    if (isKakao()) {
-      alert('카카오 인앱 브라우저는 지원하지 않습니다');
-      return;
+  // HJ TODO: 네이밍 이상함..
+  const kakaoAlert = () => {
+    const _isKakao = isKakao();
+
+    if (_isKakao) {
+      alert(
+        '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요.😋'
+      );
     }
+
+    return _isKakao;
+  };
+
+  const handleCapture = async () => {
+    if (kakaoAlert()) return;
 
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
@@ -255,6 +265,8 @@ function MenuSubPage({ wrapperRef }) {
   };
 
   const handleLinkCopyClick = async () => {
+    if (kakaoAlert()) return;
+
     try {
       await updateClipboard(location.href);
       // HJ TODO: 커스텀 alert 등록
@@ -274,6 +286,8 @@ function MenuSubPage({ wrapperRef }) {
   };
 
   const handleShare = async () => {
+    if (kakaoAlert()) return;
+
     await webShare();
   };
 

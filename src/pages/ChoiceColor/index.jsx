@@ -58,14 +58,14 @@ function ChoiceColor() {
     setResult(finalResult)
     if(num === 8) {
       navigate('/result')
-      img = ''
+      userImg = ''
     }
   }
 
   const handleResultClick = () => {
     if(num === 8) {
       navigate('/result')
-      img = ''
+      userImg = ''
     }
   }
   

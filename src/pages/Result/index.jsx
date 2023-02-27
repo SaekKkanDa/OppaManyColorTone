@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
@@ -14,11 +14,31 @@ import { captureElement, downloadImage } from '@Utils/capture';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
-import { useRecoilState } from 'recoil';
-import { Result } from '../../recoil/app';
+import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 
 function ResultPage() {
-  const result = useRecoilState(Result)[0];
+  const [searchParams] = useSearchParams();
+
+  const colorTone = useMemo(() => {
+    if (!searchParams) return null;
+
+    const colorTone = searchParams.get('colorTone');
+
+    if (!colorTone) return null;
+
+    return colorTone;
+  }, [searchParams]);
+
+  if (colorTone === null) {
+    return (
+      <$LoadingWrapper>
+        <$Title>예기치 못한 상황이 발생했습니다.</$Title>
+        <ColorImgSpinner />
+        <RestartButton />
+      </$LoadingWrapper>
+    );
+  }
+
   const {
     name,
     textColor,
@@ -28,7 +48,7 @@ function ResultPage() {
     worstColors,
     stylingURL,
     celebrities,
-  } = resultData[result];
+  } = resultData[colorTone];
 
   const wrapperRef = useRef();
 
@@ -96,6 +116,14 @@ function ResultPage() {
 
 const $Wrapper = styled.div`
   ${flexCustom('column', 'inherit', 'flex-start')}
+  box-sizing: border-box;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 48px 32px 30px 36px;
+`;
+
+const $LoadingWrapper = styled.div`
+  ${flexCustom('column', 'center', 'center')}
   box-sizing: border-box;
   max-width: 400px;
   margin: 0 auto;
@@ -210,7 +238,6 @@ const $CelebrityName = styled.div`
 `;
 
 function MenuSubPage({ wrapperRef }) {
-  const navigate = useNavigate();
   const { isLoading, kakaoShare } = useKakaoShare();
 
   const handleCapture = async () => {
@@ -244,10 +271,6 @@ function MenuSubPage({ wrapperRef }) {
     await webShare();
   };
 
-  const handleRestart = () => {
-    navigate('/');
-  };
-
   return (
     <>
       <$MenuContainer>
@@ -279,11 +302,22 @@ function MenuSubPage({ wrapperRef }) {
           <$MenuItemName>공유하기</$MenuItemName>
         </$MenuItemWrapper>
       </$MenuContainer>
-
-      <$RestartButtonWrapper>
-        <BorderedButton onClick={handleRestart}>처음으로</BorderedButton>
-      </$RestartButtonWrapper>
+      <RestartButton />
     </>
+  );
+}
+
+function RestartButton() {
+  const navigate = useNavigate();
+
+  const handleRestart = () => {
+    navigate('/');
+  };
+
+  return (
+    <$RestartButtonWrapper>
+      <BorderedButton onClick={handleRestart}>처음으로</BorderedButton>
+    </$RestartButtonWrapper>
   );
 }
 

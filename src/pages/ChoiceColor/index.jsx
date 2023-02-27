@@ -1,6 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { Button } from '@Styles/theme';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import { colorData } from '@Constant/colorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
@@ -52,24 +51,20 @@ function ChoiceColor() {
   const finalResult = calResult();
 
   //이미지 초기화
-  const setUserImg = useSetRecoilState(CropImage)
+  const setUserImg = useSetRecoilState(CropImage);
 
   const handleNextClick = (type) => {
-    selectedType.current.push(type)
-    setNum(num + 1)
-    setResult(finalResult)
-    if(num === 8) {
-      setUserImg('')
-      navigate('/result')
+    selectedType.current.push(type);
+    setNum(num + 1);
+    setResult(finalResult);
+    if (num === 8) {
+      setUserImg('');
+      navigate({
+        pathname: '/result',
+        search: createSearchParams({ colorTone: finalResult }).toString(),
+      });
     }
   };
-
-  const handleResultClick = () => {
-    if(num === 8) {
-      setUserImg('')
-      navigate('/result')
-    }
-  }
 
   return (
     <$Wrapper>

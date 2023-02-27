@@ -11,6 +11,7 @@ import { flexCustom, BorderedButton } from '@Styles/theme';
 import { updateClipboard } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
 import { captureElement, downloadImage } from '@Utils/capture';
+import { isKakao } from '@Utils/userAgent';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
@@ -241,6 +242,11 @@ function MenuSubPage({ wrapperRef }) {
   const { isLoading, kakaoShare } = useKakaoShare();
 
   const handleCapture = async () => {
+    if (isKakao()) {
+      alert('카카오 인앱 브라우저는 지원하지 않습니다');
+      return;
+    }
+
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 

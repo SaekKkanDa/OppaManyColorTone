@@ -31,6 +31,7 @@ function ImageUploadPage() {
   const inputRef = useRef(null);
 
   const clickInput = () => {
+    
     inputRef.current?.click();
   };
 
@@ -57,7 +58,16 @@ function ImageUploadPage() {
       <$FlexContainer isModalOpen={isModalOpen}>
         <$ImageBox>
           {imagePreviewURL ? (
-            <$CroppedImageBox src={imagePreviewURL} alt="preview image" />
+            <>
+              <$CroppedImageBox src={imagePreviewURL} alt="preview image" />
+              <$InputFile
+                ref={inputRef}
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={selectImage}
+              />
+            </>
           ) : (
             <$ImageLabel>
               <$InputFile

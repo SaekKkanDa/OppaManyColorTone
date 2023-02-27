@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef } from 'react';
-import styled from 'styled-components';
 import { Button } from '@Styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { colorData } from '@Constant/colorData';
@@ -19,6 +18,7 @@ function ChoiceColor() {
   const [num, setNum] = useState(0)
   const selectedType = useRef([])
   let userImg = useRecoilValue(CropImage)
+  console.log(userImg)
   
   const navigate = useNavigate()
   const selectedColor= useMemo(() => colorData[num], [num])
@@ -52,20 +52,24 @@ function ChoiceColor() {
   const setResult = useSetRecoilState(Result)
   const finalResult = calResult()
 
+  //이미지 초기화
+  const setUserImg = useSetRecoilState(CropImage)
+
   const handleNextClick = (type) => {
     selectedType.current.push(type)
     setNum(num + 1)
     setResult(finalResult)
     if(num === 8) {
+      setUserImg('')
       navigate('/result')
-      userImg = ''
+      
     }
   }
 
   const handleResultClick = () => {
     if(num === 8) {
+      setUserImg('')
       navigate('/result')
-      userImg = ''
     }
   }
   

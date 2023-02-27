@@ -110,14 +110,14 @@ yarn run dev
 </table>
 
 <h3>1일</h3>
-<img src="./readme/1" alt="" />
+<img src="./readme/1.png" alt="" />
 <h3>2일</h3>
-<img src="./readme/2" alt="" />
+<img src="./readme/2.png" alt="" />
 <h3>3일</h3>
-<img src="./readme/3" alt="" />
+<img src="./readme/3.png" alt="" />
 <h3>4일</h3>
-<img src="./readme/4" alt="" />
+<img src="./readme/4.png" alt="" />
 <h3>5일</h3>
-<img src="./readme/5" alt="" />
+<img src="./readme/5.png" alt="" />
 
 <!-- ALL-CONTRIBUTORS-LIST:END --

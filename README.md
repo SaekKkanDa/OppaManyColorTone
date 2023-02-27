@@ -23,13 +23,9 @@ _오빠 톤 많아? 퍼스널컬러 자가진단_
 ## ✨ Installation
 
 ```sh
-yarn
+yarn install
 yarn run dev
 ```
-
-## 📋 회고록
-
-누군가는 회고록 쓰겠지?
 
 ## 🙏Contributors
 
@@ -91,15 +87,19 @@ yarn run dev
   </tbody>
 </table>
 
+_Special thanks to [수진](https://github.com/soojjung)_
+
+## 📋 회고록
+
 <h3>1일</h3>
 <img src="./readme/1.png" alt="" width="800px" />
 <h3>2일</h3>
-<img src="./readme/2.png" alt="" />
+<img src="./readme/2.png" alt="" width="800px" />
 <h3>3일</h3>
-<img src="./readme/3.png" alt="" />
+<img src="./readme/3.png" alt="" width="800px" />
 <h3>4일</h3>
-<img src="./readme/4.png" alt="" />
+<img src="./readme/4.png" alt="" width="800px" />
 <h3>5일</h3>
-<img src="./readme/5.png" alt="" />
+<img src="./readme/5.png" alt="" width="800px" />
 
 <!-- ALL-CONTRIBUTORS-LIST:END --

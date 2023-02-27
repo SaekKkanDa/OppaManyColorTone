@@ -23,6 +23,7 @@ _오빠 톤 많아? 퍼스널컬러 자가진단_
 ## ✨ Installation
 
 ```sh
+nvm use
 yarn install
 yarn run dev
 ```

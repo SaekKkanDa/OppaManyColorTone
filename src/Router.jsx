@@ -17,7 +17,6 @@ function AppRouter() {
           <Route path="/result" element={<ResultPage />} />
           <Route path="/image-upload" element={<ImageUploadPage />} />
           <Route path="/choice-color" element={<ChoiceColor />} />
-          <Route path="/detection" element={<FaceDetectionPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

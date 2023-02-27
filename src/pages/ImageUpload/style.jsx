@@ -52,7 +52,7 @@ export const $ImageLabel = styled.label`
 `;
 
 export const $SelectImgButton = styled(Button)`
-  width: 280px;
+  width: 200px;
 `;
 
 export const $InputFile = styled.input`

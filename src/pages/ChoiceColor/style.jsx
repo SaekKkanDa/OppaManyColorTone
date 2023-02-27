@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const $Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,15 +24,24 @@ export const $StatusBar = styled.div`
   border-radius: 4px;
   width: ${({ width }) => width};
   height: 8px;
+  transition: width ease 0.5s;
 `;
 export const $StatusContent = styled.div`
   font-size: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 export const $Explain = styled.div`
-  font-size: 16px;
   margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.6em;
+  text-align: center;
+
+  p {
+    margin-top: 8px;
+    color: ${({ theme }) => theme.gray[400]};
+    font-size: 14px;
+  }
 `;
 
 export const $ColorBox = styled.div`
@@ -40,6 +51,7 @@ export const $ColorBox = styled.div`
   max-width: 896px;
   height: 520px;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 export const $Color = styled.div`

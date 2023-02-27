@@ -11,7 +11,7 @@ export const $FlexContainer = styled.div`
 
 export const $ScaleBox = styled.div`
   ${flexCustom('row', 'center', 'center')}
-  margin: 16px 0 40px;
+  margin-top: 16px;
 `;
 
 export const $InputScale = styled.input`
@@ -22,6 +22,12 @@ export const $InputScale = styled.input`
   transition: background 450ms ease-in;
   -webkit-appearance: none;
   accent-color: ${({ theme }) => theme.gray[500]};
+`;
+
+export const $Guidance = styled.p`
+  margin: 24px 0;
+  text-align: center;
+  line-height: 1.6em;
 `;
 
 export const $ConfirmButton = styled(Button)`

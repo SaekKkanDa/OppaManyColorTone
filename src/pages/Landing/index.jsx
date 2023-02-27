@@ -48,7 +48,7 @@ function LandingPage() {
         <ColorImgSpinner />
         <$LandingBottomDiv>
           <$LandingUserCountDiv>
-            지금까지 {numberOfUsers}명이 진단했어요!
+            지금까지 {numberOfUsers.toLocaleString()}명이 진단했어요!
           </$LandingUserCountDiv>
           <$LangingStartButton onClick={onClickStartButton}>
             시작하기

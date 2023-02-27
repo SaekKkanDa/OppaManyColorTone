@@ -30,7 +30,7 @@ export function shareKakaoDefault() {
       title: '오빠 톤 많아?',
       description: '퍼스널 칼러를 찾아보세요',
       imageUrl:
-        'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+        'https://velog.velcdn.com/images/whow1101/post/56b3a84c-0d30-4c79-a573-e1063c58199b/image.png',
       link: {
         mobileWebUrl: location.href,
         webUrl: location.href,

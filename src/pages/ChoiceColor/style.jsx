@@ -5,40 +5,55 @@ export const $Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 10px;
-`
+  padding: 20px;
+`;
+
 export const $StatusBox = styled.div`
-  width: 90%;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 896px;
   height: 8px;
   border-radius: 4px;
-  background-color: #D4D4D8;
-`
+  background-color: ${({ theme }) => theme.gray[300]};
+`;
 
 export const $StatusBar = styled.div`
-  background-color: #52525B;
+  background-color: ${({ theme }) => theme.gray[600]};
   border-radius: 4px;
-  width: ${({width}) => width};
+  width: ${({ width }) => width};
   height: 8px;
-`
+  transition: width ease 0.5s;
+`;
 export const $StatusContent = styled.div`
   font-size: 20px;
   margin-bottom: 30px;
-`
+`;
 
 export const $Explain = styled.div`
-  font-size: 16px;
   margin-bottom: 20px;
-`
+  font-size: 16px;
+  line-height: 1.6em;
+  text-align: center;
+
+  p {
+    margin-top: 8px;
+    color: ${({ theme }) => theme.gray[400]};
+    font-size: 14px;
+  }
+`;
 
 export const $ColorBox = styled.div`
   display: grid;
-  grid-template-columns : 1fr 1fr;
-  width: 90%;
-  height: 500px;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 896px;
+  height: 520px;
   margin-bottom: 20px;
-`
+  cursor: pointer;
+`;
+
 export const $Color = styled.div`
-  background-color: ${({color}) => color};
+  background-color: ${({ color }) => color};
   width: 100%;
   display: flex;
   align-items: center;
@@ -46,4 +61,4 @@ export const $Color = styled.div`
   img {
     border-radius: 50%;
   }
-`
+`;

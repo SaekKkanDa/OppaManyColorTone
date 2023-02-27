@@ -9,19 +9,18 @@ import ChoiceColor from './pages/ChoiceColor/index';
 import FaceDetectionPage from '@Pages/FaceDetection';
 
 function AppRouter() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<MobileLayout />}>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/result" element={<ResultPage />} />
-                    <Route path="/image-upload" element={<ImageUploadPage />} />
-                    <Route path='/choice-color' element={<ChoiceColor />} />
-                    <Route path='/detection' element={<FaceDetectionPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<MobileLayout />}>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/result" element={<ResultPage />} />
+          <Route path="/image-upload" element={<ImageUploadPage />} />
+          <Route path="/choice-color" element={<ChoiceColor />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default AppRouter;

@@ -4,9 +4,8 @@ import { useNavigate, createSearchParams } from 'react-router-dom';
 import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
+import addNumberOfUsers from '@Utils/addNumberOfUsers';
 import ROUTE_PATH from '@Constant/routePath';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
 import {
   $Wrapper,
   $StatusBox,
@@ -30,14 +29,6 @@ function ChoiceColor() {
   useEffect(() => {
     addNumberOfUsers();
   }, []);
-
-  const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
-
-  const addNumberOfUsers = async () => {
-    const docSnap = await getDoc(docRef);
-    const numberOfUsers = docSnap.data().numberOfUsers + 1;
-    setDoc(docRef, { numberOfUsers });
-  };
 
   //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
   let result = {};

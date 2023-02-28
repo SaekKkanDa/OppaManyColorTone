@@ -29,13 +29,8 @@ function LandingPage() {
     setNumberOfUsers(docSnap.data().numberOfUsers);
   };
 
-  // const addNumberOfUsers = () => {
-  //   setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
-  // };
-
   const onClickStartButton = () => {
     navigate('/image-upload');
-    // addNumberOfUsers();
   };
 
   return (

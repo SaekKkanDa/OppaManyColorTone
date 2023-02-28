@@ -9,9 +9,11 @@
       "@Hooks/*": ["./src/hooks/*"],
       "@Pages/*": ["./src/pages/*"],
       "@Utils/*": ["./src/utils/*"],
-      "@Styles/*": ["./src/styles/*"],
-    }
+      "@Styles/*": ["./src/styles/*"]
+    },
+    "checkJs": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*.js","src/**/*.jsx"],
+  "include": ["src/**/*.js", "src/**/*.jsx"],
   "exclude": ["node_modules"]
 }

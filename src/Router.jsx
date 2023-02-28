@@ -6,17 +6,20 @@ import LandingPage from '@Pages/Landing';
 import ImageUploadPage from '@Pages/ImageUpload';
 import ResultPage from '@Pages/Result';
 import ChoiceColor from './pages/ChoiceColor/index';
-import FaceDetectionPage from '@Pages/FaceDetection';
+
+import ROUTE_PATH from '@Constant/routePath';
 
 function AppRouter() {
+  const { landing, imageUpload, choiceColor, result } = ROUTE_PATH;
+
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<MobileLayout />}>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/result" element={<ResultPage />} />
-          <Route path="/image-upload" element={<ImageUploadPage />} />
-          <Route path="/choice-color" element={<ChoiceColor />} />
+          <Route path={landing} element={<LandingPage />} />
+          <Route path={imageUpload} element={<ImageUploadPage />} />
+          <Route path={choiceColor} element={<ChoiceColor />} />
+          <Route path={result} element={<ResultPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

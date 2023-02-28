@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import { resultData } from '@Constant/resultData';
+import resultColorData from '../../data/resultColorData';
 import { flexCustom, BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
@@ -49,7 +49,7 @@ function ResultPage() {
     worstColors,
     stylingURL,
     celebrities,
-  } = resultData[colorTone];
+  } = resultColorData[colorTone];
 
   const wrapperRef = useRef();
 
@@ -310,7 +310,7 @@ function MenuSubPage({ wrapperRef }) {
 
         <$MenuItemWrapper>
           <$KakaoShareButton onClick={handleKakaoShare}>
-            <$MenuItemImg src="/kakaoIcon.png" />
+            <$MenuItemImg src="/icon/kakaoIcon.png" />
           </$KakaoShareButton>
           <$MenuItemName>카카오톡</$MenuItemName>
         </$MenuItemWrapper>

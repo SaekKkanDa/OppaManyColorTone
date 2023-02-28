@@ -1,8 +1,9 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
-import { colorData } from '@Constant/colorData';
+import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
+import ROUTE_PATH from '@Constant/routePath';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import {
@@ -25,7 +26,7 @@ function ChoiceColor() {
   const userImg = useRecoilValue(CropImage);
 
   const navigate = useNavigate();
-  const selectedColor = useMemo(() => colorData[num], [num]);
+  const selectedColor = useMemo(() => choiceColorData[num], [num]);
 
   // 파이어베이스로 사용자 수 가져오기
   useEffect(() => {
@@ -77,7 +78,7 @@ function ChoiceColor() {
       setUserImg('');
       addNumberOfUsers();
       navigate({
-        pathname: '/result',
+        pathname: ROUTE_PATH.result,
         search: createSearchParams({ colorTone: finalResult }).toString(),
       });
     }
@@ -91,10 +92,10 @@ function ChoiceColor() {
   return (
     <$Wrapper>
       <$StatusBox>
-        <$StatusBar width={`${(num + 1) * (100 / colorData.length)}%`} />
+        <$StatusBar width={`${(num + 1) * (100 / choiceColorData.length)}%`} />
       </$StatusBox>
       <$StatusContent>
-        {num + 1}/{colorData.length} 단계
+        {num + 1}/{choiceColorData.length} 단계
       </$StatusContent>
       <$Explain>
         얼굴과 잘 어울리는 색을 선택해주세요.

@@ -3,6 +3,7 @@ import { useNavigate, createSearchParams } from 'react-router-dom';
 import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
+import ROUTE_PATH from '@Constant/routePath';
 import {
   $Wrapper,
   $StatusBox,
@@ -60,7 +61,7 @@ function ChoiceColor() {
     if (num === 8) {
       setUserImg('');
       navigate({
-        pathname: '/result',
+        pathname: ROUTE_PATH.result,
         search: createSearchParams({ colorTone: finalResult }).toString(),
       });
     }

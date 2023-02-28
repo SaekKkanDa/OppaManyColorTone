@@ -6,6 +6,7 @@ import FaceDetectionPage from '../FaceDetection';
 import theme from '@Styles/theme';
 import { useRecoilState } from 'recoil';
 import { CropImage } from '../../recoil/app';
+import ROUTE_PATH from '@Constant/routePath';
 
 import {
   $ModalContainer,
@@ -31,7 +32,6 @@ function ImageUploadPage() {
   const inputRef = useRef(null);
 
   const clickInput = () => {
-    
     inputRef.current?.click();
   };
 
@@ -92,7 +92,7 @@ function ImageUploadPage() {
           ※ 사진은 본 진단 이외 다른 목적으로 이용되지 않습니다.
         </$Notification>
 
-        <Link to="/choice-color">
+        <Link to={ROUTE_PATH.choiceColor}>
           <$NextButton disabled={!imagePreviewURL}>다음으로</$NextButton>
         </Link>
       </$FlexContainer>

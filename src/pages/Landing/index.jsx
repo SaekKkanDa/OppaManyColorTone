@@ -2,6 +2,8 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
+import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import ROUTE_PATH from '@Constant/routePath';
 import {
   $LandingWrap,
   $LandingTitleDiv,
@@ -12,7 +14,6 @@ import {
   $LangingStartButton,
   $LandingPersonalColorExplanationText,
 } from './style';
-import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ function LandingPage() {
   };
 
   const onClickStartButton = () => {
-    navigate('/image-upload');
+    navigate(ROUTE_PATH.imageUpload);
     addNumberOfUsers();
   };
 

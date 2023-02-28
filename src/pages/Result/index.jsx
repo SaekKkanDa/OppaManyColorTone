@@ -310,7 +310,7 @@ function MenuSubPage({ wrapperRef }) {
 
         <$MenuItemWrapper>
           <$KakaoShareButton onClick={handleKakaoShare}>
-            <$MenuItemImg src="/kakaoIcon.png" />
+            <$MenuItemImg src="/icon/kakaoIcon.png" />
           </$KakaoShareButton>
           <$MenuItemName>카카오톡</$MenuItemName>
         </$MenuItemWrapper>

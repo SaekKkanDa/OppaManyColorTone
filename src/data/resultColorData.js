@@ -62,11 +62,11 @@ const spring = {
     '#283934',
     '#000001',
   ],
-  stylingURL: '/stylingSpring.jpeg',
+  stylingURL: '/result/styling/stylingSpring.jpeg',
   celebrities: [
-    { name: '수지', imageURL: '/suzy.png' },
-    { name: '한지민', imageURL: '/hanjimin.png' },
-    { name: '아이유', imageURL: '/iu.png' },
+    { name: '수지', imageURL: '/result/celebrity/suzy.png' },
+    { name: '한지민', imageURL: '/result/celebrity/hanjimin.png' },
+    { name: '아이유', imageURL: '/result/celebrity/iu.png' },
   ],
 };
 
@@ -134,11 +134,11 @@ const summer = {
     '#131929',
     '#2a2b45',
   ],
-  stylingURL: '/stylingSummerLight.png',
+  stylingURL: '/result/styling/stylingSummerLight.png',
   celebrities: [
-    { name: '태연', imageURL: '/taeyeon.png' },
-    { name: '전지현', imageURL: '/jeonjihyun.png' },
-    { name: '정수정', imageURL: '/jungsujung.png' },
+    { name: '태연', imageURL: '/result/celebrity/taeyeon.png' },
+    { name: '전지현', imageURL: '/result/celebrity/jeonjihyun.png' },
+    { name: '정수정', imageURL: '/result/celebrity/jungsujung.png' },
   ],
 };
 
@@ -206,11 +206,11 @@ const autumn = {
     '#93a8c8',
     '#7b4155',
   ],
-  stylingURL: '/stylingAutumn.jpeg',
+  stylingURL: '/result/styling/stylingAutumn.jpeg',
   celebrities: [
-    { name: '제니', imageURL: '/jennie.png' },
-    { name: '이효리', imageURL: '/leehyolee.png' },
-    { name: '신세경', imageURL: '/shinsaekyeong.png' },
+    { name: '제니', imageURL: '/result/celebrity/jennie.png' },
+    { name: '이효리', imageURL: '/result/celebrity/leehyolee.png' },
+    { name: '신세경', imageURL: '/result/celebrity/shinsaekyeong.png' },
   ],
 };
 
@@ -278,11 +278,11 @@ const winter = {
     '#473c3d',
     '#393b38',
   ],
-  stylingURL: '/stylingWinter.jpeg',
+  stylingURL: '/result/styling/stylingWinter.jpeg',
   celebrities: [
-    { name: '지수', imageURL: '/jisoo.png' },
-    { name: '현아', imageURL: '/hyuna.png' },
-    { name: '이하늬', imageURL: '/leehanee.png' },
+    { name: '지수', imageURL: '/result/celebrity/jisoo.png' },
+    { name: '현아', imageURL: '/result/celebrity/hyuna.png' },
+    { name: '이하늬', imageURL: '/result/celebrity/leehanee.png' },
   ],
 };
 

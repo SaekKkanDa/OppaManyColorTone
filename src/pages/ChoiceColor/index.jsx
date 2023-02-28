@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import choiceColorData from '../../data/choiceColorData';
@@ -19,23 +20,23 @@ import {
 function ChoiceColor() {
   const [num, setNum] = useState(0);
 
-  const [numberOfUsers, setNumberOfUsers] = useState(0);
-  const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
-
   const selectedType = useRef([]);
   const userImg = useRecoilValue(CropImage);
 
   const navigate = useNavigate();
   const selectedColor = useMemo(() => choiceColorData[num], [num]);
 
-  // 파이어베이스로 사용자 수 가져오기
+  // 사용자 수 +1
   useEffect(() => {
-    getNumberOfUsers();
+    addNumberOfUsers();
   }, []);
 
-  const getNumberOfUsers = async () => {
+  const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
+
+  const addNumberOfUsers = async () => {
     const docSnap = await getDoc(docRef);
-    setNumberOfUsers(docSnap.data().numberOfUsers);
+    const numberOfUsers = docSnap.data().numberOfUsers + 1;
+    setDoc(docRef, { numberOfUsers });
   };
 
   //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
@@ -76,18 +77,10 @@ function ChoiceColor() {
     setResult(finalResult);
     if (num === 8) {
       setUserImg('');
-      addNumberOfUsers();
       navigate({
         pathname: ROUTE_PATH.result,
         search: createSearchParams({ colorTone: finalResult }).toString(),
       });
-    }
-  };
-
-  // 사용자 수 1 증가
-  const addNumberOfUsers = () => {
-    if (numberOfUsers) {
-      setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
     }
   };
 

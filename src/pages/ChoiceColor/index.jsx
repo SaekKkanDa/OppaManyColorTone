@@ -1,9 +1,11 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 import {
   $Wrapper,
   $StatusBox,
@@ -16,11 +18,25 @@ import {
 
 function ChoiceColor() {
   const [num, setNum] = useState(0);
+
+  const [numberOfUsers, setNumberOfUsers] = useState(0);
+  const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
+
   const selectedType = useRef([]);
   const userImg = useRecoilValue(CropImage);
 
   const navigate = useNavigate();
   const selectedColor = useMemo(() => choiceColorData[num], [num]);
+
+  // 파이어베이스로 사용자 수 가져오기
+  useEffect(() => {
+    getNumberOfUsers();
+  }, []);
+
+  const getNumberOfUsers = async () => {
+    const docSnap = await getDoc(docRef);
+    setNumberOfUsers(docSnap.data().numberOfUsers);
+  };
 
   //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
   let result = {};
@@ -60,11 +76,17 @@ function ChoiceColor() {
     setResult(finalResult);
     if (num === 8) {
       setUserImg('');
+      addNumberOfUsers();
       navigate({
         pathname: ROUTE_PATH.result,
         search: createSearchParams({ colorTone: finalResult }).toString(),
       });
     }
+  };
+
+  // 사용자 수 1 증가
+  const addNumberOfUsers = () => {
+    setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
   };
 
   return (

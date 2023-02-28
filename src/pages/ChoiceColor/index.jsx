@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
-import { colorData } from '@Constant/colorData';
+import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
 import {
@@ -19,7 +19,7 @@ function ChoiceColor() {
   const userImg = useRecoilValue(CropImage);
 
   const navigate = useNavigate();
-  const selectedColor = useMemo(() => colorData[num], [num]);
+  const selectedColor = useMemo(() => choiceColorData[num], [num]);
 
   //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
   let result = {};
@@ -69,10 +69,10 @@ function ChoiceColor() {
   return (
     <$Wrapper>
       <$StatusBox>
-        <$StatusBar width={`${(num + 1) * (100 / colorData.length)}%`} />
+        <$StatusBar width={`${(num + 1) * (100 / choiceColorData.length)}%`} />
       </$StatusBox>
       <$StatusContent>
-        {num + 1}/{colorData.length} 단계
+        {num + 1}/{choiceColorData.length} 단계
       </$StatusContent>
       <$Explain>
         얼굴과 잘 어울리는 색을 선택해주세요.

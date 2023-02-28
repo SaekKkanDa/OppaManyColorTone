@@ -286,9 +286,11 @@ const winter = {
   ],
 };
 
-export const resultData = {
+const resultColorData = {
   spring: spring,
   summer: summer,
   autumn: autumn,
   winter: winter,
 };
+
+export default resultColorData;

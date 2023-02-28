@@ -2,13 +2,14 @@ import styled from 'styled-components';
 function ColorImgSpinner() {
   return (
     <ImgSpinnerWrap>
-      <ColorChipImg src="/landingColor.png" />
-      <ThinkImg src="/langinThink.png" />
+      <ColorChipImg src="/logo/color-wheel-3d.png" />
+      <ThinkImg src="/logo/curious-emoji-3d.png" />
     </ImgSpinnerWrap>
   );
 }
 
 export const ImgSpinnerWrap = styled.div`
+  position: relative;
   max-width: 240px;
   max-height: 240px;
   width: 92vw;
@@ -22,7 +23,7 @@ export const ColorChipImg = styled.img`
   max-height: 240px;
   width: 92vw;
   height: 92vw;
-  animation: spinner 3s infinite linear;
+  animation: spinner 12s infinite linear;
 
   @keyframes spinner {
     to {
@@ -32,13 +33,14 @@ export const ColorChipImg = styled.img`
 `;
 
 export const ThinkImg = styled.img`
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 80px;
+  max-height: 80px;
   width: 32vw;
   height: 32vw;
   position: absolute;
-  margin-top: 70px;
-  margin-left: 70px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export default ColorImgSpinner;

@@ -29,13 +29,8 @@ function LandingPage() {
     setNumberOfUsers(docSnap.data().numberOfUsers);
   };
 
-  const addNumberOfUsers = () => {
-    setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
-  };
-
   const onClickStartButton = () => {
     navigate('/image-upload');
-    addNumberOfUsers();
   };
 
   return (
@@ -47,9 +42,11 @@ function LandingPage() {
         </$LandingTitleDiv>
         <ColorImgSpinner />
         <$LandingBottomDiv>
-          <$LandingUserCountDiv>
-            지금까지 {numberOfUsers.toLocaleString()}명이 진단했어요!
-          </$LandingUserCountDiv>
+          {!!numberOfUsers && (
+            <$LandingUserCountDiv>
+              지금까지 {numberOfUsers.toLocaleString()}명이 진단했어요!
+            </$LandingUserCountDiv>
+          )}
           <$LangingStartButton onClick={onClickStartButton}>
             시작하기
           </$LangingStartButton>

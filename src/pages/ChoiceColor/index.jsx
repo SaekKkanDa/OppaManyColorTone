@@ -86,7 +86,9 @@ function ChoiceColor() {
 
   // 사용자 수 1 증가
   const addNumberOfUsers = () => {
-    setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
+    if (numberOfUsers) {
+      setDoc(docRef, { numberOfUsers: numberOfUsers + 1 });
+    }
   };
 
   return (

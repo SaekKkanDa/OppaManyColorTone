@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRef, useMemo } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -19,6 +20,8 @@ import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 
 function ResultPage() {
   const [searchParams] = useSearchParams();
+
+  const wrapperRef = useRef();
 
   const colorTone = useMemo(() => {
     if (!searchParams) return null;
@@ -50,8 +53,6 @@ function ResultPage() {
     stylingURL,
     celebrities,
   } = resultColorData[colorTone];
-
-  const wrapperRef = useRef();
 
   return (
     <$Wrapper ref={wrapperRef}>
@@ -353,7 +354,7 @@ const $MenuItemWrapper = styled.div`
 const $MenuItemButton = styled.button`
   ${flexCustom('column', 'center', 'center')}
   border-radius: 50%;
-  background-color: #27272a;
+  background-color: ${({ theme }) => theme.gray[800]};
   padding: 10px;
   width: 48px;
   height: 48px;

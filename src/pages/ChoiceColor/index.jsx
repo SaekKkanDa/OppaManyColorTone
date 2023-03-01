@@ -60,16 +60,12 @@ function ChoiceColor() {
   const setResult = useSetRecoilState(Result);
   const finalResult = calResult();
 
-  //이미지 초기화
-  const setUserImg = useSetRecoilState(CropImage);
-
   const handleNextClick = (type) => {
     selectedType.current.push(type);
     setStageNum((prev) => prev + 1);
     setResult(finalResult);
 
     if (stageNum === MAX_STAGE_NUM) {
-      setUserImg('');
       navigate({
         pathname: ROUTE_PATH.result,
         search: createSearchParams({ colorTone: finalResult }).toString(),

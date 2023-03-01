@@ -3,6 +3,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
+import { useSetRecoilState } from 'recoil';
+import { CropImage } from '../../recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import ROUTE_PATH from '@Constant/routePath';
 import {
@@ -21,6 +23,8 @@ function LandingPage() {
 
   const [numberOfUsers, setNumberOfUsers] = useState(0);
 
+  const setUserImg = useSetRecoilState(CropImage);
+
   useEffect(() => {
     const getNumberOfUsers = async () => {
       const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
@@ -31,6 +35,10 @@ function LandingPage() {
 
     getNumberOfUsers();
   }, []);
+
+  useEffect(() => {
+    setUserImg('');
+  }, [setUserImg]);
 
   const onClickStartButton = () => {
     navigate(ROUTE_PATH.imageUpload);

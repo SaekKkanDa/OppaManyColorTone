@@ -1,4 +1,5 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import React from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
@@ -19,16 +20,17 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const [numberOfUsers, setNumberOfUsers] = useState(0);
-  const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
 
   useEffect(() => {
+    const getNumberOfUsers = async () => {
+      const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
+      const docSnap = await getDoc(docRef);
+
+      setNumberOfUsers(docSnap.data().numberOfUsers);
+    };
+
     getNumberOfUsers();
   }, []);
-
-  const getNumberOfUsers = async () => {
-    const docSnap = await getDoc(docRef);
-    setNumberOfUsers(docSnap.data().numberOfUsers);
-  };
 
   const onClickStartButton = () => {
     navigate(ROUTE_PATH.imageUpload);

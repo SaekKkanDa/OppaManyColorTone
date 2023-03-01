@@ -17,13 +17,14 @@ import {
 } from './style';
 
 function ChoiceColor() {
-  const [num, setNum] = useState(0);
+  const [stageNum, setStageNum] = useState(0);
+  const MAX_STAGE_NUM = 8;
 
   const selectedType = useRef([]);
   const userImg = useRecoilValue(CropImage);
 
   const navigate = useNavigate();
-  const selectedColor = useMemo(() => choiceColorData[num], [num]);
+  const selectedColor = useMemo(() => choiceColorData[stageNum], [stageNum]);
 
   // 사용자 수 +1
   useEffect(() => {
@@ -64,9 +65,10 @@ function ChoiceColor() {
 
   const handleNextClick = (type) => {
     selectedType.current.push(type);
-    setNum(num + 1);
+    setStageNum((prev) => prev + 1);
     setResult(finalResult);
-    if (num === 8) {
+
+    if (stageNum === MAX_STAGE_NUM) {
       setUserImg('');
       navigate({
         pathname: ROUTE_PATH.result,
@@ -78,10 +80,12 @@ function ChoiceColor() {
   return (
     <$Wrapper>
       <$StatusBox>
-        <$StatusBar width={`${(num + 1) * (100 / choiceColorData.length)}%`} />
+        <$StatusBar
+          width={`${(stageNum + 1) * (100 / choiceColorData.length)}%`}
+        />
       </$StatusBox>
       <$StatusContent>
-        {num + 1}/{choiceColorData.length} 단계
+        {stageNum + 1}/{choiceColorData.length} 단계
       </$StatusContent>
       <$Explain>
         얼굴과 잘 어울리는 색을 선택해주세요.

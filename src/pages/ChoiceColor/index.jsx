@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef } from 'react';
-import { Button } from '@Styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { colorData } from '@Constant/colorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
@@ -59,17 +58,11 @@ function ChoiceColor() {
     setNum(num + 1)
     setResult(finalResult)
     if(num === 8) {
+      //length 값으로 조건문 수정하기
       setUserImg('')
       navigate('/result')
     }
   };
-
-  const handleResultClick = () => {
-    if(num === 8) {
-      setUserImg('')
-      navigate('/result')
-    }
-  }
 
   return (
     <$Wrapper>

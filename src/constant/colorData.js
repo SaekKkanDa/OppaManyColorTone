@@ -1,4 +1,5 @@
 // 1 spring, 2 summer, 3 autumn, 4 winter
+// color에서 색 뽑아서 임의로 넣기
 export const colorData = [
   [
     { id: 1, color: '#F9D3E6', type: 'spring' },

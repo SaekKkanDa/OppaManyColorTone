@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import theme from '@Styles/theme';
 
 export const $Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,13 +17,15 @@ export const $StatusBox = styled.div`
   max-width: 896px;
   height: 8px;
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.gray[300]};
+  background-color: ${theme.gray[300]};
 `;
 
 export const $StatusBar = styled.div`
-  background-color: ${({ theme }) => theme.gray[600]};
+  background-color: ${theme.gray[600]};
   border-radius: 4px;
-  width: ${({ width }) => width};
+  width: ${({ 
+// @ts-ignore
+  width }) => width};
   height: 8px;
   transition: width ease 0.5s;
 `;
@@ -37,7 +42,7 @@ export const $Explain = styled.div`
 
   p {
     margin-top: 8px;
-    color: ${({ theme }) => theme.gray[400]};
+    color: ${theme.gray[400]};
     font-size: 14px;
   }
 `;

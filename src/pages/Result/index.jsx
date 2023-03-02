@@ -1,24 +1,48 @@
-import { useRef } from 'react';
+import React from 'react';
+import { useRef, useMemo } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import { resultData } from '@Constant/resultData';
+import resultColorData from '../../data/resultColorData';
 import { flexCustom, BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
 import { captureElement, downloadImage } from '@Utils/capture';
+import { isKakao } from '@Utils/userAgent';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
-import { useRecoilState } from 'recoil';
-import { Result } from '../../recoil/app';
+import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 
 function ResultPage() {
-  const result = useRecoilState(Result)[0];
+  const [searchParams] = useSearchParams();
+
+  const wrapperRef = useRef();
+
+  const colorTone = useMemo(() => {
+    if (!searchParams) return null;
+
+    const colorTone = searchParams.get('colorTone');
+
+    if (!colorTone) return null;
+
+    return colorTone;
+  }, [searchParams]);
+
+  if (colorTone === null) {
+    return (
+      <$LoadingWrapper>
+        <$Title>예기치 못한 상황이 발생했습니다.</$Title>
+        <ColorImgSpinner />
+        <RestartButton />
+      </$LoadingWrapper>
+    );
+  }
+
   const {
     name,
     textColor,
@@ -28,9 +52,7 @@ function ResultPage() {
     worstColors,
     stylingURL,
     celebrities,
-  } = resultData[result];
-
-  const wrapperRef = useRef();
+  } = resultColorData[colorTone];
 
   return (
     <$Wrapper ref={wrapperRef}>
@@ -96,6 +118,14 @@ function ResultPage() {
 
 const $Wrapper = styled.div`
   ${flexCustom('column', 'inherit', 'flex-start')}
+  box-sizing: border-box;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 48px 32px 30px 36px;
+`;
+
+const $LoadingWrapper = styled.div`
+  ${flexCustom('column', 'center', 'center')}
   box-sizing: border-box;
   max-width: 400px;
   margin: 0 auto;
@@ -210,10 +240,24 @@ const $CelebrityName = styled.div`
 `;
 
 function MenuSubPage({ wrapperRef }) {
-  const navigate = useNavigate();
   const { isLoading, kakaoShare } = useKakaoShare();
 
+  // HJ TODO: 네이밍 이상함..
+  const kakaoAlert = () => {
+    const _isKakao = isKakao();
+
+    if (_isKakao) {
+      alert(
+        '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요.😋'
+      );
+    }
+
+    return _isKakao;
+  };
+
   const handleCapture = async () => {
+    if (kakaoAlert()) return;
+
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
@@ -222,6 +266,8 @@ function MenuSubPage({ wrapperRef }) {
   };
 
   const handleLinkCopyClick = async () => {
+    if (kakaoAlert()) return;
+
     try {
       await updateClipboard(location.href);
       // HJ TODO: 커스텀 alert 등록
@@ -241,11 +287,9 @@ function MenuSubPage({ wrapperRef }) {
   };
 
   const handleShare = async () => {
-    await webShare();
-  };
+    if (kakaoAlert()) return;
 
-  const handleRestart = () => {
-    navigate('/');
+    await webShare();
   };
 
   return (
@@ -267,7 +311,7 @@ function MenuSubPage({ wrapperRef }) {
 
         <$MenuItemWrapper>
           <$KakaoShareButton onClick={handleKakaoShare}>
-            <$MenuItemImg src="/kakaoIcon.png" />
+            <$MenuItemImg src="/icon/kakaoIcon.png" />
           </$KakaoShareButton>
           <$MenuItemName>카카오톡</$MenuItemName>
         </$MenuItemWrapper>
@@ -279,11 +323,22 @@ function MenuSubPage({ wrapperRef }) {
           <$MenuItemName>공유하기</$MenuItemName>
         </$MenuItemWrapper>
       </$MenuContainer>
-
-      <$RestartButtonWrapper>
-        <BorderedButton onClick={handleRestart}>처음으로</BorderedButton>
-      </$RestartButtonWrapper>
+      <RestartButton />
     </>
+  );
+}
+
+function RestartButton() {
+  const navigate = useNavigate();
+
+  const handleRestart = () => {
+    navigate('/');
+  };
+
+  return (
+    <$RestartButtonWrapper>
+      <BorderedButton onClick={handleRestart}>처음으로</BorderedButton>
+    </$RestartButtonWrapper>
   );
 }
 
@@ -299,7 +354,7 @@ const $MenuItemWrapper = styled.div`
 const $MenuItemButton = styled.button`
   ${flexCustom('column', 'center', 'center')}
   border-radius: 50%;
-  background-color: #27272a;
+  background-color: ${({ theme }) => theme.gray[800]};
   padding: 10px;
   width: 48px;
   height: 48px;

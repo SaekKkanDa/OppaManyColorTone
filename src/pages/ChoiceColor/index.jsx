@@ -1,8 +1,12 @@
-import { useState, useMemo, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { colorData } from '@Constant/colorData';
+import React from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { useNavigate, createSearchParams } from 'react-router-dom';
+import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
+import useCheckUserImage from '@Hooks/useCheckUserImage';
+import addNumberOfUsers from '@Utils/addNumberOfUsers';
+import ROUTE_PATH from '@Constant/routePath';
 import {
   $Wrapper,
   $StatusBox,
@@ -14,12 +18,20 @@ import {
 } from './style';
 
 function ChoiceColor() {
-  const [num, setNum] = useState(0);
-  const selectedType = useRef([]);
+  const [stageNum, setStageNum] = useState(0);
+  const MAX_STAGE_NUM = choiceColorData.length - 1
+
   const userImg = useRecoilValue(CropImage);
+  useCheckUserImage(userImg);
 
   const navigate = useNavigate();
-  const selectedColor = useMemo(() => colorData[num], [num]);
+  const selectedType = useRef([]);
+  const selectedColor = useMemo(() => choiceColorData[stageNum], [stageNum]);
+
+  // 사용자 수 +1
+  useEffect(() => {
+    addNumberOfUsers();
+  }, []);
 
   //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
   let result = {};
@@ -50,27 +62,29 @@ function ChoiceColor() {
   const setResult = useSetRecoilState(Result);
   const finalResult = calResult();
 
-  //이미지 초기화
-  const setUserImg = useSetRecoilState(CropImage)
-
   const handleNextClick = (type) => {
-    selectedType.current.push(type)
-    setNum(num + 1)
-    setResult(finalResult)
-    if(num === 8) {
-      //length 값으로 조건문 수정하기
-      setUserImg('')
-      navigate('/result')
+    selectedType.current.push(type);
+    setStageNum((prev) => prev + 1);
+    setResult(finalResult);
+
+    if (stageNum === MAX_STAGE_NUM) {
+      navigate({
+        pathname: ROUTE_PATH.result,
+        search: createSearchParams({ colorTone: finalResult }).toString(),
+      });
     }
   };
 
   return (
     <$Wrapper>
       <$StatusBox>
-        <$StatusBar width={`${(num + 1) * (100 / colorData.length)}%`} />
+        <$StatusBar
+          // @ts-ignore 추후 해결
+          width={`${(stageNum + 1) * (100 / choiceColorData.length)}`}
+        />
       </$StatusBox>
       <$StatusContent>
-        {num + 1}/{colorData.length} 단계
+        {stageNum + 1}/{choiceColorData.length} 단계
       </$StatusContent>
       <$Explain>
         얼굴과 잘 어울리는 색을 선택해주세요.

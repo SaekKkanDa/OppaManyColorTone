@@ -6,7 +6,8 @@ module.exports = {
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "prettier",
   ],
   "overrides": [
   ],
@@ -21,5 +22,10 @@ module.exports = {
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": ["warn", { "additionalHooks": "(useRecoilCallback|useRecoilTransaction_UNSTABLE)" }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

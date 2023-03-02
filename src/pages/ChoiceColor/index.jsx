@@ -19,7 +19,7 @@ import {
 
 function ChoiceColor() {
   const [stageNum, setStageNum] = useState(0);
-  const MAX_STAGE_NUM = 8;
+  const MAX_STAGE_NUM = choiceColorData.length - 1
 
   const userImg = useRecoilValue(CropImage);
   useCheckUserImage(userImg);
@@ -79,7 +79,8 @@ function ChoiceColor() {
     <$Wrapper>
       <$StatusBox>
         <$StatusBar
-          width={`${(stageNum + 1) * (100 / choiceColorData.length)}%`}
+          // @ts-ignore 추후 해결
+          width={`${(stageNum + 1) * (100 / choiceColorData.length)}`}
         />
       </$StatusBox>
       <$StatusContent>

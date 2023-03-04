@@ -17,6 +17,7 @@ import { isKakao } from '@Utils/userAgent';
 import useKakaoShare from '@Hooks/useKakaoShare';
 
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import StyleMan from '@Components/svg/StyleMan';
 
 function ResultPage() {
   const [searchParams] = useSearchParams();
@@ -50,6 +51,7 @@ function ResultPage() {
     description,
     bestColors,
     worstColors,
+    stylingColor,
     stylingURL,
     celebrities,
   } = resultColorData[colorTone];
@@ -90,7 +92,8 @@ function ResultPage() {
         </$SubDescriptionTitleBold>{' '}
         스타일링 추천
         <$StylingWrapper>
-          <$Styling src={stylingURL} />
+          {/* <$Styling src={stylingURL} /> */}
+          <StyleMan color={stylingColor}></StyleMan>
         </$StylingWrapper>
       </$SubDescriptionTitle>
 
@@ -219,6 +222,7 @@ const $StylingWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')};
   margin: 12px auto 0;
   width: min(64.25vw, 257px);
+  padding-top: 20px;
 `;
 
 const $CelebritiesWrapper = styled.div`

@@ -1,13 +1,11 @@
-import React from 'react';
-import { useRef, useMemo } from 'react';
-import styled from 'styled-components';
+import React, { useRef, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import resultColorData from '../../data/resultColorData';
-import { flexCustom, BorderedButton } from '@Styles/theme';
+import resultColorData, { ColorTone } from '@Data/resultColorData';
+import { BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
@@ -19,15 +17,45 @@ import useKakaoShare from '@Hooks/useKakaoShare';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import StyleMan from '@Components/svg/StyleMan';
 
+import {
+  $LoadingWrapper,
+  $Title,
+  $TitleBold,
+  $Wrapper,
+  $ColorGrid,
+  $ColorGridItem,
+  $Description,
+  $ColorMatchWrapper,
+  $ColorMatchGrid,
+  $ColorMatchGridItem,
+  $ColorMatchTitle,
+  $ColorMatchWorstGrid,
+  $CelebritiesWrapper,
+  $CelebrityName,
+  $CelebrityWrapper,
+  $KakaoShareButton,
+  $MenuContainer,
+  $MenuItemButton,
+  $MenuItemImg,
+  $MenuItemName,
+  $MenuItemWrapper,
+  $RestartButtonWrapper,
+  $Styling,
+  $StylingWrapper,
+  $SubDescriptionTitle,
+  $SubDescriptionTitleBold,
+} from './style';
+
 function ResultPage() {
   const [searchParams] = useSearchParams();
 
-  const wrapperRef = useRef();
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const colorTone = useMemo(() => {
     if (!searchParams) return null;
 
-    const colorTone = searchParams.get('colorTone');
+    // HJ TODO: type check
+    const colorTone = searchParams.get('colorTone') as ColorTone;
 
     if (!colorTone) return null;
 
@@ -119,131 +147,11 @@ function ResultPage() {
   );
 }
 
-const $Wrapper = styled.div`
-  ${flexCustom('column', 'inherit', 'flex-start')}
-  box-sizing: border-box;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 48px 32px 30px 36px;
-`;
+interface MenuSubPageProps {
+  wrapperRef: React.RefObject<HTMLDivElement>;
+}
 
-const $LoadingWrapper = styled.div`
-  ${flexCustom('column', 'center', 'center')}
-  box-sizing: border-box;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 48px 32px 30px 36px;
-`;
-
-const $Title = styled.h1`
-  font-size: min(5.25vw, 21px);
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: -0.022em;
-`;
-
-const $TitleBold = styled.span`
-  font-size: min(8.75vw, 35px);
-  color: ${(props) => props.color};
-`;
-
-const $ColorGrid = styled.div`
-  margin: 24px auto 0 auto;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 1px;
-
-  width: 100%;
-`;
-
-const $ColorGridItem = styled.div`
-  aspect-ratio: 16/9;
-  background-color: ${(props) => props.backgroundColor};
-`;
-
-const $Description = styled.div`
-  margin-top: 24px;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: justify;
-`;
-
-const $ColorMatchWrapper = styled.div`
-  margin-top: 48px;
-`;
-
-const $ColorMatchTitle = styled.h2`
-  font-weight: 700;
-  font-size: min(5.25vw, 21px);
-`;
-
-const $ColorMatchGrid = styled.div`
-  margin-top: 12px;
-  margin-bottom: 36px;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 5px;
-
-  width: 100%;
-`;
-
-const $ColorMatchGridItem = styled.div`
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: ${(props) => props.backgroundColor};
-`;
-
-const $ColorMatchWorstGrid = styled.div`
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 1fr;
-  gap: 5px;
-`;
-
-const $SubDescriptionTitle = styled.h2`
-  margin-top: 48px;
-  font-size: min(5.25vw, 21px);
-  font-weight: 700;
-`;
-
-const $SubDescriptionTitleBold = styled.span`
-  color: ${(props) => props.color};
-`;
-
-const $Styling = styled.img`
-  max-width: 100%;
-`;
-
-const $StylingWrapper = styled.div`
-  ${flexCustom('column', 'center', 'center')};
-  margin: 12px auto 0;
-  width: min(64.25vw, 257px);
-  padding-top: 20px;
-`;
-
-const $CelebritiesWrapper = styled.div`
-  ${flexCustom('row', 'inherit', 'space-between')};
-  margin-top: 20px;
-`;
-
-const $CelebrityWrapper = styled.div`
-  ${flexCustom('column', 'inherit', 'inherit')};
-`;
-
-const $CelebrityName = styled.div`
-  margin-top: 8px;
-  color: ${({ theme }) => theme.gray[600]};
-  font-size: 16px;
-  text-align: center;
-  font-weight: 500;
-  font-family: initial;
-`;
-
-function MenuSubPage({ wrapperRef }) {
+function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
 
   // HJ TODO: 네이밍 이상함..
@@ -345,53 +253,5 @@ function RestartButton() {
     </$RestartButtonWrapper>
   );
 }
-
-const $MenuContainer = styled.div`
-  ${flexCustom('row', 'inherit', 'space-around')}
-  margin-top: 72px;
-`;
-
-const $MenuItemWrapper = styled.div`
-  ${flexCustom('column', 'center', 'center')}
-`;
-
-const $MenuItemButton = styled.button`
-  ${flexCustom('column', 'center', 'center')}
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.gray[800]};
-  padding: 10px;
-  width: 48px;
-  height: 48px;
-  aspect-ratio: 1/1;
-  font-size: 48px;
-  cursor: pointer;
-
-  svg {
-    width: 100%;
-  }
-`;
-
-const $KakaoShareButton = styled.button`
-  ${flexCustom('column', 'center', 'center')}
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  aspect-ratio: 1/1;
-  cursor: pointer;
-`;
-
-const $MenuItemImg = styled.img`
-  max-width: 100%;
-`;
-
-const $MenuItemName = styled.div`
-  margin-top: 4px;
-  text-align: center;
-  font-size: 12px;
-`;
-
-const $RestartButtonWrapper = styled.div`
-  margin-top: 29px;
-`;
 
 export default ResultPage;

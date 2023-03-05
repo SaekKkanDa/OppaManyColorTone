@@ -1,4 +1,39 @@
-const springBright = {
+export type ColorTone =
+  | 'springBright'
+  | 'springWarm'
+  | 'springLight'
+  | 'summerLight'
+  | 'summerCool'
+  | 'summerMute'
+  | 'autumnMute'
+  | 'autumnWarm'
+  | 'autumnDeep'
+  | 'winterDeep'
+  | 'winterCool'
+  | 'winterBright';
+
+type RGB = `rgb(${number}, ${number}, ${number})`;
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
+type HEX = `#${string}`;
+
+type Color = RGB | RGBA | HEX;
+
+export interface ColorResult {
+  name: string;
+  textColor: Color;
+  gridColors: Color[];
+  description: string;
+  bestColors: Color[];
+  worstColors: Color[];
+  stylingColor: Color[];
+  stylingURL: string;
+  celebrities: {
+    name: string;
+    imageURL: string;
+  }[];
+}
+
+const springBright: ColorResult = {
   name: '봄 브라이트',
   textColor: '#FDD274',
   gridColors: [
@@ -67,7 +102,7 @@ const springBright = {
   ],
 };
 
-const springWarm = {
+const springWarm: ColorResult = {
   name: '봄 웜',
   textColor: '#76A95A',
   gridColors: [
@@ -136,7 +171,7 @@ const springWarm = {
   ],
 };
 
-const springLight = {
+const springLight: ColorResult = {
   name: '봄 라이트',
   textColor: '#FADC6C',
   gridColors: [
@@ -205,7 +240,7 @@ const springLight = {
   ],
 };
 
-const summerLight = {
+const summerLight: ColorResult = {
   name: '여름 라이트',
   textColor: '#9dcfee',
   gridColors: [
@@ -274,7 +309,7 @@ const summerLight = {
   ],
 };
 
-const summerCool = {
+const summerCool: ColorResult = {
   name: '여름 쿨',
   textColor: '#1cace1',
   gridColors: [
@@ -343,7 +378,7 @@ const summerCool = {
   ],
 };
 
-const summerMute = {
+const summerMute: ColorResult = {
   name: '여름 뮤트',
   textColor: '#f9a4b8',
   gridColors: [
@@ -412,7 +447,7 @@ const summerMute = {
   ],
 };
 
-const autumnMute = {
+const autumnMute: ColorResult = {
   name: '가을 뮤트',
   textColor: '#a7ad87',
   gridColors: [
@@ -481,7 +516,7 @@ const autumnMute = {
   ],
 };
 
-const autumnWarm = {
+const autumnWarm: ColorResult = {
   name: '가을 웜',
   textColor: '#f07838',
   gridColors: [
@@ -550,7 +585,7 @@ const autumnWarm = {
   ],
 };
 
-const autumnDeep = {
+const autumnDeep: ColorResult = {
   name: '가을 딥',
   textColor: '#624f3e',
   gridColors: [
@@ -619,7 +654,7 @@ const autumnDeep = {
   ],
 };
 
-const winterDeep = {
+const winterDeep: ColorResult = {
   name: '겨울 딥',
   textColor: '#d72f86',
   gridColors: [
@@ -688,7 +723,7 @@ const winterDeep = {
   ],
 };
 
-const winterCool = {
+const winterCool: ColorResult = {
   name: '겨울 쿨',
   textColor: '#99d6ed',
   gridColors: [
@@ -757,7 +792,7 @@ const winterCool = {
   ],
 };
 
-const winterBright = {
+const winterBright: ColorResult = {
   name: '겨울 브라이트',
   textColor: '#b54c9e',
   gridColors: [
@@ -826,7 +861,7 @@ const winterBright = {
   ],
 };
 
-const resultColorData = {
+const resultColorData: Record<ColorTone, ColorResult> = {
   springBright: springBright,
   springWarm: springWarm,
   springLight: springLight,

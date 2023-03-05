@@ -6,7 +6,7 @@ const COLOR_TYPE = {
     winter: 'winter',
   },
 
-  type: {
+  tone: {
     warm: 'warm',
     cool: 'cool',
     bright: 'bright',

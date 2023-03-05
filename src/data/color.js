@@ -2,13 +2,13 @@ import COLOR_TYPE from '@Constant/colorType';
 
 const {
   season: { spring, summer, autumn, winter },
-  type: { warm, cool, bright, mute, light, deep },
+  tone: { warm, cool, bright, mute, light, deep },
 } = COLOR_TYPE;
 
 const color = [
   {
     season: spring,
-    type: bright,
+    tone: bright,
     color: [
       '#F8F7D9',
       '#F9E22D',
@@ -39,7 +39,7 @@ const color = [
   },
   {
     season: spring,
-    type: warm,
+    tone: warm,
     color: [
       '#F9E22D',
       '#FDD274',
@@ -70,7 +70,7 @@ const color = [
   },
   {
     season: spring,
-    type: light,
+    tone: light,
     color: [
       '#F8F7D9',
       '#EEEB9E',
@@ -102,7 +102,7 @@ const color = [
 
   {
     season: summer,
-    type: light,
+    tone: light,
     color: [
       '#c6dce9',
       '#9cd6ea',
@@ -133,7 +133,7 @@ const color = [
   },
   {
     season: summer,
-    type: cool,
+    tone: cool,
     color: [
       '#f098c1',
       '#bdbec0',
@@ -164,7 +164,7 @@ const color = [
   },
   {
     season: summer,
-    type: mute,
+    tone: mute,
     color: [
       '#f3bfcb',
       '#f9a4b8',
@@ -196,7 +196,7 @@ const color = [
 
   {
     season: autumn,
-    type: mute,
+    tone: mute,
     color: [
       '#f5e2a5',
       '#fbd59e',
@@ -227,7 +227,7 @@ const color = [
   },
   {
     season: autumn,
-    type: warm,
+    tone: warm,
     color: [
       '#fecc2d',
       '#b6ac3d',
@@ -258,7 +258,7 @@ const color = [
   },
   {
     season: autumn,
-    type: deep,
+    tone: deep,
     color: [
       '#c1d542',
       '#d9ab3a',
@@ -290,7 +290,7 @@ const color = [
 
   {
     season: winter,
-    type: deep,
+    tone: deep,
     color: [
       '#ffffff',
       '#bbc4e2',
@@ -321,7 +321,7 @@ const color = [
   },
   {
     season: winter,
-    type: cool,
+    tone: cool,
     color: [
       '#ffffff',
       '#99d6ed',
@@ -352,7 +352,7 @@ const color = [
   },
   {
     season: winter,
-    type: bright,
+    tone: bright,
     color: [
       '#ffffff',
       '#c5d7e7',

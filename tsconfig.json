@@ -12,9 +12,13 @@
       "@Utils/*": ["./src/utils/*"],
       "@Styles/*": ["./src/styles/*"]
     },
-    "checkJs": true,
-    "jsx": "react"
+    "allowJs": true,
+    "jsx": "react",
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.js", "src/**/*.jsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
 }

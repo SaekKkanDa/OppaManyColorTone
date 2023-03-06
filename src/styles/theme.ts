@@ -18,11 +18,15 @@ const theme = {
 
 export default theme;
 
-export const flexCustom = (flexDirection, alignItems, justifyContent) => css`
+export const flexCustom = (
+  flexDirection = 'initial',
+  alignItems = 'center',
+  justifyContent = 'center'
+) => css`
   display: flex;
-  flex-direction: ${flexDirection || 'initial'};
-  align-items: ${alignItems || 'center'};
-  justify-content: ${justifyContent || 'center'};
+  flex-direction: ${flexDirection};
+  align-items: ${alignItems};
+  justify-content: ${justifyContent};
 `;
 
 export const Button = styled.button`

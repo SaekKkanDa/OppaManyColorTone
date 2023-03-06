@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const useCheckUserImage = (/** @type {string} */ userImg) => {
+const useRedirectNoImage = (userImg: string) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,4 +11,4 @@ const useCheckUserImage = (/** @type {string} */ userImg) => {
   }, [navigate, userImg]);
 };
 
-export default useCheckUserImage;
+export default useRedirectNoImage;

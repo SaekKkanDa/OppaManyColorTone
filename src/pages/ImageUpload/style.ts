@@ -22,7 +22,7 @@ export const $ModalBackground = styled.div`
   z-index: 10;
 `;
 
-export const $FlexContainer = styled.div`
+export const $FlexContainer = styled.div<{ isModalOpen: boolean }>`
   display: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'block')};
   height: 100%;
   ${flexCustom('column', 'center', 'center')}

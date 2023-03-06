@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +13,16 @@ import {
   $ConfirmButton,
 } from './style';
 
-function FaceDetectionPage({ imageFile, setIsModalOpen }) {
+interface FaceDetectionProps {
+  imageFile: File;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   const [image, setImage] = useState('');
   const [scale, setScale] = useState(1);
   const [editor, setEditor] = useState(null);
-  const [cropImage, setCropImage] = useRecoilState(CropImage);
+  const [, setCropImage] = useRecoilState(CropImage);
 
   useEffect(() => {
     const file = imageFile;
@@ -30,16 +35,15 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setImage(reader.result);
+      setImage(reader.result.toString());
     };
   }, [imageFile]);
 
-  const OnChange = (event) => {
+  const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     switch (name) {
       case 'scale':
-        const scaleValue = Math.floor(value / 5) / 10 + 1;
         setScale(Number(value));
         break;
 
@@ -52,7 +56,7 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
       try {
         const canvas = editor.getImageScaledToCanvas();
         const image = canvas.toDataURL('image/jpeg');
-        // 이제 이 이미지를 서버로 업로드하거나 상태에 저장할 수 있습니다.
+
         setCropImage(image);
         setIsModalOpen(false);
       } catch (error) {
@@ -100,4 +104,4 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
   );
 }
 
-export default FaceDetectionPage;
+export default FaceDetection;

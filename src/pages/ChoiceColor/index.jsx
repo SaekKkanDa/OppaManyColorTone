@@ -4,7 +4,7 @@ import { useNavigate, createSearchParams } from 'react-router-dom';
 import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { CropImage, Result } from '../../recoil/app';
-import useCheckUserImage from '@Hooks/useCheckUserImage';
+import useRedirectNoImage from '@Hooks/useRedirectNoImage';
 import addNumberOfUsers from '@Utils/addNumberOfUsers';
 import ROUTE_PATH from '@Constant/routePath';
 import {
@@ -19,10 +19,10 @@ import {
 
 function ChoiceColor() {
   const [stageNum, setStageNum] = useState(0);
-  const MAX_STAGE_NUM = choiceColorData.length - 1
+  const MAX_STAGE_NUM = choiceColorData.length - 1;
 
   const userImg = useRecoilValue(CropImage);
-  useCheckUserImage(userImg);
+  useRedirectNoImage(userImg);
 
   const navigate = useNavigate();
   const selectedType = useRef([]);

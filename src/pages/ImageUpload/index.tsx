@@ -1,8 +1,9 @@
+import React from 'react';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import FaceDetectionPage from '../FaceDetection';
+import FaceDetection from '../FaceDetection';
 import theme from '@Styles/theme';
 import { useRecoilState } from 'recoil';
 import { CropImage } from '../../recoil/app';
@@ -46,7 +47,7 @@ function ImageUploadPage() {
       {isModalOpen ? (
         <>
           <$Modal>
-            <FaceDetectionPage
+            <FaceDetection
               imageFile={imageFile}
               setIsModalOpen={setIsModalOpen}
             />

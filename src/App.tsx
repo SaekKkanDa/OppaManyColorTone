@@ -1,3 +1,4 @@
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import AppRouter from './Router';
 import GlobalStyle from '@Styles/GlobalStyle';

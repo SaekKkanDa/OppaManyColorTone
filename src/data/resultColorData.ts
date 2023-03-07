@@ -1,3 +1,5 @@
+import resultImg from '../assets/result';
+
 export type ColorTone =
   | 'springBright'
   | 'springWarm'
@@ -94,11 +96,11 @@ const springBright: ColorResult = {
     '#85888d',
   ],
   stylingColor: ['#FDD274', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '아이유', imageURL: '/result/celebrity/iu.png' },
-    { name: '수지', imageURL: '/result/celebrity/suzy.png' },
-    { name: '이준호', imageURL: '/result/celebrity/leejunho.png' },
+    { name: '아이유', imageURL: resultImg.celebrity.iu },
+    { name: '수지', imageURL: resultImg.celebrity.suzy },
+    { name: '이준호', imageURL: resultImg.celebrity.leejunho },
   ],
 };
 
@@ -163,11 +165,11 @@ const springWarm: ColorResult = {
     '#e22c73',
   ],
   stylingColor: ['#76A95A', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '유인나', imageURL: '/result/celebrity/yooinna.png' },
-    { name: '조이', imageURL: '/result/celebrity/joy.png' },
-    { name: '뷔', imageURL: '/result/celebrity/btsv.png' },
+    { name: '유인나', imageURL: resultImg.celebrity.yooinna },
+    { name: '조이', imageURL: resultImg.celebrity.joy },
+    { name: '뷔', imageURL: resultImg.celebrity.btsv },
   ],
 };
 
@@ -232,11 +234,11 @@ const springLight: ColorResult = {
     '#159b80',
   ],
   stylingColor: ['#F8F7D9', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '윤아', imageURL: '/result/celebrity/yoona.png' },
-    { name: '한지민', imageURL: '/result/celebrity/hanjimin.png' },
-    { name: '이종석', imageURL: '/result/celebrity/leejongsuk.png' },
+    { name: '윤아', imageURL: resultImg.celebrity.yoona },
+    { name: '한지민', imageURL: resultImg.celebrity.hanjimin },
+    { name: '이종석', imageURL: resultImg.celebrity.leejongsuk },
   ],
 };
 
@@ -301,11 +303,11 @@ const summerLight: ColorResult = {
     '#654045',
   ],
   stylingColor: ['#bacae3', '#85888d'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '손예진', imageURL: '/result/celebrity/sonyejin.png' },
-    { name: '장원영', imageURL: '/result/celebrity/jangwonyoung.png' },
-    { name: '이도현', imageURL: '/result/celebrity/leedohyun.png' },
+    { name: '손예진', imageURL: resultImg.celebrity.sonyejin },
+    { name: '장원영', imageURL: resultImg.celebrity.jangwonyoung },
+    { name: '이도현', imageURL: resultImg.celebrity.leedohyun },
   ],
 };
 
@@ -370,11 +372,11 @@ const summerCool: ColorResult = {
     '#226e47',
   ],
   stylingColor: ['#1cace1', '#85888d'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '태연', imageURL: '/result/celebrity/taeyeon.png' },
-    { name: '전지현', imageURL: '/result/celebrity/jeonjihyun.png' },
-    { name: '차은우', imageURL: '/result/celebrity/chaeunwoo.png' },
+    { name: '태연', imageURL: resultImg.celebrity.taeyeon },
+    { name: '전지현', imageURL: resultImg.celebrity.jeonjihyun },
+    { name: '차은우', imageURL: resultImg.celebrity.chaeunwoo },
   ],
 };
 
@@ -439,11 +441,11 @@ const summerMute: ColorResult = {
     '#854399',
   ],
   stylingColor: ['#f3bfcb', '#85888d'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '김태리', imageURL: '/result/celebrity/kimtaeri.png' },
-    { name: '김고은', imageURL: '/result/celebrity/kimgoeun.png' },
-    { name: '진', imageURL: '/result/celebrity/jin.png' },
+    { name: '김태리', imageURL: resultImg.celebrity.kimtaeri },
+    { name: '김고은', imageURL: resultImg.celebrity.kimgoeun },
+    { name: '진', imageURL: resultImg.celebrity.jin },
   ],
 };
 
@@ -508,11 +510,11 @@ const autumnMute: ColorResult = {
     '#e22c74',
   ],
   stylingColor: ['#8c956b', '#59514c'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '츄', imageURL: '/result/celebrity/chuu.png' },
-    { name: '제니', imageURL: '/result/celebrity/jennie.png' },
-    { name: '서강준', imageURL: '/result/celebrity/seokangjun.png' },
+    { name: '츄', imageURL: resultImg.celebrity.chuu },
+    { name: '제니', imageURL: resultImg.celebrity.jennie },
+    { name: '서강준', imageURL: resultImg.celebrity.seokangjun },
   ],
 };
 
@@ -577,11 +579,14 @@ const autumnWarm: ColorResult = {
     '#e7317e',
   ],
   stylingColor: ['#9c5238', '#59514c'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '신세경', imageURL: '/result/celebrity/shinsaekyeong.png' },
-    { name: '한예슬', imageURL: '/result/celebrity/hanyeseul.png' },
-    { name: '박보검', imageURL: '/result/celebrity/parkbogum.png' },
+    {
+      name: '신세경',
+      imageURL: resultImg.celebrity.shinsaekyeong,
+    },
+    { name: '한예슬', imageURL: resultImg.celebrity.hanyeseul },
+    { name: '박보검', imageURL: resultImg.celebrity.parkbogum },
   ],
 };
 
@@ -646,11 +651,11 @@ const autumnDeep: ColorResult = {
     '#61778f',
   ],
   stylingColor: ['#624f3e', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '이효리', imageURL: '/result/celebrity/leehyolee.png' },
-    { name: '김유정', imageURL: '/result/celebrity/kimyoujung.png' },
-    { name: '공유', imageURL: '/result/celebrity/gongyoo.png' },
+    { name: '이효리', imageURL: resultImg.celebrity.leehyolee },
+    { name: '김유정', imageURL: resultImg.celebrity.kimyoujung },
+    { name: '공유', imageURL: resultImg.celebrity.gongyoo },
   ],
 };
 
@@ -715,11 +720,11 @@ const winterDeep: ColorResult = {
     '#CDA8D0',
   ],
   stylingColor: ['#ffffff', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '이하늬', imageURL: '/result/celebrity/leehanee.png' },
-    { name: '지수', imageURL: '/result/celebrity/jisoo.png' },
-    { name: '차승원', imageURL: '/result/celebrity/chaseungwon.png' },
+    { name: '이하늬', imageURL: resultImg.celebrity.leehanee },
+    { name: '지수', imageURL: resultImg.celebrity.jisoo },
+    { name: '차승원', imageURL: resultImg.celebrity.chaseungwon },
   ],
 };
 
@@ -784,11 +789,11 @@ const winterCool: ColorResult = {
     '#f07838',
   ],
   stylingColor: ['#e896be', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '현아', imageURL: '/result/celebrity/hyuna.png' },
-    { name: '카리나', imageURL: '/result/celebrity/karina.png' },
-    { name: '김수현', imageURL: '/result/celebrity/kimsoohyun.png' },
+    { name: '현아', imageURL: resultImg.celebrity.hyuna },
+    { name: '카리나', imageURL: resultImg.celebrity.karina },
+    { name: '김수현', imageURL: resultImg.celebrity.kimsoohyun },
   ],
 };
 
@@ -853,11 +858,11 @@ const winterBright: ColorResult = {
     '#f9ad6a',
   ],
   stylingColor: ['#8d53a0', '#333333'],
-  stylingURL: '/result/styling/stylingSpringBright.jpeg',
+  stylingURL: resultImg.styling.stylingSpringBright,
   celebrities: [
-    { name: '선미', imageURL: '/result/celebrity/sunmi.png' },
-    { name: '청하', imageURL: '/result/celebrity/chungha.png' },
-    { name: '강동원', imageURL: '/result/celebrity/gangdongwon.png' },
+    { name: '선미', imageURL: resultImg.celebrity.sunmi },
+    { name: '청하', imageURL: resultImg.celebrity.chungha },
+    { name: '강동원', imageURL: resultImg.celebrity.gangdongwon },
   ],
 };
 

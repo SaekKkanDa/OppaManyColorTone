@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +13,17 @@ import {
   $ConfirmButton,
 } from './style';
 
-function FaceDetectionPage({ imageFile, setIsModalOpen }) {
+interface FaceDetectionProps {
+  imageFile: File;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   const [image, setImage] = useState('');
   const [scale, setScale] = useState(1);
-  const [editor, setEditor] = useState(null);
-  const [cropImage, setCropImage] = useRecoilState(CropImage);
+  const [, setCropImage] = useRecoilState(CropImage);
+
+  const editor: React.RefObject<AvatarEditor> = useRef(null);
 
   useEffect(() => {
     const file = imageFile;
@@ -30,16 +36,22 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setImage(reader.result);
+      const result = reader.result;
+
+      if (typeof result === 'string') {
+        setImage(result);
+        return;
+      }
+
+      throw Error('이미지 파일을 불러오는 데 오류가 발생했습니다.');
     };
   }, [imageFile]);
 
-  const OnChange = (event) => {
+  const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     switch (name) {
       case 'scale':
-        const scaleValue = Math.floor(value / 5) / 10 + 1;
         setScale(Number(value));
         break;
 
@@ -47,12 +59,13 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
         break;
     }
   };
+
   const handleSave = () => {
-    if (editor) {
+    if (editor.current) {
       try {
-        const canvas = editor.getImageScaledToCanvas();
+        const canvas = editor.current.getImageScaledToCanvas();
         const image = canvas.toDataURL('image/jpeg');
-        // 이제 이 이미지를 서버로 업로드하거나 상태에 저장할 수 있습니다.
+
         setCropImage(image);
         setIsModalOpen(false);
       } catch (error) {
@@ -67,7 +80,7 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
     <$FlexContainer>
       <div>
         <AvatarEditor
-          ref={setEditor}
+          ref={editor}
           image={image}
           width={100}
           height={100}
@@ -100,4 +113,4 @@ function FaceDetectionPage({ imageFile, setIsModalOpen }) {
   );
 }
 
-export default FaceDetectionPage;
+export default FaceDetection;

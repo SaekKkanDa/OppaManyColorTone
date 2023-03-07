@@ -30,7 +30,7 @@ function LandingPage() {
       const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
       const docSnap = await getDoc(docRef);
 
-      setNumberOfUsers(docSnap.data().numberOfUsers);
+      setNumberOfUsers(docSnap.data()?.numberOfUsers);
     };
 
     getNumberOfUsers();

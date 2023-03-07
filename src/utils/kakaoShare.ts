@@ -28,9 +28,9 @@ export function shareKakaoDefault() {
     objectType: 'feed',
     content: {
       title: '오빠 톤 많아?',
-      description: '퍼스널 칼러를 찾아보세요',
+      description: '퍼스널 컬러 자가진단',
       imageUrl:
-        'https://velog.velcdn.com/images/whow1101/post/56b3a84c-0d30-4c79-a573-e1063c58199b/image.png',
+        'https://firebasestorage.googleapis.com/v0/b/oppamanycolortone-5fb42.appspot.com/o/preview%2Fkakao-share-preview.png?alt=media&token=d209f2d5-e3f8-4a1d-97d6-8d87b220b8a4',
       link: {
         mobileWebUrl: location.href,
         webUrl: location.href,

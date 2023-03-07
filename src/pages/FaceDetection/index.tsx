@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,8 +21,9 @@ interface FaceDetectionProps {
 function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   const [image, setImage] = useState('');
   const [scale, setScale] = useState(1);
-  const [editor, setEditor] = useState(null);
   const [, setCropImage] = useRecoilState(CropImage);
+
+  const editor: React.RefObject<AvatarEditor> = useRef(null);
 
   useEffect(() => {
     const file = imageFile;
@@ -35,7 +36,14 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setImage(reader.result.toString());
+      const result = reader.result;
+
+      if (typeof result === 'string') {
+        setImage(result);
+        return;
+      }
+
+      throw Error('이미지 파일을 불러오는 데 오류가 발생했습니다.');
     };
   }, [imageFile]);
 
@@ -51,10 +59,11 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
         break;
     }
   };
+
   const handleSave = () => {
-    if (editor) {
+    if (editor.current) {
       try {
-        const canvas = editor.getImageScaledToCanvas();
+        const canvas = editor.current.getImageScaledToCanvas();
         const image = canvas.toDataURL('image/jpeg');
 
         setCropImage(image);
@@ -71,7 +80,7 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
     <$FlexContainer>
       <div>
         <AvatarEditor
-          ref={setEditor}
+          ref={editor}
           image={image}
           width={100}
           height={100}

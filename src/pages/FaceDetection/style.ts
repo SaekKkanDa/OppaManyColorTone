@@ -22,6 +22,7 @@ export const $InputScale = styled.input`
   transition: background 450ms ease-in;
   -webkit-appearance: none;
   accent-color: ${({ theme }) => theme.gray[500]};
+  cursor: ew-resize;
 `;
 
 export const $Guidance = styled.p`

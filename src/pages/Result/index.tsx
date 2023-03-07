@@ -17,6 +17,8 @@ import useKakaoShare from '@Hooks/useKakaoShare';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import StyleMan from '@Components/svg/StyleMan';
 
+import kakaoIcon from '../../assets/icon/kakaoIcon.png';
+
 import {
   $LoadingWrapper,
   $Title,
@@ -223,7 +225,7 @@ function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
 
         <$MenuItemWrapper>
           <$KakaoShareButton onClick={handleKakaoShare}>
-            <$MenuItemImg src="/icon/kakaoIcon.png" />
+            <$MenuItemImg src={kakaoIcon} />
           </$KakaoShareButton>
           <$MenuItemName>카카오톡</$MenuItemName>
         </$MenuItemWrapper>

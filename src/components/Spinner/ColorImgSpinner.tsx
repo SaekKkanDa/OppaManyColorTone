@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import colorWheel from '../../assets/logo/color-wheel-3d.png';
+import curiousEmoji from '../../assets/logo/curious-emoji-3d.png';
 
 function ColorImgSpinner() {
   return (
     <ImgSpinnerWrap>
-      <ColorChipImg src="/logo/color-wheel-3d.png" />
-      <ThinkImg src="/logo/curious-emoji-3d.png" />
+      <ColorChipImg src={colorWheel} />
+      <ThinkImg src={curiousEmoji} />
     </ImgSpinnerWrap>
   );
 }

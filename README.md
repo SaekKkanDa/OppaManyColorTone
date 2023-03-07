@@ -2,10 +2,11 @@
   <a href="https://omct.web.app/" rel="noopener" target="_blank"><img width="150" src="./src/assets/logo/logo.png" alt="logo"></a>
 </p>
 
-<h1 align="center" style="margin-bottom: 0">오빠! 톤 많아?</h1>
-<h2 align="center" style="margin-top: 0">퍼스널 컬러 자가진단</h1>
+<h1 align="center">오빠! 톤 많아?</h1>
 
 ## 🧐 About Project
+
+_오빠! 톤 많아? 퍼스널 컬러 자가진단_
 
 <p>
 안녕하세요. 색깐다입니다.
@@ -36,7 +37,7 @@ yarn run dev
     <tr>
       <td align="center" valign="top">
         <a href="https://github.com/Jaenk-99">
-          <img src="https://avatars.githubusercontent.com/u/87492963?v=4" width="100px" alt="잰크" style="border-radius: 50%" />
+          <img src="https://avatars.githubusercontent.com/u/87492963?v=4" width="100px" alt="잰크" />
           <br />
           <sub>
             <b>잰크</b>
@@ -46,7 +47,7 @@ yarn run dev
       </td>
       <td align="center" valign="top">
         <a href="https://github.com/seoltang">
-          <img src="https://avatars.githubusercontent.com/u/91963656?v=4" width="100px" alt="설탕" style="border-radius: 50%"/>
+          <img src="https://avatars.githubusercontent.com/u/91963656?v=4" width="100px" alt="설탕" />
           <br />
           <sub>
             <b>설탕</b>
@@ -56,7 +57,7 @@ yarn run dev
       </td>
       <td align="center" valign="top">
         <a href="https://github.com/jjsk109">
-          <img src="https://avatars.githubusercontent.com/u/39641848?v=4" width="100px" alt="닉" style="border-radius: 50%"/>
+          <img src="https://avatars.githubusercontent.com/u/39641848?v=4" width="100px" alt="닉" />
           <br />
           <sub>
             <b>닉</b>
@@ -66,7 +67,7 @@ yarn run dev
       </td>
       <td align="center" valign="top">
         <a href="https://github.com/zwonkim">
-          <img src="https://avatars.githubusercontent.com/u/103507999?v=4" width="100px" alt="코코" style="border-radius: 50%"/>
+          <img src="https://avatars.githubusercontent.com/u/103507999?v=4" width="100px" alt="코코" />
           <br />
           <sub>
             <b>코코</b>
@@ -76,7 +77,7 @@ yarn run dev
       </td>
       <td align="center" valign="top">
         <a href="https://github.com/hyeongjun3">
-          <img src="https://avatars.githubusercontent.com/u/37447578?v=4" width="100px" alt="준" style="border-radius: 50%"/>
+          <img src="https://avatars.githubusercontent.com/u/37447578?v=4" width="100px" alt="준" />
           <br />
           <sub>
             <b>준</b>

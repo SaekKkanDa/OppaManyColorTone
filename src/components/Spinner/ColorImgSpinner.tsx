@@ -18,7 +18,7 @@ export const ImgSpinnerWrap = styled.div`
   max-height: 240px;
   width: 92vw;
   height: 92vw;
-  margin-top: 7vh;
+  margin: 12vh 0 20vh;
   display: inherit;
 `;
 

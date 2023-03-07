@@ -11,6 +11,7 @@ import {
   $LandingWrap,
   $LandingTitleDiv,
   $LandingTitle,
+  $TitleHighlight,
   $LandingSubTitle,
   $LandingBottomDiv,
   $LandingUserCountDiv,
@@ -48,7 +49,9 @@ function LandingPage() {
     <>
       <$LandingWrap>
         <$LandingTitleDiv>
-          <$LandingTitle>오빠! 톤 많아?</$LandingTitle>
+          <$LandingTitle>
+            오빠! <$TitleHighlight>톤</$TitleHighlight> 많아?
+          </$LandingTitle>
           <$LandingSubTitle>퍼스널 컬러 자가진단</$LandingSubTitle>
         </$LandingTitleDiv>
         <ColorImgSpinner />

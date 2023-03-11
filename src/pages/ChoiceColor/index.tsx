@@ -37,12 +37,12 @@ function ChoiceColor() {
   interface ITypeObject {
     [key: string]: number;
   }
+
   //season과 type이 몇 번씩 선택되었는지 객체로 출력 e.g {summer: 1, cool : 1 }
   const countMaxType = (arr: string[]) => {
     const result:ITypeObject = {};
   
     arr.forEach((str) => {
-      // season과 tone을 구분하기 위해 분할
       const type = str.split(" ");
       
       const countedType:ITypeObject = {};
@@ -87,8 +87,8 @@ function ChoiceColor() {
     return maxKey
   } 
 
-  const maxTone = findMaxKey(seasonToneResult, tone)
   const maxSeason = findMaxKey(seasonToneResult, season)
+  const maxTone = findMaxKey(seasonToneResult, tone)
   // console.log(maxTone, maxSeason)
 
   //recoil에 최종 결과값 담기

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { $FlexContainer, $Message, $Emoji, $HomeButton } from './style';
-import emoji from '../../assets/emoji/sad-emoji-3d.png';
+import emoji from '@Assets/emoji/sad-emoji-3d.png';
 
 const WrongAccessPage = () => {
   return (

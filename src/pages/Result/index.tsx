@@ -17,7 +17,7 @@ import useKakaoShare from '@Hooks/useKakaoShare';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import StyleMan from '@Components/svg/StyleMan';
 
-import kakaoIcon from '../../assets/icon/kakaoIcon.png';
+import kakaoIcon from '@Assets/icon/kakaoIcon.png';
 
 import {
   $LoadingWrapper,

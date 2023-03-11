@@ -25,7 +25,7 @@ function ChoiceColor() {
   useCheckUserImage(userImg);
 
   const navigate = useNavigate();
-  const selectedType = useRef([]);
+  const selectedType = useRef<string[]>([]);
   const selectedColor = useMemo(() => choiceColorData[stageNum], [stageNum]);
 
   // 사용자 수 +1
@@ -34,13 +34,16 @@ function ChoiceColor() {
   }, []);
 
   //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
-  let result = {};
+  // type Tresult = {result: number}
+  const result = {};
+  
   const findMax = () => {
     selectedType.current.forEach((x) => {
       result[x] = (result[x] || 0) + 1;
     });
     return result;
   };
+  console.log(selectedType.current)
 
   //가장 많이 선택된 type 출력
   const calResult = () => {
@@ -48,7 +51,7 @@ function ChoiceColor() {
     let maxValue = -Infinity;
     let maxKey = null;
 
-    for (let key in result) {
+    for (const key in result) {
       const value = result[key];
       if (value > maxValue) {
         maxValue = value;
@@ -62,11 +65,13 @@ function ChoiceColor() {
   const setResult = useSetRecoilState(Result);
   const finalResult = calResult();
 
-  const handleNextClick = (type) => {
+  const handleNextClick = (type: string) => {
     selectedType.current.push(type);
     setStageNum((prev) => prev + 1);
-    setResult(finalResult);
-
+    if(finalResult) {
+      setResult(finalResult)
+    }
+    
     if (stageNum === MAX_STAGE_NUM) {
       navigate({
         pathname: ROUTE_PATH.result,
@@ -79,8 +84,7 @@ function ChoiceColor() {
     <$Wrapper>
       <$StatusBox>
         <$StatusBar
-          // @ts-ignore 추후 해결
-          width={`${(stageNum + 1) * (100 / choiceColorData.length)}`}
+          width={`${(stageNum + 1) * (100 / choiceColorData.length)}%`}
         />
       </$StatusBox>
       <$StatusContent>

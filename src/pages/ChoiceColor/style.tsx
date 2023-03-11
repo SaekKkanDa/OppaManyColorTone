@@ -20,12 +20,10 @@ export const $StatusBox = styled.div`
   background-color: ${theme.gray[300]};
 `;
 
-export const $StatusBar = styled.div`
+export const $StatusBar = styled.div<{ width: string }>`
   background-color: ${theme.gray[600]};
   border-radius: 4px;
-  width: ${({ 
-// @ts-ignore
-  width }) => width};
+  width: ${({ width }) => width};
   height: 8px;
   transition: width ease 0.5s;
 `;
@@ -57,7 +55,7 @@ export const $ColorBox = styled.div`
   cursor: pointer;
 `;
 
-export const $Color = styled.div`
+export const $Color = styled.div<{ color: string }>`
   background-color: ${({ color }) => color};
   width: 100%;
   display: flex;

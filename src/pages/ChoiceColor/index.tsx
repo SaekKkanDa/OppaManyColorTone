@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import choiceColorData from '../../data/choiceColorData';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
@@ -25,7 +25,7 @@ function ChoiceColor() {
   useRedirectNoImage(userImg);
 
   const navigate = useNavigate();
-  const selectedType = useRef([]);
+  const [selectedType, setSelectedType] = useState<string[]>([])
   const selectedColor = useMemo(() => choiceColorData[stageNum], [stageNum]);
 
   // 사용자 수 +1
@@ -33,40 +33,75 @@ function ChoiceColor() {
     addNumberOfUsers();
   }, []);
 
-  //selectedType 배열을 객체화하여 가장 많이 선택된 값 출력
-  let result = {};
-  const findMax = () => {
-    selectedType.current.forEach((x) => {
-      result[x] = (result[x] || 0) + 1;
+  
+  interface ITypeObject {
+    [key: string]: number;
+  }
+
+  //season과 type이 몇 번씩 선택되었는지 객체로 출력 e.g {summer: 1, cool : 1 }
+  const countMaxType = (arr: string[]) => {
+    const result:ITypeObject = {};
+  
+    arr.forEach((str) => {
+      const type = str.split(" ");
+      
+      const countedType:ITypeObject = {};
+  
+      type.forEach((type:string) => {
+        if (countedType[type]) {
+          countedType[type]++;
+        } else {
+          countedType[type] = 1;
+        }
+      });
+  
+      Object.entries(countedType).forEach(([type, count]) => {
+        if (result[type]) {
+          result[type] += count;
+        } else {
+          result[type] = count;
+        }
+      });
     });
     return result;
-  };
+  }
 
-  //가장 많이 선택된 type 출력
-  const calResult = () => {
-    findMax();
-    let maxValue = -Infinity;
-    let maxKey = null;
+  const seasonToneResult = countMaxType(selectedType)
 
-    for (let key in result) {
-      const value = result[key];
-      if (value > maxValue) {
-        maxValue = value;
-        maxKey = key;
+  const season = ['spring', 'summer', 'autumn', 'winter']
+  const tone = ['warm','cool', 'bright', 'mute', 'light', 'deep']
+
+  //season과 tone 별로 최댓값의 key 출력
+  const findMaxKey = (obj:ITypeObject, arr: string[]) => {
+    let maxKey = '';
+    let maxVal = 0;
+
+    for (const key in obj) {
+      if (arr.includes(key)) {
+        if (obj[key] > maxVal) {
+          maxVal = obj[key];
+          maxKey = key;
+        }
       }
     }
-    return maxKey;
-  };
+    return maxKey
+  } 
+
+  const maxSeason = findMaxKey(seasonToneResult, season)
+  const maxTone = findMaxKey(seasonToneResult, tone)
+  // console.log(maxTone, maxSeason)
 
   //recoil에 최종 결과값 담기
   const setResult = useSetRecoilState(Result);
-  const finalResult = calResult();
+  const finalResult = maxSeason + maxTone
 
-  const handleNextClick = (type) => {
-    selectedType.current.push(type);
+  const handleNextClick = (type: string) => {
+    setSelectedType((prevArr) => [...prevArr, type])
     setStageNum((prev) => prev + 1);
-    setResult(finalResult);
-
+    if(finalResult) {
+      setResult(finalResult)
+    }
+    
     if (stageNum === MAX_STAGE_NUM) {
       navigate({
         pathname: ROUTE_PATH.result,
@@ -79,8 +114,7 @@ function ChoiceColor() {
     <$Wrapper>
       <$StatusBox>
         <$StatusBar
-          // @ts-ignore 추후 해결
-          width={`${(stageNum + 1) * (100 / choiceColorData.length)}`}
+          width={`${(stageNum + 1) * (100 / choiceColorData.length)}%`}
         />
       </$StatusBox>
       <$StatusContent>

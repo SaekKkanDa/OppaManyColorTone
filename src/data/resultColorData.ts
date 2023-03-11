@@ -1,18 +1,18 @@
 import resultImg from '../assets/result';
 
 export type ColorTone =
-  | 'springBright'
-  | 'springWarm'
-  | 'springLight'
-  | 'summerLight'
-  | 'summerCool'
-  | 'summerMute'
-  | 'autumnMute'
-  | 'autumnWarm'
-  | 'autumnDeep'
-  | 'winterDeep'
-  | 'winterCool'
-  | 'winterBright';
+  | 'springbright'
+  | 'springwarm'
+  | 'springlight'
+  | 'summerlight'
+  | 'summercool'
+  | 'summermute'
+  | 'autumnmute'
+  | 'autumnwarm'
+  | 'autumndeep'
+  | 'winterdeep'
+  | 'wintercool'
+  | 'winterbright';
 
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
@@ -867,18 +867,18 @@ const winterBright: ColorResult = {
 };
 
 const resultColorData: Record<ColorTone, ColorResult> = {
-  springBright: springBright,
-  springWarm: springWarm,
-  springLight: springLight,
-  summerLight: summerLight,
-  summerCool: summerCool,
-  summerMute: summerMute,
-  autumnMute: autumnMute,
-  autumnWarm: autumnWarm,
-  autumnDeep: autumnDeep,
-  winterDeep: winterDeep,
-  winterCool: winterCool,
-  winterBright: winterBright,
+  'springbright': springBright,
+  'springwarm': springWarm,
+  'springlight': springLight,
+  'summerlight': summerLight,
+  'summercool': summerCool,
+  'summermute': summerMute,
+  'autumnmute': autumnMute,
+  'autumnwarm': autumnWarm,
+  'autumndeep': autumnDeep,
+  'winterdeep': winterDeep,
+  'wintercool': winterCool,
+  'winterbright': winterBright,
 };
 
 export default resultColorData;

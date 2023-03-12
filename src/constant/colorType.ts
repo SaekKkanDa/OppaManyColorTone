@@ -19,21 +19,21 @@ const COLOR_TYPE = {
 
   // 12타입
   type: {
-    brightSpring: 'bright spring',
-    warmSpring: 'warm spring',
-    lightSpring: 'light spring',
+    springbright: 'spring bright',
+    springwarm: 'spring warm',
+    springlight: 'spring light',
 
-    lightSummer: 'light summer',
-    coolSummer: 'cool summer',
-    muteSummer: 'mute summer',
+    summerlight: 'summer light',
+    summercool: 'summer cool',
+    summermute: 'summer mute',
 
-    muteAutumn: 'mute autumn',
-    warmAutumn: 'warm autumn',
-    deepAutumn: 'deep autumn',
+    autumnmute: 'autumn mute',
+    autumnwarm: 'autumn warm',
+    autumndeep: 'autumn deep',
 
-    deepWinter: 'deep winter',
-    coolWinter: 'cool winter',
-    brightWinter: 'bright winter',
+    winterdeep: 'winter deep',
+    wintercool: 'winter cool',
+    winterbright: 'winter bright',
   },
 };
 

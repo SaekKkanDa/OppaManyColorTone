@@ -1,11 +1,10 @@
 import React from 'react';
-import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../firebase';
 import { useSetRecoilState } from 'recoil';
 import { CropImage } from '../../recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import omctDb from '@Utils/omctDb';
 import ROUTE_PATH from '@Constant/routePath';
 import {
   $LandingWrap,
@@ -28,10 +27,7 @@ function LandingPage() {
 
   useEffect(() => {
     const getNumberOfUsers = async () => {
-      const docRef = doc(db, 'numberOfUsers', 'numberOfUsers');
-      const docSnap = await getDoc(docRef);
-
-      setNumberOfUsers(docSnap.data()?.numberOfUsers);
+      setNumberOfUsers(await omctDb.getNumberOfUsers());
     };
 
     getNumberOfUsers();

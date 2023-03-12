@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import colorWheel from '../../assets/logo/color-wheel-3d.png';
-import curiousEmoji from '../../assets/logo/curious-emoji-3d.png';
+import colorWheel from '@Assets/logo/color-wheel-3d.png';
+import curiousEmoji from '@Assets/logo/curious-emoji-3d.png';
 
 function ColorImgSpinner() {
   return (

@@ -23,7 +23,7 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   const [scale, setScale] = useState(1);
   const [, setCropImage] = useRecoilState(CropImage);
 
-  const editor: React.RefObject<AvatarEditor> = useRef(null);
+  const editor = useRef<AvatarEditor>(null);
 
   useEffect(() => {
     const file = imageFile;

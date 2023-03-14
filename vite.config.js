@@ -12,6 +12,7 @@ export default defineConfig({
   plugins: [react(), babel()],
   resolve: {
     alias: {
+      '@Assets': path.resolve(__dirname, './src/assets'),
       '@Components': path.resolve(__dirname, './src/components'),
       '@Constant': path.resolve(__dirname, './src/constant'),
       '@Data': path.resolve(__dirname, './src/data'),

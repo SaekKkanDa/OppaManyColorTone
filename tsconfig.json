@@ -4,6 +4,7 @@
     "target": "es6",
     "baseUrl": ".",
     "paths": {
+      "@Assets/*": ["./src/assets/*"],
       "@Components/*": ["./src/components/*"],
       "@Constant/*": ["./src/constant/*"],
       "@Data/*": ["./src/data/*"],

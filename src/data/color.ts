@@ -1,29 +1,34 @@
-import COLOR_TYPE from '@Constant/colorType';
+export type Season = 'spring' | 'summer' | 'autumn' | 'winter';
 
-const {
-  season: { spring, summer, autumn, winter },
-  tone: { warm, cool, bright, mute, light, deep },
-  type: {
-    springbright,
-    springwarm,
-    springlight,
-    summerlight,
-    summercool,
-    summermute,
-    autumnmute,
-    autumnwarm,
-    autumndeep,
-    winterdeep,
-    wintercool,
-    winterbright,
-  },
-} = COLOR_TYPE;
+export type Tone = 'warm' | 'cool' | 'bright' | 'mute' | 'light' | 'deep';
 
-const color = [
+export type Type =
+  | 'springbright'
+  | 'springwarm'
+  | 'springlight'
+  | 'summerlight'
+  | 'summercool'
+  | 'summermute'
+  | 'autumnmute'
+  | 'autumnwarm'
+  | 'autumndeep'
+  | 'winterdeep'
+  | 'wintercool'
+  | 'winterbright';
+
+type Color = {
+  season: Season;
+  tone: Tone;
+  type: Type;
+  color: string[];
+  namedColor: { name: string; hex: string }[];
+};
+
+const color: Color[] = [
   {
-    season: spring,
-    tone: bright,
-    type: springbright,
+    season: 'spring',
+    tone: 'bright',
+    type: 'springbright',
     color: [
       '#F8F7D9',
       '#F9E22D',
@@ -59,9 +64,9 @@ const color = [
     ],
   },
   {
-    season: spring,
-    tone: warm,
-    type: springwarm,
+    season: 'spring',
+    tone: 'warm',
+    type: 'springwarm',
     color: [
       '#F9E22D',
       '#FDD274',
@@ -97,9 +102,9 @@ const color = [
     ],
   },
   {
-    season: spring,
-    tone: light,
-    type: springlight,
+    season: 'spring',
+    tone: 'light',
+    type: 'springlight',
     color: [
       '#F8F7D9',
       '#EEEB9E',
@@ -127,12 +132,18 @@ const color = [
       '#74C7B8',
       '#71C051',
     ],
+    namedColor: [
+      {
+        name: 'white',
+        hex: '#fffeff',
+      },
+    ],
   },
 
   {
-    season: summer,
-    tone: light,
-    type: summerlight,
+    season: 'summer',
+    tone: 'light',
+    type: 'summerlight',
     color: [
       '#c6dce9',
       '#9cd6ea',
@@ -168,9 +179,9 @@ const color = [
     ],
   },
   {
-    season: summer,
-    tone: cool,
-    type: summercool,
+    season: 'summer',
+    tone: 'cool',
+    type: 'summercool',
     color: [
       '#f098c1',
       '#bdbec0',
@@ -206,9 +217,9 @@ const color = [
     ],
   },
   {
-    season: summer,
-    tone: mute,
-    type: summermute,
+    season: 'summer',
+    tone: 'mute',
+    type: 'summermute',
     color: [
       '#f3bfcb',
       '#f9a4b8',
@@ -245,9 +256,9 @@ const color = [
   },
 
   {
-    season: autumn,
-    tone: mute,
-    type: autumnmute,
+    season: 'autumn',
+    tone: 'mute',
+    type: 'autumnmute',
     color: [
       '#f5e2a5',
       '#fbd59e',
@@ -283,9 +294,9 @@ const color = [
     ],
   },
   {
-    season: autumn,
-    tone: warm,
-    type: autumnwarm,
+    season: 'autumn',
+    tone: 'warm',
+    type: 'autumnwarm',
     color: [
       '#fecc2d',
       '#b6ac3d',
@@ -341,9 +352,9 @@ const color = [
     ],
   },
   {
-    season: autumn,
-    tone: deep,
-    type: autumndeep,
+    season: 'autumn',
+    tone: 'deep',
+    type: 'autumndeep',
     color: [
       '#c1d542',
       '#d9ab3a',
@@ -472,9 +483,9 @@ const color = [
   },
 
   {
-    season: winter,
-    tone: deep,
-    type: winterdeep,
+    season: 'winter',
+    tone: 'deep',
+    type: 'winterdeep',
     color: [
       '#ffffff',
       '#bbc4e2',
@@ -602,9 +613,9 @@ const color = [
     ],
   },
   {
-    season: winter,
-    tone: cool,
-    type: wintercool,
+    season: 'winter',
+    tone: 'cool',
+    type: 'wintercool',
     color: [
       '#ffffff',
       '#99d6ed',
@@ -732,9 +743,9 @@ const color = [
     ],
   },
   {
-    season: winter,
-    tone: bright,
-    type: winterbright,
+    season: 'winter',
+    tone: 'bright',
+    type: 'winterbright',
     color: [
       '#ffffff',
       '#c5d7e7',

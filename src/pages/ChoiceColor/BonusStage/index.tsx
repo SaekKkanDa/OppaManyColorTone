@@ -2,6 +2,7 @@ import React from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
+import LoadingIndicator from '@Components/LoadingIndicator';
 import Guidance from '../Guidance';
 import type { Type } from '@Data/color';
 import {
@@ -49,7 +50,7 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
       </$BonusColorBox>
     </>
   ) : (
-    <div>Loading...</div>
+    <LoadingIndicator />
   );
 }
 

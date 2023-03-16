@@ -1,10 +1,21 @@
 // 1 spring, 2 summer, 3 autumn, 4 winter
-// theme: pink, yellow, green, blue, red, pink, orange/purple, skyblue, mint
+// theme: pink, green, brown/grey, blue, red, pink, orange/purple, skyblue, mint
 // - 봄 웜, 여름 쿨, 가을 웜, 겨울 쿨 (트루끼리 비교)
 // - 봄 브라이트, 여름 뮤트, 가을 뮤트, 겨울 브라이트 (뮤트, 브라이트)
 // - 봄 라이트, 여름 라이트, 가을 딥, 겨울 딥 (라이트, 딥)
+import type { Season, Tone, Type } from './color';
 
-const choiceColorData = [
+type ChoiceColorDataType = {
+  id: number;
+  theme: string;
+  color: string;
+  name: string;
+  season: Season;
+  tone: Tone;
+  type: Type;
+};
+
+const choiceColorData: ChoiceColorDataType[][] = [
   [
     {
       id: 1,
@@ -13,7 +24,7 @@ const choiceColorData = [
       name: 'salmon pink',
       season: 'spring',
       tone: 'warm',
-      type: 'warm spring',
+      type: 'springwarm',
     },
     {
       id: 2,
@@ -22,7 +33,7 @@ const choiceColorData = [
       name: 'rose pink',
       season: 'summer',
       tone: 'cool',
-      type: 'cool summer',
+      type: 'summercool',
     },
     {
       id: 3,
@@ -31,7 +42,7 @@ const choiceColorData = [
       name: 'begonia',
       season: 'autumn',
       tone: 'warm',
-      type: 'warm autumn',
+      type: 'autumnwarm',
     },
     {
       id: 4,
@@ -40,83 +51,83 @@ const choiceColorData = [
       name: 'light fuchsia pink',
       season: 'winter',
       tone: 'cool',
-      type: 'cool winter',
-    },
-  ],
-  [
-    {
-      id: 1,
-      theme: 'yellow',
-      color: '#fde937',
-      name: 'canary yellow',
-      season: 'spring',
-      tone: 'bright',
-      type: 'bright spring',
-    },
-    {
-      id: 2,
-      theme: 'yellow',
-      color: '#f8f4a1',
-      name: 'pastel yellow',
-      season: 'summer',
-      tone: 'mute',
-      type: 'mute summer',
-    },
-    {
-      id: 3,
-      theme: 'yellow',
-      color: '#f7d781',
-      name: 'jasmine',
-      season: 'autumn',
-      tone: 'mute',
-      type: 'mute autumn',
-    },
-    {
-      id: 4,
-      theme: 'yellow',
-      color: '#fee200',
-      name: 'vivid yellow',
-      season: 'winter',
-      tone: 'bright',
-      type: 'bright winter',
+      type: 'wintercool',
     },
   ],
   [
     {
       id: 1,
       theme: 'green',
-      color: '#c5e2a8',
-      name: 'medium spring bud',
+      color: '#00cc33',
+      name: 'vivid malachite',
       season: 'spring',
-      tone: 'light',
-      type: 'light spring',
+      tone: 'bright',
+      type: 'springbright',
     },
     {
       id: 2,
       theme: 'green',
-      color: '#9bd8cf',
-      name: 'pearl aqua',
+      color: '#92d3cd',
+      name: 'sea foam green',
       season: 'summer',
-      tone: 'light',
-      type: 'light summer',
+      tone: 'mute',
+      type: 'summermute',
     },
     {
       id: 3,
       theme: 'green',
-      color: '#566c30',
-      name: 'dark olive green',
+      color: '#0dbbb6',
+      name: 'tiffany blue',
       season: 'autumn',
-      tone: 'deep',
-      type: 'deep autumn',
+      tone: 'mute',
+      type: 'autumnmute',
     },
     {
       id: 4,
       theme: 'green',
-      color: '#28ac85',
-      name: 'jungle green',
+      color: '#2f9175',
+      name: 'emerald',
+      season: 'winter',
+      tone: 'bright',
+      type: 'winterbright',
+    },
+  ],
+  [
+    {
+      id: 1,
+      theme: 'brown/grey',
+      color: '#c3b280',
+      name: 'ecru',
+      season: 'spring',
+      tone: 'light',
+      type: 'springlight',
+    },
+    {
+      id: 2,
+      theme: 'brown/grey',
+      color: '#9cacb7',
+      name: 'cadet gray',
+      season: 'summer',
+      tone: 'light',
+      type: 'summerlight',
+    },
+    {
+      id: 3,
+      theme: 'brown/grey',
+      color: '#4c3620',
+      name: 'cafe noir',
+      season: 'autumn',
+      tone: 'deep',
+      type: 'autumndeep',
+    },
+    {
+      id: 4,
+      theme: 'brown/grey',
+      color: '#5e6267',
+      name: 'dark silver',
       season: 'winter',
       tone: 'deep',
-      type: 'deep winter',
+      type: 'winterdeep',
     },
   ],
   [
@@ -127,7 +138,7 @@ const choiceColorData = [
       name: 'honolulu blue',
       season: 'spring',
       tone: 'warm',
-      type: 'warm spring',
+      type: 'springwarm',
     },
     {
       id: 2,
@@ -136,7 +147,7 @@ const choiceColorData = [
       name: 'cornflower blue',
       season: 'summer',
       tone: 'cool',
-      type: 'cool summer',
+      type: 'summercool',
     },
     {
       id: 3,
@@ -145,7 +156,7 @@ const choiceColorData = [
       name: 'dark cerulean',
       season: 'autumn',
       tone: 'warm',
-      type: 'warm autumn',
+      type: 'autumnwarm',
     },
     {
       id: 4,
@@ -154,7 +165,7 @@ const choiceColorData = [
       name: 'navy',
       season: 'winter',
       tone: 'cool',
-      type: 'cool winter',
+      type: 'wintercool',
     },
   ],
   [
@@ -165,7 +176,7 @@ const choiceColorData = [
       name: 'american rose',
       season: 'spring',
       tone: 'bright',
-      type: 'bright spring',
+      type: 'springbright',
     },
     {
       id: 2,
@@ -174,7 +185,7 @@ const choiceColorData = [
       name: 'debian red',
       season: 'summer',
       tone: 'mute',
-      type: 'mute summer',
+      type: 'summermute',
     },
     {
       id: 3,
@@ -183,7 +194,7 @@ const choiceColorData = [
       name: 'brick red',
       season: 'autumn',
       tone: 'mute',
-      type: 'mute autumn',
+      type: 'autumnmute',
     },
     {
       id: 4,
@@ -192,7 +203,7 @@ const choiceColorData = [
       name: 'american rose',
       season: 'winter',
       tone: 'bright',
-      type: 'bright winter',
+      type: 'winterbright',
     },
   ],
   [
@@ -203,7 +214,7 @@ const choiceColorData = [
       name: 'pale pink',
       season: 'spring',
       tone: 'light',
-      type: 'light spring',
+      type: 'springlight',
     },
     {
       id: 2,
@@ -212,7 +223,7 @@ const choiceColorData = [
       name: 'pink lace',
       season: 'summer',
       tone: 'light',
-      type: 'light summer',
+      type: 'summerlight',
     },
     {
       id: 3,
@@ -221,7 +232,7 @@ const choiceColorData = [
       name: 'dark pink',
       season: 'autumn',
       tone: 'deep',
-      type: 'deep autumn',
+      type: 'autumndeep',
     },
     {
       id: 4,
@@ -230,7 +241,7 @@ const choiceColorData = [
       name: 'mexican pink',
       season: 'winter',
       tone: 'deep',
-      type: 'deep winter',
+      type: 'winterdeep',
     },
   ],
   [
@@ -241,7 +252,7 @@ const choiceColorData = [
       name: 'orange',
       season: 'spring',
       tone: 'warm',
-      type: 'warm spring',
+      type: 'springwarm',
     },
     {
       id: 2,
@@ -250,7 +261,7 @@ const choiceColorData = [
       name: 'royal purple',
       season: 'summer',
       tone: 'cool',
-      type: 'cool summer',
+      type: 'summercool',
     },
     {
       id: 3,
@@ -259,7 +270,7 @@ const choiceColorData = [
       name: 'burnt orange',
       season: 'autumn',
       tone: 'warm',
-      type: 'warm autumn',
+      type: 'autumnwarm',
     },
     {
       id: 4,
@@ -268,7 +279,7 @@ const choiceColorData = [
       name: 'blue-magenta violet',
       season: 'winter',
       tone: 'cool',
-      type: 'cool winter',
+      type: 'wintercool',
     },
   ],
   [
@@ -279,7 +290,7 @@ const choiceColorData = [
       name: 'capri',
       season: 'spring',
       tone: 'bright',
-      type: 'bright spring',
+      type: 'springbright',
     },
     {
       id: 2,
@@ -288,7 +299,7 @@ const choiceColorData = [
       name: 'light blue',
       season: 'summer',
       tone: 'mute',
-      type: 'mute summer',
+      type: 'summermute',
     },
     {
       id: 3,
@@ -297,16 +308,16 @@ const choiceColorData = [
       name: 'moonstone blue',
       season: 'autumn',
       tone: 'mute',
-      type: 'mute autumn',
+      type: 'autumnmute',
     },
     {
       id: 4,
       theme: 'skyblue',
-      color: '#00cbff',
-      name: 'vivid sky blue',
+      color: '#0381ff',
+      name: 'azure',
       season: 'winter',
       tone: 'bright',
-      type: 'bright winter',
+      type: 'winterbright',
     },
   ],
   [
@@ -317,7 +328,7 @@ const choiceColorData = [
       name: 'magic mint',
       season: 'spring',
       tone: 'light',
-      type: 'light spring',
+      type: 'springlight',
     },
     {
       id: 2,
@@ -326,7 +337,7 @@ const choiceColorData = [
       name: 'pale turquoise',
       season: 'summer',
       tone: 'light',
-      type: 'light summer',
+      type: 'summerlight',
     },
     {
       id: 3,
@@ -335,7 +346,7 @@ const choiceColorData = [
       name: 'teal',
       season: 'autumn',
       tone: 'deep',
-      type: 'deep autumn',
+      type: 'autumndeep',
     },
     {
       id: 4,
@@ -344,7 +355,7 @@ const choiceColorData = [
       name: 'turquoise',
       season: 'winter',
       tone: 'deep',
-      type: 'deep winter',
+      type: 'winterdeep',
     },
   ],
 ];

@@ -1,22 +1,33 @@
 import React from 'react';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import getBonusColorOptions from '@Utils/getBonusColorOptions';
+import ROUTE_PATH from '@Constant/routePath';
 import Guidance from '../Guidance';
+import type { Type } from '@Data/color';
 import {
   $BonusStatusBox,
   $BonusStatusContent,
   $BonusColorBox,
   $BonusColor,
 } from './style';
-
 interface BonusStageProps {
   userImg: string;
   bonusColorTypes: string[] | null;
 }
 
 function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
+  const navigate = useNavigate();
+
   const bonusColorOptions = bonusColorTypes
     ? getBonusColorOptions(bonusColorTypes)
     : null;
+
+  const handleBonusClick = (type: Type) => {
+    navigate({
+      pathname: ROUTE_PATH.result,
+      search: createSearchParams({ colorType: type }).toString(),
+    });
+  };
 
   return bonusColorTypes ? (
     <>
@@ -26,8 +37,12 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
       <Guidance />
 
       <$BonusColorBox>
-        {bonusColorOptions?.map(({ colors }, index) => (
-          <$BonusColor key={index} colors={colors}>
+        {bonusColorOptions?.map(({ type, colors }, index) => (
+          <$BonusColor
+            key={index}
+            colors={colors}
+            onClick={() => handleBonusClick(type)}
+          >
             <img src={userImg} alt="사용자 이미지" />
           </$BonusColor>
         ))}

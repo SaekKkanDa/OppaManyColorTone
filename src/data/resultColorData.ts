@@ -1,6 +1,6 @@
 import resultImg from '@Assets/result';
 
-export type ColorTone =
+export type ColorType =
   | 'springbright'
   | 'springwarm'
   | 'springlight'
@@ -866,19 +866,19 @@ const winterBright: ColorResult = {
   ],
 };
 
-const resultColorData: Record<ColorTone, ColorResult> = {
-  'springbright': springBright,
-  'springwarm': springWarm,
-  'springlight': springLight,
-  'summerlight': summerLight,
-  'summercool': summerCool,
-  'summermute': summerMute,
-  'autumnmute': autumnMute,
-  'autumnwarm': autumnWarm,
-  'autumndeep': autumnDeep,
-  'winterdeep': winterDeep,
-  'wintercool': winterCool,
-  'winterbright': winterBright,
+const resultColorData: Record<ColorType, ColorResult> = {
+  springbright: springBright,
+  springwarm: springWarm,
+  springlight: springLight,
+  summerlight: summerLight,
+  summercool: summerCool,
+  summermute: summerMute,
+  autumnmute: autumnMute,
+  autumnwarm: autumnWarm,
+  autumndeep: autumnDeep,
+  winterdeep: winterDeep,
+  wintercool: winterCool,
+  winterbright: winterBright,
 };
 
 export default resultColorData;

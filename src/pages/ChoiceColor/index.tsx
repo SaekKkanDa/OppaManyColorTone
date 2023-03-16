@@ -101,7 +101,7 @@ function ChoiceColor() {
 
       navigate({
         pathname: ROUTE_PATH.result,
-        search: createSearchParams({ colorTone: finalResult }).toString(),
+        search: createSearchParams({ colorType: finalResult }).toString(),
       });
     }
   };

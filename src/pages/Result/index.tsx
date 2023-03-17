@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import resultColorData, { ColorTone } from '@Data/resultColorData';
+import resultColorData, { ColorType } from '@Data/resultColorData';
 import { BorderedButton } from '@Styles/theme';
 
 import { updateClipboard } from '@Utils/clipboard';
@@ -53,18 +53,18 @@ function ResultPage() {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const colorTone = useMemo(() => {
+  const colorType = useMemo(() => {
     if (!searchParams) return null;
 
     // HJ TODO: type check
-    const colorTone = searchParams.get('colorTone') as ColorTone;
+    const colorType = searchParams.get('colorType') as ColorType;
 
-    if (!colorTone) return null;
+    if (!colorType) return null;
 
-    return colorTone;
+    return colorType;
   }, [searchParams]);
 
-  if (colorTone === null) {
+  if (colorType === null) {
     return (
       <$LoadingWrapper>
         <$Title>예기치 못한 상황이 발생했습니다.</$Title>
@@ -84,7 +84,7 @@ function ResultPage() {
     stylingColor,
     stylingURL,
     celebrities,
-  } = resultColorData[colorTone];
+  } = resultColorData[colorType];
 
   return (
     <$Wrapper ref={wrapperRef}>

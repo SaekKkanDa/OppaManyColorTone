@@ -5,7 +5,7 @@
 // - 봄 라이트, 여름 라이트, 가을 딥, 겨울 딥 (라이트, 딥)
 import type { Season, Tone, Type } from './color';
 
-type ChoiceColorDataType = {
+export type ChoiceColorDataType = {
   id: number;
   theme: string;
   color: string;

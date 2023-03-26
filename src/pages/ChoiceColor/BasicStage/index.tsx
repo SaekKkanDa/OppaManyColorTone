@@ -1,4 +1,5 @@
 import React from 'react';
+import shuffle from '@Utils/shuffle';
 import type { Type } from '@Data/color';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';
 import Guidance from '../Guidance';
@@ -37,7 +38,7 @@ function BasicStage({
       <Guidance />
 
       <$ColorBox>
-        {basicColorOptions.map((item) => (
+        {shuffle(basicColorOptions).map((item) => (
           <$Color
             key={item.id}
             color={item.color}

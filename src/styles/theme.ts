@@ -40,6 +40,10 @@ export const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
 
+  &:active {
+    background-color: ${theme.gray[900]};
+  }
+
   &:disabled {
     background-color: ${theme.gray[300]};
     cursor: not-allowed;
@@ -50,4 +54,8 @@ export const BorderedButton = styled(Button)`
   background-color: transparent;
   border: 2px solid ${theme.gray[800]};
   color: ${theme.gray[800]};
+
+  &:active {
+    background-color: ${theme.gray[200]};
+  }
 `;

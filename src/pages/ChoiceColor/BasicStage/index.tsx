@@ -1,4 +1,5 @@
 import React from 'react';
+import shuffle from '@Utils/shuffle';
 import type { Type } from '@Data/color';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';
 import Guidance from '../Guidance';
@@ -13,37 +14,35 @@ import {
 interface BasicStageProps {
   userImg: string;
   stageNum: number;
-  choiceColorData: ChoiceColorDataType[][];
-  selectedColor: ChoiceColorDataType[];
-  handleNextClick: (type: Type) => void;
+  MAX_STAGE_NUM: number;
+  basicColorOptions: ChoiceColorDataType[];
+  onBasicClick: (type: Type) => void;
 }
 
 function BasicStage({
   userImg,
   stageNum,
-  choiceColorData,
-  selectedColor,
-  handleNextClick,
+  MAX_STAGE_NUM,
+  basicColorOptions,
+  onBasicClick,
 }: BasicStageProps) {
   return (
     <>
       <$StatusBox>
-        <$StatusBar
-          width={`${(stageNum + 1) * (100 / choiceColorData.length)}%`}
-        />
+        <$StatusBar width={`${(stageNum + 1) * (100 / MAX_STAGE_NUM)}%`} />
       </$StatusBox>
       <$StatusContent>
-        {stageNum + 1}/{choiceColorData.length} 단계
+        {stageNum + 1}/{MAX_STAGE_NUM} 단계
       </$StatusContent>
 
       <Guidance />
 
       <$ColorBox>
-        {selectedColor.map((item) => (
+        {shuffle(basicColorOptions).map((item) => (
           <$Color
             key={item.id}
             color={item.color}
-            onClick={() => handleNextClick(item.type)}
+            onClick={() => onBasicClick(item.type)}
           >
             <img src={userImg} alt="사용자 이미지" />
           </$Color>

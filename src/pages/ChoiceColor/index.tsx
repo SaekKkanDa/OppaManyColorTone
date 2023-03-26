@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { CropImage } from '../../recoil/app';
-import useChoiceColor from '@Hooks/useChoiceColor';
+import useSelectBonusColorTypes from '@Hooks/useSelectBonusColorTypes';
 import useRedirectNoImage from '@Hooks/useRedirectNoImage';
-import omctDb from '@Utils/omctDb';
 import choiceColorData from '@Data/choiceColorData';
 import type { Type } from '@Data/color';
 import BasicStage from './BasicStage';
@@ -11,39 +10,37 @@ import BonusStage from './BonusStage';
 import { $Wrapper } from './style';
 
 function ChoiceColor() {
-  const [isOnBasicStage, setIsOnBasicStage] = useState(true);
+  const [selectedTypes, setSelectedTypes] = useState<Type[]>([]);
 
-  const [stageNum, setStageNum] = useState(0);
-  const MAX_STAGE_NUM = choiceColorData.length - 1;
+  const stageNum = selectedTypes.length;
+  const MAX_STAGE_NUM = choiceColorData.length;
+
+  const basicColorOptions = useMemo(
+    () => choiceColorData[stageNum],
+    [stageNum]
+  );
+
+  const bonusColorTypes = useSelectBonusColorTypes(
+    selectedTypes,
+    MAX_STAGE_NUM
+  );
 
   const userImg = useRecoilValue(CropImage);
   useRedirectNoImage(userImg);
 
-  const { setSelectedTypeCount, bonusColorTypes } =
-    useChoiceColor(MAX_STAGE_NUM);
-
-  const selectedColor = useMemo(() => choiceColorData[stageNum], [stageNum]);
-
-  const handleNextClick = (type: Type) => {
-    setStageNum((prev) => prev + 1);
-    setSelectedTypeCount((prev) => ({ ...prev, [type]: prev[type] + 1 }));
-
-    if (stageNum === MAX_STAGE_NUM) {
-      setIsOnBasicStage(false);
-
-      omctDb.addNumberOfUsers();
-    }
+  const onBasicClick = (type: Type) => {
+    setSelectedTypes((prev) => [...prev, type]);
   };
 
   return (
     <$Wrapper>
-      {isOnBasicStage ? (
+      {stageNum < MAX_STAGE_NUM ? (
         <BasicStage
           userImg={userImg}
           stageNum={stageNum}
-          choiceColorData={choiceColorData}
-          selectedColor={selectedColor}
-          handleNextClick={handleNextClick}
+          MAX_STAGE_NUM={MAX_STAGE_NUM}
+          basicColorOptions={basicColorOptions}
+          onBasicClick={onBasicClick}
         />
       ) : (
         <BonusStage userImg={userImg} bonusColorTypes={bonusColorTypes} />

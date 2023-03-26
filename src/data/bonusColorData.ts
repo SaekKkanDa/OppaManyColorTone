@@ -19,12 +19,12 @@ const bonusColorData: BonusColorDataType[] = [
   },
   {
     type: 'springlight',
-    firstColors: ['#ee135d', '#c5e1ab', '#b9f2ff'],
+    firstColors: ['#F58D72', '#c5e1ab', '#b9f2ff'],
     secondColors: ['#ef6465', '#96c575', '#68cef2'],
   },
   {
     type: 'summerlight',
-    firstColors: ['#e50770', '#b0eeea', '#acd9e3'],
+    firstColors: ['#e50770', '#b0eeea', '#74c7ec'],
     secondColors: ['#db3166', '#9bd7cc', '#88acd9'],
   },
   {
@@ -39,7 +39,7 @@ const bonusColorData: BonusColorDataType[] = [
   },
   {
     type: 'autumnmute',
-    firstColors: ['#cc4054', '#78856d', '#32527b'],
+    firstColors: ['#cc4054', '#8c956b', '#32527b'],
     secondColors: ['#b45a64', '#aabb9d', '#659acd'],
   },
   {
@@ -49,8 +49,8 @@ const bonusColorData: BonusColorDataType[] = [
   },
   {
     type: 'autumndeep',
-    firstColors: ['#95011a', '#414935', '#00416a'],
-    secondColors: ['#cc163f', '#566c30', '#357586'],
+    firstColors: ['#95011a', '#566c30', '#00416a'],
+    secondColors: ['#cc163f', '#708644', '#357586'],
   },
   {
     type: 'winterdeep',
@@ -60,7 +60,7 @@ const bonusColorData: BonusColorDataType[] = [
   {
     type: 'wintercool',
     firstColors: ['#97004e', '#019287', '#030281'],
-    secondColors: ['#e30870', '#00a595', '#456bcd'],
+    secondColors: ['#e30870', '#01b3bb', '#456bcd'],
   },
   {
     type: 'winterbright',

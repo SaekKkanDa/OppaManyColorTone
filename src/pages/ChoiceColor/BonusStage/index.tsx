@@ -23,7 +23,7 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
     ? getBonusColorOptions(bonusColorTypes)
     : null;
 
-  const handleBonusClick = (type: Type) => {
+  const onBonusClick = (type: Type) => {
     navigate({
       pathname: ROUTE_PATH.result,
       search: createSearchParams({ colorType: type }).toString(),
@@ -42,7 +42,7 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
           <$BonusColor
             key={index}
             colors={colors}
-            onClick={() => handleBonusClick(type)}
+            onClick={() => onBonusClick(type)}
           >
             <img src={userImg} alt="사용자 이미지" />
           </$BonusColor>

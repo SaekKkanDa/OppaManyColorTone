@@ -15,7 +15,7 @@ jobs:
 
       - name: Read .nvmrc
         id: node_version
-        run: echo ::set-output name=NODE_VERSION:${cat .nvmrc}
+        run: echo ::set-output name=NODE_VERSION:$(cat .nvmrc)
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

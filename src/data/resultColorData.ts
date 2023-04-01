@@ -33,6 +33,8 @@ export interface ColorResult {
     name: string;
     imageURL: string;
   }[];
+  secondaryType: ColorType;
+  worstType: ColorType;
 }
 
 const springBright: ColorResult = {
@@ -102,6 +104,8 @@ const springBright: ColorResult = {
     { name: '수지', imageURL: resultImg.celebrity.suzy },
     { name: '이준호', imageURL: resultImg.celebrity.leejunho },
   ],
+  secondaryType: 'winterbright',
+  worstType: 'summermute',
 };
 
 const springWarm: ColorResult = {
@@ -171,6 +175,8 @@ const springWarm: ColorResult = {
     { name: '조이', imageURL: resultImg.celebrity.joy },
     { name: '뷔', imageURL: resultImg.celebrity.btsv },
   ],
+  secondaryType: 'autumnwarm',
+  worstType: 'wintercool',
 };
 
 const springLight: ColorResult = {
@@ -240,6 +246,8 @@ const springLight: ColorResult = {
     { name: '한지민', imageURL: resultImg.celebrity.hanjimin },
     { name: '이종석', imageURL: resultImg.celebrity.leejongsuk },
   ],
+  secondaryType: 'summerlight',
+  worstType: 'winterdeep',
 };
 
 const summerLight: ColorResult = {
@@ -309,6 +317,8 @@ const summerLight: ColorResult = {
     { name: '장원영', imageURL: resultImg.celebrity.jangwonyoung },
     { name: '이도현', imageURL: resultImg.celebrity.leedohyun },
   ],
+  secondaryType: 'springlight',
+  worstType: 'autumndeep',
 };
 
 const summerCool: ColorResult = {
@@ -378,6 +388,8 @@ const summerCool: ColorResult = {
     { name: '전지현', imageURL: resultImg.celebrity.jeonjihyun },
     { name: '차은우', imageURL: resultImg.celebrity.chaeunwoo },
   ],
+  secondaryType: 'wintercool',
+  worstType: 'autumnwarm',
 };
 
 const summerMute: ColorResult = {
@@ -447,6 +459,8 @@ const summerMute: ColorResult = {
     { name: '김고은', imageURL: resultImg.celebrity.kimgoeun },
     { name: '진', imageURL: resultImg.celebrity.jin },
   ],
+  secondaryType: 'autumnmute',
+  worstType: 'springbright',
 };
 
 const autumnMute: ColorResult = {
@@ -516,6 +530,8 @@ const autumnMute: ColorResult = {
     { name: '제니', imageURL: resultImg.celebrity.jennie },
     { name: '서강준', imageURL: resultImg.celebrity.seokangjun },
   ],
+  secondaryType: 'summermute',
+  worstType: 'winterbright',
 };
 
 const autumnWarm: ColorResult = {
@@ -588,6 +604,8 @@ const autumnWarm: ColorResult = {
     { name: '한예슬', imageURL: resultImg.celebrity.hanyeseul },
     { name: '박보검', imageURL: resultImg.celebrity.parkbogum },
   ],
+  secondaryType: 'springwarm',
+  worstType: 'summercool',
 };
 
 const autumnDeep: ColorResult = {
@@ -657,6 +675,8 @@ const autumnDeep: ColorResult = {
     { name: '김유정', imageURL: resultImg.celebrity.kimyoujung },
     { name: '공유', imageURL: resultImg.celebrity.gongyoo },
   ],
+  secondaryType: 'winterdeep',
+  worstType: 'summerlight',
 };
 
 const winterDeep: ColorResult = {
@@ -726,6 +746,8 @@ const winterDeep: ColorResult = {
     { name: '지수', imageURL: resultImg.celebrity.jisoo },
     { name: '차승원', imageURL: resultImg.celebrity.chaseungwon },
   ],
+  secondaryType: 'autumndeep',
+  worstType: 'springlight',
 };
 
 const winterCool: ColorResult = {
@@ -795,6 +817,8 @@ const winterCool: ColorResult = {
     { name: '카리나', imageURL: resultImg.celebrity.karina },
     { name: '김수현', imageURL: resultImg.celebrity.kimsoohyun },
   ],
+  secondaryType: 'summercool',
+  worstType: 'autumnwarm',
 };
 
 const winterBright: ColorResult = {
@@ -864,6 +888,8 @@ const winterBright: ColorResult = {
     { name: '청하', imageURL: resultImg.celebrity.chungha },
     { name: '강동원', imageURL: resultImg.celebrity.gangdongwon },
   ],
+  secondaryType: 'springbright',
+  worstType: 'autumnmute',
 };
 
 const resultColorData: Record<ColorType, ColorResult> = {

@@ -6,6 +6,7 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - production
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -21,6 +22,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{steps.node_version.outputs.NODE_VERSION}}
+
+      - name: Adding environments to .env
+        run: |
+          echo "VITE_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}\n \
+                VITE_FIREBASE_AUTH_DOMAIN=${{ vars.FIREBASE_AUTH_DOMAIN }}\n \
+                VITE_FIREBASE_DATABASE_URL=${{ vars.FIREBASE_DATABASE_URL }}\n \
+                VITE_FIREBASE_PROJECT_ID=${{ vars.FIREBASE_PROJECT_ID }}\n \
+                VITE_FIREBASE_STORAGE_BUCKET=${{ vars.FIREBASE_STORAGE_BUCKET }}\n \
+                VITE_FIREBASE_MEASUREMENT_ID=${{ vars.FIREBASE_MEASUREMENT_ID }}\n \
+                VITE_FIREBASE_APP_ID=${{ vars.FIREBASE_APP_ID }}\n \
+                VITE_KAKAO_API_KEY=${{ secrets.KAKAO_API_KEY }}\n \
+                VITE_SENTRY_DSN=${{ vars.SENTRY_DSN }}" > ".env"
+
+      - name: Debuggin .env fle
+        run: cat ".env"
 
       - name: Install dependencies
         run: yarn install

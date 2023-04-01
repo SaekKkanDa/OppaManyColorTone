@@ -6,12 +6,15 @@
     "paths": {
       "@Components/*": ["./src/components/*"],
       "@Constant/*": ["./src/constant/*"],
+      "@Data/*": ["./src/data/*"],
       "@Hooks/*": ["./src/hooks/*"],
       "@Pages/*": ["./src/pages/*"],
       "@Utils/*": ["./src/utils/*"],
-      "@Styles/*": ["./src/styles/*"],
-    }
+      "@Styles/*": ["./src/styles/*"]
+    },
+    "checkJs": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*.js","src/**/*.jsx"],
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/pages/ChoiceColor/style.tsx", "src/pages/ChoiceColor/index.tsx", "src/data/colorPalette.js", "src/data/color.js", "src/data/choiceColorData.js", "src/Router.tsx", "src/main.tsx", "src/App.tsx"],
   "exclude": ["node_modules"]
 }

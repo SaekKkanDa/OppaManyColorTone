@@ -87,8 +87,8 @@ export const $BonusColorBox = styled($ColorBox)``;
 export const $BonusColor = styled($Color)<{ colors: string[] }>`
   background: conic-gradient(
     ${({ colors }) => colors[0]} 120deg,
-    ${({ colors }) => colors[1]} 120deg 240deg,
-    ${({ colors }) => colors[2]} 240deg
+    ${({ colors }) => colors[2]} 120deg 240deg,
+    ${({ colors }) => colors[1]} 240deg
   );
   border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);

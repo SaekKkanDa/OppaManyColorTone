@@ -31,7 +31,6 @@ import {
   $ColorMatchGrid,
   $ColorMatchGridItem,
   $ColorMatchTitle,
-  $ColorMatchWorstGrid,
   $CelebritiesWrapper,
   $CelebrityName,
   $CelebrityWrapper,
@@ -79,17 +78,22 @@ function ResultPage() {
     textColor,
     gridColors,
     description,
-    bestColors,
-    worstColors,
     stylingColor,
-    stylingURL,
     celebrities,
+    secondaryType,
+    worstType,
   } = resultColorData[colorType];
+
+  const [secondaryColor, worstColor] = [
+    { ...resultColorData[secondaryType], title: '이것도 좋아요' },
+    { ...resultColorData[worstType], title: '이건 피하세요' },
+  ];
 
   return (
     <$Wrapper ref={wrapperRef}>
       <$Title>
-        당신은 <$TitleBold color={textColor}>{name}</$TitleBold> 입니다.
+        당신의 퍼스널 컬러는
+        <$TitleBold color={textColor}>{name}</$TitleBold>
       </$Title>
 
       <$ColorGrid>
@@ -100,21 +104,6 @@ function ResultPage() {
       </$ColorGrid>
 
       <$Description>{description}</$Description>
-
-      <$ColorMatchWrapper>
-        <$ColorMatchTitle>베스트 컬러</$ColorMatchTitle>
-        <$ColorMatchGrid>
-          {bestColors.map((color, idx) => (
-            <$ColorMatchGridItem key={color + idx} backgroundColor={color} />
-          ))}
-        </$ColorMatchGrid>
-        <$ColorMatchTitle>피해야 할 컬러</$ColorMatchTitle>
-        <$ColorMatchWorstGrid>
-          {worstColors.map((color, idx) => (
-            <$ColorMatchGridItem key={color + idx} backgroundColor={color} />
-          ))}
-        </$ColorMatchWorstGrid>
-      </$ColorMatchWrapper>
 
       <$SubDescriptionTitle>
         <$SubDescriptionTitleBold color={textColor}>
@@ -143,6 +132,27 @@ function ResultPage() {
           })}
         </$CelebritiesWrapper>
       </$SubDescriptionTitle>
+
+      {[secondaryColor, worstColor].map(
+        ({ title, name, textColor, bestColors }) => (
+          <$ColorMatchWrapper key={name}>
+            <$ColorMatchTitle>
+              {title}
+              <$SubDescriptionTitleBold color={textColor}>
+                {name}
+              </$SubDescriptionTitleBold>
+            </$ColorMatchTitle>
+            <$ColorMatchGrid>
+              {bestColors.map((color, idx) => (
+                <$ColorMatchGridItem
+                  key={color + idx}
+                  backgroundColor={color}
+                />
+              ))}
+            </$ColorMatchGrid>
+          </$ColorMatchWrapper>
+        )
+      )}
 
       <MenuSubPage wrapperRef={wrapperRef} />
     </$Wrapper>

@@ -22,10 +22,11 @@ export const $LoadingWrapper = styled.div`
 `;
 
 export const $Title = styled.h1`
+  ${flexCustom('column', 'center', 'center')}
+  row-gap: 16px;
   font-size: min(4.5vw, 18px);
   font-weight: 700;
   text-align: center;
-  letter-spacing: -0.022em;
 `;
 
 export const $TitleBold = styled.span`
@@ -61,13 +62,14 @@ export const $ColorMatchWrapper = styled.div`
 `;
 
 export const $ColorMatchTitle = styled.h2`
+  ${flexCustom('row', 'baseline', 'flex-start')}
+  column-gap: 12px;
   font-weight: 700;
   font-size: min(5.25vw, 21px);
 `;
 
 export const $ColorMatchGrid = styled.div`
   margin-top: 12px;
-  margin-bottom: 36px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(2, 1fr);

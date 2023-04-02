@@ -29,6 +29,10 @@ yarn install
 yarn run dev
 ```
 
+## 📙 Guide
+
+[0 - 에러 핸들링 디자인](https://github.com/SaekKkanDa/OppaManyColorTone/wiki/%EC%97%90%EB%9F%AC-%ED%95%B8%EB%93%A4%EB%A7%81-%EB%94%94%EC%9E%90%EC%9D%B8)
+
 ## 🙏 Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->

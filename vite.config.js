@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import babel from 'vite-plugin-babel';
 import path from 'path';
 
-// https://vitejs.dev/config/
+// HJ TODO: env file, 환경별로 분리
 export default defineConfig({
   esbuild: {
     loader: 'tsx',

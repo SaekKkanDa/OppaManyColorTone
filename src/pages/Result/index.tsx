@@ -46,6 +46,8 @@ import {
   $SubDescriptionTitle,
   $SubDescriptionTitleBold,
 } from './style';
+import CustomError, { CustomErrorConstructor } from '@Utils/customError';
+import { OmctErrorNo } from '@Constant/errorKeyValue';
 
 function ResultPage() {
   const [searchParams] = useSearchParams();
@@ -198,7 +200,8 @@ function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
       alert('클립보드 복사에 성공했습니다.');
     } catch (err) {
       console.error(err);
-      alert('클립보드 복사에 실패했습니다');
+      alert('클립보드 복사에실패했습니다');
+      throw new ShareError({ errorNo: OmctErrorNo.SHARE_CLIPBOARD_COPY_ERROR });
     }
   };
 
@@ -264,6 +267,13 @@ function RestartButton() {
       <BorderedButton onClick={handleRestart}>처음으로</BorderedButton>
     </$RestartButtonWrapper>
   );
+}
+
+class ShareError extends CustomError {
+  constructor(props: CustomErrorConstructor) {
+    super(props);
+    this.name = 'ShareError';
+  }
 }
 
 export default ResultPage;

@@ -10,7 +10,7 @@ import { BorderedButton } from '@Styles/theme';
 import { updateClipboard } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
 import { captureElement, downloadImage } from '@Utils/capture';
-import { isKakao } from '@Utils/userAgent';
+import { isChrome, isKakao, isOSX } from '@Utils/userAgent';
 
 import useKakaoShare from '@Hooks/useKakaoShare';
 
@@ -215,8 +215,13 @@ function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
 
   const handleShare = async () => {
     if (kakaoAlert()) return;
-
-    await webShare();
+    if (isChrome() && isOSX()) {
+      alert(
+        '크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요.😋'
+      );
+    } else {
+      await webShare();
+    }
   };
 
   return (

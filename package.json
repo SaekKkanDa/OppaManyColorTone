@@ -27,13 +27,15 @@
     "react-router-dom": "^6.8.1",
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
-    "stylelint-config-prettier": "^9.0.5"
+    "stylelint-config-prettier": "^9.0.5",
+    "ua-parser-js": "^2.0.0-alpha.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-avatar-editor": "^13.0.0",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
+    "@types/ua-parser-js": "^0.7.36",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "@vitejs/plugin-react": "^3.1.0",

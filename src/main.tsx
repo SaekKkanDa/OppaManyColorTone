@@ -9,12 +9,11 @@ if (!rootElement) throw new Error('Failed to find the root element');
 const root = ReactDOM.createRoot(rootElement);
 
 const { VITE_SENTRY_DSN, VITE_RELEASE_VERSION } = import.meta.env;
+const isProduction = import.meta.PROD;
 
 Sentry.init({
   dsn: VITE_SENTRY_DSN,
-
-  // Alternatively, use `process.env.npm_package_version` for a dynamic release version
-  // if your build tool supports it.
+  environment: isProduction ? 'production' : 'development',
   release: VITE_RELEASE_VERSION,
   integrations: [new BrowserTracing()],
   tracesSampleRate: 1.0,

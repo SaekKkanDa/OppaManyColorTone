@@ -2,7 +2,12 @@ import React, { useRef, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheck,
+  faLink,
+  faShare,
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
 
 import resultColorData, { ColorType } from '@Data/resultColorData';
 import { BorderedButton } from '@Styles/theme';
@@ -26,6 +31,8 @@ import {
   $Wrapper,
   $ColorGrid,
   $ColorGridItem,
+  $TagWrapper,
+  $Tag,
   $Description,
   $ColorMatchWrapper,
   $ColorMatchGrid,
@@ -79,7 +86,8 @@ function ResultPage() {
     name,
     textColor,
     gridColors,
-    description,
+    tags,
+    descriptions,
     stylingColor,
     celebrities,
     secondaryType,
@@ -105,7 +113,26 @@ function ResultPage() {
         ))}
       </$ColorGrid>
 
-      <$Description>{description}</$Description>
+      <$TagWrapper>
+        {tags.map(({ keyword, backgroundColor, textColor }) => (
+          <$Tag
+            key={keyword}
+            backgroundColor={backgroundColor}
+            textColor={textColor}
+          >
+            {`#${keyword}`}
+          </$Tag>
+        ))}
+      </$TagWrapper>
+
+      <$Description>
+        {descriptions.map((description, index) => (
+          <li key={description + index}>
+            <FontAwesomeIcon icon={faCheck} listItem />
+            {description}
+          </li>
+        ))}
+      </$Description>
 
       <$SubDescriptionTitle>
         <$SubDescriptionTitleBold color={textColor}>
@@ -113,7 +140,6 @@ function ResultPage() {
         </$SubDescriptionTitleBold>{' '}
         스타일링 추천
         <$StylingWrapper>
-          {/* <$Styling src={stylingURL} /> */}
           <StyleMan color={stylingColor}></StyleMan>
         </$StylingWrapper>
       </$SubDescriptionTitle>

@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { flexCustom } from '@Styles/theme';
-
+// import checkIcon from '@Assets/icon/'
 interface ColorItemStyleProps {
   backgroundColor: string;
+}
+
+interface TagStyleProps {
+  backgroundColor: string;
+  textColor: string;
 }
 
 export const $Wrapper = styled.div`
@@ -49,12 +54,43 @@ export const $ColorGridItem = styled.div<ColorItemStyleProps>`
   background-color: ${(props) => props.backgroundColor};
 `;
 
-export const $Description = styled.div`
+export const $TagWrapper = styled.div`
+  ${flexCustom('row', 'center', 'center')}
+  flex-wrap: wrap;
+  column-gap: 4px;
+  row-gap: 6px;
   margin-top: 24px;
+`;
+
+export const $Tag = styled.span<TagStyleProps>`
+  padding: 0.5em;
+  border-radius: 1em;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ theme, textColor }) =>
+    ({ light: theme.white, dark: theme.gray[900] }[textColor])};
+  font-size: 14px;
+`;
+
+export const $Description = styled.ul`
+  ${flexCustom('column', 'flex-start', 'flex-start')}
+  row-gap: 0.5em;
+  margin-top: 24px;
+  padding-left: 1.25em;
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   text-align: justify;
+  letter-spacing: -0.02em;
+
+  li {
+    position: relative;
+
+    svg {
+      margin-top: 0.4em;
+      color: ${({ theme }) => theme.gray[400]};
+      font-size: 0.8em;
+    }
+  }
 `;
 
 export const $ColorMatchWrapper = styled.div`
@@ -82,14 +118,6 @@ export const $ColorMatchGridItem = styled.div<ColorItemStyleProps>`
   aspect-ratio: 1/1;
   border-radius: 50%;
   background-color: ${(props) => props.backgroundColor};
-`;
-
-export const $ColorMatchWorstGrid = styled.div`
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 1fr;
-  gap: 5px;
 `;
 
 export const $SubDescriptionTitle = styled.h2`
@@ -128,7 +156,7 @@ export const $CelebrityName = styled.div`
   font-size: 16px;
   text-align: center;
   font-weight: 500;
-  font-family: initial;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 export const $MenuContainer = styled.div`

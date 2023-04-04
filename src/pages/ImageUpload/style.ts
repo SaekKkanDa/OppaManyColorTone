@@ -59,16 +59,29 @@ export const $InputFile = styled.input`
   display: none;
 `;
 
-export const $Guidance = styled.p`
+export const $Guidance = styled.div`
   margin: 24px 0 12px;
   text-align: center;
   line-height: 1.6em;
 `;
 
 export const $Notification = styled($Guidance)`
-  margin: 0 0 36px;
-  color: ${({ theme }) => theme.gray[400]};
-  font-size: 14px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.gray[200]};
+  color: ${({ theme }) => theme.gray[500]};
+  text-align: left;
+  font-size: 12px;
+
+  h6 {
+    margin-bottom: 0.2em;
+    font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+
+    svg {
+      margin-right: 4px;
+    }
+  }
 `;
 
 export const $NextButton = styled(Button)`

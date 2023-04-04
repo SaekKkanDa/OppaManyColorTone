@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
 import {
   Link,
   createSearchParams,
@@ -73,6 +73,10 @@ function ResultPage() {
 
     return colorType;
   }, [searchParams]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [colorType]);
 
   if (colorType === null) {
     return (

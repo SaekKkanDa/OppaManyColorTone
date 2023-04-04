@@ -234,6 +234,7 @@ const springWarm: ColorResult = {
     { name: '조이', imageURL: resultImg.celebrity.joy },
     { name: '뷔', imageURL: resultImg.celebrity.btsv },
     // {name: '정우(nct)'}
+    // {name: '정우(nct)'}
   ],
   secondaryType: 'autumnwarm',
   worstType: 'wintercool',
@@ -431,6 +432,7 @@ const summerLight: ColorResult = {
     { name: '장원영', imageURL: resultImg.celebrity.jangwonyoung },
     { name: '이도현', imageURL: resultImg.celebrity.leedohyun },
     // 손예진, 이영애, 유연석
+    // 손예진, 이영애, 유연석
   ],
   secondaryType: 'springlight',
   worstType: 'autumndeep',
@@ -529,6 +531,7 @@ const summerCool: ColorResult = {
     { name: '태연', imageURL: resultImg.celebrity.taeyeon },
     { name: '전지현', imageURL: resultImg.celebrity.jeonjihyun },
     { name: '차은우', imageURL: resultImg.celebrity.chaeunwoo },
+    // 태연, 티파니, 이승기
     // 태연, 티파니, 이승기
   ],
   secondaryType: 'wintercool',
@@ -629,6 +632,7 @@ const summerMute: ColorResult = {
     { name: '김고은', imageURL: resultImg.celebrity.kimgoeun },
     { name: '진', imageURL: resultImg.celebrity.jin },
     // 전지현, 김태리, 이도현
+    // 전지현, 김태리, 이도현
   ],
   secondaryType: 'autumnmute',
   worstType: 'springbright',
@@ -727,6 +731,7 @@ const autumnMute: ColorResult = {
     { name: '츄', imageURL: resultImg.celebrity.chuu },
     { name: '제니', imageURL: resultImg.celebrity.jennie },
     { name: '서강준', imageURL: resultImg.celebrity.seokangjun },
+    // 공효진, 수영(소녀시대), 공유
     // 공효진, 수영(소녀시대), 공유
   ],
   secondaryType: 'summermute',
@@ -830,6 +835,7 @@ const autumnWarm: ColorResult = {
     { name: '한예슬', imageURL: resultImg.celebrity.hanyeseul },
     { name: '박보검', imageURL: resultImg.celebrity.parkbogum },
     // 보아, 김희선, 이민호
+    // 보아, 김희선, 이민호
   ],
   secondaryType: 'springwarm',
   worstType: 'summercool',
@@ -928,6 +934,7 @@ const autumnDeep: ColorResult = {
     { name: '이효리', imageURL: resultImg.celebrity.leehyolee },
     { name: '김유정', imageURL: resultImg.celebrity.kimyoujung },
     { name: '공유', imageURL: resultImg.celebrity.gongyoo },
+    // 제니, 이효리, 김희정, 유승호
     // 제니, 이효리, 김희정, 유승호
   ],
   secondaryType: 'winterdeep',
@@ -1126,6 +1133,7 @@ const winterCool: ColorResult = {
     { name: '카리나', imageURL: resultImg.celebrity.karina },
     { name: '김수현', imageURL: resultImg.celebrity.kimsoohyun },
     // 현아 대신 슬기..?
+    // 현아 대신 슬기..?
   ],
   secondaryType: 'summercool',
   worstType: 'autumnwarm',
@@ -1224,6 +1232,7 @@ const winterBright: ColorResult = {
     { name: '선미', imageURL: resultImg.celebrity.sunmi },
     { name: '청하', imageURL: resultImg.celebrity.chungha },
     { name: '강동원', imageURL: resultImg.celebrity.gangdongwon },
+    // 조이, 트와이스 채영, 조정석
     // 조이, 트와이스 채영, 조정석
   ],
   secondaryType: 'springbright',

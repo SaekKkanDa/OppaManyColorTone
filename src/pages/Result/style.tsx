@@ -153,7 +153,7 @@ export const $CelebrityWrapper = styled.div`
 export const $CelebrityName = styled.div`
   margin-top: 8px;
   color: ${({ theme }) => theme.gray[600]};
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   font-weight: 500;
   font-family: 'Noto Sans KR', sans-serif;

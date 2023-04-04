@@ -24,7 +24,12 @@ export interface ColorResult {
   name: string;
   textColor: Color;
   gridColors: Color[];
-  description: string;
+  tags: {
+    keyword: string;
+    backgroundColor: string;
+    textColor: 'light' | 'dark';
+  }[];
+  descriptions: string[];
   bestColors: Color[];
   worstColors: Color[];
   stylingColor: Color[];
@@ -39,7 +44,7 @@ export interface ColorResult {
 
 const springBright: ColorResult = {
   name: '봄 브라이트',
-  textColor: '#FDD274',
+  textColor: '#ff6448',
   gridColors: [
     '#F8F7D9',
     '#F9E22D',
@@ -67,8 +72,35 @@ const springBright: ColorResult = {
     '#624F40',
     '#4C4244',
   ],
-  description:
-    '봄 컬러 중 색의 청탁이 가장 중요한 타입이에요. 쩅하고 꺠끗한 청색 또는 순색이 가장 잘 어울려요. 봄 브라이트 컬러는 대비감이 중요해서 색상과 명도 중 하나라도 대비감이 강하게 느껴지도록 사용해서 포인트를 주는 것이 좋아요. 대비감이 강하게 느껴지는 극단적인 고명도, 저명도, 고채도, 저채도의 색을 골고루 잘 소화하기 떄문에 쉽게 이미지 변신을 할 수 있다는 장점이 있어요. 흐릿한 탁색을 사용하면 얼굴이 칙칙해 보이고 건조하게 느껴져 봄 브라이트 컬러 특유의 깨끗하고 맑은 느낌을 반감시키고, 회색이 과하게 섞인 여름 타입의 탁색을 사용하면 혈색이 없이 아파 보이거나 피곤하고 힘이 빠진 느낌을 줘요.',
+  tags: [
+    {
+      keyword: '화려함',
+      backgroundColor: '#4369e1',
+      textColor: 'light',
+    },
+    {
+      keyword: '비비드',
+      backgroundColor: '#029574',
+      textColor: 'light',
+    },
+    {
+      keyword: '고대비',
+      backgroundColor: '#503835',
+      textColor: 'light',
+    },
+    {
+      keyword: '상큼한과일',
+      backgroundColor: '#ff6448',
+      textColor: 'light',
+    },
+  ],
+  descriptions: [
+    '봄의 밝고 따뜻한 에너지를 가진 봄 브라이트는 겨울의 선명한 대비감도 갖고 있어요.',
+    '밝은 색부터 어두운 색, 차가운 색부터 따뜻한 색까지 활용할 수 있는 스펙트럼이 넓어요.',
+    '블랙 앤 화이트처럼 대비감이 강하게 느껴지는 스타일링이 좋아요.',
+    '형형색색의 쨍하고 화려한 고채도 색을 잘 소화해요.',
+    '회색이 많이 섞인 흐릿하고 탁한 색은 얼굴이 칙칙해 보이니 피해주세요.',
+  ],
   bestColors: [
     '#F8F7D9',
     '#F9E22D',
@@ -110,7 +142,7 @@ const springBright: ColorResult = {
 
 const springWarm: ColorResult = {
   name: '봄 웜',
-  textColor: '#76A95A',
+  textColor: '#ffc000',
   gridColors: [
     '#F9E22D',
     '#FDD274',
@@ -138,8 +170,35 @@ const springWarm: ColorResult = {
     '#F8AC69',
     '#F6A18B',
   ],
-  description:
-    '봄 컬러 중 색의 온도가 가장 중요한 봄 웜 컬러에요. 노랗고 따뜻한 느낌이 드는 전형적인 웜톤의 색들이 가장 잘 어울리고, 개나리색과 오렌지색이 특히 귀엽고 발랄하게 잘 어울려요. 차가움이 느껴지는 쿨톤 색은 최대한 피하는게 좋고, 베이지한 색을 사용할 때는 흰색이나 검은색 대신 아이보리, 베이지, 브라운처럼 노란색이 섞인 색상을 사용하는 것이 좋아요.',
+  tags: [
+    {
+      keyword: '따뜻함',
+      backgroundColor: '#f5e0b4',
+      textColor: 'dark',
+    },
+    {
+      keyword: '생기발랄',
+      backgroundColor: '#4cbc16',
+      textColor: 'light',
+    },
+    {
+      keyword: '러블리',
+      backgroundColor: '#ff7f9c',
+      textColor: 'light',
+    },
+    {
+      keyword: '봄날의햇살',
+      backgroundColor: '#ffc000',
+      textColor: 'dark',
+    },
+  ],
+  descriptions: [
+    '봄 중에서도 가장 따뜻한 봄 웜은 한국인 중 가장 희귀한 타입이에요.',
+    '노랗고 따뜻한 느낌이 드는 웜톤의 색들이 가장 잘 어울리고, 오렌지색을 누구보다도 잘 소화할 수 있어요.',
+    '발랄하고 사랑스러운 에너지를 가진 봄 웜은 흔히 생각하는 밝은 봄 색상보다도 진하고 채도 높은 색상들이 잘 어울려요.',
+    '베이지, 브라운 베이스에 화려한 색으로 포인트를 주세요. 반짝이는 골드 악세서리도 좋아요',
+    '차가운 쿨톤 색이나 회색이 많이 섞인 색, 대비감이 없는 스타일링은 봄 웜의 매력을 떨어뜨리니 피해주세요.',
+  ],
   bestColors: [
     '#F9E22D',
     '#FDD274',
@@ -174,6 +233,8 @@ const springWarm: ColorResult = {
     { name: '유인나', imageURL: resultImg.celebrity.yooinna },
     { name: '조이', imageURL: resultImg.celebrity.joy },
     { name: '뷔', imageURL: resultImg.celebrity.btsv },
+    // {name: '정우(nct)'}
+    // {name: '정우(nct)'}
   ],
   secondaryType: 'autumnwarm',
   worstType: 'wintercool',
@@ -181,7 +242,7 @@ const springWarm: ColorResult = {
 
 const springLight: ColorResult = {
   name: '봄 라이트',
-  textColor: '#FADC6C',
+  textColor: '#89d8c2',
   gridColors: [
     '#F8F7D9',
     '#EEEB9E',
@@ -189,7 +250,7 @@ const springLight: ColorResult = {
     '#F6CDAB',
     '#FDC9A0',
     '#D7E59E',
-    '#D0DEBC',
+    '#ACE1b0',
     '#A6D9D2',
     '#A6DBEB',
     '#9CCBEB',
@@ -209,15 +270,42 @@ const springLight: ColorResult = {
     '#74C7B8',
     '#71C051',
   ],
-  description:
-    '봄 컬러 중 명도가 가장 중요한 타입이에요. 고명도의 색이 특히 잘 어울려요. 봄 타입의 색들 중 고채도의 순색보다는 흰색이나 베이지가 섞인 파스텔톤 색상들이 잘 어울리며, 검은색이나 짙고 어두운 저명도의 색상은 되도록 피하는 것이 좋아요.',
+  tags: [
+    {
+      keyword: '밝음',
+      backgroundColor: '#cff0c1',
+      textColor: 'dark',
+    },
+    {
+      keyword: '부드러움',
+      backgroundColor: '#ffcba3',
+      textColor: 'dark',
+    },
+    {
+      keyword: '파스텔톤',
+      backgroundColor: '#cbccfe',
+      textColor: 'dark',
+    },
+    {
+      keyword: '아이스크림색깔',
+      backgroundColor: '#f4e5ac',
+      textColor: 'dark',
+    },
+  ],
+  descriptions: [
+    '생기와 활력이 느껴지는 봄 라이트는 풋풋한 봄의 색을 가장 잘 쓰는 타입이에요.',
+    '봄 색상 중에서도 흰색이 많이 들어간 밝고 연한 웜톤 색상이 잘 어울려요.',
+    '봄 웜처럼 다채롭지만 봄 라이트는 봄 웜보다 더 채도가 낮고 부드러운 느낌을 줘요.',
+    '아이보리, 코랄, 노랑, 연두색이 잘 어울리고, 연한 쿨톤 색상도 활용할 수 있어요.',
+    '너무 창백한 쿨톤 색상이나 검은색처럼 짙고 어두운 색은 피하는 것이 좋아요.',
+  ],
   bestColors: [
     '#F8F7D9',
     '#F4E1A5',
     '#F6CDAB',
     '#FDC9A0',
     '#D7E59E',
-    '#D0DEBC',
+    '#ACE1b0',
     '#A6D9D2',
     '#A6DBEB',
     '#9CCBEB',
@@ -280,8 +368,35 @@ const summerLight: ColorResult = {
     '#77c9b7',
     '#55bd80',
   ],
-  description:
-    '여름 컬러 중 명도가 가장 중요한 타입이에요. 고명도의 파스텔톤색이 잘 어울려요. 여름 타입 중 쩅하고 깨끗한 색들을 가장 잘 소화해요. 활발하면서 발랄한 봄의 기운이 섞여 있어 스포티하고 활동적인 느낌의 색과 스타일이 잘 어울려요. 고명도의 색이라면 고채도의 색도 잘 어울리고, 베이지와 같은 색을 사용해도 괜찮아요. 어두운 느낌이 드는 가을 타입의 색은 잘 어울리지 않아서 되도록 피하는 것이 좋아요.',
+  tags: [
+    {
+      keyword: '맑음',
+      backgroundColor: '#88cfeb',
+      textColor: 'dark',
+    },
+    {
+      keyword: '가벼움',
+      backgroundColor: '#d9dce2',
+      textColor: 'dark',
+    },
+    {
+      keyword: '파스텔톤',
+      backgroundColor: '#cbccfe',
+      textColor: 'dark',
+    },
+    {
+      keyword: '핑크레모네이드',
+      backgroundColor: '#f2c3cf',
+      textColor: 'dark',
+    },
+  ],
+  descriptions: [
+    '여름 라이트는 여름 타입 중에서도 가장 맑고 화사한 타입이에요.',
+    '시원한 느낌을 주는 전형적인 쿨톤이지만, 봄 라이트의 따뜻한 분위기도 묻어나요.',
+    '연한 하늘색, 연보라, 연분홍색이 잘 어울리고, 밝고 비비드한 색이나 베이지색도 좋아요.',
+    '흰 티셔츠에 청바지 조합이 청량하게 잘 어울려요.',
+    '어두운 가을 타입의 색은 잘 어울리지 않고, 힙하고 펑키한 스트릿 패션과는 거리가 있어요.',
+  ],
   bestColors: [
     '#9cd6ea',
     '#9dcfee',
@@ -316,6 +431,8 @@ const summerLight: ColorResult = {
     { name: '손예진', imageURL: resultImg.celebrity.sonyejin },
     { name: '장원영', imageURL: resultImg.celebrity.jangwonyoung },
     { name: '이도현', imageURL: resultImg.celebrity.leedohyun },
+    // 손예진, 이영애, 유연석
+    // 손예진, 이영애, 유연석
   ],
   secondaryType: 'springlight',
   worstType: 'autumndeep',
@@ -351,8 +468,35 @@ const summerCool: ColorResult = {
     '#535459',
     '#2d415e',
   ],
-  description:
-    '여름 컬러 중 색의 온도가 가장 중요한 타입이에요. 파란기가 강한 전형적인 쿨톤 색이 가장 잘 어울리고, 차가운 쿨톤의 색이라면 겨울 타입의 색도 함꼐 사용할 수 있어요. 고명도의 색들이 우아하게 잘 어울리며, 전체적으로 산뜻하고 맑고 시원한 느낌을 잘 소화하는 단아함이 느껴지는 타입이에요. 쿨톤의 속성을 강하게 가진 전형적인 여름 타입이므로 노랗고 따뜻함이 느껴지는 웜톤의 색은 피하는 것이 좋아요.',
+  tags: [
+    {
+      keyword: '시원함',
+      backgroundColor: '#3dc1cf',
+      textColor: 'dark',
+    },
+    {
+      keyword: '단아함',
+      backgroundColor: '#a3aad0',
+      textColor: 'dark',
+    },
+    {
+      keyword: '산뜻함',
+      backgroundColor: '#80bca0',
+      textColor: 'dark',
+    },
+    {
+      keyword: '맑고푸른바다',
+      backgroundColor: '#25619c',
+      textColor: 'light',
+    },
+  ],
+  descriptions: [
+    '여름 중에서도 가장 차가운 여름 쿨은 한국에서 가장 많은 타입 중 하나예요.',
+    '시원하고 밝은 파란색이 가장 잘 어울리고, 전형적인 쿨톤 색은 다 활용할 수 있어요.',
+    '밝은 파스텔톤을 우아하고 단아하게 소화할 수 있어요.',
+    '패션이나 악세서리에 포인트를 주어 대비감 있는 스타일이 잘 어울려요.',
+    '노란색 계열이나 따뜻한 웜톤 색상은 피해주세요.',
+  ],
   bestColors: [
     '#f098c1',
     '#bdbec0',
@@ -387,6 +531,8 @@ const summerCool: ColorResult = {
     { name: '태연', imageURL: resultImg.celebrity.taeyeon },
     { name: '전지현', imageURL: resultImg.celebrity.jeonjihyun },
     { name: '차은우', imageURL: resultImg.celebrity.chaeunwoo },
+    // 태연, 티파니, 이승기
+    // 태연, 티파니, 이승기
   ],
   secondaryType: 'wintercool',
   worstType: 'autumnwarm',
@@ -394,7 +540,7 @@ const summerCool: ColorResult = {
 
 const summerMute: ColorResult = {
   name: '여름 뮤트',
-  textColor: '#f9a4b8',
+  textColor: '#efa7a9',
   gridColors: [
     '#f3bfcb',
     '#f9a4b8',
@@ -422,8 +568,35 @@ const summerMute: ColorResult = {
     '#535459',
     '#ac4877',
   ],
-  description:
-    '여름 컬러 중 색의 청탁이 가장 중요한 타입이에요. 여름 타입의 색 중에서 탁한 느낌의 드는 저채도의 색이 가장 잘 어울리며, 흐리고 뽀얀 탁한 느낌의 색이라면 윔톤인 가을 타입의 탁한 색도 함께 사용할 수 있어요. 비비드한 형광색을 사용할 경우 색이 얼굴보다 더 도드라져 보일 수 있으므로 피하는 것이 좋아요. 또한 너무 깨끗한 느낌이 드는 고채도의 순색이나 극단적인 고명도 또는 저명도의 색 역시 쨍하고 강한 느낌을 줘서 잘 어울리지는 않아요. 따라서 흰색 대신 아이보리나 라이트 그레이를, 검은색보다는 다크 그레이나 네이비를 대용으로 사용하면 훨씬 자연스러워요.',
+  tags: [
+    {
+      keyword: '부드러움',
+      backgroundColor: '#f8d1d3',
+      textColor: 'dark',
+    },
+    {
+      keyword: '몽환적',
+      backgroundColor: '#a1759b',
+      textColor: 'light',
+    },
+    {
+      keyword: '흐림',
+      backgroundColor: '#a9b99f',
+      textColor: 'dark',
+    },
+    {
+      keyword: '안개낀새벽',
+      backgroundColor: '#9ac4e1',
+      textColor: 'dark',
+    },
+  ],
+  descriptions: [
+    '여름 뮤트는 가을로 넘어가기 직전의 안개 낀 시원한 여름을 연상시켜요.',
+    '여름 컬러 중에서 탁하고 흐릿한 저채도 색이 가장 잘 어울려요.',
+    '뽀얗고 흐린 느낌의 색이라면 가을 웜톤 색상 중에서도 탁한 색을 활용할 수 있어요.',
+    '쨍하고 강한 색이나 비비드한 형광색, 극단적으로 밝거나 어두운 색은 잘 어울리지 않아요.',
+    '화이트보다는 아이보리를, 블랙보다는 다크브라운이나 다크그레이를 활용하는 것이 좋고, 너무 강한 대비감은 피해주세요.',
+  ],
   bestColors: [
     '#f3bfcb',
     '#f9a4b8',
@@ -458,6 +631,8 @@ const summerMute: ColorResult = {
     { name: '김태리', imageURL: resultImg.celebrity.kimtaeri },
     { name: '김고은', imageURL: resultImg.celebrity.kimgoeun },
     { name: '진', imageURL: resultImg.celebrity.jin },
+    // 전지현, 김태리, 이도현
+    // 전지현, 김태리, 이도현
   ],
   secondaryType: 'autumnmute',
   worstType: 'springbright',
@@ -493,8 +668,35 @@ const autumnMute: ColorResult = {
     '#cda459',
     '#dbb792',
   ],
-  description:
-    '가을 컬러 중 색의 청탁이 가장 중요한 타입이에요. 부드럽고 뽀얀 느낌의 탁색이 잘 어울리며, 탁한색이라면 가을 타입의 색뿐만 아니라 봄 타입의 베이지 또는 아이보리가 섞인 부드러운 파스텔 톤이나 여름 타입의 탁한 인디 핑크, 탁한 연보라색등을 전부 잘 소화할 수 있어요. 가을 타입의 전형적인 느낌이 거의 느껴지지 않는 굉장히 청순하고 여리여리한 타입이에요. 색이 강한 고채도와 형광색, 주목성과 존재감이 느껴지는 노랑 계열이 많이 섞인 색은 얼굴보다 색이 튀게 느껴지므로 피하는 것이 좋아요. 매트한 느낌이 드는 무광이나 천연 소재에서 나오는 새미 매트의 반광까지는 괜찮지만, 광이 과한 소재나 재질은 자칫 인위적인 느낌이 강하게 들 수 있으니 조심해야 해요.',
+  tags: [
+    {
+      keyword: '부드러움',
+      backgroundColor: '#a9b99f',
+      textColor: 'dark',
+    },
+    {
+      keyword: '빈티지',
+      backgroundColor: '#b5716e',
+      textColor: 'light',
+    },
+    {
+      keyword: '차분함',
+      backgroundColor: '#9f8172',
+      textColor: 'light',
+    },
+    {
+      keyword: '헤이즐넛라떼',
+      backgroundColor: '#d0af95',
+      textColor: 'dark',
+    },
+  ],
+  descriptions: [
+    '나른한 가을 햇살을 연상시키는 가을 뮤트는 한국에서 가장 많은 타입 중 하나예요.',
+    '부드럽고 뽀얀 느낌의 탁한 저채도 색이 잘 어울려요.',
+    '명도 차가 큰 블랙 앤 화이트보다는 베이지, 오트밀, 다크브라운 등 갈색 계열의 부드러운 색이 잘 어울려요.',
+    '앤틱하고 빈티지하면서도 고급스러운 느낌으로, 데님 청이나 레이스 옷을 잘 소화해요.',
+    '쨍하고 비비드한 색이나 형광색, 강한 노란색은 얼굴보다 색이 튀게 느껴져 부자연스러워요.',
+  ],
   bestColors: [
     '#f5e2a5',
     '#e0d3ab',
@@ -529,6 +731,8 @@ const autumnMute: ColorResult = {
     { name: '츄', imageURL: resultImg.celebrity.chuu },
     { name: '제니', imageURL: resultImg.celebrity.jennie },
     { name: '서강준', imageURL: resultImg.celebrity.seokangjun },
+    // 공효진, 수영(소녀시대), 공유
+    // 공효진, 수영(소녀시대), 공유
   ],
   secondaryType: 'summermute',
   worstType: 'winterbright',
@@ -536,7 +740,7 @@ const autumnMute: ColorResult = {
 
 const autumnWarm: ColorResult = {
   name: '가을 웜',
-  textColor: '#f07838',
+  textColor: '#e35723',
   gridColors: [
     '#fecc2d',
     '#b6ac3d',
@@ -564,8 +768,35 @@ const autumnWarm: ColorResult = {
     '#226e47',
     '#2d624e',
   ],
-  description:
-    '가을 컬러 중 색의 온도가 가장 중요한 타입이에요. 레드, 카키 그린, 베이지, 브라운 등 웜톤 색이 특히나 잘 어울리며, 웜톤 색이라면 봄 타입의 색상도 함께 사용할 수 있어요. 흰색이나 검은색처럼 차가움이 느껴지는 색보다는 아이보리, 베이지, 브라운처럼 따뜻한 느낌의 색을 사용하는 것을 추천드리며, 개나리색과 레드 오렌지색 등 봄 타입의 대표색을 포인트 용도로 사용하면 좋아요. 차가운 느낌이 느껴지는 쿨톤의 색들은 어울리지 않으니 주의하세요.',
+  tags: [
+    {
+      keyword: '따뜻함',
+      backgroundColor: '#e35723',
+      textColor: 'light',
+    },
+    {
+      keyword: '우아함',
+      backgroundColor: '#7c7a3b',
+      textColor: 'light',
+    },
+    {
+      keyword: '풍성함',
+      backgroundColor: '#a8292a',
+      textColor: 'light',
+    },
+    {
+      keyword: '황금빛가을',
+      backgroundColor: '#ffa400',
+      textColor: 'dark',
+    },
+  ],
+  descriptions: [
+    '붉고 노랗게 물든 단풍을 연상시키는 가을 웜은 가을 색상 중에서도 가장 따뜻한 타입이에요.',
+    '따뜻한 웜톤 색들이 잘 어울리고, 개나리 노랑과 오렌지 레드를 특히 고급스럽게 소화해요.',
+    '블랙, 화이트처럼 차가움이 느껴지는 색보다는 아이보리, 베이지, 브라운처럼 따뜻한 색을 활용하면 좋아요.',
+    '잔무늬보다는 큰 패턴의 옷이 어울리고, 꽃 프린팅도 잘 소화해요. 음영 메이크업도 잘 어울려요.',
+    '차가운 쿨톤 계열 색이나 회색빛이 많이 도는 색은 가을 웜의 매력을 떨어뜨리니 피해주세요.',
+  ],
   bestColors: [
     '#fecc2d',
     '#b6ac3d',
@@ -603,6 +834,8 @@ const autumnWarm: ColorResult = {
     },
     { name: '한예슬', imageURL: resultImg.celebrity.hanyeseul },
     { name: '박보검', imageURL: resultImg.celebrity.parkbogum },
+    // 보아, 김희선, 이민호
+    // 보아, 김희선, 이민호
   ],
   secondaryType: 'springwarm',
   worstType: 'summercool',
@@ -610,7 +843,7 @@ const autumnWarm: ColorResult = {
 
 const autumnDeep: ColorResult = {
   name: '가을 딥',
-  textColor: '#624f3e',
+  textColor: '#8d011f',
   gridColors: [
     '#c1d542',
     '#d9ab3a',
@@ -638,8 +871,35 @@ const autumnDeep: ColorResult = {
     '#9f783b',
     '#1e5e55',
   ],
-  description:
-    '가을 컬러 중 색의 명도가 가장 중요한 타입이에요. 채도에 상관없이 저명도의 색들이 다 잘 어울리며, 저명도의 색이라면 쿨톤인 겨울 타입의 색도 함께 사용할 수 있어요. 웜톤에 속하지만 고채도의 노란기가 강하게 느껴지는 색이나 고명도의 색이 잘 어울리지 않기 때문에, 노랑 계열에서 쓸 수 있는 색상들이 매우 한정적이에요. 또한 빨강에 흰색이 섞인 연핑크나 형광색도 되도록 피하는 것이 좋아요. 노랑보다는 초록, 핑크보다는 레드가 좀 더 무게감 있게 잘 어울려요.',
+  tags: [
+    {
+      keyword: '무게감',
+      backgroundColor: '#3d1220',
+      textColor: 'light',
+    },
+    {
+      keyword: '럭셔리',
+      backgroundColor: '#9b101e',
+      textColor: 'light',
+    },
+    {
+      keyword: '고급스러움',
+      backgroundColor: '#574e37',
+      textColor: 'light',
+    },
+    {
+      keyword: '가을의끝자락',
+      backgroundColor: '#84563d',
+      textColor: 'light',
+    },
+  ],
+  descriptions: [
+    '가을 딥은 가을 중에서도 가장 진하고 깊은 타입으로, 겨울을 앞둔 가을 계절이에요.',
+    '브라운, 버건디, 카키, 네이비 등 어둡고 무게감 있는 웜톤 색이 잘 어울려요. 어두운 쿨톤 색도 활용할 수 있어요.',
+    '블랙이 잘 어울리지만 쨍한 블랙보다는 부드러운 블랙이 좋아요.',
+    '큼직한 패턴, 화려한 악세사리는 가을 딥의 매력을 더해줘요. 음영 메이크업, 스모키 메이크업도 잘 소화해요.',
+    '쨍하고 밝은 형광색이나 흰색이 섞인 연한 색은 피하는 것을 추천해요.',
+  ],
   bestColors: [
     '#c1d542',
     '#d9ab3a',
@@ -674,6 +934,8 @@ const autumnDeep: ColorResult = {
     { name: '이효리', imageURL: resultImg.celebrity.leehyolee },
     { name: '김유정', imageURL: resultImg.celebrity.kimyoujung },
     { name: '공유', imageURL: resultImg.celebrity.gongyoo },
+    // 제니, 이효리, 김희정, 유승호
+    // 제니, 이효리, 김희정, 유승호
   ],
   secondaryType: 'winterdeep',
   worstType: 'summerlight',
@@ -681,7 +943,7 @@ const autumnDeep: ColorResult = {
 
 const winterDeep: ColorResult = {
   name: '겨울 딥',
-  textColor: '#d72f86',
+  textColor: '#8e4484',
   gridColors: [
     '#ffffff',
     '#bbc4e2',
@@ -709,8 +971,35 @@ const winterDeep: ColorResult = {
     '#3a322d',
     '#2d2e31',
   ],
-  description:
-    '겨울 컬러 중 색의 명도가 가장 중요한 타입이에요. 저명도의 색이 특히나 잘 어울리기 떄문에 명도만 잘 맞춰준다면 웜톤인 가을 타입의 색도 함께 사용할 수 있어요. 겨울 타입의 태표 색상인 핫 핑크나 레몬색처럼 형광 색상들은 인위적이고 얼굴보다 튀어보이는 느낌이 들기 때문에 메인 컬러로 사용하기 어려워요. 진분홍색이나 체리색처럼 진한색 또는 고채도이면서 저명도인 색을 더 잘 소화해요. 모든 색을 어두운 색으로만 맞춰도 잘 어울리지만, 대비감이 중요한 타입이라 유광이나 고채도 또는 고명도의 색을 포인트 용으로 사용하는 것이 좋아요.',
+  tags: [
+    {
+      keyword: '깨끗함',
+      backgroundColor: '#ffffff',
+      textColor: 'dark',
+    },
+    {
+      keyword: '선명함',
+      backgroundColor: '#03075f',
+      textColor: 'light',
+    },
+    {
+      keyword: '고대비',
+      backgroundColor: '#512d55',
+      textColor: 'light',
+    },
+    {
+      keyword: '우아한벨벳',
+      backgroundColor: '#972d4c',
+      textColor: 'light',
+    },
+  ],
+  descriptions: [
+    '신비로운 분위기를 자아내는 겨울 딥은 어두운 컬러가 핵심이에요.',
+    '짙고 차가운 쿨톤 색이 가장 잘 어울려요. 가을 타입 중에서 어두운 색도 활용할 수 있어요.',
+    '보라색을 누구보다도 잘 소화하고, 심플한 블랙 앤 화이트 코디가 굉장히 잘 어울려요.',
+    '대비감이 중요한 타입이라 선명한 색이나 밝은 색으로 포인트를 주는 것도 좋아요.',
+    '잔무늬나 수채화 느낌의 흐릿한 저대비 패턴은 피하는 것을 추천해요.',
+  ],
   bestColors: [
     '#ffffff',
     '#bbc4e2',
@@ -752,7 +1041,7 @@ const winterDeep: ColorResult = {
 
 const winterCool: ColorResult = {
   name: '겨울 쿨',
-  textColor: '#99d6ed',
+  textColor: '#0245ab',
   gridColors: [
     '#ffffff',
     '#f5e29b',
@@ -780,8 +1069,35 @@ const winterCool: ColorResult = {
     '#8d305f',
     '#2d2e31',
   ],
-  description:
-    '겨울 컬러 중 색의 온도가 가장 중요한 타입이에요. 차가운 느낌의 쿨톤 색상이 잘 어울리므로 쿨톤의 색을 사용한다면 청순한 여름 타입의 색도 잘 소화할 수 있어요. 어중간하게 밝거나 어두운 색보다는 흰색, 검은색, 코발트 블루, 핫 핑크, 체리 레드 등 확실히 밝거나 어두운 색이 잘 어울려요. 무채색만 사용해도 시크하고 도시적인 느낌을 잘 살릴 수 있으며, 쨍한 고채도의 존재감이 강렬한 색들을 대비감 있게 사용해 깔끔하고 세련된 이미지를 연출하는 것도 좋아요. 웜톤 색상이 잘 어울리지 않는 타입이니 노란기가 강하고 따뜻함이 느껴지는 색상은 되도록 피해주세요.',
+  tags: [
+    {
+      keyword: '차가움',
+      backgroundColor: '#011b94',
+      textColor: 'light',
+    },
+    {
+      keyword: '고대비',
+      backgroundColor: '#dd133f',
+      textColor: 'light',
+    },
+    {
+      keyword: '귀족',
+      backgroundColor: '#6a3fa0',
+      textColor: 'light',
+    },
+    {
+      keyword: '블랙앤화이트의정석',
+      backgroundColor: '#000000',
+      textColor: 'light',
+    },
+  ],
+  descriptions: [
+    '새하얗게 쌓인 눈을 연상시키는 겨울 쿨은 겨울 중에서도 가장 차가운 타입으로, 쿨톤 색상은 다 잘 어울려요.',
+    '자홍색과 진한 보라색이 대표적이고, 에메랄드 그린, 루비 레드, 사파이어 블루 같은 보석 색상이 잘 어울려요.',
+    '클래식한 블랙과 화이트 조합이 훌륭하고, 대비감이 중요해서 쨍하고 강렬한 색으로 포인트를 주면 겨울 쿨의 매력이 더 돋보여요.',
+    '깔끔한 재질의 옷을 추천해요. 특히 실크 같은 겨울의 광택감을 잘 소화해요.',
+    '레몬 노랑은 어울리지만, 따뜻한 노란빛의 웜톤 색상은 소화하기 어려워요.',
+  ],
   bestColors: [
     '#ffffff',
     '#99d6ed',
@@ -816,6 +1132,8 @@ const winterCool: ColorResult = {
     { name: '현아', imageURL: resultImg.celebrity.hyuna },
     { name: '카리나', imageURL: resultImg.celebrity.karina },
     { name: '김수현', imageURL: resultImg.celebrity.kimsoohyun },
+    // 현아 대신 슬기..?
+    // 현아 대신 슬기..?
   ],
   secondaryType: 'summercool',
   worstType: 'autumnwarm',
@@ -823,7 +1141,7 @@ const winterCool: ColorResult = {
 
 const winterBright: ColorResult = {
   name: '겨울 브라이트',
-  textColor: '#b54c9e',
+  textColor: '#f91893',
   gridColors: [
     '#ffffff',
     '#c5d7e7',
@@ -851,8 +1169,35 @@ const winterBright: ColorResult = {
     '#215d53',
     '#2d2e31',
   ],
-  description:
-    '겨울 컬러 중 청탁이 가장 중요한 타입이에요. 쨍한 느낌이 드는 고체도의 순색이 특히나 잘 어울려요. 깨끗하고 맑은 청색으로 맞춰준다면 웜톤인 봄 타입의 색도 함께 사용할 수 있어요. 대비감이 중요한 겨울 타입이라 깨끗하고 맑은 느낌을 주는 유광의 아이템을 활용해 대비감을 표현하면 아주 좋아요. 쨍한 고체도가 잘 어울리는 봄 타입과 겨울 타입이 섞여 있어 다른 타입에게는 과하게 느껴질 수도 있는 형광색의 아이템도 잘 소화해요. 극단적으로 차이가 나는 색들을 함께 사용해 강한 포인트를 주는 것이 좋아요. 대비감 없이 비슷한 느낌의 색들만 배치하면 겨울 브라이트 컬러가 가진 고유의 분위기를 해칠 수 있으니 꼭 명도, 색, 광 중에 한 종류라도 대비감을 강하게 사용해주세요. 여러 가지 색들이 섞여 흐릿하거나 뿌연 느낌을 주는 카키 그린, 베이지, 회색솨 같은 탁색들은 피하는 것이 좋아요.',
+  tags: [
+    {
+      keyword: '선명함',
+      backgroundColor: '#f91893',
+      textColor: 'light',
+    },
+    {
+      keyword: '깨끗함',
+      backgroundColor: '#f3f9fe',
+      textColor: 'dark',
+    },
+    {
+      keyword: '고대비',
+      backgroundColor: '#2a2042',
+      textColor: 'light',
+    },
+    {
+      keyword: '밤하늘의별빛',
+      backgroundColor: '#060180',
+      textColor: 'light',
+    },
+  ],
+  descriptions: [
+    '봄 햇살을 한 스푼 얹은 겨울 브라이트는 깨끗하고 맑은 색이 어울려요.',
+    '쨍한 형광색도 우아하게 소화할 수 있고, 흰색, 검정색, 회색의 무채색이 깔끔하게 잘 어울려요.',
+    '강한 대비감이 중요해서 극단적으로 밝거나 어두운 색, 강렬하고 선명한 고채도 색을 함께 코디하면 좋아요.',
+    '유광 재질이 잘 어울려서 광택감 있는 가죽 의상이나 반짝거리는 화려한 액세서리도 잘 소화해요.',
+    '자잘한 무늬, 흐릿하고 탁한 색, 대비감 없이 비슷한 색의 코디는 겨울 브라이트의 매력을 떨어뜨리니 피해주세요.',
+  ],
   bestColors: [
     '#ffffff',
     '#c5d7e7',
@@ -887,6 +1232,8 @@ const winterBright: ColorResult = {
     { name: '선미', imageURL: resultImg.celebrity.sunmi },
     { name: '청하', imageURL: resultImg.celebrity.chungha },
     { name: '강동원', imageURL: resultImg.celebrity.gangdongwon },
+    // 조이, 트와이스 채영, 조정석
+    // 조이, 트와이스 채영, 조정석
   ],
   secondaryType: 'springbright',
   worstType: 'autumnmute',

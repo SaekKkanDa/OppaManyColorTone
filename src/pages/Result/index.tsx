@@ -2,7 +2,12 @@ import React, { useRef, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheck,
+  faLink,
+  faShare,
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
 
 import resultColorData, { ColorType } from '@Data/resultColorData';
 import { BorderedButton } from '@Styles/theme';
@@ -26,6 +31,8 @@ import {
   $Wrapper,
   $ColorGrid,
   $ColorGridItem,
+  $TagWrapper,
+  $Tag,
   $Description,
   $ColorMatchWrapper,
   $ColorMatchGrid,
@@ -79,7 +86,8 @@ function ResultPage() {
     name,
     textColor,
     gridColors,
-    description,
+    tags,
+    descriptions,
     stylingColor,
     celebrities,
     secondaryType,
@@ -105,7 +113,26 @@ function ResultPage() {
         ))}
       </$ColorGrid>
 
-      <$Description>{description}</$Description>
+      <$TagWrapper>
+        {tags.map(({ keyword, backgroundColor, textColor }) => (
+          <$Tag
+            key={keyword}
+            backgroundColor={backgroundColor}
+            textColor={textColor}
+          >
+            {`#${keyword}`}
+          </$Tag>
+        ))}
+      </$TagWrapper>
+
+      <$Description>
+        {descriptions.map((description, index) => (
+          <li key={description + index}>
+            <FontAwesomeIcon icon={faCheck} listItem />
+            {description}
+          </li>
+        ))}
+      </$Description>
 
       <$SubDescriptionTitle>
         <$SubDescriptionTitleBold color={textColor}>
@@ -113,7 +140,6 @@ function ResultPage() {
         </$SubDescriptionTitleBold>{' '}
         스타일링 추천
         <$StylingWrapper>
-          {/* <$Styling src={stylingURL} /> */}
           <StyleMan color={stylingColor}></StyleMan>
         </$StylingWrapper>
       </$SubDescriptionTitle>
@@ -200,14 +226,14 @@ function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
       alert('클립보드 복사에 성공했습니다.');
     } catch (err) {
       console.error(err);
-      alert('클립보드 복사에실패했습니다');
+      alert('클립보드 복사에 실패했습니다');
       throw new ShareError({ errorNo: OmctErrorNo.SHARE_CLIPBOARD_COPY_ERROR });
     }
   };
 
   const handleKakaoShare = () => {
     if (isLoading) {
-      alert('로딩 중 입니다. 다시 시도해주세요 :)');
+      alert('로딩 중입니다. 다시 시도해주세요. :)');
     } else {
       kakaoShare();
     }
@@ -215,9 +241,10 @@ function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
 
   const handleShare = async () => {
     if (kakaoAlert()) return;
+
     if (isChrome() && isOSX()) {
       alert(
-        '크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요.😋'
+        'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
       );
     } else {
       await webShare();

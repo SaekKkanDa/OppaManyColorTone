@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import FaceDetection from '../FaceDetection';
 import theme from '@Styles/theme';
 import { useRecoilState } from 'recoil';
@@ -94,9 +95,13 @@ function ImageUploadPage() {
         <$SelectImgButton onClick={clickInput}>사진 선택</$SelectImgButton>
         <$Guidance>실제와 비슷한 톤의 얼굴 사진을 선택해주세요.</$Guidance>
         <$Notification>
-          ※ 사진은 본 진단 이외 다른 목적으로 이용되지 않으며,
+          <h6>
+            <FontAwesomeIcon icon={faFaceSmile} />
+            안심하세요!
+          </h6>
+          본 진단은 사용자의 사진을 수집하지 않습니다.
           <br />
-          서버에 저장되거나 제3자와 공유되지 않습니다.
+          사진은 본 진단 외 다른 목적으로 이용되지 않습니다.
         </$Notification>
 
         <Link to={ROUTE_PATH.choiceColor}>

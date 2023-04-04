@@ -21,6 +21,7 @@ type HEX = `#${string}`;
 type Color = RGB | RGBA | HEX;
 
 export interface ColorResult {
+  type: ColorType;
   name: string;
   textColor: Color;
   gridColors: Color[];
@@ -43,6 +44,7 @@ export interface ColorResult {
 }
 
 const springBright: ColorResult = {
+  type: 'springbright',
   name: '봄 브라이트',
   textColor: '#ff6448',
   gridColors: [
@@ -141,6 +143,7 @@ const springBright: ColorResult = {
 };
 
 const springWarm: ColorResult = {
+  type: 'springwarm',
   name: '봄 웜',
   textColor: '#ffc000',
   gridColors: [
@@ -239,6 +242,7 @@ const springWarm: ColorResult = {
 };
 
 const springLight: ColorResult = {
+  type: 'springlight',
   name: '봄 라이트',
   textColor: '#89d8c2',
   gridColors: [
@@ -337,6 +341,7 @@ const springLight: ColorResult = {
 };
 
 const summerLight: ColorResult = {
+  type: 'summerlight',
   name: '여름 라이트',
   textColor: '#9dcfee',
   gridColors: [
@@ -435,6 +440,7 @@ const summerLight: ColorResult = {
 };
 
 const summerCool: ColorResult = {
+  type: 'summercool',
   name: '여름 쿨',
   textColor: '#1cace1',
   gridColors: [
@@ -533,6 +539,7 @@ const summerCool: ColorResult = {
 };
 
 const summerMute: ColorResult = {
+  type: 'summermute',
   name: '여름 뮤트',
   textColor: '#efa7a9',
   gridColors: [
@@ -631,6 +638,7 @@ const summerMute: ColorResult = {
 };
 
 const autumnMute: ColorResult = {
+  type: 'autumnmute',
   name: '가을 뮤트',
   textColor: '#a7ad87',
   gridColors: [
@@ -729,6 +737,7 @@ const autumnMute: ColorResult = {
 };
 
 const autumnWarm: ColorResult = {
+  type: 'autumnwarm',
   name: '가을 웜',
   textColor: '#e35723',
   gridColors: [
@@ -830,6 +839,7 @@ const autumnWarm: ColorResult = {
 };
 
 const autumnDeep: ColorResult = {
+  type: 'autumndeep',
   name: '가을 딥',
   textColor: '#8d011f',
   gridColors: [
@@ -928,6 +938,7 @@ const autumnDeep: ColorResult = {
 };
 
 const winterDeep: ColorResult = {
+  type: 'winterdeep',
   name: '겨울 딥',
   textColor: '#8e4484',
   gridColors: [
@@ -1026,6 +1037,7 @@ const winterDeep: ColorResult = {
 };
 
 const winterCool: ColorResult = {
+  type: 'wintercool',
   name: '겨울 쿨',
   textColor: '#0245ab',
   gridColors: [
@@ -1124,6 +1136,7 @@ const winterCool: ColorResult = {
 };
 
 const winterBright: ColorResult = {
+  type: 'winterbright',
   name: '겨울 브라이트',
   textColor: '#f91893',
   gridColors: [

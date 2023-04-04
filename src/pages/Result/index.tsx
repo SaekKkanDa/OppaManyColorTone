@@ -1,24 +1,32 @@
 import React, { useRef, useMemo } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import resultColorData, { ColorType } from '@Data/resultColorData';
-import { BorderedButton } from '@Styles/theme';
+import useKakaoShare from '@Hooks/useKakaoShare';
 
 import { updateClipboard } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
 import { captureElement, downloadImage } from '@Utils/capture';
 import { isChrome, isKakao, isOSX } from '@Utils/userAgent';
+import CustomError, { CustomErrorConstructor } from '@Utils/customError';
 
-import useKakaoShare from '@Hooks/useKakaoShare';
+import { OmctErrorNo } from '@Constant/errorKeyValue';
+import ROUTE_PATH from '@Constant/routePath';
+import resultColorData, { ColorType } from '@Data/resultColorData';
 
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import StyleMan from '@Components/svg/StyleMan';
 
 import kakaoIcon from '@Assets/icon/kakaoIcon.png';
 
+import { BorderedButton } from '@Styles/theme';
 import {
   $LoadingWrapper,
   $Title,
@@ -49,8 +57,6 @@ import {
   $SubDescriptionTitle,
   $SubDescriptionTitleBold,
 } from './style';
-import CustomError, { CustomErrorConstructor } from '@Utils/customError';
-import { OmctErrorNo } from '@Constant/errorKeyValue';
 
 function ResultPage() {
   const [searchParams] = useSearchParams();
@@ -156,22 +162,29 @@ function ResultPage() {
         </$SubDescriptionTitle>
 
         {[secondaryColor, worstColor].map(
-          ({ title, name, textColor, bestColors }) => (
+          ({ title, type, name, textColor, bestColors }) => (
             <$ColorMatchWrapper key={name}>
-              <$ColorMatchTitle>
-                {title}
-                <$SubDescriptionTitleBold color={textColor}>
-                  {name}
-                </$SubDescriptionTitleBold>
-              </$ColorMatchTitle>
-              <$ColorMatchGrid>
-                {bestColors.map((color, idx) => (
-                  <$ColorMatchGridItem
-                    key={color + idx}
-                    backgroundColor={color}
-                  />
-                ))}
-              </$ColorMatchGrid>
+              <Link
+                to={{
+                  pathname: ROUTE_PATH.result,
+                  search: createSearchParams({ colorType: type }).toString(),
+                }}
+              >
+                <$ColorMatchTitle>
+                  {title}
+                  <$SubDescriptionTitleBold color={textColor}>
+                    {name}
+                  </$SubDescriptionTitleBold>
+                </$ColorMatchTitle>
+                <$ColorMatchGrid>
+                  {bestColors.map((color, idx) => (
+                    <$ColorMatchGridItem
+                      key={color + idx}
+                      backgroundColor={color}
+                    />
+                  ))}
+                </$ColorMatchGrid>
+              </Link>
             </$ColorMatchWrapper>
           )
         )}
@@ -291,7 +304,7 @@ function RestartButton() {
   const navigate = useNavigate();
 
   const handleRestart = () => {
-    navigate('/');
+    navigate(ROUTE_PATH.landing);
   };
 
   return (

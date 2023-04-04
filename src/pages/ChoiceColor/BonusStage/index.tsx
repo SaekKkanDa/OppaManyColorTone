@@ -40,7 +40,7 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
       <$BonusColorBox>
         {bonusColorOptions?.map(({ type, colors }, index) => (
           <$BonusColor
-            key={index}
+            key={type + index}
             colors={colors}
             onClick={() => onBonusClick(type)}
           >

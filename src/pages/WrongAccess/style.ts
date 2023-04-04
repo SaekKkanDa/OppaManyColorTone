@@ -3,7 +3,7 @@ import { Button, flexCustom } from '@Styles/theme';
 
 export const $FlexContainer = styled.div`
   ${flexCustom('column', 'center', 'center')}
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 export const $Message = styled.h1`

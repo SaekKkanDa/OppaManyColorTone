@@ -4,7 +4,7 @@ import { Button, flexCustom } from '@Styles/theme';
 export const $LandingWrap = styled.div`
   margin: 0 auto;
   max-width: 400px;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   ${flexCustom('column')}
   background-color: ${({ theme }) => theme.gray[100]};
 `;

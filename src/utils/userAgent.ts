@@ -7,14 +7,14 @@ export function isKakao() {
 }
 
 export function isOSX() {
-  const parser = UAParser();
+  const parser = UAParser(navigator.userAgent);
   const os = parser.os;
 
-  return os.name === 'Mac OS';
+  return os.name === 'macOS';
 }
 
 export function isChrome() {
-  const parser = UAParser();
+  const parser = UAParser(navigator.userAgent);
   const browser = parser.browser;
 
   return browser.name === 'Chrome';

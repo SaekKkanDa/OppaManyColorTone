@@ -34,6 +34,21 @@ import kimsoohyun from './celebrity/kimsoohyun.png';
 import sunmi from './celebrity/sunmi.png';
 import chungha from './celebrity/chungha.png';
 import gangdongwon from './celebrity/gangdongwon.png';
+import nctJungwoo from './celebrity/nctJungwoo.png';
+import leeyoungae from './celebrity/leeyoungae.png';
+import youyeonseok from './celebrity/youyeonseok.png';
+import tiffany from './celebrity/tiffany.png';
+import leeseungki from './celebrity/leeseungki.png';
+import gonghyojin from './celebrity/gonghyojin.png';
+import sooyoung from './celebrity/sooyoung.png';
+import kimheeseon from './celebrity/kimheeseon.png';
+import leeminho from './celebrity/leeminho.png';
+import youseungho from './celebrity/youseungho.png';
+import kimheejung from './celebrity/kimheejung.png';
+import seulki from './celebrity/seulki.png';
+import chaeyoung from './celebrity/chaeyoung.png';
+import jojungseok from './celebrity/jojungseok.png';
+import jessica from './celebrity/jessica.png';
 
 import stylingSpring from './styling/stylingSpring.jpeg';
 import stylingSpringBright from './styling/stylingSpringBright.jpeg';
@@ -79,6 +94,21 @@ const resultImg = {
     sunmi,
     chungha,
     gangdongwon,
+    nctJungwoo,
+    leeyoungae,
+    youyeonseok,
+    tiffany,
+    leeseungki,
+    gonghyojin,
+    sooyoung,
+    kimheeseon,
+    leeminho,
+    youseungho,
+    kimheejung,
+    seulki,
+    chaeyoung,
+    jojungseok,
+    jessica,
   },
 
   styling: {

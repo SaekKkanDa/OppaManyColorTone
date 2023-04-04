@@ -126,7 +126,8 @@ export const $SubDescriptionTitleBold = styled.span`
 `;
 
 export const $Styling = styled.img`
-  max-width: 100%;
+  width: 92px;
+  height: 92px;
 `;
 
 export const $StylingWrapper = styled.div`

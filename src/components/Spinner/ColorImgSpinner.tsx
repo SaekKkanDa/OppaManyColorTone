@@ -16,17 +16,16 @@ export const ImgSpinnerWrap = styled.div`
   position: relative;
   max-width: 240px;
   max-height: 240px;
-  width: 92vw;
-  height: 92vw;
-  margin: 12vh 0 20vh;
+  width: 80vw;
+  height: 80vw;
   display: inherit;
 `;
 
 export const ColorChipImg = styled.img`
   max-width: 240px;
   max-height: 240px;
-  width: 92vw;
-  height: 92vw;
+  width: 80vw;
+  height: 80vw;
   animation: spinner 12s infinite linear;
 
   @keyframes spinner {

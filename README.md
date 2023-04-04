@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://omct.web.app/" rel="noopener" target="_blank"><img width="150" src="./src/assets/logo/logo.png" alt="logo"></a>
+  <a href="https://omct.web.app/" rel="noopener" target="_blank"><img src="./readme/omct-thumbnail.png" alt="logo"></a>
 </p>
 
-<h1 align="center">오빠! 톤 많아?</h1>
+# 오빠! 톤 많아?
 
 ## 🧐 About Project
 
@@ -23,9 +23,9 @@ _오빠! 톤 많아? 퍼스널 컬러 자가진단_
 
 ## ✨ Installation
 
-```sh
+```bash
 nvm use
-yarn install
+yarn
 yarn run dev
 ```
 
@@ -89,11 +89,19 @@ yarn run dev
         </a>
         <br />
       </td>
+      <td align="center" valign="top">
+        <a href="https://github.com/soojjung">
+          <img src="https://avatars.githubusercontent.com/u/89066676?v=4" width="100px" alt="수야" />
+          <br />
+          <sub>
+            <b>수야</b>
+          </sub>
+        </a>
+        <br />
+      </td>
     </tr>
   </tbody>
 </table>
-
-_Special thanks to [수야](https://github.com/soojjung)_
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
@@ -104,6 +112,7 @@ _Special thanks to [수야](https://github.com/soojjung)_
 - styled-components
 - Recoil
 - Firebase
+- Sentry
 
 ## 🏃🏻 Sprint
 

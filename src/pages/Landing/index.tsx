@@ -12,6 +12,7 @@ import {
   $LandingTitle,
   $TitleHighlight,
   $LandingSubTitle,
+  $SpinnerWrapper,
   $LandingBottomDiv,
   $LandingUserCountDiv,
   $LangingStartButton,
@@ -50,7 +51,11 @@ function LandingPage() {
           </$LandingTitle>
           <$LandingSubTitle>퍼스널 컬러 자가진단</$LandingSubTitle>
         </$LandingTitleDiv>
-        <ColorImgSpinner />
+
+        <$SpinnerWrapper>
+          <ColorImgSpinner />
+        </$SpinnerWrapper>
+
         <$LandingBottomDiv>
           {!!numberOfUsers && (
             <$LandingUserCountDiv>

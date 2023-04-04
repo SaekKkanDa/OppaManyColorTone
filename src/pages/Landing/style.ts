@@ -3,14 +3,16 @@ import { Button, flexCustom } from '@Styles/theme';
 
 export const $LandingWrap = styled.div`
   margin: 0 auto;
+  padding: 48px 0;
   max-width: 400px;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   ${flexCustom('column')}
   background-color: ${({ theme }) => theme.gray[100]};
 `;
 
 export const $LandingTitleDiv = styled.div`
-  ${flexCustom('column')}
+  ${flexCustom('column', 'center', 'flex-end')}
+  flex: 1 1 0;
 `;
 
 export const $LandingTitle = styled.h1`
@@ -32,9 +34,12 @@ export const $LandingSubTitle = styled.h2`
   text-align: center;
 `;
 
+export const $SpinnerWrapper = styled.div`
+  ${flexCustom('column', 'center', 'center')}
+  flex: 3 1 0;
+`;
+
 export const $LandingBottomDiv = styled.div`
-  position: absolute;
-  bottom: 48px;
   ${flexCustom('column')}
 `;
 

@@ -24,6 +24,7 @@ import {
   $Title,
   $TitleBold,
   $Wrapper,
+  $ResultContainer,
   $ColorGrid,
   $ColorGridItem,
   $TagWrapper,
@@ -54,7 +55,7 @@ import { OmctErrorNo } from '@Constant/errorKeyValue';
 function ResultPage() {
   const [searchParams] = useSearchParams();
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const resultContainerRef = useRef<HTMLDivElement>(null);
 
   const colorType = useMemo(() => {
     if (!searchParams) return null;
@@ -95,96 +96,101 @@ function ResultPage() {
   ];
 
   return (
-    <$Wrapper ref={wrapperRef}>
-      <$Title>
-        당신의 퍼스널 컬러는
-        <$TitleBold color={textColor}>{name}</$TitleBold>
-      </$Title>
+    <$Wrapper>
+      <$ResultContainer ref={resultContainerRef}>
+        <$Title>
+          당신의 퍼스널 컬러는
+          <$TitleBold color={textColor}>{name}</$TitleBold>
+        </$Title>
 
-      <$ColorGrid>
-        {/* HJ TODO: idx 제거 */}
-        {gridColors.map((color, idx) => (
-          <$ColorGridItem key={color + idx} backgroundColor={color} />
-        ))}
-      </$ColorGrid>
+        <$ColorGrid>
+          {/* HJ TODO: idx 제거 */}
+          {gridColors.map((color, idx) => (
+            <$ColorGridItem key={color + idx} backgroundColor={color} />
+          ))}
+        </$ColorGrid>
 
-      <$TagWrapper>
-        {tags.map(({ keyword, backgroundColor, textColor }) => (
-          <$Tag
-            key={keyword}
-            backgroundColor={backgroundColor}
-            textColor={textColor}
-          >
-            {`#${keyword}`}
-          </$Tag>
-        ))}
-      </$TagWrapper>
+        <$TagWrapper>
+          {tags.map(({ keyword, backgroundColor, textColor }) => (
+            <$Tag
+              key={keyword}
+              backgroundColor={backgroundColor}
+              textColor={textColor}
+            >
+              {`#${keyword}`}
+            </$Tag>
+          ))}
+        </$TagWrapper>
 
-      <$Description>
-        {descriptions.map((description, index) => (
-          <li key={description + index}>{description}</li>
-        ))}
-      </$Description>
+        <$Description>
+          {descriptions.map((description, index) => (
+            <li key={description + index}>{description}</li>
+          ))}
+        </$Description>
 
-      <$SubDescriptionTitle>
-        <$SubDescriptionTitleBold color={textColor}>
-          {name}
-        </$SubDescriptionTitleBold>{' '}
-        스타일링 추천
-        <$StylingWrapper>
-          <StyleMan color={stylingColor}></StyleMan>
-        </$StylingWrapper>
-      </$SubDescriptionTitle>
+        <$SubDescriptionTitle>
+          <$SubDescriptionTitleBold color={textColor}>
+            {name}
+          </$SubDescriptionTitleBold>{' '}
+          스타일링 추천
+          <$StylingWrapper>
+            <StyleMan color={stylingColor}></StyleMan>
+          </$StylingWrapper>
+        </$SubDescriptionTitle>
 
-      <$SubDescriptionTitle>
-        <$SubDescriptionTitleBold color={textColor}>
-          {name}
-        </$SubDescriptionTitleBold>{' '}
-        대표 연예인
-        <$CelebritiesWrapper>
-          {celebrities.map(({ name, imageURL }, idx) => {
-            return (
-              <$CelebrityWrapper key={name + idx}>
-                <$Styling key={name} src={imageURL} />
-                <$CelebrityName>{name}</$CelebrityName>
-              </$CelebrityWrapper>
-            );
-          })}
-        </$CelebritiesWrapper>
-      </$SubDescriptionTitle>
+        <$SubDescriptionTitle>
+          <$SubDescriptionTitleBold color={textColor}>
+            {name}
+          </$SubDescriptionTitleBold>{' '}
+          대표 연예인
+          <$CelebritiesWrapper>
+            {celebrities.map(({ name, imageURL }, idx) => {
+              return (
+                <$CelebrityWrapper key={name + idx}>
+                  <$Styling key={name} src={imageURL} />
+                  <$CelebrityName>{name}</$CelebrityName>
+                </$CelebrityWrapper>
+              );
+            })}
+          </$CelebritiesWrapper>
+        </$SubDescriptionTitle>
 
-      {[secondaryColor, worstColor].map(
-        ({ title, name, textColor, bestColors }) => (
-          <$ColorMatchWrapper key={name}>
-            <$ColorMatchTitle>
-              {title}
-              <$SubDescriptionTitleBold color={textColor}>
-                {name}
-              </$SubDescriptionTitleBold>
-            </$ColorMatchTitle>
-            <$ColorMatchGrid>
-              {bestColors.map((color, idx) => (
-                <$ColorMatchGridItem
-                  key={color + idx}
-                  backgroundColor={color}
-                />
-              ))}
-            </$ColorMatchGrid>
-          </$ColorMatchWrapper>
-        )
-      )}
+        {[secondaryColor, worstColor].map(
+          ({ title, name, textColor, bestColors }) => (
+            <$ColorMatchWrapper key={name}>
+              <$ColorMatchTitle>
+                {title}
+                <$SubDescriptionTitleBold color={textColor}>
+                  {name}
+                </$SubDescriptionTitleBold>
+              </$ColorMatchTitle>
+              <$ColorMatchGrid>
+                {bestColors.map((color, idx) => (
+                  <$ColorMatchGridItem
+                    key={color + idx}
+                    backgroundColor={color}
+                  />
+                ))}
+              </$ColorMatchGrid>
+            </$ColorMatchWrapper>
+          )
+        )}
+      </$ResultContainer>
 
-      <MenuSubPage wrapperRef={wrapperRef} colorType={colorType} />
+      <MenuSubPage
+        resultContainerRef={resultContainerRef}
+        colorType={colorType}
+      />
     </$Wrapper>
   );
 }
 
 interface MenuSubPageProps {
-  wrapperRef: React.RefObject<HTMLDivElement>;
+  resultContainerRef: React.RefObject<HTMLDivElement>;
   colorType: string;
 }
 
-function MenuSubPage({ wrapperRef, colorType }: MenuSubPageProps) {
+function MenuSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
 
   // HJ TODO: 네이밍 이상함..
@@ -203,7 +209,7 @@ function MenuSubPage({ wrapperRef, colorType }: MenuSubPageProps) {
   const handleCapture = async () => {
     if (kakaoAlert()) return;
 
-    const wrapper = wrapperRef.current;
+    const wrapper = resultContainerRef.current;
     if (!wrapper) return;
 
     const imgName = `${colorType}-result.png`;

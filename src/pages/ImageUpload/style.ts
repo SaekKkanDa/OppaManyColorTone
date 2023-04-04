@@ -10,7 +10,7 @@ export const $CroppedImageBox = styled.img`
 
 export const $ModalContainer = styled.div`
   position: relative;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 export const $ModalBackground = styled.div`

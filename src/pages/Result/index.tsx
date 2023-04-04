@@ -2,12 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCheck,
-  faLink,
-  faShare,
-  faDownload,
-} from '@fortawesome/free-solid-svg-icons';
+import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import resultColorData, { ColorType } from '@Data/resultColorData';
 import { BorderedButton } from '@Styles/theme';
@@ -127,10 +122,7 @@ function ResultPage() {
 
       <$Description>
         {descriptions.map((description, index) => (
-          <li key={description + index}>
-            <FontAwesomeIcon icon={faCheck} listItem />
-            {description}
-          </li>
+          <li key={description + index}>{description}</li>
         ))}
       </$Description>
 
@@ -182,16 +174,17 @@ function ResultPage() {
         )
       )}
 
-      <MenuSubPage wrapperRef={wrapperRef} />
+      <MenuSubPage wrapperRef={wrapperRef} colorType={colorType} />
     </$Wrapper>
   );
 }
 
 interface MenuSubPageProps {
   wrapperRef: React.RefObject<HTMLDivElement>;
+  colorType: string;
 }
 
-function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
+function MenuSubPage({ wrapperRef, colorType }: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
 
   // HJ TODO: 네이밍 이상함..
@@ -213,8 +206,9 @@ function MenuSubPage({ wrapperRef }: MenuSubPageProps) {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
-    const img = await captureElement(wrapper, 'personal-color-result.png');
-    downloadImage(img, 'personal-color-result.png');
+    const imgName = `${colorType}-result.png`;
+    const img = await captureElement(wrapper, imgName);
+    downloadImage(img, imgName);
   };
 
   const handleLinkCopyClick = async () => {

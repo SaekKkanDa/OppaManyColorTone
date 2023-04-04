@@ -66,7 +66,7 @@ export const $Guidance = styled.div`
 `;
 
 export const $Notification = styled($Guidance)`
-  padding: 8px;
+  padding: 8px 12px;
   border-radius: 6px;
   background-color: ${({ theme }) => theme.gray[200]};
   color: ${({ theme }) => theme.gray[500]};

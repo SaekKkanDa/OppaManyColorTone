@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { flexCustom } from '@Styles/theme';
-// import checkIcon from '@Assets/icon/'
+import checkIcon from '@Assets/icon/check.png';
+
 interface ColorItemStyleProps {
   backgroundColor: string;
 }
@@ -63,6 +64,7 @@ export const $TagWrapper = styled.div`
 `;
 
 export const $Tag = styled.span<TagStyleProps>`
+  ${flexCustom('row', 'flex-start', 'flex-start')}
   padding: 0.5em;
   border-radius: 1em;
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -75,21 +77,14 @@ export const $Description = styled.ul`
   ${flexCustom('column', 'flex-start', 'flex-start')}
   row-gap: 0.5em;
   margin-top: 24px;
-  padding-left: 1.25em;
-  font-style: normal;
   font-size: 14px;
   line-height: 24px;
   text-align: justify;
   letter-spacing: -0.02em;
 
   li {
-    position: relative;
-
-    svg {
-      margin-top: 0.4em;
-      color: ${({ theme }) => theme.gray[400]};
-      font-size: 0.8em;
-    }
+    padding-left: 16px;
+    background: url(${checkIcon}) 0 0.6em / 10px 10px no-repeat;
   }
 `;
 

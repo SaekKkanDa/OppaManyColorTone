@@ -119,6 +119,11 @@ const ResetStyle = css`
     list-style: none;
   }
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   blockquote,
   q {
     quotes: none;

@@ -5,6 +5,10 @@ import theme from './theme';
 const GlobalStyle = createGlobalStyle`
   ${ResetStyle}
 
+  :root {
+    --vh: 100%;
+  }
+
   @font-face {
     font-family: 'yg-jalnan';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');

@@ -13,10 +13,13 @@ interface TagStyleProps {
 
 export const $Wrapper = styled.div`
   ${flexCustom('column', 'inherit', 'flex-start')}
-  box-sizing: border-box;
-  max-width: 400px;
   margin: 0 auto;
-  padding: 48px 32px 30px 36px;
+  max-width: 400px;
+`;
+
+export const $ResultContainer = styled.div`
+  ${flexCustom('column', 'inherit', 'flex-start')}
+  padding: 48px 32px 36px;
 `;
 
 export const $LoadingWrapper = styled.div`
@@ -126,7 +129,8 @@ export const $SubDescriptionTitleBold = styled.span`
 `;
 
 export const $Styling = styled.img`
-  max-width: 100%;
+  width: 92px;
+  height: 92px;
 `;
 
 export const $StylingWrapper = styled.div`
@@ -156,7 +160,7 @@ export const $CelebrityName = styled.div`
 
 export const $MenuContainer = styled.div`
   ${flexCustom('row', 'inherit', 'space-around')}
-  margin-top: 72px;
+  padding: 36px 32px;
 `;
 
 export const $MenuItemWrapper = styled.div`
@@ -199,5 +203,6 @@ export const $MenuItemName = styled.div`
 `;
 
 export const $RestartButtonWrapper = styled.div`
-  margin-top: 29px;
+  padding-bottom: 36px;
+  text-align: center;
 `;

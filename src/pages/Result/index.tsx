@@ -138,7 +138,7 @@ function ResultPage() {
           ))}
         </$Description>
 
-        <$SubDescriptionTitle>
+        {/* <$SubDescriptionTitle>
           <$SubDescriptionTitleBold color={textColor}>
             {name}
           </$SubDescriptionTitleBold>{' '}
@@ -146,7 +146,7 @@ function ResultPage() {
           <$StylingWrapper>
             <StyleMan color={stylingColor}></StyleMan>
           </$StylingWrapper>
-        </$SubDescriptionTitle>
+        </$SubDescriptionTitle> */}
 
         <$SubDescriptionTitle>
           <$SubDescriptionTitleBold color={textColor}>

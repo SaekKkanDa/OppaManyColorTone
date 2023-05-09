@@ -3,7 +3,7 @@ import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { CropImage } from '../../recoil/app';
+import { CropImage } from '../../../recoil/app';
 import theme from '@Styles/theme';
 import {
   $FlexContainer,
@@ -69,10 +69,10 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
         setCropImage(image);
         setIsModalOpen(false);
       } catch (error) {
-        window.alert('다시 시도해 주세요.');
+        alert('다시 시도해 주세요.');
       }
     } else {
-      window.alert('이미지가 없습니다.');
+      alert('이미지가 없습니다.');
     }
   };
 

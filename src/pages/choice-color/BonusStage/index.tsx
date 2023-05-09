@@ -1,5 +1,6 @@
 import React from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
 import LoadingIndicator from '@Components/LoadingIndicator';
@@ -17,17 +18,17 @@ interface BonusStageProps {
 }
 
 function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const bonusColorOptions = bonusColorTypes
     ? getBonusColorOptions(bonusColorTypes)
     : null;
 
   const onBonusClick = (type: Type) => {
-    navigate({
-      pathname: ROUTE_PATH.result,
-      search: createSearchParams({ colorType: type }).toString(),
-    });
+    const params = new URLSearchParams(searchParams);
+    params.set('colorType', type);
+    router.push(`${ROUTE_PATH.result}?${params}`);
   };
 
   return bonusColorTypes ? (
@@ -44,7 +45,7 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
             colors={colors}
             onClick={() => onBonusClick(type)}
           >
-            <img src={userImg} alt="사용자 이미지" />
+            <Image src={userImg} alt="사용자 이미지" width={100} height={100} />
           </$BonusColor>
         ))}
       </$BonusColorBox>

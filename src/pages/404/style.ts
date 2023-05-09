@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { Button, flexCustom } from '@Styles/theme';
 
 export const $FlexContainer = styled.div`
   ${flexCustom('column', 'center', 'center')}
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100%;
 `;
 
 export const $Message = styled.h1`
@@ -11,7 +12,7 @@ export const $Message = styled.h1`
   text-align: center;
 `;
 
-export const $Emoji = styled.img`
+export const $Emoji = styled(Image)`
   margin: 36px 0 48px;
   width: 150px;
   height: 150px;

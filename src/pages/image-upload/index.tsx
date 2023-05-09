@@ -1,10 +1,10 @@
 import React from 'react';
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import FaceDetection from '../FaceDetection';
+import FaceDetection from './FaceDetection';
 import theme from '@Styles/theme';
 import { useRecoilState } from 'recoil';
 import { CropImage } from '../../recoil/app';
@@ -44,7 +44,7 @@ function ImageUploadPage() {
       return;
     }
 
-    window.alert('다시 시도해 주세요.');
+    alert('다시 시도해 주세요.');
   };
 
   return (
@@ -65,7 +65,12 @@ function ImageUploadPage() {
         <$ImageBox>
           {imagePreviewURL ? (
             <>
-              <$CroppedImageBox src={imagePreviewURL} alt="preview image" />
+              <$CroppedImageBox
+                src={imagePreviewURL}
+                alt="preview image"
+                width={150}
+                height={150}
+              />
               <$InputFile
                 ref={inputRef}
                 type="file"
@@ -96,7 +101,7 @@ function ImageUploadPage() {
         <$Guidance>실제와 비슷한 톤의 얼굴 사진을 선택해주세요.</$Guidance>
         <$Notification>
           <h6>
-            <FontAwesomeIcon icon={faFaceSmile} />
+            <FontAwesomeIcon icon={faFaceSmile} size="sm" />
             안심하세요!
           </h6>
           본 진단은 사용자의 사진을 수집하지 않습니다.
@@ -104,7 +109,7 @@ function ImageUploadPage() {
           사진은 본 진단 외 다른 목적으로 이용되지 않습니다.
         </$Notification>
 
-        <Link to={ROUTE_PATH.choiceColor}>
+        <Link href={ROUTE_PATH.choiceColor}>
           <$NextButton disabled={!imagePreviewURL}>다음으로</$NextButton>
         </Link>
       </$FlexContainer>

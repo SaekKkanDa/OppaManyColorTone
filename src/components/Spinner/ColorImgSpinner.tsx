@@ -1,18 +1,30 @@
 import React from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
-import colorWheel from '@Assets/logo/color-wheel-3d.png';
-import curiousEmoji from '@Assets/logo/curious-emoji-3d.png';
+import colorWheel from 'public/images/logo/color-wheel-3d.png';
+import curiousEmoji from 'public/images/logo/curious-emoji-3d.png';
 
 function ColorImgSpinner() {
   return (
-    <ImgSpinnerWrap>
-      <ColorChipImg src={colorWheel} />
-      <ThinkImg src={curiousEmoji} />
-    </ImgSpinnerWrap>
+    <$ImgSpinnerWrap>
+      <$ColorChipImg
+        src={colorWheel.src}
+        alt="color wheel"
+        width={240}
+        height={240}
+        priority
+      />
+      <$ThinkImg
+        src={curiousEmoji.src}
+        alt="curious emoji"
+        width={80}
+        height={80}
+      />
+    </$ImgSpinnerWrap>
   );
 }
 
-export const ImgSpinnerWrap = styled.div`
+export const $ImgSpinnerWrap = styled.div`
   position: relative;
   max-width: 240px;
   max-height: 240px;
@@ -21,7 +33,7 @@ export const ImgSpinnerWrap = styled.div`
   display: inherit;
 `;
 
-export const ColorChipImg = styled.img`
+export const $ColorChipImg = styled(Image)`
   max-width: 240px;
   max-height: 240px;
   width: 80vw;
@@ -35,7 +47,7 @@ export const ColorChipImg = styled.img`
   }
 `;
 
-export const ThinkImg = styled.img`
+export const $ThinkImg = styled(Image)`
   max-width: 80px;
   max-height: 80px;
   width: 32vw;

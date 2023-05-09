@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 import { CropImage } from '../../recoil/app';
 import useSelectBonusColorTypes from '@Hooks/useSelectBonusColorTypes';
-import useRedirectNoImage from '@Hooks/useRedirectNoImage';
 import choiceColorData from '@Data/choiceColorData';
 import type { Type } from '@Data/color';
 import BasicStage from './BasicStage';
@@ -11,6 +11,8 @@ import { $Wrapper } from './style';
 
 function ChoiceColor() {
   const [selectedTypes, setSelectedTypes] = useState<Type[]>([]);
+
+  const router = useRouter();
 
   const stageNum = selectedTypes.length;
   const MAX_STAGE_NUM = choiceColorData.length;
@@ -26,7 +28,11 @@ function ChoiceColor() {
   );
 
   const userImg = useRecoilValue(CropImage);
-  useRedirectNoImage(userImg);
+
+  if (!userImg) {
+    router.push('/no-image');
+    return null;
+  }
 
   const onBasicClick = (type: Type) => {
     setSelectedTypes((prev) => [...prev, type]);

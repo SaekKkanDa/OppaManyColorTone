@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { flexCustom } from '@Styles/theme';
-import checkIcon from '@Assets/icon/check.png';
+import checkIcon from 'public/images/icon/check.png';
 
 interface ColorItemStyleProps {
   backgroundColor: string;
@@ -87,12 +88,13 @@ export const $Description = styled.ul`
 
   li {
     padding-left: 16px;
-    background: url(${checkIcon}) 0 0.6em / 10px 10px no-repeat;
+    background: url(${checkIcon.src}) 0 0.6em / 10px 10px no-repeat;
   }
 `;
 
-export const $ColorMatchWrapper = styled.div`
+export const $ColorMatchButton = styled.button`
   margin-top: 48px;
+  cursor: pointer;
 `;
 
 export const $ColorMatchTitle = styled.h2`
@@ -128,7 +130,7 @@ export const $SubDescriptionTitleBold = styled.span`
   color: ${(props) => props.color};
 `;
 
-export const $Styling = styled.img`
+export const $Styling = styled(Image)`
   width: 92px;
   height: 92px;
 `;
@@ -192,7 +194,7 @@ export const $KakaoShareButton = styled.button`
   cursor: pointer;
 `;
 
-export const $MenuItemImg = styled.img`
+export const $MenuItemImg = styled(Image)`
   max-width: 100%;
 `;
 

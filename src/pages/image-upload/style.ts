@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { Button, flexCustom } from '@Styles/theme';
 
-export const $CroppedImageBox = styled.img`
+export const $CroppedImageBox = styled(Image)`
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -10,7 +11,7 @@ export const $CroppedImageBox = styled.img`
 
 export const $ModalContainer = styled.div`
   position: relative;
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100%;
 `;
 
 export const $ModalBackground = styled.div`
@@ -24,7 +25,7 @@ export const $ModalBackground = styled.div`
 
 export const $FlexContainer = styled.div<{ isModalOpen: boolean }>`
   display: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'block')};
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   ${flexCustom('column', 'center', 'center')}
   padding: 40px 20px;
 `;

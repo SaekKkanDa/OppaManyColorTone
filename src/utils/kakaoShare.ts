@@ -5,7 +5,7 @@ async function loadKakaoSDK() {
     'sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx';
   script.crossOrigin = 'anonymous';
 
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     script.onload = () => resolve();
     script.onerror = (err) => reject(err);
     document.head.appendChild(script);
@@ -14,8 +14,8 @@ async function loadKakaoSDK() {
 
 export async function initKakaoSDK() {
   await loadKakaoSDK();
-  const { VITE_KAKAO_API_KEY } = import.meta.env;
-  Kakao.init(VITE_KAKAO_API_KEY);
+  const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
+  Kakao.init(KAKAO_API_KEY);
 }
 
 export function shareKakaoDefault() {

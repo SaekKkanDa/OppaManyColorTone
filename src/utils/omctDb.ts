@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from './firebase';
 
 class OmctDb {
   static #instance: InstanceType<typeof OmctDb>;

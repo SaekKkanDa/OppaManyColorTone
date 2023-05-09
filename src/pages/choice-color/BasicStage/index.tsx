@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import shuffle from '@Utils/shuffle';
 import type { Type } from '@Data/color';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';
@@ -44,7 +45,7 @@ function BasicStage({
             color={item.color}
             onClick={() => onBasicClick(item.type)}
           >
-            <img src={userImg} alt="사용자 이미지" />
+            <Image src={userImg} alt="사용자 이미지" width={100} height={100} />
           </$Color>
         ))}
       </$ColorBox>

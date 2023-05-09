@@ -1,10 +1,6 @@
 import React, { useRef, useMemo, useEffect } from 'react';
-import {
-  Link,
-  createSearchParams,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
@@ -22,9 +18,8 @@ import ROUTE_PATH from '@Constant/routePath';
 import resultColorData, { ColorType } from '@Data/resultColorData';
 
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
-import StyleMan from '@Components/svg/StyleMan';
 
-import kakaoIcon from '@Assets/icon/kakaoIcon.png';
+import kakaoIcon from 'public/images/icon/kakaoIcon.png';
 
 import { BorderedButton } from '@Styles/theme';
 import {
@@ -38,7 +33,7 @@ import {
   $TagWrapper,
   $Tag,
   $Description,
-  $ColorMatchWrapper,
+  $ColorMatchButton,
   $ColorMatchGrid,
   $ColorMatchGridItem,
   $ColorMatchTitle,
@@ -53,13 +48,13 @@ import {
   $MenuItemWrapper,
   $RestartButtonWrapper,
   $Styling,
-  $StylingWrapper,
   $SubDescriptionTitle,
   $SubDescriptionTitleBold,
 } from './style';
 
 function ResultPage() {
-  const [searchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const resultContainerRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +89,6 @@ function ResultPage() {
     gridColors,
     tags,
     descriptions,
-    stylingColor,
     celebrities,
     secondaryType,
     worstType,
@@ -104,6 +98,12 @@ function ResultPage() {
     { ...resultColorData[secondaryType], title: '이것도 좋아요' },
     { ...resultColorData[worstType], title: '이건 피하세요' },
   ];
+
+  const onClickAnotherResult = (type: ColorType) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('colorType', type);
+    router.push(`${ROUTE_PATH.result}?${params}`);
+  };
 
   return (
     <$Wrapper>
@@ -157,7 +157,13 @@ function ResultPage() {
             {celebrities.map(({ name, imageURL }, idx) => {
               return (
                 <$CelebrityWrapper key={name + idx}>
-                  <$Styling key={name} src={imageURL} />
+                  <$Styling
+                    key={name}
+                    src={imageURL}
+                    alt="연예인"
+                    width={92}
+                    height={92}
+                  />
                   <$CelebrityName>{name}</$CelebrityName>
                 </$CelebrityWrapper>
               );
@@ -167,29 +173,25 @@ function ResultPage() {
 
         {[secondaryColor, worstColor].map(
           ({ title, type, name, textColor, bestColors }) => (
-            <$ColorMatchWrapper key={name}>
-              <Link
-                to={{
-                  pathname: ROUTE_PATH.result,
-                  search: createSearchParams({ colorType: type }).toString(),
-                }}
-              >
-                <$ColorMatchTitle>
-                  {title}
-                  <$SubDescriptionTitleBold color={textColor}>
-                    {name}
-                  </$SubDescriptionTitleBold>
-                </$ColorMatchTitle>
-                <$ColorMatchGrid>
-                  {bestColors.map((color, idx) => (
-                    <$ColorMatchGridItem
-                      key={color + idx}
-                      backgroundColor={color}
-                    />
-                  ))}
-                </$ColorMatchGrid>
-              </Link>
-            </$ColorMatchWrapper>
+            <$ColorMatchButton
+              key={name}
+              onClick={() => onClickAnotherResult(type)}
+            >
+              <$ColorMatchTitle>
+                {title}
+                <$SubDescriptionTitleBold color={textColor}>
+                  {name}
+                </$SubDescriptionTitleBold>
+              </$ColorMatchTitle>
+              <$ColorMatchGrid>
+                {bestColors.map((color, idx) => (
+                  <$ColorMatchGridItem
+                    key={color + idx}
+                    backgroundColor={color}
+                  />
+                ))}
+              </$ColorMatchGrid>
+            </$ColorMatchButton>
           )
         )}
       </$ResultContainer>
@@ -240,7 +242,7 @@ function MenuSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
     try {
       await updateClipboard(location.href);
       // HJ TODO: 커스텀 alert 등록
-      alert('클립보드 복사에 성공했습니다.');
+      alert('링크가 복사되었습니다.');
     } catch (err) {
       console.error(err);
       alert('클립보드 복사에 실패했습니다');
@@ -287,7 +289,12 @@ function MenuSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
 
         <$MenuItemWrapper>
           <$KakaoShareButton onClick={handleKakaoShare}>
-            <$MenuItemImg src={kakaoIcon} />
+            <$MenuItemImg
+              src={kakaoIcon}
+              alt="카카오톡 공유 버튼"
+              width={48}
+              height={48}
+            />
           </$KakaoShareButton>
           <$MenuItemName>카카오톡</$MenuItemName>
         </$MenuItemWrapper>
@@ -305,15 +312,11 @@ function MenuSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
 }
 
 function RestartButton() {
-  const navigate = useNavigate();
-
-  const handleRestart = () => {
-    navigate(ROUTE_PATH.landing);
-  };
-
   return (
     <$RestartButtonWrapper>
-      <BorderedButton onClick={handleRestart}>처음으로</BorderedButton>
+      <Link href={ROUTE_PATH.landing}>
+        <BorderedButton>처음으로</BorderedButton>
+      </Link>
     </$RestartButtonWrapper>
   );
 }

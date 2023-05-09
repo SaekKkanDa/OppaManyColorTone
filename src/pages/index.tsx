@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
-import { CropImage } from '../../recoil/app';
+import { CropImage } from '../recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import omctDb from '@Utils/omctDb';
 import ROUTE_PATH from '@Constant/routePath';
@@ -20,7 +20,7 @@ import {
 } from './style';
 
 function LandingPage() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [numberOfUsers, setNumberOfUsers] = useState(0);
 
@@ -39,7 +39,7 @@ function LandingPage() {
   }, [setUserImg]);
 
   const onClickStartButton = () => {
-    navigate(ROUTE_PATH.imageUpload);
+    router.push(ROUTE_PATH.imageUpload);
   };
 
   return (

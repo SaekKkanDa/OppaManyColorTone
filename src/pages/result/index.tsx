@@ -28,8 +28,6 @@ import {
   $TitleBold,
   $Wrapper,
   $ResultContainer,
-  $ColorGrid,
-  $ColorGridItem,
   $TagWrapper,
   $Tag,
   $Description,
@@ -50,13 +48,25 @@ import {
   $Styling,
   $SubDescriptionTitle,
   $SubDescriptionTitleBold,
+  $PaletteWrapper,
 } from './style';
+import { useRecoilValue } from 'recoil';
+import { CropImage } from '@Recoil/app';
+import curiousEmoji from 'public/images/logo/curious-emoji-3d.png';
+import Palette from '@Components/Palette/Palette';
 
 function ResultPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const resultContainerRef = useRef<HTMLDivElement>(null);
+
+  const cropImg = useRecoilValue(CropImage);
+  const userImg = useMemo(() => {
+    if (!cropImg) return curiousEmoji.src;
+
+    return cropImg;
+  }, [cropImg]);
 
   const colorType = useMemo(() => {
     if (!searchParams) return null;
@@ -113,12 +123,9 @@ function ResultPage() {
           <$TitleBold color={textColor}>{name}</$TitleBold>
         </$Title>
 
-        <$ColorGrid>
-          {/* HJ TODO: idx 제거 */}
-          {gridColors.map((color, idx) => (
-            <$ColorGridItem key={color + idx} backgroundColor={color} />
-          ))}
-        </$ColorGrid>
+        <$PaletteWrapper>
+          <Palette imgSrc={userImg} colors={gridColors} />
+        </$PaletteWrapper>
 
         <$TagWrapper>
           {tags.map(({ keyword, backgroundColor, textColor }) => (

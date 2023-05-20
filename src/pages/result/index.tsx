@@ -144,7 +144,7 @@ function ResultPage() {
           </$SubDescriptionTitleBold>{' '}
           스타일링 추천
           <$StylingWrapper>
-            <StyleMan color={stylingColor}></StyleMan>
+            <StyleMan colors={stylingColor}></StyleMan>
           </$StylingWrapper>
         </$SubDescriptionTitle> */}
 

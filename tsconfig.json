@@ -36,7 +36,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "@types/index.d.ts",
+    "@types/**/*d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

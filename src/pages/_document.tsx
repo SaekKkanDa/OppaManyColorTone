@@ -1,17 +1,5 @@
 import React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
-import * as Sentry from '@sentry/browser';
-import { BrowserTracing } from '@sentry/tracing';
-
-const isProduction = process.env.PROD;
-
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  environment: isProduction ? 'production' : 'development',
-  release: process.env.NEXT_PUBLIC_RELEASE_VERSION,
-  integrations: [new BrowserTracing()],
-  tracesSampleRate: 1.0,
-});
 
 export default function Document() {
   return (

@@ -9,8 +9,9 @@
       "@Data/*": ["./src/data/*"],
       "@Hooks/*": ["./src/hooks/*"],
       "@Pages/*": ["./src/pages/*"],
-      "@Utils/*": ["./src/utils/*"],
-      "@Styles/*": ["./src/styles/*"]
+      "@Recoil/*": ["./src/recoil/*"],
+      "@Styles/*": ["./src/styles/*"],
+      "@Utils/*": ["./src/utils/*"]
     },
     "allowJs": true,
     "jsx": "preserve",
@@ -36,7 +37,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "@types/index.d.ts",
+    "@types/**/*d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

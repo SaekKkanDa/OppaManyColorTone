@@ -44,19 +44,10 @@ export const $TitleBold = styled.span`
   color: ${(props) => props.color};
 `;
 
-export const $ColorGrid = styled.div`
-  margin: 24px auto 0 auto;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 1px;
-
+export const $PaletteWrapper = styled.div`
   width: 100%;
-`;
-
-export const $ColorGridItem = styled.div<ColorItemStyleProps>`
-  aspect-ratio: 16/9;
-  background-color: ${(props) => props.backgroundColor};
+  aspect-ratio: 1/1;
+  margin: 24px auto 0 auto;
 `;
 
 export const $TagWrapper = styled.div`

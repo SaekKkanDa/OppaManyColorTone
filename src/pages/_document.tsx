@@ -11,6 +11,18 @@ export default function Document() {
         <meta property="og:url" content="https://omct.web.app" />
         <meta property="og:description" content="퍼스널 컬러 자가진단" />
 
+        {/* Google Search Console */}
+        <meta
+          name="google-site-verification"
+          content="O9hSb_rmNoVKpxCcnYOFgmitTDoOSeDMM8XMZTtk5L4"
+        />
+
+        {/* Naver Search Advisor */}
+        <meta
+          name="naver-site-verification"
+          content="4be41e9a6714ed8ff418f6bfaa1eb7fcb635871c"
+        />
+
         {/* favicon: icons created by Freepik - Flaticon */}
         <link
           rel="apple-touch-icon"

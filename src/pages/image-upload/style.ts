@@ -9,33 +9,11 @@ export const $CroppedImageBox = styled(Image)`
   z-index: 1;
 `;
 
-export const $ModalContainer = styled.div`
-  position: relative;
-  height: 100%;
-`;
-
-export const $ModalBackground = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.gray[500]};
-  opacity: 0.5;
-  z-index: 10;
-`;
-
 export const $FlexContainer = styled.div<{ isModalOpen: boolean }>`
   display: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'block')};
   height: calc(var(--vh, 1vh) * 100);
   ${flexCustom('column', 'center', 'center')}
   padding: 40px 20px;
-`;
-
-export const $Modal = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
 `;
 
 export const $ImageBox = styled.div`

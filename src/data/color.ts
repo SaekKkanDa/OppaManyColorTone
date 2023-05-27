@@ -20,7 +20,9 @@ type Color = {
   season: Season;
   tone: Tone;
   type: Type;
-  color: string[];
+  name: string;
+  textColor: string;
+  colors: string[];
   namedColor: { name: string; hex: string }[];
 };
 
@@ -29,7 +31,9 @@ const color: Color[] = [
     season: 'spring',
     tone: 'bright',
     type: 'springbright',
-    color: [
+    name: '봄 브라이트',
+    textColor: '#ff6448',
+    colors: [
       '#F8F7D9',
       '#F9E22D',
       '#FDD274',
@@ -67,7 +71,9 @@ const color: Color[] = [
     season: 'spring',
     tone: 'warm',
     type: 'springwarm',
-    color: [
+    name: '봄 웜',
+    textColor: '#ffc000',
+    colors: [
       '#F9E22D',
       '#FDD274',
       '#FECC2D',
@@ -105,7 +111,9 @@ const color: Color[] = [
     season: 'spring',
     tone: 'light',
     type: 'springlight',
-    color: [
+    name: '봄 라이트',
+    textColor: '#89d8c2',
+    colors: [
       '#F8F7D9',
       '#EEEB9E',
       '#F4E1A5',
@@ -144,7 +152,9 @@ const color: Color[] = [
     season: 'summer',
     tone: 'light',
     type: 'summerlight',
-    color: [
+    name: '여름 라이트',
+    textColor: '#9dcfee',
+    colors: [
       '#c6dce9',
       '#9cd6ea',
       '#9dcfee',
@@ -182,7 +192,9 @@ const color: Color[] = [
     season: 'summer',
     tone: 'cool',
     type: 'summercool',
-    color: [
+    name: '여름 쿨',
+    textColor: '#1cace1',
+    colors: [
       '#f098c1',
       '#bdbec0',
       '#c5a6ab',
@@ -220,7 +232,9 @@ const color: Color[] = [
     season: 'summer',
     tone: 'mute',
     type: 'summermute',
-    color: [
+    name: '여름 뮤트',
+    textColor: '#efa7a9',
+    colors: [
       '#f3bfcb',
       '#f9a4b8',
       '#9dcfee',
@@ -259,7 +273,9 @@ const color: Color[] = [
     season: 'autumn',
     tone: 'mute',
     type: 'autumnmute',
-    color: [
+    name: '가을 뮤트',
+    textColor: '#a7ad87',
+    colors: [
       '#f5e2a5',
       '#fbd59e',
       '#e0d3ab',
@@ -297,7 +313,9 @@ const color: Color[] = [
     season: 'autumn',
     tone: 'warm',
     type: 'autumnwarm',
-    color: [
+    name: '가을 웜',
+    textColor: '#e35723',
+    colors: [
       '#fecc2d',
       '#b6ac3d',
       '#b89e47',
@@ -355,7 +373,9 @@ const color: Color[] = [
     season: 'autumn',
     tone: 'deep',
     type: 'autumndeep',
-    color: [
+    name: '가을 딥',
+    textColor: '#8d011f',
+    colors: [
       '#c1d542',
       '#d9ab3a',
       '#cc713a',
@@ -486,7 +506,9 @@ const color: Color[] = [
     season: 'winter',
     tone: 'deep',
     type: 'winterdeep',
-    color: [
+    name: '겨울 딥',
+    textColor: '#8e4484',
+    colors: [
       '#ffffff',
       '#bbc4e2',
       '#1d9bd1',
@@ -616,7 +638,9 @@ const color: Color[] = [
     season: 'winter',
     tone: 'cool',
     type: 'wintercool',
-    color: [
+    name: '겨울 쿨',
+    textColor: '#0245ab',
+    colors: [
       '#ffffff',
       '#99d6ed',
       '#f5e29b',
@@ -746,7 +770,9 @@ const color: Color[] = [
     season: 'winter',
     tone: 'bright',
     type: 'winterbright',
-    color: [
+    name: '겨울 브라이트',
+    textColor: '#f91893',
+    colors: [
       '#ffffff',
       '#c5d7e7',
       '#eb96bf',

@@ -5,6 +5,7 @@ const theme = {
   gray: {
     50: '#fafafa',
     100: '#f4f4f5',
+    150: '#f1f1f3',
     200: '#e4e4e7',
     300: '#d4d4d8',
     400: '#a1a1aa',
@@ -58,4 +59,33 @@ export const BorderedButton = styled(Button)`
   &:active {
     background-color: ${theme.gray[200]};
   }
+`;
+
+type ModalContainerProps = {
+  isModalOpen: boolean;
+};
+
+export const ModalContainer = styled.div<ModalContainerProps>`
+  position: relative;
+  height: 100%;
+  max-height: ${({ isModalOpen }) =>
+    isModalOpen ? 'calc(var(--vh,1vh) * 100)' : 'none'};
+  overflow: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'auto')};
+`;
+
+export const ModalBackground = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.gray[500]};
+  opacity: 0.5;
+  z-index: 10;
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 `;

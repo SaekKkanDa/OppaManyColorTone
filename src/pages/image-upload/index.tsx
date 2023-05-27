@@ -5,16 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import FaceDetection from './FaceDetection';
-import theme from '@Styles/theme';
+import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
 import { useRecoilState } from 'recoil';
 import { CropImage } from '../../recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
 
 import {
-  $ModalContainer,
-  $ModalBackground,
   $FlexContainer,
-  $Modal,
   $Guidance,
   $ImageBox,
   $ImageLabel,
@@ -48,16 +45,16 @@ function ImageUploadPage() {
   };
 
   return (
-    <$ModalContainer>
+    <ModalContainer isModalOpen={isModalOpen}>
       {isModalOpen && imageFile ? (
         <>
-          <$Modal>
+          <Modal>
             <FaceDetection
               imageFile={imageFile}
               setIsModalOpen={setIsModalOpen}
             />
-          </$Modal>
-          <$ModalBackground />
+          </Modal>
+          <ModalBackground />
         </>
       ) : null}
 
@@ -113,7 +110,7 @@ function ImageUploadPage() {
           <$NextButton disabled={!imagePreviewURL}>다음으로</$NextButton>
         </Link>
       </$FlexContainer>
-    </$ModalContainer>
+    </ModalContainer>
   );
 }
 

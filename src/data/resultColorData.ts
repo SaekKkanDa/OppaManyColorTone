@@ -1,4 +1,4 @@
-import resultImg from '@Assets/result';
+import resultImg from 'public/images/result';
 
 export type ColorType =
   | 'springbright'

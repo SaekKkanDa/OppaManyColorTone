@@ -1,16 +1,12 @@
+'use client';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import useViewportHeight from '@Hooks/useViewportHeight';
 
-function MobileLayout() {
+function MobileLayout({ children }: React.PropsWithChildren) {
   useViewportHeight();
 
-  return (
-    <$Wrapper>
-      <Outlet />
-    </$Wrapper>
-  );
+  return <$Wrapper>{children}</$Wrapper>;
 }
 
 const $Wrapper = styled.div`

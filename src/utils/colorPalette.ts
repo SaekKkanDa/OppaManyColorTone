@@ -24,9 +24,9 @@ class ColorPalette {
   private m_isInitialized: boolean;
   private m_mousePoint: MousePoint;
 
-  private readonly ImageWidth = 150;
-  private readonly ImageHeight = 150;
-  private readonly BlurColor = 'black';
+  private readonly ImageWidth = 100;
+  private readonly ImageHeight = 100;
+  private readonly BlurColor = 'rgb(0 0 0 / 0.3)';
   private readonly BlurSize = 10;
 
   constructor(
@@ -136,6 +136,19 @@ class ColorPalette {
     }
   }
 
+  private drawBackground(hoveredColor: string) {
+    const ctx = this.m_ctx;
+
+    if (this.m_isInitialized == true) {
+      ctx.beginPath();
+
+      ctx.arc(0, 0, this.ImageWidth, 0, 2 * Math.PI);
+
+      ctx.fillStyle = hoveredColor;
+      ctx.fill();
+    }
+  }
+
   private drawColors() {
     const radian = (Math.PI * 2) / this.m_colors.length;
 
@@ -164,6 +177,8 @@ class ColorPalette {
         hoveredArc.color,
         true
       );
+
+      this.drawBackground(hoveredArc.color);
     }
   }
 

@@ -42,6 +42,7 @@ function Palette({ imgSrc, colors }: Props) {
 const $Canvas = styled.canvas`
   width: 100%;
   height: 100%;
+  border-radius: 24px;
 `;
 
 export default Palette;

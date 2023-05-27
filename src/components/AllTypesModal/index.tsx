@@ -4,9 +4,6 @@ import { $Wrapper } from './style';
 import color from '@Data/color';
 import theme from '@Styles/theme';
 
-// interface AllTypesModalProps {
-// }
-
 const defaultLabelStyle = {
   fontSize: '4px',
   fontFamily: "'Noto Sans KR', sans-serif",

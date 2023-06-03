@@ -1,6 +1,6 @@
 import React, { useRef, useMemo, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
@@ -61,7 +61,7 @@ import AllTypesModal from '@Components/AllTypesModal';
 function ResultPage() {
   const [isAllTypesModalOpen, setIsAllTypesModalOpen] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = router.query as Record<string, string>;
 
   const resultContainerRef = useRef<HTMLDivElement>(null);
 
@@ -72,13 +72,13 @@ function ResultPage() {
     return cropImg;
   }, [cropImg]);
 
-  const colorType = searchParams.get('colorType') as ColorType;
+  const colorType = searchParams['colorType'] as ColorType;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [colorType]);
+  }, []);
 
-  if (colorType === null) {
+  if (!colorType) {
     return (
       <$LoadingWrapper>
         <$Title>예기치 못한 상황이 발생했습니다.</$Title>

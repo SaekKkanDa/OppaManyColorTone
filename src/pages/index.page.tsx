@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
-import { CropImage } from '../recoil/app';
+import { CropImage } from '@Recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import omctDb from '@Utils/omctDb';
 import ROUTE_PATH from '@Constant/routePath';

@@ -18,6 +18,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>오빠 톤 많아? 퍼스널 컬러 자가진단</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9551977219354865"
+          crossOrigin="anonymous"
+        />
       </Head>
 
       <RecoilRoot>

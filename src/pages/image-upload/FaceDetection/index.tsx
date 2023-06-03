@@ -3,7 +3,7 @@ import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { CropImage } from '../../../recoil/app';
+import { CropImage } from '@Recoil/app';
 import theme from '@Styles/theme';
 import {
   $FlexContainer,

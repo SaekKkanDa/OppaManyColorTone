@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
@@ -19,7 +19,7 @@ interface BonusStageProps {
 
 function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = router.query as Record<string, string>;
 
   const bonusColorOptions = bonusColorTypes
     ? getBonusColorOptions(bonusColorTypes)

@@ -7,7 +7,7 @@ import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import FaceDetection from './FaceDetection';
 import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
 import { useRecoilState } from 'recoil';
-import { CropImage } from '../../recoil/app';
+import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
 
 import {

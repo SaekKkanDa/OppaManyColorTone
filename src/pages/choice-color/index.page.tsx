@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
-import { CropImage } from '../../recoil/app';
+import { CropImage } from '@Recoil/app';
 import useSelectBonusColorTypes from '@Hooks/useSelectBonusColorTypes';
 import choiceColorData from '@Data/choiceColorData';
 import type { Type } from '@Data/color';
@@ -29,10 +29,13 @@ function ChoiceColor() {
 
   const userImg = useRecoilValue(CropImage);
 
-  if (!userImg) {
-    router.push('/no-image');
-    return null;
-  }
+  // HJ TODO: fallback component 필요 ?
+  useEffect(() => {
+    if (!router) return;
+    if (!userImg) {
+      router.push('/no-image');
+    }
+  }, [router, userImg]);
 
   const onBasicClick = (type: Type) => {
     setSelectedTypes((prev) => [...prev, type]);

@@ -7,12 +7,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prepare": "husky install",
     "lint": "eslint --cache .",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "lint-fix": "eslint '**/*.{tsx,ts}' --ext .ts,.tsx --fix"
   },
   "lint-staged": {
     "**/*.{tsx,ts,jsx,js}": [
-      "prettier --write"
+      "eslint --fix"
     ]
   },
   "resolutions": {

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
 import resultColorData from '@Data/resultColorData';
 import theme from '@Styles/theme';
 import {
   $Wrapper,
-  $CloseButton,
+  $BackButton,
   $SubTitle,
   $Title,
   $Description,
@@ -18,16 +19,12 @@ import {
   $PaletteGridItem,
 } from './style';
 
-type AllTypesModalProps = {
-  closAllTypesModal: () => void;
-};
-
 const defaultLabelStyle = {
   fontSize: '4px',
   fontFamily: "'Noto Sans KR', sans-serif",
 };
 
-const AllTypesModal = ({ closAllTypesModal }: AllTypesModalProps) => {
+const AllTypesView = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );
@@ -35,13 +32,15 @@ const AllTypesModal = ({ closAllTypesModal }: AllTypesModalProps) => {
     undefined
   );
 
+  const router = useRouter();
+
   const colorType = selectedIndex !== undefined && color[selectedIndex].type;
 
   return (
     <$Wrapper>
-      <$CloseButton onClick={closAllTypesModal}>
-        <FontAwesomeIcon icon={faXmark} />
-      </$CloseButton>
+      <$BackButton onClick={() => router.back()}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </$BackButton>
 
       <$Title>
         <$SubTitle>한 눈에 보는 </$SubTitle>퍼스널 컬러
@@ -53,7 +52,7 @@ const AllTypesModal = ({ closAllTypesModal }: AllTypesModalProps) => {
           color:
             hoveredIndex === index || selectedIndex === index
               ? color[index].textColor
-              : theme.gray[150],
+              : theme.gray[50],
           value: 1,
         }))}
         label={({ dataEntry }) => dataEntry.title}
@@ -123,4 +122,4 @@ const AllTypesModal = ({ closAllTypesModal }: AllTypesModalProps) => {
   );
 };
 
-export default AllTypesModal;
+export default AllTypesView;

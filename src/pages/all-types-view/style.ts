@@ -14,14 +14,15 @@ type TagStyleProps = {
 export const $Wrapper = styled.div`
   ${flexCustom('column', 'center', 'flex-start')}
   width: 100%;
+  max-width: 400px;
   height: 100%;
   padding: 32px;
-  background-color: ${({ theme }) => theme.gray[50]};
+  margin: 0 auto;
 `;
 
-export const $CloseButton = styled.button`
-  align-self: flex-end;
-  margin: -8px -8px 0 0;
+export const $BackButton = styled.button`
+  align-self: flex-start;
+  margin: -8px 0 0 -8px;
   font-size: 20px;
   cursor: pointer;
 `;

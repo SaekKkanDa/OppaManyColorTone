@@ -3,6 +3,7 @@ const ROUTE_PATH = {
   imageUpload: '/image-upload',
   choiceColor: '/choice-color',
   result: '/result',
+  allTypesView: '/all-types-view',
 };
 
 export default ROUTE_PATH;

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { BorderedButton, Button, Modal, flexCustom } from '@Styles/theme';
+import { BorderedButton, Button, flexCustom } from '@Styles/theme';
 import checkIcon from 'public/images/icon/check.png';
 
 interface ColorItemStyleProps {
@@ -214,10 +214,4 @@ export const $AllTypesButton = styled(Button)`
 
 export const $BorderedButton = styled(BorderedButton)`
   width: 100%;
-`;
-
-export const $Modal = styled(Modal)`
-  width: 100%;
-  max-width: 400px;
-  height: 100%;
 `;

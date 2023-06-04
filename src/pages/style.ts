@@ -56,12 +56,10 @@ export const $LangingStartButton = styled(Button)`
   cursor: pointer;
 `;
 
-export const $LandingPersonalColorExplanationText = styled.div`
-  font-size: 16px;
+export const $AllTypesViewLink = styled.div`
+  font-size: 14px;
   font-weight: 400;
   color: ${({ theme }) => theme.gray[400]};
   text-decoration: underline;
-  cursor: pointer;
-  margin-top: max(1vh, 10px);
-  display: none;
+  margin-top: 16px;
 `;

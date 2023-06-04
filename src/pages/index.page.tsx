@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useSetRecoilState } from 'recoil';
 import { CropImage } from '@Recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
@@ -16,7 +17,7 @@ import {
   $LandingBottomDiv,
   $LandingUserCountDiv,
   $LangingStartButton,
-  $LandingPersonalColorExplanationText,
+  $AllTypesViewLink,
 } from './style';
 
 function LandingPage() {
@@ -65,9 +66,10 @@ function LandingPage() {
           <$LangingStartButton onClick={onClickStartButton}>
             시작하기
           </$LangingStartButton>
-          <$LandingPersonalColorExplanationText>
-            퍼스널 컬러 설명 보기
-          </$LandingPersonalColorExplanationText>
+
+          <Link href={ROUTE_PATH.allTypesView}>
+            <$AllTypesViewLink>퍼스널 컬러 유형 전체보기</$AllTypesViewLink>
+          </Link>
         </$LandingBottomDiv>
       </$LandingWrap>
     </>

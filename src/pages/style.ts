@@ -56,10 +56,19 @@ export const $LangingStartButton = styled(Button)`
   cursor: pointer;
 `;
 
-export const $AllTypesViewLink = styled.div`
+export const $ButtonsWrapper = styled.div`
+  ${flexCustom('row', 'center', 'center')}
+  column-gap: 16px;
+  margin-top: 16px;
+  color: ${({ theme }) => theme.gray[400]};
   font-size: 14px;
   font-weight: 400;
-  color: ${({ theme }) => theme.gray[400]};
-  text-decoration: underline;
-  margin-top: 16px;
+  /* text-decoration: underline; */
+`;
+
+export const $ShareButton = styled.button`
+  padding-right: 16px;
+  border-right: 1px solid ${({ theme }) => theme.gray[400]};
+  font: inherit;
+  color: inherit;
 `;

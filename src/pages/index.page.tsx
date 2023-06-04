@@ -17,7 +17,8 @@ import {
   $LandingBottomDiv,
   $LandingUserCountDiv,
   $LangingStartButton,
-  $AllTypesViewLink,
+  $ButtonsWrapper,
+  $ShareButton,
 } from './style';
 
 function LandingPage() {
@@ -67,9 +68,12 @@ function LandingPage() {
             시작하기
           </$LangingStartButton>
 
-          <Link href={ROUTE_PATH.allTypesView}>
-            <$AllTypesViewLink>퍼스널 컬러 유형 전체보기</$AllTypesViewLink>
-          </Link>
+          <$ButtonsWrapper>
+            <$ShareButton>공유하기</$ShareButton>
+            <Link href={ROUTE_PATH.allTypesView}>
+              퍼스널 컬러 유형 전체보기
+            </Link>
+          </$ButtonsWrapper>
         </$LandingBottomDiv>
       </$LandingWrap>
     </>

@@ -31,3 +31,6 @@ dist-ssr
 
 # 린트 캐시
 .eslintcache
+
+# firebase
+.firebase

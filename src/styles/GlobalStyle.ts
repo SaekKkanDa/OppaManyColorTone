@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
   }
 
+  div#__next > div > div {
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+
   h1, h2, h3, h4, h5, h6, button {
     font-family: 'yg-jalnan';
   }

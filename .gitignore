@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+.next
 node_modules
 dist
 dist-ssr
@@ -25,3 +26,11 @@ dist-ssr
 *.env
 
 *.cache
+# Sentry Auth Token
+.sentryclirc
+
+# 린트 캐시
+.eslintcache
+
+# firebase
+.firebase

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, createSearchParams } from 'react-router-dom';
-
+import { useRouter } from 'next/router';
 import omctDb from '@Utils/omctDb';
 import ROUTE_PATH from '@Constant/routePath';
 import type { Type } from '@Data/color';
@@ -11,7 +10,8 @@ const useSelectBonusColorTypes = (
 ) => {
   const [bonusColorTypes, setBonusColorTypes] = useState<string[] | null>(null);
 
-  const navigate = useNavigate();
+  const router = useRouter();
+  const searchParams = router.query as Record<string, string>;
 
   useEffect(() => {
     const isBasicStageDone = selectedTypes.length === MAX_STAGE_NUM;
@@ -26,17 +26,15 @@ const useSelectBonusColorTypes = (
       const modeTypes = getModeTypes(selectedTypes);
 
       if (modeTypes.length === 1) {
-        navigate({
-          pathname: ROUTE_PATH.result,
-          search: createSearchParams({ colorType: modeTypes[0] }).toString(),
-        });
-
+        const params = new URLSearchParams(searchParams);
+        params.set('colorType', modeTypes[0]);
+        router.push(`${ROUTE_PATH.result}?${params}`);
         return;
       }
 
       setBonusColorTypes(modeTypes);
     }
-  }, [selectedTypes, MAX_STAGE_NUM, navigate]);
+  }, [selectedTypes, MAX_STAGE_NUM, searchParams, router]);
 
   return bonusColorTypes;
 };

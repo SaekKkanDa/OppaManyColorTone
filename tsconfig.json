@@ -2,24 +2,43 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@Assets/*": ["./src/assets/*"],
       "@Components/*": ["./src/components/*"],
       "@Constant/*": ["./src/constant/*"],
       "@Data/*": ["./src/data/*"],
       "@Hooks/*": ["./src/hooks/*"],
       "@Pages/*": ["./src/pages/*"],
-      "@Utils/*": ["./src/utils/*"],
-      "@Styles/*": ["./src/styles/*"]
+      "@Recoil/*": ["./src/recoil/*"],
+      "@Styles/*": ["./src/styles/*"],
+      "@Utils/*": ["./src/utils/*"]
     },
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "alwaysStrict": true,
     "strict": true,
     "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "@types/index.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "@types/**/*d.ts",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

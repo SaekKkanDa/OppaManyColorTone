@@ -26,15 +26,16 @@ jobs:
       - name: Adding environments to .env
         run: |
           echo -e "\\n
-          VITE_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}\n\
-          VITE_FIREBASE_AUTH_DOMAIN=${{ vars.FIREBASE_AUTH_DOMAIN }}\n\
-          VITE_FIREBASE_DATABASE_URL=${{ vars.FIREBASE_DATABASE_URL }}\n\
-          VITE_FIREBASE_PROJECT_ID=${{ vars.FIREBASE_PROJECT_ID }}\n\
-          VITE_FIREBASE_STORAGE_BUCKET=${{ vars.FIREBASE_STORAGE_BUCKET }}\n\
-          VITE_FIREBASE_MEASUREMENT_ID=${{ vars.FIREBASE_MEASUREMENT_ID }}\n\
-          VITE_FIREBASE_APP_ID=${{ vars.FIREBASE_APP_ID }}\n\
-          VITE_KAKAO_API_KEY=${{ secrets.KAKAO_API_KEY }}\n\
-          VITE_SENTRY_DSN=${{ vars.SENTRY_DSN }}" >> ".env"
+          NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}\n\
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ vars.FIREBASE_AUTH_DOMAIN }}\n\
+          NEXT_PUBLIC_FIREBASE_DATABASE_URL=${{ vars.FIREBASE_DATABASE_URL }}\n\
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ vars.FIREBASE_PROJECT_ID }}\n\
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${{ vars.FIREBASE_STORAGE_BUCKET }}\n\
+          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ vars.FIREBASE_MEASUREMENT_ID }}\n\
+          NEXT_PUBLIC_FIREBASE_APP_ID=${{ vars.FIREBASE_APP_ID }}\n\
+          NEXT_PUBLIC_KAKAO_API_KEY=${{ secrets.KAKAO_API_KEY }}\n\
+          NEXT_PUBLIC_SENTRY_DSN=${{ vars.SENTRY_DSN }}\n\
+          PROD=${{ true }}" >> ".env"
 
       - name: Debugging .env fle
         run: cat ".env"

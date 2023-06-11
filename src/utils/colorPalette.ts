@@ -23,6 +23,7 @@ class ColorPalette {
   private m_height: number;
   private m_isInitialized: boolean;
   private m_mousePoint: MousePoint;
+  private m_onClick?: (color: string) => void;
 
   private readonly ImageWidth = 100;
   private readonly ImageHeight = 100;
@@ -33,7 +34,8 @@ class ColorPalette {
     canvas: HTMLCanvasElement,
     imgSrc: string,
     colors: string[],
-    isCircle = false
+    isCircle = false,
+    onClick?: (color: string) => void
   ) {
     this.m_canvas = canvas;
     this.m_isInitialized = false;
@@ -42,6 +44,7 @@ class ColorPalette {
     this.m_width = canvas.width;
     this.m_height = canvas.height;
     this.m_mousePoint = { isValid: false, x: 0, y: 0, angle: 0 };
+    this.m_onClick = onClick;
 
     // setting context
     const ctx = canvas.getContext('2d');
@@ -59,6 +62,7 @@ class ColorPalette {
     });
 
     // add canvas event listener
+    this.m_canvas.addEventListener('click', this.onClick.bind(this));
     this.m_canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
     this.m_canvas.addEventListener('mouseout', this.onMouseOut.bind(this));
   }
@@ -72,6 +76,7 @@ class ColorPalette {
     this.clear();
 
     // remove event listener
+    this.m_canvas.removeEventListener('click', this.onClick.bind(this));
     this.m_canvas.removeEventListener('mousemove', this.onMouseMove.bind(this));
     this.m_canvas.removeEventListener('mouseout', this.onMouseOut.bind(this));
   }
@@ -85,6 +90,19 @@ class ColorPalette {
       this.m_width,
       this.m_height
     );
+  }
+
+  private onClick() {
+    const radian = (Math.PI * 2) / this.m_colors.length;
+    let startAngle = 0;
+    for (const color of this.m_colors) {
+      const endAngle = startAngle + radian;
+      if (this.checkIfHover(startAngle, endAngle) == true) {
+        this.m_onClick?.(color);
+        break;
+      }
+      startAngle = endAngle;
+    }
   }
 
   private onMouseMove(e: MouseEvent) {

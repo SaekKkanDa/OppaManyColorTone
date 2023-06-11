@@ -5,10 +5,12 @@ import styled from 'styled-components';
 interface Props {
   imgSrc: string;
   colors: string[];
+  onClick: (color: string) => void;
 }
 
-function Palette({ imgSrc, colors }: Props) {
+function Palette({ imgSrc, colors, onClick }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const onClickRef = useRef(onClick);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,7 +19,13 @@ function Palette({ imgSrc, colors }: Props) {
     const { width, height } = canvas.getBoundingClientRect();
     canvas.width = width;
     canvas.height = height;
-    const colorPalette = new ColorPalette(canvas, imgSrc, colors, false);
+    const colorPalette = new ColorPalette(
+      canvas,
+      imgSrc,
+      colors,
+      false,
+      onClickRef.current
+    );
 
     let rafId = 0;
     drawColorPalette();

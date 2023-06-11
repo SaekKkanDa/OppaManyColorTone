@@ -1,5 +1,7 @@
 import resultImg from 'public/images/result';
 
+// HJ TODO: types 폴더로 타입 이동
+
 export type ColorType =
   | 'springbright'
   | 'springwarm'
@@ -18,27 +20,31 @@ type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 type HEX = `#${string}`;
 
-type Color = RGB | RGBA | HEX;
+export type Color = RGB | RGBA | HEX;
+
+export interface Tag {
+  keyword: string;
+  backgroundColor: string;
+  textColor: 'light' | 'dark';
+}
+
+export interface Celeb {
+  name: string;
+  imageURL: string;
+}
 
 export interface ColorResult {
   type: ColorType;
   name: string;
   textColor: Color;
   gridColors: Color[];
-  tags: {
-    keyword: string;
-    backgroundColor: string;
-    textColor: 'light' | 'dark';
-  }[];
+  tags: Tag[];
   descriptions: string[];
   bestColors: Color[];
   worstColors: Color[];
   stylingColor: Color[];
   stylingURL: string;
-  celebrities: {
-    name: string;
-    imageURL: string;
-  }[];
+  celebrities: Celeb[];
   secondaryType: ColorType;
   worstType: ColorType;
 }

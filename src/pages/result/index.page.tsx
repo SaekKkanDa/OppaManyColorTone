@@ -1,7 +1,7 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import ROUTE_PATH from '@Constant/routePath';
 import resultColorData, {
@@ -23,6 +23,11 @@ import RestartButton from '@Components/Button/RestartButton';
 import ShareSubPage from './ShareSubPage';
 import useScrollTop from '@Hooks/useScrollTop';
 import PaletteSubPage from './PaletteSubpage';
+import {
+  globalBgColorAtom,
+  globalTextColorAtom,
+} from '@Recoil/globalStyleStore';
+import { invertColor } from '@Utils/colorExtension';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -36,6 +41,16 @@ function ResultPage(): JSX.Element {
   const transitionRef = useRef<ColorTransitionInstance>(null);
 
   const userImg = useUserImg();
+
+  // HJ TODO: 로직 분리
+  const [, setBgColor] = useRecoilState(globalBgColorAtom);
+  const [, setTextColor] = useRecoilState(globalTextColorAtom);
+  useEffect(() => {
+    return () => {
+      setBgColor('inherit');
+      setTextColor('inherit');
+    };
+  }, [setBgColor, setTextColor]);
 
   // NOTE: SSR이 아닌 환경에서는 prerendering 동안 empty object
   // https://nextjs.org/docs/pages/api-reference/functions/use-router#router-object
@@ -72,8 +87,13 @@ function ResultPage(): JSX.Element {
     router.push(`${ROUTE_PATH.result}?${params}`);
   };
 
+  // HJ TODO: 하드 코딩 제거
   const onClickPalette = (color: string) => {
     transitionRef.current?.play(color);
+    setTimeout(() => {
+      setBgColor(color);
+      setTextColor(invertColor(color, true));
+    }, 1000);
   };
 
   return (
@@ -92,7 +112,7 @@ function ResultPage(): JSX.Element {
 
           <DescriptionContent descriptions={descriptions} />
 
-          <CelebritesContent
+          <CelebritiesContent
             textColor={textColor}
             colorTypeName={name}
             celebrities={celebrities}
@@ -182,7 +202,7 @@ interface CelebritesContentProps {
   celebrities: Celeb[];
 }
 
-function CelebritesContent({
+function CelebritiesContent({
   textColor,
   colorTypeName,
   celebrities,

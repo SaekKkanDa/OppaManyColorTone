@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import Palette from '@Components/Palette/Palette';
 import { Color } from '@Data/resultColorData';
@@ -11,9 +11,19 @@ interface PaletteSubPageProps {
 }
 
 function PaletteSubPage({ imgSrc, colors, onClick }: PaletteSubPageProps) {
+  const [isBeforeClick, setIsBeforeClick] = useState(false);
+
+  const onClickWrapper = (color: string) => {
+    setIsBeforeClick(true);
+    onClick?.(color);
+  };
+
   return (
     <S.PaletteWrapper>
-      <Palette imgSrc={imgSrc} colors={colors} onClick={onClick} />
+      {!isBeforeClick && (
+        <S.InteractionInfo>팔레트를 터치 해보세요</S.InteractionInfo>
+      )}
+      <Palette imgSrc={imgSrc} colors={colors} onClick={onClickWrapper} />
     </S.PaletteWrapper>
   );
 }

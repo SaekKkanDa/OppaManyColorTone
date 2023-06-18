@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState, useEffect } from 'react';
+import React, { useRef, useMemo, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -7,7 +7,6 @@ import ROUTE_PATH from '@Constant/routePath';
 import resultColorData, {
   Celeb,
   ColorResult,
-  ColorType,
   Tag,
 } from '@Data/resultColorData';
 import { CropImage } from '@Recoil/app';
@@ -28,14 +27,17 @@ import {
   globalTextColorAtom,
 } from '@Recoil/globalStyleStore';
 import { invertColor } from '@Utils/colorExtension';
+import LoadingIndicator from '@Components/LoadingIndicator';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
+  const [colorType, setColorType] = useState<ColorType | undefined>(undefined);
+  const [isError, setIsError] = useState(false);
+
   useScrollTop();
 
   const router = useRouter();
-  const searchParams = router.query as Record<string, string>;
-  const colorType = searchParams['colorType'] as ColorType;
+  const { query } = router;
 
   const resultContainerRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<ColorTransitionInstance>(null);
@@ -45,6 +47,24 @@ function ResultPage(): JSX.Element {
   // HJ TODO: 로직 분리
   const [, setBgColor] = useRecoilState(globalBgColorAtom);
   const [, setTextColor] = useRecoilState(globalTextColorAtom);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const { colorType } = router.query;
+
+    if (
+      typeof colorType === 'string' &&
+      colorType &&
+      Object.keys(resultColorData).includes(colorType)
+    ) {
+      setColorType(colorType as ColorType);
+      return;
+    }
+
+    setIsError(true);
+  }, [router.isReady, router.query]);
+
   useEffect(() => {
     return () => {
       setBgColor('inherit');
@@ -52,9 +72,7 @@ function ResultPage(): JSX.Element {
     };
   }, [setBgColor, setTextColor]);
 
-  // NOTE: SSR이 아닌 환경에서는 prerendering 동안 empty object
-  // https://nextjs.org/docs/pages/api-reference/functions/use-router#router-object
-  if (!colorType) {
+  if (isError) {
     return (
       <S.LoadingWrapper>
         <S.Title>예기치 못한 상황이 발생했습니다.</S.Title>
@@ -62,6 +80,10 @@ function ResultPage(): JSX.Element {
         <RestartButton />
       </S.LoadingWrapper>
     );
+  }
+
+  if (!colorType) {
+    return <LoadingIndicator />;
   }
 
   // HJ TODO: selector로 뺼 수 있음
@@ -82,7 +104,7 @@ function ResultPage(): JSX.Element {
   ];
 
   const onClickAnotherResult = (type: ColorType) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(query.toString());
     params.set('colorType', type);
     router.push(`${ROUTE_PATH.result}?${params}`);
   };

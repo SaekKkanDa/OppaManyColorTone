@@ -6,7 +6,13 @@ import { $Indicator } from './style';
 function LoadingIndicator() {
   return (
     <$Indicator>
-      <Image src={indicatorImg.src} alt="loading" width={36} height={36} />
+      <Image
+        src={indicatorImg.src}
+        alt="loading"
+        width={36}
+        height={36}
+        priority
+      />
     </$Indicator>
   );
 }

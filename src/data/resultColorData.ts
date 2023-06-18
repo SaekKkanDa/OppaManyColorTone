@@ -1,21 +1,5 @@
 import resultImg from 'public/images/result';
 
-// HJ TODO: types 폴더로 타입 이동
-
-export type ColorType =
-  | 'springbright'
-  | 'springwarm'
-  | 'springlight'
-  | 'summerlight'
-  | 'summercool'
-  | 'summermute'
-  | 'autumnmute'
-  | 'autumnwarm'
-  | 'autumndeep'
-  | 'winterdeep'
-  | 'wintercool'
-  | 'winterbright';
-
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 type HEX = `#${string}`;

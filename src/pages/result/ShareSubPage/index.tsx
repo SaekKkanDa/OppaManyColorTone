@@ -7,6 +7,7 @@ import { faDownload, faLink, faShare } from '@fortawesome/free-solid-svg-icons';
 import kakaoIcon from 'public/images/icon/kakaoIcon.png';
 
 import ROUTE_PATH from '@Constant/routePath';
+import { OmctErrorNo } from '@Constant/errorKeyValue';
 import useKakaoShare from '@Hooks/useKakaoShare';
 import { captureElement, downloadImage } from '@Utils/capture';
 import { updateClipboard } from '@Utils/clipboard';
@@ -29,7 +30,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
 
     if (_isKakao) {
       alert(
-        '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요.😋'
+        '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
       );
     }
 
@@ -63,7 +64,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
 
   const handleKakaoShare = () => {
     if (isLoading) {
-      alert('로딩 중입니다. 다시 시도해주세요. :)');
+      alert('로딩 중입니다. 다시 시도해주세요. 🥰');
     } else {
       kakaoShare();
     }

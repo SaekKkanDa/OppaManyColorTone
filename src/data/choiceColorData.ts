@@ -3,16 +3,15 @@
 // - 봄 웜, 여름 쿨, 가을 웜, 겨울 쿨 (트루끼리 비교)
 // - 봄 브라이트, 여름 뮤트, 가을 뮤트, 겨울 브라이트 (뮤트, 브라이트)
 // - 봄 라이트, 여름 라이트, 가을 딥, 겨울 딥 (라이트, 딥)
-import type { Season, Tone, Type } from './color';
 
 export type ChoiceColorDataType = {
   id: number;
   theme: string;
   color: string;
   name: string;
-  season: Season;
-  tone: Tone;
-  type: Type;
+  season: ColorSeason;
+  tone: ColorTone;
+  type: ColorType;
 };
 
 const choiceColorData: ChoiceColorDataType[][] = [

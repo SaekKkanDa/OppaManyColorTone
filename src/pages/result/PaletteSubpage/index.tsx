@@ -21,7 +21,7 @@ function PaletteSubPage({ imgSrc, colors, onClick }: PaletteSubPageProps) {
   return (
     <S.PaletteWrapper>
       {!isBeforeClick && (
-        <S.InteractionInfo>팔레트를 터치 해보세요</S.InteractionInfo>
+        <S.InteractionInfo>팔레트를 눌러보세요!</S.InteractionInfo>
       )}
       <Palette imgSrc={imgSrc} colors={colors} onClick={onClickWrapper} />
     </S.PaletteWrapper>

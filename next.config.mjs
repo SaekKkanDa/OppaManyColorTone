@@ -9,6 +9,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  devIndicators: {
+    buildActivity: false,
+  },
   // HJ TODO: 학습 필요
   sentry: {
     autoInstrumentServerFunctions: false,

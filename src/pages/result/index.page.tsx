@@ -19,6 +19,7 @@ import ColorTransition, {
   ColorTransitionInstance,
 } from '@Components/Transition/ColorTransition';
 import RestartButton from '@Components/Button/RestartButton';
+import LoadingIndicator from '@Components/LoadingIndicator';
 import ShareSubPage from './ShareSubPage';
 import useScrollTop from '@Hooks/useScrollTop';
 import PaletteSubPage from './PaletteSubpage';
@@ -27,7 +28,6 @@ import {
   globalTextColorAtom,
 } from '@Recoil/globalStyleStore';
 import { invertColor } from '@Utils/colorExtension';
-import LoadingIndicator from '@Components/LoadingIndicator';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {

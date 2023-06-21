@@ -4,6 +4,8 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
+import { useLoading } from '@Hooks/useLoading';
+import LoadingIndicator from '@Components/LoadingIndicator';
 import MobileLayout from '@Components/Layout/MobileLayout';
 import GlobalStyle from '@Styles/GlobalStyle';
 import theme from '@Styles/theme';
@@ -14,6 +16,8 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const isLoading = useLoading();
+
   return (
     <>
       <Head>
@@ -30,7 +34,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <MobileLayout>
-            <Component {...pageProps} />
+            {isLoading ? <LoadingIndicator /> : <Component {...pageProps} />}
           </MobileLayout>
         </ThemeProvider>
       </RecoilRoot>

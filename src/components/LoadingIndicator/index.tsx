@@ -1,19 +1,18 @@
 import React from 'react';
-import Image from 'next/image';
 import indicatorImg from 'public/images/icon/color-spinner.png';
-import { $Indicator } from './style';
+import * as S from './style';
 
 function LoadingIndicator() {
   return (
-    <$Indicator>
-      <Image
+    <S.Container>
+      <S.Indicator
         src={indicatorImg.src}
         alt="loading"
-        width={36}
-        height={36}
+        width={48}
+        height={48}
         priority
       />
-    </$Indicator>
+    </S.Container>
   );
 }
 

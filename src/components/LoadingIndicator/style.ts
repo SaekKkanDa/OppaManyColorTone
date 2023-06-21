@@ -1,8 +1,21 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
-export const $Indicator = styled.div`
-  margin: auto;
+export const Container = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+export const Indicator = styled(Image)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
   animation: spinner 3s infinite linear;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 
   @keyframes spinner {
     0% {
@@ -14,10 +27,5 @@ export const $Indicator = styled.div`
     100% {
       transform: rotate(360deg);
     }
-  }
-
-  img {
-    width: 36px;
-    height: auto;
   }
 `;

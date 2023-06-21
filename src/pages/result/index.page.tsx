@@ -1,90 +1,92 @@
-import React, { useRef, useMemo, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useRef, useMemo, useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faShare, faDownload } from '@fortawesome/free-solid-svg-icons';
-
-import useKakaoShare from '@Hooks/useKakaoShare';
-
-import { updateClipboard } from '@Utils/clipboard';
-import { webShare } from '@Utils/share';
-import { captureElement, downloadImage } from '@Utils/capture';
-import { isChrome, isKakao, isOSX } from '@Utils/userAgent';
-import CustomError, { CustomErrorConstructor } from '@Utils/customError';
-
-import { OmctErrorNo } from '@Constant/errorKeyValue';
 import ROUTE_PATH from '@Constant/routePath';
-import resultColorData, { ColorType } from '@Data/resultColorData';
+import resultColorData, {
+  Celeb,
+  ColorResult,
+  Tag,
+} from '@Data/resultColorData';
 import { CropImage } from '@Recoil/app';
 
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
-import Palette from '@Components/Palette/Palette';
 
-import kakaoIcon from 'public/images/icon/kakaoIcon.png';
-
-import { BorderedButton } from '@Styles/theme';
-import {
-  $LoadingWrapper,
-  $Title,
-  $TitleBold,
-  $Wrapper,
-  $ResultContainer,
-  $TagWrapper,
-  $Tag,
-  $Description,
-  $ColorMatchButton,
-  $ColorMatchGrid,
-  $ColorMatchGridItem,
-  $ColorMatchTitle,
-  $CelebritiesWrapper,
-  $CelebrityName,
-  $CelebrityWrapper,
-  $KakaoShareButton,
-  $MenuContainer,
-  $MenuItemButton,
-  $MenuItemImg,
-  $MenuItemName,
-  $MenuItemWrapper,
-  $Styling,
-  $SubDescriptionTitle,
-  $SubDescriptionTitleBold,
-  $PaletteWrapper,
-  $AllTypesButton,
-  $ButtonsWrapper,
-} from './style';
+import * as S from './style';
 import curiousEmoji from 'public/images/logo/curious-emoji-3d.png';
+import ColorTransition, {
+  ColorTransitionInstance,
+} from '@Components/Transition/ColorTransition';
+import RestartButton from '@Components/Button/RestartButton';
+import LoadingIndicator from '@Components/LoadingIndicator';
+import ShareSubPage from './ShareSubPage';
+import useScrollTop from '@Hooks/useScrollTop';
+import PaletteSubPage from './PaletteSubpage';
+import {
+  globalBgColorAtom,
+  globalTextColorAtom,
+} from '@Recoil/globalStyleStore';
+import { invertColor } from '@Utils/colorExtension';
 
+// HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
+  const [colorType, setColorType] = useState<ColorType | undefined>(undefined);
+  const [isError, setIsError] = useState(false);
+
+  useScrollTop();
+
   const router = useRouter();
-  const searchParams = router.query as Record<string, string>;
+  const { query } = router;
 
   const resultContainerRef = useRef<HTMLDivElement>(null);
+  const transitionRef = useRef<ColorTransitionInstance>(null);
 
-  const cropImg = useRecoilValue(CropImage);
-  const userImg = useMemo(() => {
-    if (!cropImg) return curiousEmoji.src;
+  const userImg = useUserImg();
 
-    return cropImg;
-  }, [cropImg]);
-
-  const colorType = searchParams['colorType'] as ColorType;
+  // HJ TODO: 로직 분리
+  const [, setBgColor] = useRecoilState(globalBgColorAtom);
+  const [, setTextColor] = useRecoilState(globalTextColorAtom);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (!router.isReady) return;
 
-  if (!colorType) {
+    const { colorType } = router.query;
+
+    if (
+      typeof colorType === 'string' &&
+      colorType &&
+      Object.keys(resultColorData).includes(colorType)
+    ) {
+      setColorType(colorType as ColorType);
+      return;
+    }
+
+    setIsError(true);
+  }, [router.isReady, router.query]);
+
+  useEffect(() => {
+    return () => {
+      setBgColor('inherit');
+      setTextColor('inherit');
+    };
+  }, [setBgColor, setTextColor]);
+
+  if (isError) {
     return (
-      <$LoadingWrapper>
-        <$Title>예기치 못한 상황이 발생했습니다.</$Title>
+      <S.LoadingWrapper>
+        <S.Title>예기치 못한 상황이 발생했습니다.</S.Title>
         <ColorImgSpinner />
         <RestartButton />
-      </$LoadingWrapper>
+      </S.LoadingWrapper>
     );
   }
 
+  if (!colorType) {
+    return <LoadingIndicator />;
+  }
+
+  // HJ TODO: selector로 뺼 수 있음
   const {
     name,
     textColor,
@@ -102,233 +104,182 @@ function ResultPage(): JSX.Element {
   ];
 
   const onClickAnotherResult = (type: ColorType) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(query.toString());
     params.set('colorType', type);
     router.push(`${ROUTE_PATH.result}?${params}`);
   };
 
-  return (
-    <$Wrapper>
-      <$ResultContainer ref={resultContainerRef}>
-        <$Title>
-          당신의 퍼스널 컬러는
-          <$TitleBold color={textColor}>{name}</$TitleBold>
-        </$Title>
-
-        <$PaletteWrapper>
-          <Palette imgSrc={userImg} colors={gridColors} />
-        </$PaletteWrapper>
-
-        <$TagWrapper>
-          {tags.map(({ keyword, backgroundColor, textColor }) => (
-            <$Tag
-              key={keyword}
-              backgroundColor={backgroundColor}
-              textColor={textColor}
-            >
-              {`#${keyword}`}
-            </$Tag>
-          ))}
-        </$TagWrapper>
-
-        <$Description>
-          {descriptions.map((description, index) => (
-            <li key={description + index}>{description}</li>
-          ))}
-        </$Description>
-
-        {/* <$SubDescriptionTitle>
-          <$SubDescriptionTitleBold color={textColor}>
-            {name}
-          </$SubDescriptionTitleBold>{' '}
-          스타일링 추천
-          <$StylingWrapper>
-            <StyleMan colors={stylingColor}></StyleMan>
-          </$StylingWrapper>
-        </$SubDescriptionTitle> */}
-
-        <$SubDescriptionTitle>
-          <$SubDescriptionTitleBold color={textColor}>
-            {name}
-          </$SubDescriptionTitleBold>{' '}
-          대표 연예인
-          <$CelebritiesWrapper>
-            {celebrities.map(({ name, imageURL }, idx) => {
-              return (
-                <$CelebrityWrapper key={name + idx}>
-                  <$Styling
-                    key={name}
-                    src={imageURL}
-                    alt="연예인"
-                    width={92}
-                    height={92}
-                  />
-                  <$CelebrityName>{name}</$CelebrityName>
-                </$CelebrityWrapper>
-              );
-            })}
-          </$CelebritiesWrapper>
-        </$SubDescriptionTitle>
-
-        {[secondaryColor, worstColor].map(
-          ({ title, type, name, textColor, bestColors }) => (
-            <$ColorMatchButton
-              key={name}
-              onClick={() => onClickAnotherResult(type)}
-            >
-              <$ColorMatchTitle>
-                {title}
-                <$SubDescriptionTitleBold color={textColor}>
-                  {name}
-                </$SubDescriptionTitleBold>
-              </$ColorMatchTitle>
-              <$ColorMatchGrid>
-                {bestColors.map((color, idx) => (
-                  <$ColorMatchGridItem
-                    key={color + idx}
-                    backgroundColor={color}
-                  />
-                ))}
-              </$ColorMatchGrid>
-            </$ColorMatchButton>
-          )
-        )}
-      </$ResultContainer>
-
-      <MenuSubPage
-        resultContainerRef={resultContainerRef}
-        colorType={colorType}
-      />
-    </$Wrapper>
-  );
-}
-
-interface MenuSubPageProps {
-  resultContainerRef: React.RefObject<HTMLDivElement>;
-  colorType: string;
-}
-
-function MenuSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
-  const { isLoading, kakaoShare } = useKakaoShare();
-
-  // HJ TODO: 네이밍 이상함..
-  const kakaoAlert = () => {
-    const _isKakao = isKakao();
-
-    if (_isKakao) {
-      alert(
-        '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요.😋'
-      );
-    }
-
-    return _isKakao;
-  };
-
-  const handleCapture = async () => {
-    if (kakaoAlert()) return;
-
-    const wrapper = resultContainerRef.current;
-    if (!wrapper) return;
-
-    const imgName = `${colorType}-result.png`;
-    const img = await captureElement(wrapper, imgName);
-    downloadImage(img, imgName);
-  };
-
-  const handleLinkCopyClick = async () => {
-    if (kakaoAlert()) return;
-
-    try {
-      await updateClipboard(location.href);
-      // HJ TODO: 커스텀 alert 등록
-      alert('링크가 복사되었습니다.');
-    } catch (err) {
-      console.error(err);
-      alert('클립보드 복사에 실패했습니다');
-      throw new ShareError({ errorNo: OmctErrorNo.SHARE_CLIPBOARD_COPY_ERROR });
-    }
-  };
-
-  const handleKakaoShare = () => {
-    if (isLoading) {
-      alert('로딩 중입니다. 다시 시도해주세요. :)');
-    } else {
-      kakaoShare();
-    }
-  };
-
-  const handleShare = async () => {
-    if (kakaoAlert()) return;
-
-    if (isChrome() && isOSX()) {
-      alert(
-        'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
-      );
-    } else {
-      await webShare();
-    }
+  // HJ TODO: 하드 코딩 제거
+  const onClickPalette = (color: string) => {
+    transitionRef.current?.play(color);
+    setTimeout(() => {
+      setBgColor(color);
+      setTextColor(invertColor(color, true));
+    }, 1000);
   };
 
   return (
     <>
-      <$MenuContainer>
-        <$MenuItemWrapper>
-          <$MenuItemButton onClick={handleCapture}>
-            <FontAwesomeIcon icon={faDownload} color={'white'} />
-          </$MenuItemButton>
-          <$MenuItemName>결과저장</$MenuItemName>
-        </$MenuItemWrapper>
+      <S.Wrapper>
+        <S.ResultContainer ref={resultContainerRef}>
+          <TitleContent textColor={textColor} colorTypeName={name} />
 
-        <$MenuItemWrapper>
-          <$MenuItemButton onClick={handleLinkCopyClick}>
-            <FontAwesomeIcon icon={faLink} color={'white'} />
-          </$MenuItemButton>
-          <$MenuItemName>링크복사</$MenuItemName>
-        </$MenuItemWrapper>
+          <PaletteSubPage
+            imgSrc={userImg}
+            colors={gridColors}
+            onClick={onClickPalette}
+          />
 
-        <$MenuItemWrapper>
-          <$KakaoShareButton onClick={handleKakaoShare}>
-            <$MenuItemImg
-              src={kakaoIcon}
-              alt="카카오톡 공유 버튼"
-              width={48}
-              height={48}
-            />
-          </$KakaoShareButton>
-          <$MenuItemName>카카오톡</$MenuItemName>
-        </$MenuItemWrapper>
+          <TagContent tags={tags} />
 
-        <$MenuItemWrapper>
-          <$MenuItemButton onClick={handleShare}>
-            <FontAwesomeIcon icon={faShare} color={'white'} />
-          </$MenuItemButton>
-          <$MenuItemName>공유하기</$MenuItemName>
-        </$MenuItemWrapper>
-      </$MenuContainer>
+          <DescriptionContent descriptions={descriptions} />
 
-      <$ButtonsWrapper>
-        <Link href={ROUTE_PATH.allTypesView}>
-          <$AllTypesButton>유형 전체보기</$AllTypesButton>
-        </Link>
-        <RestartButton />
-      </$ButtonsWrapper>
+          <CelebritiesContent
+            textColor={textColor}
+            colorTypeName={name}
+            celebrities={celebrities}
+          />
+
+          <LikeOrDislikeContent
+            colors={[secondaryColor, worstColor]}
+            onClick={onClickAnotherResult}
+          />
+        </S.ResultContainer>
+
+        <ShareSubPage
+          resultContainerRef={resultContainerRef}
+          colorType={colorType}
+        />
+
+        <ColorTransition ref={transitionRef} />
+      </S.Wrapper>
     </>
   );
 }
 
-function RestartButton() {
+// HJ TODO: loading이 필요한 훅의 경우 컨벤션 설정
+function useUserImg() {
+  const cropImg = useRecoilValue(CropImage);
+  const userImg = useMemo(() => {
+    if (!cropImg) return curiousEmoji.src;
+
+    return cropImg;
+  }, [cropImg]);
+
+  return userImg;
+}
+
+// HJ TODO: 파일 분리 + store 사용 + 렌더 기능만 하는 컴포넌트의 경우 컨벤션?
+interface TitleContentProps {
+  textColor: string;
+  colorTypeName: string;
+}
+
+function TitleContent({ textColor, colorTypeName }: TitleContentProps) {
   return (
-    <Link href={ROUTE_PATH.landing}>
-      <BorderedButton>처음으로</BorderedButton>
-    </Link>
+    <S.Title>
+      당신의 퍼스널 컬러는
+      <S.TitleBold color={textColor}>{colorTypeName}</S.TitleBold>
+    </S.Title>
   );
 }
 
-class ShareError extends CustomError {
-  constructor(props: CustomErrorConstructor) {
-    super(props);
-    this.name = 'ShareError';
-  }
+interface TagContentProps {
+  tags: Tag[];
+}
+
+function TagContent({ tags }: TagContentProps) {
+  return (
+    <S.TagWrapper>
+      {tags.map(({ keyword, backgroundColor, textColor }) => (
+        <S.Tag
+          key={keyword}
+          backgroundColor={backgroundColor}
+          textColor={textColor}
+        >
+          {`#${keyword}`}
+        </S.Tag>
+      ))}
+    </S.TagWrapper>
+  );
+}
+
+interface DescriptionContentProps {
+  descriptions: string[];
+}
+
+function DescriptionContent({ descriptions }: DescriptionContentProps) {
+  return (
+    <S.Description>
+      {descriptions.map((description, index) => (
+        <li key={description + index}>{description}</li>
+      ))}
+    </S.Description>
+  );
+}
+
+interface CelebritesContentProps {
+  textColor: string;
+  colorTypeName: string;
+  celebrities: Celeb[];
+}
+
+function CelebritiesContent({
+  textColor,
+  colorTypeName,
+  celebrities,
+}: CelebritesContentProps) {
+  return (
+    <S.SubDescriptionTitle>
+      <S.SubDescriptionTitleBold color={textColor}>
+        {colorTypeName}
+      </S.SubDescriptionTitleBold>{' '}
+      대표 연예인
+      <S.CelebritiesWrapper>
+        {celebrities.map(({ name, imageURL }, idx) => {
+          return (
+            <S.CelebrityWrapper key={name + idx}>
+              <S.Styling
+                key={name}
+                src={imageURL}
+                alt="연예인"
+                width={92}
+                height={92}
+              />
+              <S.CelebrityName>{name}</S.CelebrityName>
+            </S.CelebrityWrapper>
+          );
+        })}
+      </S.CelebritiesWrapper>
+    </S.SubDescriptionTitle>
+  );
+}
+
+interface LikeorDisLikeSubPageProps {
+  colors: (ColorResult & { title: string })[];
+  onClick: (type: ColorType) => void; // HJ TODO: click event @types 에 동록
+}
+
+function LikeOrDislikeContent({ colors, onClick }: LikeorDisLikeSubPageProps) {
+  return (
+    <>
+      {colors.map(({ title, type, name, textColor, bestColors }) => (
+        <S.ColorMatchButton key={name} onClick={() => onClick(type)}>
+          <S.ColorMatchTitle>
+            {title}
+            <S.SubDescriptionTitleBold color={textColor}>
+              {name}
+            </S.SubDescriptionTitleBold>
+          </S.ColorMatchTitle>
+          <S.ColorMatchGrid>
+            {bestColors.map((color, idx) => (
+              <S.ColorMatchGridItem key={color + idx} backgroundColor={color} />
+            ))}
+          </S.ColorMatchGrid>
+        </S.ColorMatchButton>
+      ))}
+    </>
+  );
 }
 
 export default ResultPage;

@@ -35,6 +35,7 @@ jobs:
           NEXT_PUBLIC_FIREBASE_APP_ID=${{ vars.FIREBASE_APP_ID }}\n\
           NEXT_PUBLIC_KAKAO_API_KEY=${{ secrets.KAKAO_API_KEY }}\n\
           NEXT_PUBLIC_SENTRY_DSN=${{ vars.SENTRY_DSN }}\n\
+          SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}\n\
           PROD=${{ true }}" >> ".env"
 
       - name: Debugging .env fle
@@ -53,3 +54,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_OPPAMANYCOLORTONE_5FB42 }}'
           channelId: live
           projectId: oppamanycolortone-5fb42
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks

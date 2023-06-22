@@ -4,13 +4,12 @@ import { useRecoilValue } from 'recoil';
 import { CropImage } from '@Recoil/app';
 import useSelectBonusColorTypes from '@Hooks/useSelectBonusColorTypes';
 import choiceColorData from '@Data/choiceColorData';
-import type { Type } from '@Data/color';
 import BasicStage from './BasicStage';
 import BonusStage from './BonusStage';
 import { $Wrapper } from './style';
 
 function ChoiceColor() {
-  const [selectedTypes, setSelectedTypes] = useState<Type[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<ColorType[]>([]);
 
   const router = useRouter();
 
@@ -37,7 +36,7 @@ function ChoiceColor() {
     }
   }, [router, userImg]);
 
-  const onBasicClick = (type: Type) => {
+  const onBasicClick = (type: ColorType) => {
     setSelectedTypes((prev) => [...prev, type]);
   };
 

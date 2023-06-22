@@ -5,7 +5,6 @@ import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
 import LoadingIndicator from '@Components/LoadingIndicator';
 import Guidance from '../Guidance';
-import type { Type } from '@Data/color';
 import {
   $BonusStatusBox,
   $BonusStatusContent,
@@ -25,7 +24,7 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
     ? getBonusColorOptions(bonusColorTypes)
     : null;
 
-  const onBonusClick = (type: Type) => {
+  const onBonusClick = (type: ColorType) => {
     const params = new URLSearchParams(searchParams);
     params.set('colorType', type);
     router.push(`${ROUTE_PATH.result}?${params}`);

@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import omctDb from '@Utils/omctDb';
 import ROUTE_PATH from '@Constant/routePath';
-import type { Type } from '@Data/color';
 
 const useSelectBonusColorTypes = (
-  selectedTypes: Type[],
+  selectedTypes: ColorType[],
   MAX_STAGE_NUM: number
 ) => {
   const [bonusColorTypes, setBonusColorTypes] = useState<string[] | null>(null);
@@ -39,7 +38,7 @@ const useSelectBonusColorTypes = (
   return bonusColorTypes;
 };
 
-function getModeTypes(selectedTypes: Type[]) {
+function getModeTypes(selectedTypes: ColorType[]) {
   const count: { [key: string]: number } = {};
   let maxFreq = 0;
 

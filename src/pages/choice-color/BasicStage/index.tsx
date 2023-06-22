@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import shuffle from '@Utils/shuffle';
-import type { Type } from '@Data/color';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';
 import Guidance from '../Guidance';
 import {
@@ -17,7 +16,7 @@ interface BasicStageProps {
   stageNum: number;
   MAX_STAGE_NUM: number;
   basicColorOptions: ChoiceColorDataType[];
-  onBasicClick: (type: Type) => void;
+  onBasicClick: (type: ColorType) => void;
 }
 
 function BasicStage({

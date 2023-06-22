@@ -1,25 +1,7 @@
-export type Season = 'spring' | 'summer' | 'autumn' | 'winter';
-
-export type Tone = 'warm' | 'cool' | 'bright' | 'mute' | 'light' | 'deep';
-
-export type Type =
-  | 'springbright'
-  | 'springwarm'
-  | 'springlight'
-  | 'summerlight'
-  | 'summercool'
-  | 'summermute'
-  | 'autumnmute'
-  | 'autumnwarm'
-  | 'autumndeep'
-  | 'winterdeep'
-  | 'wintercool'
-  | 'winterbright';
-
 type Color = {
-  season: Season;
-  tone: Tone;
-  type: Type;
+  season: ColorSeason;
+  tone: ColorTone;
+  type: ColorType;
   name: string;
   textColor: string;
   colors: string[];

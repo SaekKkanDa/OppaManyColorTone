@@ -1,7 +1,5 @@
-import type { Type } from './color';
-
 type BonusColorDataType = {
-  type: Type;
+  type: ColorType;
   firstColors: [string, string, string];
   secondColors: [string, string, string];
 };

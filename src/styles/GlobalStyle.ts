@@ -37,6 +37,10 @@ const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6, button {
     font-family: 'yg-jalnan';
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;

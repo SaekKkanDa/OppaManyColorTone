@@ -20,6 +20,6 @@ omctError.set(OmctErrorNo.COMMON_INVALID_PARAMETER, '잘못된 파라미터 입�
 
 // prettier-ignore
 /* 21 ~ 30 : Share Error */
-omctError.set(OmctErrorNo.SHARE_CLIPBOARD_COPY_ERROR, '클릭보드 복사에 실패했습니다.');
+omctError.set(OmctErrorNo.SHARE_CLIPBOARD_COPY_ERROR, '클립보드 복사에 실패했습니다.');
 
 export default omctError;

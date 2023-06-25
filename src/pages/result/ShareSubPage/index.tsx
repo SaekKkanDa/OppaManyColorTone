@@ -7,10 +7,9 @@ import { faDownload, faLink, faShare } from '@fortawesome/free-solid-svg-icons';
 import kakaoIcon from 'public/images/icon/kakaoIcon.png';
 
 import ROUTE_PATH from '@Constant/routePath';
-import { OmctErrorNo } from '@Constant/errorKeyValue';
 import useKakaoShare from '@Hooks/useKakaoShare';
 import { captureElement, downloadImage } from '@Utils/capture';
-import { updateClipboard } from '@Utils/clipboard';
+import { copyUrl } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
 import { isChrome, isKakao, isOSX } from '@Utils/userAgent';
 import CustomError, { CustomErrorConstructor } from '@Utils/customError';
@@ -50,16 +49,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
 
   const handleLinkCopyClick = async () => {
     if (kakaoAlert()) return;
-
-    try {
-      await updateClipboard(location.href);
-      // HJ TODO: 커스텀 alert 등록
-      alert('링크가 복사되었습니다.');
-    } catch (err) {
-      console.error(err);
-      alert('클립보드 복사에 실패했습니다');
-      throw new ShareError({ errorNo: OmctErrorNo.SHARE_CLIPBOARD_COPY_ERROR });
-    }
+    copyUrl(location.href);
   };
 
   const handleKakaoShare = () => {
@@ -129,7 +119,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
   );
 }
 
-class ShareError extends CustomError {
+export class ShareError extends CustomError {
   constructor(props: CustomErrorConstructor) {
     super(props);
     this.name = 'ShareError';

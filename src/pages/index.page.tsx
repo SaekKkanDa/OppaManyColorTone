@@ -1,25 +1,18 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useSetRecoilState } from 'recoil';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
 import { CropImage } from '@Recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import omctDb from '@Utils/omctDb';
+import { canWebShare, webShare } from '@Utils/share';
 import ROUTE_PATH from '@Constant/routePath';
-import {
-  $LandingWrap,
-  $LandingTitleDiv,
-  $LandingTitle,
-  $TitleHighlight,
-  $LandingSubTitle,
-  $SpinnerWrapper,
-  $LandingBottomDiv,
-  $LandingUserCountDiv,
-  $LangingStartButton,
-  $ButtonsWrapper,
-  $ShareButton,
-} from './style';
+import { copyUrl } from '@Utils/clipboard';
+import questionBubble from 'public/images/icon/question-bubble.png';
+import * as S from './style';
+import Image from 'next/image';
 
 function LandingPage() {
   const router = useRouter();
@@ -44,38 +37,49 @@ function LandingPage() {
     router.push(ROUTE_PATH.imageUpload);
   };
 
+  const handleShare = async () => {
+    if (canWebShare) return await webShare();
+    await copyUrl(location.href);
+  };
+
   return (
     <>
-      <$LandingWrap>
-        <$LandingTitleDiv>
-          <$LandingTitle>
-            오빠! <$TitleHighlight>톤</$TitleHighlight> 많아?
-          </$LandingTitle>
-          <$LandingSubTitle>퍼스널 컬러 자가진단</$LandingSubTitle>
-        </$LandingTitleDiv>
+      <S.LandingWrap>
+        <S.LandingTitleDiv>
+          <S.LandingTitle>
+            오빠! <S.TitleHighlight>톤</S.TitleHighlight> 많아?
+          </S.LandingTitle>
+          <S.LandingSubTitle>퍼스널 컬러 자가진단</S.LandingSubTitle>
+        </S.LandingTitleDiv>
 
-        <$SpinnerWrapper>
+        <S.SpinnerWrapper>
           <ColorImgSpinner />
-        </$SpinnerWrapper>
 
-        <$LandingBottomDiv>
-          {!!numberOfUsers && (
-            <$LandingUserCountDiv>
-              지금까지 {numberOfUsers.toLocaleString()}명이 진단했어요!
-            </$LandingUserCountDiv>
-          )}
-          <$LangingStartButton onClick={onClickStartButton}>
-            시작하기
-          </$LangingStartButton>
+          <S.AllTypesViewLink href={ROUTE_PATH.allTypesView}>
+            <Image
+              src={questionBubble}
+              alt="thought bubble"
+              width={48}
+              height={48}
+            />
+          </S.AllTypesViewLink>
+        </S.SpinnerWrapper>
 
-          <$ButtonsWrapper>
-            <$ShareButton>공유하기</$ShareButton>
-            <Link href={ROUTE_PATH.allTypesView}>
-              퍼스널 컬러 유형 전체보기
-            </Link>
-          </$ButtonsWrapper>
-        </$LandingBottomDiv>
-      </$LandingWrap>
+        <S.LandingBottomDiv>
+          <S.UserInfoWrapper>
+            <S.UserCount>
+              지금까지{' '}
+              {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
+              명이 진단했어요!
+            </S.UserCount>
+            <S.ShareButton onClick={handleShare}>
+              <FontAwesomeIcon icon={faShareNodes} size="2x" />
+            </S.ShareButton>
+          </S.UserInfoWrapper>
+
+          <S.StartButton onClick={onClickStartButton}>시작하기</S.StartButton>
+        </S.LandingBottomDiv>
+      </S.LandingWrap>
     </>
   );
 }

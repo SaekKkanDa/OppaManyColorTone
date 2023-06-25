@@ -26,18 +26,14 @@ function ColorImgSpinner() {
 
 export const $ImgSpinnerWrap = styled.div`
   position: relative;
-  max-width: 240px;
-  max-height: 240px;
-  width: 80vw;
-  height: 80vw;
+  width: 240px;
+  height: 240px;
   display: inherit;
 `;
 
 export const $ColorChipImg = styled(Image)`
-  max-width: 240px;
-  max-height: 240px;
-  width: 80vw;
-  height: 80vw;
+  width: 240px;
+  height: 240px;
   animation: spinner 12s infinite linear;
 
   @keyframes spinner {

@@ -57,6 +57,18 @@ export const AllTypesViewLink = styled(Link)`
       -webkit-transform-origin: 0% 100%;
       transform-origin: 0% 100%;
     }
+    60% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      -webkit-transform-origin: 0% 100%;
+      transform-origin: 0% 100%;
+    }
+    70% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transform-origin: 0% 100%;
+      transform-origin: 0% 100%;
+    }
     100% {
       -webkit-transform: scale(1);
       transform: scale(1);

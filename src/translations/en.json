@@ -1,3 +1,22 @@
 {
-  "title": "check out your personal tone"
+  "landingTitle-1": "Your ",
+  "titleHighlight": "Best",
+  "landingTitle-2": "Colors",
+  "landingSubTitle": "Personal Color Analysis",
+  "userCount-1": "We have",
+  "userCount-2": " users!",
+  "startButton": "Get Started",
+  "selectImgButton": "Select Image",
+  "guidance": "Upload a clear headshot snapped in natural lighting.",
+  "notification-1": "Note",
+  "notification-2": "We value your privacy.",
+  "notification-3": "We will never share or sell your images.",
+  "nextButton": "Next",
+  "modalGuidance-1": "Be sure to include at least part of your hair and face",
+  "modalGuidance-2": " ",
+  "confirmButton": "Next",
+  "statusContent": " Stage",
+  "explanation-1": "Choose the color looks best on you",
+  "explanation-2": "The color looks good on you gives you",
+  "explanation-3": "more even-toned, healthy-looking skin"
 }

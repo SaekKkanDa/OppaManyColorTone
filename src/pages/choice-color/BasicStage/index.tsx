@@ -3,6 +3,8 @@ import Image from 'next/image';
 import shuffle from '@Utils/shuffle';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';
 import Guidance from '../Guidance';
+import { FormattedMessage } from 'react-intl';
+
 import {
   $StatusBox,
   $StatusBar,
@@ -32,7 +34,7 @@ function BasicStage({
         <$StatusBar width={`${(stageNum + 1) * (100 / MAX_STAGE_NUM)}%`} />
       </$StatusBox>
       <$StatusContent>
-        {stageNum + 1}/{MAX_STAGE_NUM} 단계
+        {stageNum + 1}/{MAX_STAGE_NUM} <FormattedMessage id="statusContent" />
       </$StatusContent>
 
       <Guidance />

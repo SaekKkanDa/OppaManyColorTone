@@ -1,3 +1,26 @@
 {
-  "title": "오빠! 톤 많아?"
+  "landingTitle-1": "오빠! ",
+  "titleHighlight": "톤",
+  "landingTitle-2": "  많아?",
+  "landingSubTitle": "퍼스널 컬러 자가진단",
+  "userCount-1": "지금까지",
+  "userCount-2": "명이 진단했어요!",
+  "startButton": "시작하기",
+  "selectImgButton": "사진 선택",
+  "guidance": "실제와 비슷한 톤의 얼굴 사진을 선택해주세요.",
+  "notification-1": "안심하세요!",
+  "notification-2": "본 진단은 사용자의 사진을 수집하지 않습니다.",
+  "notification-3": "사진은 본 진단 외 다른 목적으로 이용되지 않습니다.",
+  "nextButton": "다음으로",
+  "modalGuidance-1": "옷을 제외하고 얼굴과 헤어만 포함되도록",
+  "modalGuidance-2": "영역을 설정해주세요.",
+  "confirmButton": "확인",
+  "statusContent": " 단계",
+  "explanation-1": "얼굴과 잘 어울리는 색을 선택해주세요.",
+  "explanation-2": "얼굴과 색이 하나로 이어진 것처럼 조화로워 보이고,",
+  "explanation-3": "피부색이 균일하고 맑아 보이는 색이 잘 어울리는 색입니다.",
+  "bonusStatus": "마지막 단계",
+  "errorMsg": "예기치 못한 상황이 발생했습니다.",
+  "resultTitle": "당신의 퍼스널 컬러는",
+  "celebrities": "대표 연예인"
 }

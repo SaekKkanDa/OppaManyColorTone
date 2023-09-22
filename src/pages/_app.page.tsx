@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { RecoilRoot, useRecoilValue } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { useLoading } from '@Hooks/useLoading';
 import LoadingIndicator from '@Components/LoadingIndicator';
@@ -19,10 +19,11 @@ config.autoAddCss = false;
 const App = ({ Component, pageProps }: AppProps) => {
   const isLoading = useLoading();
   const [userLocale, setUserLocale] = useState('ko-KR');
-  const translationsForUsersLocale = { 'en-US': EnLanguage, ko: koLanguage }[
-    userLocale
-  ];
-  // const language = navigator.language;
+
+  const translationsForUsersLocale = {
+    'en-US': EnLanguage,
+    'ko-KR': koLanguage,
+  }[userLocale];
 
   useEffect(() => {
     const locale = navigator.language;

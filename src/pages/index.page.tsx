@@ -13,6 +13,7 @@ import { copyUrl } from '@Utils/clipboard';
 import questionBubble from 'public/images/icon/question-bubble.png';
 import * as S from './style';
 import Image from 'next/image';
+import { FormattedMessage } from 'react-intl';
 
 function LandingPage() {
   const router = useRouter();
@@ -47,9 +48,15 @@ function LandingPage() {
       <S.LandingWrap>
         <S.LandingTitleDiv>
           <S.LandingTitle>
-            오빠! <S.TitleHighlight>톤</S.TitleHighlight> 많아?
+            <FormattedMessage id="landingTitle-1" />{' '}
+            <S.TitleHighlight>
+              <FormattedMessage id="titleHighlight" />
+            </S.TitleHighlight>{' '}
+            <FormattedMessage id="landingTitle-2" />
           </S.LandingTitle>
-          <S.LandingSubTitle>퍼스널 컬러 자가진단</S.LandingSubTitle>
+          <S.LandingSubTitle>
+            <FormattedMessage id="landingSubTitle" />
+          </S.LandingSubTitle>
         </S.LandingTitleDiv>
 
         <S.SpinnerWrapper>
@@ -68,16 +75,18 @@ function LandingPage() {
         <S.LandingBottomDiv>
           <S.UserInfoWrapper>
             <S.UserCount>
-              지금까지{' '}
+              <FormattedMessage id="userCount-1" />{' '}
               {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
-              명이 진단했어요!
+              <FormattedMessage id="userCount-2" />
             </S.UserCount>
             <S.ShareButton onClick={handleShare}>
               <FontAwesomeIcon icon={faShareNodes} size="2x" />
             </S.ShareButton>
           </S.UserInfoWrapper>
 
-          <S.StartButton onClick={onClickStartButton}>시작하기</S.StartButton>
+          <S.StartButton onClick={onClickStartButton}>
+            <FormattedMessage id="startButton" />
+          </S.StartButton>
         </S.LandingBottomDiv>
       </S.LandingWrap>
     </>

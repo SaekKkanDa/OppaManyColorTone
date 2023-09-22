@@ -28,6 +28,7 @@ import {
   globalTextColorAtom,
 } from '@Recoil/globalStyleStore';
 import { invertColor } from '@Utils/colorExtension';
+import { FormattedMessage } from 'react-intl';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -75,7 +76,9 @@ function ResultPage(): JSX.Element {
   if (isError) {
     return (
       <S.LoadingWrapper>
-        <S.Title>예기치 못한 상황이 발생했습니다.</S.Title>
+        <S.Title>
+          <FormattedMessage id="errorMsg" />
+        </S.Title>
         <ColorImgSpinner />
         <RestartButton />
       </S.LoadingWrapper>
@@ -178,7 +181,7 @@ interface TitleContentProps {
 function TitleContent({ textColor, colorTypeName }: TitleContentProps) {
   return (
     <S.Title>
-      당신의 퍼스널 컬러는
+      <FormattedMessage id="resultTitle" />
       <S.TitleBold color={textColor}>{colorTypeName}</S.TitleBold>
     </S.Title>
   );
@@ -234,7 +237,7 @@ function CelebritiesContent({
       <S.SubDescriptionTitleBold color={textColor}>
         {colorTypeName}
       </S.SubDescriptionTitleBold>{' '}
-      대표 연예인
+      <FormattedMessage id="celebrities" />
       <S.CelebritiesWrapper>
         {celebrities.map(({ name, imageURL }, idx) => {
           return (

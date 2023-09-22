@@ -27,8 +27,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     const locale = navigator.language;
-    setUserLocale(locale);
-  }, []);
+    setUserLocale('en-US');
+  }, [userLocale]);
 
   console.log(userLocale);
 

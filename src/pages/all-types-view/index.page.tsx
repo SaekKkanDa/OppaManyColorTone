@@ -5,6 +5,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
 import resultColorData from '@Data/resultColorData';
 import theme from '@Styles/theme';
+import { FormattedMessage } from 'react-intl';
+
 import {
   $Wrapper,
   $BackButton,
@@ -43,7 +45,10 @@ const AllTypesView = () => {
       </$BackButton>
 
       <$Title>
-        <$SubTitle>한 눈에 보는 </$SubTitle>퍼스널 컬러
+        <$SubTitle>
+          <FormattedMessage id="allTypeView-1" />
+        </$SubTitle>
+        <FormattedMessage id="allTypeView-2" />
       </$Title>
 
       <$PieChart
@@ -116,7 +121,7 @@ const AllTypesView = () => {
           </$PaletteGrid>
         </>
       ) : (
-        <$Description>컬러 유형을 클릭해 보세요!</$Description>
+        <$Description><FormattedMessage id="clickType" /></$Description>
       )}
     </$Wrapper>
   );

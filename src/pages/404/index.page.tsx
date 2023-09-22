@@ -2,11 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { $FlexContainer, $Message, $Emoji, $HomeButton } from './style';
 import emoji from 'public/images/emoji/sad-emoji-3d.png';
+import { FormattedMessage } from 'react-intl';
 
 const NotFound = () => {
   return (
     <$FlexContainer>
-      <$Message>잘못된 접근입니다.</$Message>
+      <$Message>
+        <FormattedMessage id="notFoundMsg" />
+      </$Message>
       <$Emoji
         src={emoji.src}
         alt="sad emoji"
@@ -16,7 +19,9 @@ const NotFound = () => {
       />
 
       <Link href="/">
-        <$HomeButton>처음으로</$HomeButton>
+        <$HomeButton>
+          <FormattedMessage id="restart" />
+        </$HomeButton>
       </Link>
     </$FlexContainer>
   );

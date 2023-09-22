@@ -18,5 +18,20 @@
   "statusContent": " Stage",
   "explanation-1": "Choose the color looks best on you",
   "explanation-2": "The color looks good on you gives you",
-  "explanation-3": "more even-toned, healthy-looking skin"
+  "explanation-3": "more even-toned, healthy-looking skin",
+  "bonusStatus": "Last Stage",
+  "errorMsg": "We have encountered an error",
+  "resultTitle": "Your Seasonal Color is",
+  "celebrities": "Celebrities",
+  "interactionInfo": "Click the color!",
+  "saveResult": "Save",
+  "copyUrl": "Copy",
+  "kakaotalk": "Kakao",
+  "shareResult": "Share",
+  "allTypes": "More types",
+  "restart": "Restart",
+  "notFoundMsg": "Access Denied",
+  "allTypeView-1": " ",
+  "allTypeView-2": "Seasonal Color Palette",
+  "clickType": "Click the Type!"
 }

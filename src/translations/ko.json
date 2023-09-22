@@ -22,5 +22,16 @@
   "bonusStatus": "마지막 단계",
   "errorMsg": "예기치 못한 상황이 발생했습니다.",
   "resultTitle": "당신의 퍼스널 컬러는",
-  "celebrities": "대표 연예인"
+  "celebrities": "대표 연예인",
+  "interactionInfo": "팔레트를 눌러보세요!",
+  "saveResult": "결과저장",
+  "copyUrl": "링크복사",
+  "kakaotalk": "카카오톡",
+  "shareResult": "공유하기",
+  "allTypes": "유형 전체보기",
+  "restart": "처음으로",
+  "notFoundMsg": "잘못된 접근입니다.",
+  "allTypeView-1": "한 눈에 보는 ",
+  "allTypeView-2": "퍼스널 컬러",
+  "clickType": "컬러 유형을 클릭해 보세요!"
 }

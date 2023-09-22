@@ -11,7 +11,8 @@
       "@Pages/*": ["./src/pages/*"],
       "@Recoil/*": ["./src/recoil/*"],
       "@Styles/*": ["./src/styles/*"],
-      "@Utils/*": ["./src/utils/*"]
+      "@Utils/*": ["./src/utils/*"],
+      "@Translations/*": ["./src/translations/*"]
     },
     "allowJs": true,
     "jsx": "preserve",

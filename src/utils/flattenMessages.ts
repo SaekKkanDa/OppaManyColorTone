@@ -1,3 +1,4 @@
+// 타입 수정하기
 const flattenMessages = (nestedMessages: any, prefix = '') => {
   if (nestedMessages === null) {
     return {};

@@ -48,11 +48,11 @@ function LandingPage() {
       <S.LandingWrap>
         <S.LandingTitleDiv>
           <S.LandingTitle>
-            <FormattedMessage id="landingTitle-1" />{' '}
+            <FormattedMessage id="landingTitle_1" />{' '}
             <S.TitleHighlight>
               <FormattedMessage id="titleHighlight" />
             </S.TitleHighlight>{' '}
-            <FormattedMessage id="landingTitle-2" />
+            <FormattedMessage id="landingTitle_2" />
           </S.LandingTitle>
           <S.LandingSubTitle>
             <FormattedMessage id="landingSubTitle" />
@@ -75,9 +75,9 @@ function LandingPage() {
         <S.LandingBottomDiv>
           <S.UserInfoWrapper>
             <S.UserCount>
-              <FormattedMessage id="userCount-1" />{' '}
+              <FormattedMessage id="userCount_1" />{' '}
               {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
-              <FormattedMessage id="userCount-2" />
+              <FormattedMessage id="userCount_2" />
             </S.UserCount>
             <S.ShareButton onClick={handleShare}>
               <FontAwesomeIcon icon={faShareNodes} size="2x" />

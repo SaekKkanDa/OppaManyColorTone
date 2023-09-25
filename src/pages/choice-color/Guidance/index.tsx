@@ -5,11 +5,11 @@ import { FormattedMessage } from 'react-intl';
 function Guidance() {
   return (
     <$Explanation>
-      <FormattedMessage id="explanation-1" />
+      <FormattedMessage id="explanation_1" />
       <p>
-        <FormattedMessage id="explanation-2" />
+        <FormattedMessage id="explanation_2" />
         <br />
-        <FormattedMessage id="explanation-3" />
+        <FormattedMessage id="explanation_3" />
       </p>
     </$Explanation>
   );

@@ -104,11 +104,11 @@ function ImageUploadPage() {
         <$Notification>
           <h6>
             <FontAwesomeIcon icon={faFaceSmile} size="sm" />
-            <FormattedMessage id="notification-1" />
+            <FormattedMessage id="notification_1" />
           </h6>
-          <FormattedMessage id="notification-2" />
+          <FormattedMessage id="notification_2" />
           <br />
-          <FormattedMessage id="notification-3" />
+          <FormattedMessage id="notification_3" />
         </$Notification>
 
         <Link href={ROUTE_PATH.choiceColor}>

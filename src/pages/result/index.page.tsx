@@ -96,7 +96,6 @@ function ResultPage(): JSX.Element {
     textColor,
     gridColors,
     tags,
-    descriptions,
     celebrities,
     secondaryType,
     worstType,
@@ -136,12 +135,13 @@ function ResultPage(): JSX.Element {
 
           <TagContent colorType={colorType} tags={tags} />
 
-          <DescriptionContent descriptions={descriptions} />
+          <DescriptionContent colorType={colorType} />
 
           <CelebritiesContent
             textColor={textColor}
-            colorTypeName={name}
+            colorType={colorType}
             celebrities={celebrities}
+            colorTypeName={name}
           />
 
           <LikeOrDislikeContent
@@ -197,13 +197,13 @@ interface TagContentProps {
 function TagContent({ tags, colorType }: TagContentProps) {
   return (
     <S.TagWrapper>
-      {tags.map(({ keyword, backgroundColor, textColor }) => (
+      {tags.map(({ backgroundColor, textColor }, index: number) => (
         <S.Tag
-          key={keyword}
+          key={index}
           backgroundColor={backgroundColor}
           textColor={textColor}
         >
-          <FormattedMessage id={`${colorType}.${keyword}`} />
+          <FormattedMessage id={`${colorType}.keyword.${index}`} />
         </S.Tag>
       ))}
     </S.TagWrapper>
@@ -211,15 +211,15 @@ function TagContent({ tags, colorType }: TagContentProps) {
 }
 
 interface DescriptionContentProps {
-  descriptions: string[];
+  colorType: ColorType;
 }
 
-function DescriptionContent({ descriptions }: DescriptionContentProps) {
+function DescriptionContent({ colorType }: DescriptionContentProps) {
   return (
     <S.Description>
-      {descriptions.map((description, index) => (
-        <li key={description + index}>
-          <FormattedMessage id={`${description}`} />
+      {[1, 2, 3, 4].map((index) => (
+        <li key={index}>
+          <FormattedMessage id={`${colorType}.descriptions.${index}`} />
         </li>
       ))}
     </S.Description>
@@ -230,12 +230,14 @@ interface CelebritesContentProps {
   textColor: string;
   colorTypeName: string;
   celebrities: Celeb[];
+  colorType: ColorType;
 }
 
 function CelebritiesContent({
   textColor,
   colorTypeName,
   celebrities,
+  colorType,
 }: CelebritesContentProps) {
   return (
     <S.SubDescriptionTitle>
@@ -255,7 +257,7 @@ function CelebritiesContent({
                 height={92}
               />
               <S.CelebrityName>
-                <FormattedMessage id={`${name}`} />
+                <FormattedMessage id={`${colorType}.celebrities.${idx}`} />
               </S.CelebrityName>
             </S.CelebrityWrapper>
           );

@@ -106,9 +106,9 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
         <FontAwesomeIcon icon={faPlus} size="1x" color={theme.gray[900]} />
       </$ScaleBox>
       <$Guidance>
-        <FormattedMessage id="modalGuidance-1" />
+        <FormattedMessage id="modalGuidance_1" />
         <br />
-        <FormattedMessage id="modalGuidance-2" />
+        <FormattedMessage id="modalGuidance_2" />
       </$Guidance>
       <$ConfirmButton onClick={handleSave}>
         <FormattedMessage id="confirmButton" />

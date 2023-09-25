@@ -33,5 +33,22 @@
   "notFoundMsg": "Access Denied",
   "allTypeView-1": " ",
   "allTypeView-2": "Seasonal Color Palette",
-  "clickType": "Click the Type!"
+  "clickType": "Click the Type!",
+  "springbright": {
+    "name": "spring bright",
+    "tags": [
+      { "keyword": "화려함" },
+      { "keyword": "vivid" },
+      { "keyword": "화려함" },
+      { "keyword": "화려함" }
+    ],
+    "descriptions": [
+      "bright",
+      "밝은 색부터 어두운 색, 차가운 색부터 따뜻한 색까지 활용할 수 있는 스펙트럼이 넓어요.",
+      "블랙 앤 화이트처럼 대비감이 강하게 느껴지는 스타일링이 좋아요.",
+      "형형색색의 쨍하고 화려한 고채도 색을 잘 소화해요.",
+      "회색이 많이 섞인 흐릿하고 탁한 색은 얼굴이 칙칙해 보이니 피해주세요."
+    ],
+    "celebrities": ["아이유", "수지", "이준호"]
+  }
 }

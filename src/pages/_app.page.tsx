@@ -13,6 +13,7 @@ import koLanguage from '@Translations/ko.json';
 import EnLanguage from '@Translations/en.json';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import flattenMessages from '@Utils/flattenMessages';
 
 config.autoAddCss = false;
 
@@ -26,8 +27,19 @@ const App = ({ Component, pageProps }: AppProps) => {
   }[userLocale];
 
   useEffect(() => {
-    const locale = navigator.language;
-    setUserLocale('en-US');
+    let locale = navigator.language;
+
+    switch (locale) {
+      case 'ko':
+      case 'ko-KR':
+        locale = 'ko-KR';
+        break;
+      case 'en':
+      case 'en-US':
+        locale = 'en-US';
+        break;
+    }
+    setUserLocale(locale);
   }, [userLocale]);
 
   console.log(userLocale);
@@ -39,7 +51,10 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <IntlProvider locale={userLocale} messages={translationsForUsersLocale}>
+      <IntlProvider
+        locale={userLocale}
+        messages={flattenMessages(translationsForUsersLocale)}
+      >
         <RecoilRoot>
           <GlobalStyle />
           <ThemeProvider theme={theme}>

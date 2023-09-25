@@ -28,6 +28,7 @@ import {
   globalTextColorAtom,
 } from '@Recoil/globalStyleStore';
 import { invertColor } from '@Utils/colorExtension';
+
 import { FormattedMessage } from 'react-intl';
 
 // HJ TODO: 로직과 렌더링 관심 분리
@@ -125,7 +126,7 @@ function ResultPage(): JSX.Element {
     <>
       <S.Wrapper>
         <S.ResultContainer ref={resultContainerRef}>
-          <TitleContent textColor={textColor} colorTypeName={name} />
+          <TitleContent colorType={colorType} textColor={textColor} />
 
           <PaletteSubPage
             imgSrc={userImg}
@@ -133,7 +134,7 @@ function ResultPage(): JSX.Element {
             onClick={onClickPalette}
           />
 
-          <TagContent tags={tags} />
+          <TagContent colorType={colorType} tags={tags} />
 
           <DescriptionContent descriptions={descriptions} />
 
@@ -174,24 +175,26 @@ function useUserImg() {
 
 // HJ TODO: 파일 분리 + store 사용 + 렌더 기능만 하는 컴포넌트의 경우 컨벤션?
 interface TitleContentProps {
+  colorType: ColorType;
   textColor: string;
-  colorTypeName: string;
 }
 
-function TitleContent({ textColor, colorTypeName }: TitleContentProps) {
+function TitleContent({ colorType, textColor }: TitleContentProps) {
   return (
     <S.Title>
-      <FormattedMessage id="resultTitle" />
-      <S.TitleBold color={textColor}>{colorTypeName}</S.TitleBold>
+      <S.TitleBold color={textColor}>
+        <FormattedMessage id={`${colorType}.name`} />
+      </S.TitleBold>
     </S.Title>
   );
 }
 
 interface TagContentProps {
   tags: Tag[];
+  colorType: ColorType;
 }
 
-function TagContent({ tags }: TagContentProps) {
+function TagContent({ tags, colorType }: TagContentProps) {
   return (
     <S.TagWrapper>
       {tags.map(({ keyword, backgroundColor, textColor }) => (
@@ -200,7 +203,7 @@ function TagContent({ tags }: TagContentProps) {
           backgroundColor={backgroundColor}
           textColor={textColor}
         >
-          {`#${keyword}`}
+          <FormattedMessage id={`${colorType}.${keyword}`} />
         </S.Tag>
       ))}
     </S.TagWrapper>
@@ -215,7 +218,9 @@ function DescriptionContent({ descriptions }: DescriptionContentProps) {
   return (
     <S.Description>
       {descriptions.map((description, index) => (
-        <li key={description + index}>{description}</li>
+        <li key={description + index}>
+          <FormattedMessage id={`${description}`} />
+        </li>
       ))}
     </S.Description>
   );
@@ -249,7 +254,9 @@ function CelebritiesContent({
                 width={92}
                 height={92}
               />
-              <S.CelebrityName>{name}</S.CelebrityName>
+              <S.CelebrityName>
+                <FormattedMessage id={`${name}`} />
+              </S.CelebrityName>
             </S.CelebrityWrapper>
           );
         })}

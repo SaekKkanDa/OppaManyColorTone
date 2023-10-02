@@ -27,9 +27,10 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@sentry/nextjs": "^7.52.1",
     "@types/kakao-js-sdk": "^1.39.1",
+    "base64-arraybuffer": "^1.0.2",
+    "css-line-break": "^2.1.0",
     "eslint-config-prettier": "^8.6.0",
     "firebase": "^9.17.1",
-    "html2canvas": "^1.4.1",
     "next": "^13.4.1",
     "react": "^18.2.0",
     "react-avatar-editor": "^13.0.0",
@@ -38,6 +39,7 @@
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
     "stylelint-config-prettier": "^9.0.5",
+    "text-segmentation": "^1.0.3",
     "ua-parser-js": "^2.0.0-alpha.2"
   },
   "devDependencies": {

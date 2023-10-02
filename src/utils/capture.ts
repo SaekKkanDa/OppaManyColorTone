@@ -1,7 +1,7 @@
-import html2canvas from 'html2canvas';
+import html2canvas from '@Libs/html2canvas';
 
 export async function captureElement(targetElement: HTMLElement, name: string) {
-  const canvas = await html2canvas(targetElement);
+  const canvas = await html2canvas(targetElement, { useCORS: true });
   const img = canvas.toDataURL(name);
 
   return img;

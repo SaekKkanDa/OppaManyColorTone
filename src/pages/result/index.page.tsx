@@ -4,11 +4,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import ROUTE_PATH from '@Constant/routePath';
-import resultColorData, {
-  Celeb,
-  ColorResult,
-  Tag,
-} from '@Data/resultColorData';
+import resultColorData, { Celeb, ColorResult } from '@Data/resultColorData';
 import { CropImage } from '@Recoil/app';
 
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
@@ -20,6 +16,7 @@ import ColorTransition, {
 } from '@Components/Transition/ColorTransition';
 import RestartButton from '@Components/Button/RestartButton';
 import LoadingIndicator from '@Components/LoadingIndicator';
+import Tag from '@Components/Tag/Tag';
 import ShareSubPage from './ShareSubPage';
 import useScrollTop from '@Hooks/useScrollTop';
 import PaletteSubPage from './PaletteSubpage';
@@ -102,8 +99,14 @@ function ResultPage(): JSX.Element {
   } = resultColorData[colorType];
 
   const [secondaryColor, worstColor] = [
-    { ...resultColorData[secondaryType], title: '이것도 좋아요' },
-    { ...resultColorData[worstType], title: '이건 피하세요' },
+    {
+      ...resultColorData[secondaryType],
+      title: 'secondaryType',
+    },
+    {
+      ...resultColorData[worstType],
+      title: 'worstType',
+    },
   ];
 
   const onClickAnotherResult = (type: ColorType) => {
@@ -133,7 +136,7 @@ function ResultPage(): JSX.Element {
             onClick={onClickPalette}
           />
 
-          <TagContent colorType={colorType} tags={tags} />
+          <Tag colorType={colorType} tags={tags} />
 
           <DescriptionContent colorType={colorType} />
 
@@ -141,11 +144,11 @@ function ResultPage(): JSX.Element {
             textColor={textColor}
             colorType={colorType}
             celebrities={celebrities}
-            colorTypeName={name}
           />
 
           <LikeOrDislikeContent
             colors={[secondaryColor, worstColor]}
+            colorType={colorType}
             onClick={onClickAnotherResult}
           />
         </S.ResultContainer>
@@ -189,26 +192,28 @@ function TitleContent({ colorType, textColor }: TitleContentProps) {
   );
 }
 
-interface TagContentProps {
-  tags: Tag[];
-  colorType: ColorType;
-}
+// interface TagContentProps {
+//   tags: Tag[];
+//   colorType: ColorType;
+// }
 
-function TagContent({ tags, colorType }: TagContentProps) {
-  return (
-    <S.TagWrapper>
-      {tags.map(({ backgroundColor, textColor }, index: number) => (
-        <S.Tag
-          key={index}
-          backgroundColor={backgroundColor}
-          textColor={textColor}
-        >
-          <FormattedMessage id={`${colorType}.keyword.${index}`} />
-        </S.Tag>
-      ))}
-    </S.TagWrapper>
-  );
-}
+// function TagContent({ tags, colorType }: TagContentProps) {
+//   return (
+//     <S.TagWrapper>
+//       {tags.map(({ backgroundColor, textColor }, index: number) => (
+//         <S.Tag
+//           key={index}
+//           backgroundColor={backgroundColor}
+//           textColor={textColor}
+//         >
+//           <FormattedMessage id={`${colorType}.keyword.${index}`}>
+//             {(message) => <span>{`#${message}`}</span>}
+//           </FormattedMessage>
+//         </S.Tag>
+//       ))}
+//     </S.TagWrapper>
+//   );
+// }
 
 interface DescriptionContentProps {
   colorType: ColorType;
@@ -217,9 +222,9 @@ interface DescriptionContentProps {
 function DescriptionContent({ colorType }: DescriptionContentProps) {
   return (
     <S.Description>
-      {[1, 2, 3, 4, 5].map((index) => (
+      {[0, 1, 2, 3, 4].map((index, number) => (
         <li key={index}>
-          <FormattedMessage id={`${colorType}.descriptions.${index - 1}`} />
+          <FormattedMessage id={`${colorType}.descriptions.${number}`} />
         </li>
       ))}
     </S.Description>
@@ -228,21 +233,19 @@ function DescriptionContent({ colorType }: DescriptionContentProps) {
 
 interface CelebritesContentProps {
   textColor: string;
-  colorTypeName: string;
   celebrities: Celeb[];
   colorType: ColorType;
 }
 
 function CelebritiesContent({
   textColor,
-  colorTypeName,
   celebrities,
   colorType,
 }: CelebritesContentProps) {
   return (
     <S.SubDescriptionTitle>
       <S.SubDescriptionTitleBold color={textColor}>
-        {colorTypeName}
+        <FormattedMessage id={`${colorType}.name`} />
       </S.SubDescriptionTitleBold>{' '}
       <FormattedMessage id="celebrities" />
       <S.CelebritiesWrapper>
@@ -269,18 +272,23 @@ function CelebritiesContent({
 
 interface LikeorDisLikeSubPageProps {
   colors: (ColorResult & { title: string })[];
+  colorType: ColorType;
   onClick: (type: ColorType) => void; // HJ TODO: click event @types 에 동록
 }
 
-function LikeOrDislikeContent({ colors, onClick }: LikeorDisLikeSubPageProps) {
+function LikeOrDislikeContent({
+  colors,
+  colorType,
+  onClick,
+}: LikeorDisLikeSubPageProps) {
   return (
     <>
       {colors.map(({ title, type, name, textColor, bestColors }) => (
         <S.ColorMatchButton key={name} onClick={() => onClick(type)}>
           <S.ColorMatchTitle>
-            {title}
+            <FormattedMessage id={`${title}Title`} />
             <S.SubDescriptionTitleBold color={textColor}>
-              {name}
+              <FormattedMessage id={`${colorType}.${title}`} />
             </S.SubDescriptionTitleBold>
           </S.ColorMatchTitle>
           <S.ColorMatchGrid>

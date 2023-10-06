@@ -6,7 +6,7 @@ import color from '@Data/color';
 import resultColorData from '@Data/resultColorData';
 import theme from '@Styles/theme';
 import { FormattedMessage } from 'react-intl';
-
+import Tag from '@Components/Tag/Tag';
 import {
   $Wrapper,
   $BackButton,
@@ -46,9 +46,9 @@ const AllTypesView = () => {
 
       <$Title>
         <$SubTitle>
-          <FormattedMessage id="allTypeView-1" />
+          <FormattedMessage id="allTypeView_1" />
         </$SubTitle>
-        <FormattedMessage id="allTypeView-2" />
+        <FormattedMessage id="allTypeView_2" />
       </$Title>
 
       <$PieChart
@@ -92,23 +92,9 @@ const AllTypesView = () => {
       {colorType ? (
         <>
           <$ColorTypeTitle color={color[selectedIndex].textColor}>
-            {color[selectedIndex].name}
+            <FormattedMessage id={`${colorType}.name`} />
           </$ColorTypeTitle>
-
-          <$TagWrapper>
-            {resultColorData[colorType].tags.map(
-              ({ keyword, backgroundColor, textColor }) => (
-                <$Tag
-                  key={keyword}
-                  backgroundColor={backgroundColor}
-                  textColor={textColor}
-                >
-                  {`#${keyword}`}
-                </$Tag>
-              )
-            )}
-          </$TagWrapper>
-
+          <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
           <$PaletteGrid>
             {resultColorData[colorType].gridColors.map(
               (backgroundColor, index) => (
@@ -121,7 +107,9 @@ const AllTypesView = () => {
           </$PaletteGrid>
         </>
       ) : (
-        <$Description><FormattedMessage id="clickType" /></$Description>
+        <$Description>
+          <FormattedMessage id="clickType" />
+        </$Description>
       )}
     </$Wrapper>
   );

@@ -70,6 +70,7 @@ export const $PaletteGrid = styled.div`
   grid-template-rows: repeat(5, 1fr);
   gap: 2px;
   width: 100%;
+  margin: 20px 0;
 `;
 
 export const $PaletteGridItem = styled.div.attrs<PaletteGridItemProps>(

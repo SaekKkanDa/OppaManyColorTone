@@ -39,10 +39,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         locale = 'en-US';
         break;
     }
-    setUserLocale(locale);
+    setUserLocale('en-US');
   }, [userLocale]);
-
-  console.log(userLocale);
 
   return (
     <>

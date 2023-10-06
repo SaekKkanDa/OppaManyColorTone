@@ -35,20 +35,147 @@
   "allTypeView_2": "Seasonal Color Palette",
   "clickType": "Click the Type!",
   "springbright": {
-    "name": "spring bright",
-    "tags": [
-      { "keyword": "화려함" },
-      { "keyword": "vivid" },
-      { "keyword": "화려함" },
-      { "keyword": "화려함" }
-    ],
+    "name": "Bright Spring",
+    "keyword": ["colorful", "vivid", "contrast", "fruits"],
     "descriptions": [
-      "bright",
-      "밝은 색부터 어두운 색, 차가운 색부터 따뜻한 색까지 활용할 수 있는 스펙트럼이 넓어요.",
-      "블랙 앤 화이트처럼 대비감이 강하게 느껴지는 스타일링이 좋아요.",
-      "형형색색의 쨍하고 화려한 고채도 색을 잘 소화해요.",
-      "회색이 많이 섞인 흐릿하고 탁한 색은 얼굴이 칙칙해 보이니 피해주세요."
+      "The Bright Spring color palette is reminiscent of exotic summer holidays.",
+      "From tropical waters to remote islands, these are the most saturated colors out of the twelve seasons.",
+      "Toned-down colors will dampen your natural brightness.",
+      "Cool colors will clash with your naturally warmer coloring.",
+      "Your coloring has warmer undertones, meaning gold flatters your skin more than silver."
     ],
-    "celebrities": ["아이유", "수지", "이준호"]
+    "celebrities": ["IU", "Suzy", "Junho Lee"]
+  },
+  "springwarm": {
+    "name": "True Spring",
+    "keyword": ["warm", "fresh", "lovely", "spring sun"],
+    "descriptions": [
+      "True Spring is the color season reminiscent of sunshine, tropical islands with turquoise water, yellow sand, lush green leaves and juicy fruit.",
+      "Feel free to combine neighboring hues, such as yellow and green.",
+      "Orangey reds, and peachy pinks are naturally look good on you.",
+      "True black and white are too cool and can make you look sallow.",
+      "The best color combinations for your outfits are similarly contrasting."
+    ],
+    "celebrities": ["Inna Yoo", "Jessica", "Jungwoo(nct)"]
+  },
+  "springlight": {
+    "name": "Light Spring",
+    "keyword": ["light", "delicate", "playful", "candies"],
+    "descriptions": [
+      "Light Spring combines lightness with warmth.",
+      "Aim for at least one bright color in your outfit to achieve a colorful look.",
+      "You may be able to wear both warm and cool metals.",
+      "But gold is the more foolproof choice.",
+      "Overly bright and saturated colors make you disappear behind them."
+    ],
+    "celebrities": ["YoonaH", "Jimin Han", "Jongsuk Lee"]
+  },
+  "summerlight": {
+    "name": "Light Summer",
+    "keyword": ["pure", "delicate", "colorful", "pinkish"],
+    "descriptions": [
+      "Light Summer is the color season reminiscent of mild summer mornings full of coolness and gentleness.",
+      "Light Summer combines lightness with coolness.",
+      "Pair a neutral with a brighter color, such as a medium grey with a brighter rose.",
+      "Due to the lightness of your natural coloring, your least flattering colors are dark.",
+      "Black near your face will make your delicate coloring disappear."
+    ],
+    "celebrities": ["Yejin Son", "Youngae Lee", "YooYeon Seok"]
+  },
+  "summercool": {
+    "name": "True Summer",
+    "keyword": ["cool", "gentle", "refreshing", "blue sea"],
+    "descriptions": [
+      "True Summer colors are like a dive into cold water - gentle, calming and refreshing.",
+      "You can use darker greys, blues and browns as dark neutrals for your outfits.",
+      "Light sand tones, very light greys are more suitable for you.",
+      "Warm and earthy colors with yellow undertones will clash with your natural coolness.",
+      "The best metals for True Summer are silver, white gold and platinum."
+    ],
+    "celebrities": ["Taeyeon", "Tiffany", "Seunggi Lee"]
+  },
+  "summermute": {
+    "name": "Soft Summer",
+    "keyword": ["soft", "dreamlike", "cloudy", "misty dawn"],
+    "descriptions": [
+      "The Soft Summer color palette contains highly desaturated, greyed out colors that would make other color seasons look washed out.",
+      "Greyish dark browns, sand tones, and muted browns will make you look bright.",
+      "True black and true white, which is a Winter color are not flattering on a Soft Summer.",
+      "Avoid rich, warm colors, like orangey reds and earthy browns.",
+      "Wearing rose gold works is a foolproof choice."
+    ],
+    "celebrities": ["Taeri Kim", "Jihyun Jun", "Dohyun Lee"]
+  },
+  "autumnmute": {
+    "name": "Soft Autumn",
+    "keyword": ["soft", "classic", "relaxed", "cappuccino"],
+    "descriptions": [
+      "Soft Autumn draws on the typical depth of color and warmth of Autumn.",
+      "They are the colors of nuts and seeds and the first fields ready to harvest.",
+      "The best colors for this season are gentle colors, such as olive greens and delicate reds and pinks.",
+      "Vibrant colors, such as intense oranges, will overpower you and may even make you look clownish.",
+      "Wood and other natural materials also make great accessories for you."
+    ],
+    "celebrities": ["Hyojin Gong", "Sooyoung", "GongYoo"]
+  },
+  "autumnwarm": {
+    "name": "Ture Autumn",
+    "keyword": ["warm", "graceful", "plentiful", "golden autumn"],
+    "descriptions": [
+      "The True Autumn palette contains warm greens, golden yellows, orangey reds and lots of golden browns.",
+      "Dark browns and slightly-olive greens are the best the dark neutrals for True Autumn.",
+      "Variations of beige, cream, and ecru are the best version of white.",
+      "Pastel pink or ice blue, will clash with your natural warmth and richness and will make you look off.",
+      "Greenish, grassy stones such as amber complement the beauty of True Autumn."
+    ],
+    "celebrities": ["Sekyung Shin", "Heesun Kim", "Minho Lee"]
+  },
+  "autumndeep": {
+    "name": "Dark Autumn",
+    "keyword": ["depth", "luxury", "sunset", "mystery"],
+    "descriptions": [
+      "Dark Autumn is the color season reminiscent of late autumn evenings.",
+      "The range of colors is quite broad, but the focus lies on golden hues such as mustard yellow, oranges and reds.",
+      "Dark chocolate browns will complement your warmer coloring more than true black.",
+      "White, pastel and other toned-down colors, such as dusty blues and pinks, will make your naturally rich colouring look off and washed out.",
+      "A large range of metals will look flattering on you."
+    ],
+    "celebrities": ["Jennie", "Heejung Kim", "Seungho Yoo"]
+  },
+  "winterdeep": {
+    "name": "Dark Winter",
+    "keyword": ["cold", "clear", "icy forest", "evening walk"],
+    "descriptions": [
+      "Dark Winter is the color season reminiscent of deep winter nights.",
+      "These colors are dark and cool, just like when the moon tints the night sky bright.",
+      "Since black is part of the Winter palette, you can even pull off an all-black look.",
+      "True white is also part of the Dark Winter palette.",
+      "But always pair it with a darker color to achieve high contrast."
+    ],
+    "celebrities": ["Hanee Lee", "Jisoo", "Seungwon Cha"]
+  },
+  "wintercool": {
+    "name": "True Winter",
+    "keyword": ["cool", "highly contrasting", "fancy", "snowy"],
+    "descriptions": [
+      "True Winter is the color season reminiscent of winter in its prime.",
+      "White, snowy landscapes contrast with bare trees and the darkest of nights.",
+      "Black and white is the classic combination and will look truly striking on you.",
+      "Avoid warm, earthy colors, such as golden browns and rusty oranges.",
+      "Diamonds, rubies and sapphires are great stone choices for True Winter."
+    ],
+    "celebrities": ["Karina", "Seulgi", "Soohyun Kim"]
+  },
+  "winterbright": {
+    "name": "Bright Winter",
+    "keyword": ["uncommon", "clear", "bright", "cool"],
+    "descriptions": [
+      "Bright Winter is the color season reminiscent of when the winter sun illuminates the snow-white expanses.",
+      "The colors are extreme – extremely intense, light, dark and vibrant.",
+      "Don’t be afraid to combine unlike colors, such as hot pink and teal.",
+      "Black or white alone, or black and white, are not intense enough for your coloring",
+      "Add a brighter color such as limelight, Rose Red and Palace Blue to lift your outfit."
+    ],
+    "celebrities": ["Joy", "Chaeyoung", "Jungsuk Jo"]
   }
 }

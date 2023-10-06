@@ -217,9 +217,9 @@ interface DescriptionContentProps {
 function DescriptionContent({ colorType }: DescriptionContentProps) {
   return (
     <S.Description>
-      {[1, 2, 3, 4].map((index) => (
+      {[1, 2, 3, 4, 5].map((index) => (
         <li key={index}>
-          <FormattedMessage id={`${colorType}.descriptions.${index}`} />
+          <FormattedMessage id={`${colorType}.descriptions.${index - 1}`} />
         </li>
       ))}
     </S.Description>

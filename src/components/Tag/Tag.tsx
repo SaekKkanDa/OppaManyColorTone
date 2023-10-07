@@ -1,5 +1,4 @@
-import React from 'react';
-import * as S from '@Pages/result/style';
+import * as S from './style';
 import { FormattedMessage } from 'react-intl';
 import { Tag } from '@Data/resultColorData';
 

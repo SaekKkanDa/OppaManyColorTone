@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { $FlexContainer, $Message, $Emoji, $HomeButton } from './style';
 import emoji from 'public/images/emoji/sad-emoji-3d.png';

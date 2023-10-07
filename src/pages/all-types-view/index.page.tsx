@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -15,8 +15,6 @@ import {
   $Description,
   $PieChart,
   $ColorTypeTitle,
-  $TagWrapper,
-  $Tag,
   $PaletteGrid,
   $PaletteGridItem,
 } from './style';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { $Explanation } from './style';
 import { FormattedMessage } from 'react-intl';
 

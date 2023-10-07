@@ -17,8 +17,9 @@ function ColorImgSpinner() {
       <$ThinkImg
         src={curiousEmoji.src}
         alt="curious emoji"
-        width={80}
-        height={80}
+        width={96}
+        height={99}
+        priority
       />
     </$ImgSpinnerWrap>
   );
@@ -46,8 +47,6 @@ export const $ColorChipImg = styled(Image)`
 export const $ThinkImg = styled(Image)`
   max-width: 80px;
   max-height: 80px;
-  width: 32vw;
-  height: 32vw;
   position: absolute;
   top: 50%;
   left: 50%;

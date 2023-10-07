@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   div#__next > div > div {
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100dvh;
   }
 
   h1, h2, h3, h4, h5, h6, button {

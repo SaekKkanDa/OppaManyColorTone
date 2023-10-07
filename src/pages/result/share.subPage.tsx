@@ -8,13 +8,12 @@ import kakaoIcon from 'public/images/icon/kakaoIcon.png';
 
 import ROUTE_PATH from '@Constant/routePath';
 import useKakaoShare from '@Hooks/useKakaoShare';
-import { captureElement, downloadImage } from '@Utils/capture';
 import { copyUrl } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
-import { isChrome, isKakao, isOSX } from '@Utils/userAgent';
-import CustomError, { CustomErrorConstructor } from '@Utils/customError';
+import { isChrome, isOSX } from '@Utils/userAgent';
 import RestartButton from '@Components/Button/RestartButton';
 import { FormattedMessage } from 'react-intl';
+import { captureAndDownload, checkIfKakaoAndAlert } from './share.logic';
 
 interface MenuSubPageProps {
   resultContainerRef: React.RefObject<HTMLDivElement>;
@@ -24,36 +23,22 @@ interface MenuSubPageProps {
 function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
 
-  // HJ TODO: 네이밍 이상함..
-  const kakaoAlert = () => {
-    const _isKakao = isKakao();
-
-    if (_isKakao) {
-      alert(
-        '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
-      );
-    }
-
-    return _isKakao;
-  };
-
-  const handleCapture = async () => {
-    if (kakaoAlert()) return;
+  const onClickCapture = async () => {
+    if (checkIfKakaoAndAlert() === true) return;
 
     const wrapper = resultContainerRef.current;
     if (!wrapper) return;
 
     const imgName = `${colorType}-result.png`;
-    const img = await captureElement(wrapper, imgName);
-    downloadImage(img, imgName);
+    captureAndDownload(wrapper, imgName);
   };
 
-  const handleLinkCopyClick = async () => {
-    if (kakaoAlert()) return;
+  const onClickLinkCopy = async () => {
+    if (checkIfKakaoAndAlert() === true) return;
     copyUrl(location.href);
   };
 
-  const handleKakaoShare = () => {
+  const onClickKakaoShare = () => {
     if (isLoading) {
       alert('로딩 중입니다. 다시 시도해주세요. 🥰');
     } else {
@@ -61,23 +46,24 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
     }
   };
 
-  const handleShare = async () => {
-    if (kakaoAlert()) return;
+  const onClickShare = async () => {
+    if (checkIfKakaoAndAlert() === true) return;
 
     if (isChrome() && isOSX()) {
       alert(
         'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
       );
-    } else {
-      await webShare();
+      return;
     }
+
+    await webShare();
   };
 
   return (
     <>
       <S.MenuContainer>
         <S.MenuItemWrapper>
-          <S.MenuItemButton onClick={handleCapture}>
+          <S.MenuItemButton onClick={onClickCapture}>
             <FontAwesomeIcon icon={faDownload} color={'white'} />
           </S.MenuItemButton>
           <S.MenuItemName>
@@ -86,7 +72,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
         </S.MenuItemWrapper>
 
         <S.MenuItemWrapper>
-          <S.MenuItemButton onClick={handleLinkCopyClick}>
+          <S.MenuItemButton onClick={onClickLinkCopy}>
             <FontAwesomeIcon icon={faLink} color={'white'} />
           </S.MenuItemButton>
           <S.MenuItemName>
@@ -95,7 +81,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
         </S.MenuItemWrapper>
 
         <S.MenuItemWrapper>
-          <S.KakaoShareButton onClick={handleKakaoShare}>
+          <S.KakaoShareButton onClick={onClickKakaoShare}>
             <S.MenuItemImg
               src={kakaoIcon}
               alt="카카오톡 공유 버튼"
@@ -109,7 +95,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
         </S.MenuItemWrapper>
 
         <S.MenuItemWrapper>
-          <S.MenuItemButton onClick={handleShare}>
+          <S.MenuItemButton onClick={onClickShare}>
             <FontAwesomeIcon icon={faShare} color={'white'} />
           </S.MenuItemButton>
           <S.MenuItemName>
@@ -128,12 +114,5 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
       </S.ButtonsWrapper>
     </>
   );
-}
-
-export class ShareError extends CustomError {
-  constructor(props: CustomErrorConstructor) {
-    super(props);
-    this.name = 'ShareError';
-  }
 }
 export default ShareSubPage;

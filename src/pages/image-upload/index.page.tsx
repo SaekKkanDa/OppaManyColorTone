@@ -9,6 +9,7 @@ import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
 import { useRecoilState } from 'recoil';
 import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
+import { FormattedMessage } from 'react-intl';
 
 import {
   $FlexContainer,
@@ -94,20 +95,26 @@ function ImageUploadPage() {
           )}
         </$ImageBox>
 
-        <$SelectImgButton onClick={clickInput}>사진 선택</$SelectImgButton>
-        <$Guidance>실제와 비슷한 톤의 얼굴 사진을 선택해주세요.</$Guidance>
+        <$SelectImgButton onClick={clickInput}>
+          <FormattedMessage id="selectImgButton" />
+        </$SelectImgButton>
+        <$Guidance>
+          <FormattedMessage id="guidance" />
+        </$Guidance>
         <$Notification>
           <h6>
             <FontAwesomeIcon icon={faFaceSmile} size="sm" />
-            안심하세요!
+            <FormattedMessage id="notification_1" />
           </h6>
-          본 진단은 사용자의 사진을 수집하지 않습니다.
+          <FormattedMessage id="notification_2" />
           <br />
-          사진은 본 진단 외 다른 목적으로 이용되지 않습니다.
+          <FormattedMessage id="notification_3" />
         </$Notification>
 
         <Link href={ROUTE_PATH.choiceColor}>
-          <$NextButton disabled={!imagePreviewURL}>다음으로</$NextButton>
+          <$NextButton disabled={!imagePreviewURL}>
+            <FormattedMessage id="nextButton" />
+          </$NextButton>
         </Link>
       </$FlexContainer>
     </ModalContainer>

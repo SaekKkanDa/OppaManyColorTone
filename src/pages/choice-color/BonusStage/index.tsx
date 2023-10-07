@@ -5,12 +5,15 @@ import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
 import LoadingIndicator from '@Components/LoadingIndicator';
 import Guidance from '../Guidance';
+import { FormattedMessage } from 'react-intl';
+
 import {
   $BonusStatusBox,
   $BonusStatusContent,
   $BonusColorBox,
   $BonusColor,
 } from './style';
+
 interface BonusStageProps {
   userImg: string;
   bonusColorTypes: string[] | null;
@@ -33,7 +36,9 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
   return bonusColorTypes ? (
     <>
       <$BonusStatusBox />
-      <$BonusStatusContent>마지막 단계</$BonusStatusContent>
+      <$BonusStatusContent>
+        <FormattedMessage id="bonusStatus" />
+      </$BonusStatusContent>
 
       <Guidance />
 

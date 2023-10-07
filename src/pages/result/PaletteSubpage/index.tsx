@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as S from './style';
 import Palette from '@Components/Palette/Palette';
 import { Color } from '@Data/resultColorData';
+import { FormattedMessage } from 'react-intl';
 
 // HJ TODO: props가 맞을까 store가 맞을까?
 interface PaletteSubPageProps {
@@ -21,7 +22,9 @@ function PaletteSubPage({ imgSrc, colors, onClick }: PaletteSubPageProps) {
   return (
     <S.PaletteWrapper>
       {!isBeforeClick && (
-        <S.InteractionInfo>팔레트를 눌러보세요!</S.InteractionInfo>
+        <S.InteractionInfo>
+          <FormattedMessage id="interactionInfo" />
+        </S.InteractionInfo>
       )}
       <Palette imgSrc={imgSrc} colors={colors} onClick={onClickWrapper} />
     </S.PaletteWrapper>

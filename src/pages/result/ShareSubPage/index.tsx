@@ -14,6 +14,7 @@ import { webShare } from '@Utils/share';
 import { isChrome, isKakao, isOSX } from '@Utils/userAgent';
 import CustomError, { CustomErrorConstructor } from '@Utils/customError';
 import RestartButton from '@Components/Button/RestartButton';
+import { FormattedMessage } from 'react-intl';
 
 interface MenuSubPageProps {
   resultContainerRef: React.RefObject<HTMLDivElement>;
@@ -79,14 +80,18 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
           <S.MenuItemButton onClick={handleCapture}>
             <FontAwesomeIcon icon={faDownload} color={'white'} />
           </S.MenuItemButton>
-          <S.MenuItemName>결과저장</S.MenuItemName>
+          <S.MenuItemName>
+            <FormattedMessage id="saveResult" />
+          </S.MenuItemName>
         </S.MenuItemWrapper>
 
         <S.MenuItemWrapper>
           <S.MenuItemButton onClick={handleLinkCopyClick}>
             <FontAwesomeIcon icon={faLink} color={'white'} />
           </S.MenuItemButton>
-          <S.MenuItemName>링크복사</S.MenuItemName>
+          <S.MenuItemName>
+            <FormattedMessage id="copyUrl" />
+          </S.MenuItemName>
         </S.MenuItemWrapper>
 
         <S.MenuItemWrapper>
@@ -98,20 +103,26 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
               height={48}
             />
           </S.KakaoShareButton>
-          <S.MenuItemName>카카오톡</S.MenuItemName>
+          <S.MenuItemName>
+            <FormattedMessage id="kakaotalk" />
+          </S.MenuItemName>
         </S.MenuItemWrapper>
 
         <S.MenuItemWrapper>
           <S.MenuItemButton onClick={handleShare}>
             <FontAwesomeIcon icon={faShare} color={'white'} />
           </S.MenuItemButton>
-          <S.MenuItemName>공유하기</S.MenuItemName>
+          <S.MenuItemName>
+            <FormattedMessage id="shareResult" />
+          </S.MenuItemName>
         </S.MenuItemWrapper>
       </S.MenuContainer>
 
       <S.ButtonsWrapper>
         <Link href={ROUTE_PATH.allTypesView}>
-          <S.AllTypesButton>유형 전체보기</S.AllTypesButton>
+          <S.AllTypesButton>
+            <FormattedMessage id="allTypes" />
+          </S.AllTypesButton>
         </Link>
         <RestartButton />
       </S.ButtonsWrapper>

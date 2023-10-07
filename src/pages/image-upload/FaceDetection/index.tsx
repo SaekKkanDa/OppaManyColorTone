@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { CropImage } from '@Recoil/app';
 import theme from '@Styles/theme';
+import { FormattedMessage } from 'react-intl';
+
 import {
   $FlexContainer,
   $InputScale,
@@ -104,11 +106,13 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
         <FontAwesomeIcon icon={faPlus} size="1x" color={theme.gray[900]} />
       </$ScaleBox>
       <$Guidance>
-        옷을 제외하고 얼굴과 헤어만 포함되도록
+        <FormattedMessage id="modalGuidance_1" />
         <br />
-        영역을 설정해주세요.
+        <FormattedMessage id="modalGuidance_2" />
       </$Guidance>
-      <$ConfirmButton onClick={handleSave}>확인</$ConfirmButton>
+      <$ConfirmButton onClick={handleSave}>
+        <FormattedMessage id="confirmButton" />
+      </$ConfirmButton>
     </$FlexContainer>
   );
 }

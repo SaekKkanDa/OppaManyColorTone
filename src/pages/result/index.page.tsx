@@ -4,11 +4,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import ROUTE_PATH from '@Constant/routePath';
-import resultColorData, {
-  Celeb,
-  ColorResult,
-  Tag,
-} from '@Data/resultColorData';
+import resultColorData, { Celeb, ColorResult } from '@Data/resultColorData';
 import { CropImage } from '@Recoil/app';
 
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
@@ -20,6 +16,7 @@ import ColorTransition, {
 } from '@Components/Transition/ColorTransition';
 import RestartButton from '@Components/Button/RestartButton';
 import LoadingIndicator from '@Components/LoadingIndicator';
+import Tag from '@Components/Tag/Tag';
 import ShareSubPage from './ShareSubPage';
 import useScrollTop from '@Hooks/useScrollTop';
 import PaletteSubPage from './PaletteSubpage';
@@ -28,6 +25,8 @@ import {
   globalTextColorAtom,
 } from '@Recoil/globalStyleStore';
 import { invertColor } from '@Utils/colorExtension';
+
+import { FormattedMessage } from 'react-intl';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -75,7 +74,9 @@ function ResultPage(): JSX.Element {
   if (isError) {
     return (
       <S.LoadingWrapper>
-        <S.Title>예기치 못한 상황이 발생했습니다.</S.Title>
+        <S.Title>
+          <FormattedMessage id="errorMsg" />
+        </S.Title>
         <ColorImgSpinner />
         <RestartButton />
       </S.LoadingWrapper>
@@ -87,20 +88,18 @@ function ResultPage(): JSX.Element {
   }
 
   // HJ TODO: selector로 뺼 수 있음
-  const {
-    name,
-    textColor,
-    gridColors,
-    tags,
-    descriptions,
-    celebrities,
-    secondaryType,
-    worstType,
-  } = resultColorData[colorType];
+  const { textColor, gridColors, tags, celebrities, secondaryType, worstType } =
+    resultColorData[colorType];
 
   const [secondaryColor, worstColor] = [
-    { ...resultColorData[secondaryType], title: '이것도 좋아요' },
-    { ...resultColorData[worstType], title: '이건 피하세요' },
+    {
+      ...resultColorData[secondaryType],
+      title: 'secondaryType',
+    },
+    {
+      ...resultColorData[worstType],
+      title: 'worstType',
+    },
   ];
 
   const onClickAnotherResult = (type: ColorType) => {
@@ -122,7 +121,7 @@ function ResultPage(): JSX.Element {
     <>
       <S.Wrapper>
         <S.ResultContainer ref={resultContainerRef}>
-          <TitleContent textColor={textColor} colorTypeName={name} />
+          <TitleContent colorType={colorType} textColor={textColor} />
 
           <PaletteSubPage
             imgSrc={userImg}
@@ -130,18 +129,19 @@ function ResultPage(): JSX.Element {
             onClick={onClickPalette}
           />
 
-          <TagContent tags={tags} />
+          <Tag colorType={colorType} tags={tags} />
 
-          <DescriptionContent descriptions={descriptions} />
+          <DescriptionContent colorType={colorType} />
 
           <CelebritiesContent
             textColor={textColor}
-            colorTypeName={name}
+            colorType={colorType}
             celebrities={celebrities}
           />
 
           <LikeOrDislikeContent
             colors={[secondaryColor, worstColor]}
+            colorType={colorType}
             onClick={onClickAnotherResult}
           />
         </S.ResultContainer>
@@ -171,48 +171,54 @@ function useUserImg() {
 
 // HJ TODO: 파일 분리 + store 사용 + 렌더 기능만 하는 컴포넌트의 경우 컨벤션?
 interface TitleContentProps {
+  colorType: ColorType;
   textColor: string;
-  colorTypeName: string;
 }
 
-function TitleContent({ textColor, colorTypeName }: TitleContentProps) {
+function TitleContent({ colorType, textColor }: TitleContentProps) {
   return (
     <S.Title>
-      당신의 퍼스널 컬러는
-      <S.TitleBold color={textColor}>{colorTypeName}</S.TitleBold>
+      <S.TitleBold color={textColor}>
+        <FormattedMessage id={`${colorType}.name`} />
+      </S.TitleBold>
     </S.Title>
   );
 }
 
-interface TagContentProps {
-  tags: Tag[];
-}
+// interface TagContentProps {
+//   tags: Tag[];
+//   colorType: ColorType;
+// }
 
-function TagContent({ tags }: TagContentProps) {
-  return (
-    <S.TagWrapper>
-      {tags.map(({ keyword, backgroundColor, textColor }) => (
-        <S.Tag
-          key={keyword}
-          backgroundColor={backgroundColor}
-          textColor={textColor}
-        >
-          {`#${keyword}`}
-        </S.Tag>
-      ))}
-    </S.TagWrapper>
-  );
-}
+// function TagContent({ tags, colorType }: TagContentProps) {
+//   return (
+//     <S.TagWrapper>
+//       {tags.map(({ backgroundColor, textColor }, index: number) => (
+//         <S.Tag
+//           key={index}
+//           backgroundColor={backgroundColor}
+//           textColor={textColor}
+//         >
+//           <FormattedMessage id={`${colorType}.keyword.${index}`}>
+//             {(message) => <span>{`#${message}`}</span>}
+//           </FormattedMessage>
+//         </S.Tag>
+//       ))}
+//     </S.TagWrapper>
+//   );
+// }
 
 interface DescriptionContentProps {
-  descriptions: string[];
+  colorType: ColorType;
 }
 
-function DescriptionContent({ descriptions }: DescriptionContentProps) {
+function DescriptionContent({ colorType }: DescriptionContentProps) {
   return (
     <S.Description>
-      {descriptions.map((description, index) => (
-        <li key={description + index}>{description}</li>
+      {[0, 1, 2, 3, 4].map((index, number) => (
+        <li key={index}>
+          <FormattedMessage id={`${colorType}.descriptions.${number}`} />
+        </li>
       ))}
     </S.Description>
   );
@@ -220,21 +226,21 @@ function DescriptionContent({ descriptions }: DescriptionContentProps) {
 
 interface CelebritesContentProps {
   textColor: string;
-  colorTypeName: string;
   celebrities: Celeb[];
+  colorType: ColorType;
 }
 
 function CelebritiesContent({
   textColor,
-  colorTypeName,
   celebrities,
+  colorType,
 }: CelebritesContentProps) {
   return (
     <S.SubDescriptionTitle>
       <S.SubDescriptionTitleBold color={textColor}>
-        {colorTypeName}
+        <FormattedMessage id={`${colorType}.name`} />
       </S.SubDescriptionTitleBold>{' '}
-      대표 연예인
+      <FormattedMessage id="celebrities" />
       <S.CelebritiesWrapper>
         {celebrities.map(({ name, imageURL }, idx) => {
           return (
@@ -246,7 +252,9 @@ function CelebritiesContent({
                 width={92}
                 height={92}
               />
-              <S.CelebrityName>{name}</S.CelebrityName>
+              <S.CelebrityName>
+                <FormattedMessage id={`${colorType}.celebrities.${idx}`} />
+              </S.CelebrityName>
             </S.CelebrityWrapper>
           );
         })}
@@ -257,18 +265,23 @@ function CelebritiesContent({
 
 interface LikeorDisLikeSubPageProps {
   colors: (ColorResult & { title: string })[];
+  colorType: ColorType;
   onClick: (type: ColorType) => void; // HJ TODO: click event @types 에 동록
 }
 
-function LikeOrDislikeContent({ colors, onClick }: LikeorDisLikeSubPageProps) {
+function LikeOrDislikeContent({
+  colors,
+  colorType,
+  onClick,
+}: LikeorDisLikeSubPageProps) {
   return (
     <>
       {colors.map(({ title, type, name, textColor, bestColors }) => (
         <S.ColorMatchButton key={name} onClick={() => onClick(type)}>
           <S.ColorMatchTitle>
-            {title}
+            <FormattedMessage id={`${title}Title`} />
             <S.SubDescriptionTitleBold color={textColor}>
-              {name}
+              <FormattedMessage id={`${colorType}.${title}`} />
             </S.SubDescriptionTitleBold>
           </S.ColorMatchTitle>
           <S.ColorMatchGrid>

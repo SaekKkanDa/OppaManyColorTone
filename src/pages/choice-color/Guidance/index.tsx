@@ -1,14 +1,15 @@
 import React from 'react';
 import { $Explanation } from './style';
+import { FormattedMessage } from 'react-intl';
 
 function Guidance() {
   return (
     <$Explanation>
-      얼굴과 잘 어울리는 색을 선택해주세요.
+      <FormattedMessage id="explanation_1" />
       <p>
-        얼굴과 색이 하나로 이어진 것처럼 조화로워 보이고,
+        <FormattedMessage id="explanation_2" />
         <br />
-        피부색이 균일하고 맑아 보이는 색이 잘 어울리는 색입니다.
+        <FormattedMessage id="explanation_3" />
       </p>
     </$Explanation>
   );

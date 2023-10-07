@@ -5,6 +5,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
 import resultColorData from '@Data/resultColorData';
 import theme from '@Styles/theme';
+import { FormattedMessage } from 'react-intl';
+import Tag from '@Components/Tag/Tag';
 import {
   $Wrapper,
   $BackButton,
@@ -43,7 +45,10 @@ const AllTypesView = () => {
       </$BackButton>
 
       <$Title>
-        <$SubTitle>한 눈에 보는 </$SubTitle>퍼스널 컬러
+        <$SubTitle>
+          <FormattedMessage id="allTypeView_1" />
+        </$SubTitle>
+        <FormattedMessage id="allTypeView_2" />
       </$Title>
 
       <$PieChart
@@ -87,10 +92,9 @@ const AllTypesView = () => {
       {colorType ? (
         <>
           <$ColorTypeTitle color={color[selectedIndex].textColor}>
-            {color[selectedIndex].name}
+            <FormattedMessage id={`${colorType}.name`} />
           </$ColorTypeTitle>
-
-          <$TagWrapper>
+          {/* <$TagWrapper>
             {resultColorData[colorType].tags.map(
               ({ keyword, backgroundColor, textColor }) => (
                 <$Tag
@@ -102,8 +106,8 @@ const AllTypesView = () => {
                 </$Tag>
               )
             )}
-          </$TagWrapper>
-
+          </$TagWrapper> */}
+          <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
           <$PaletteGrid>
             {resultColorData[colorType].gridColors.map(
               (backgroundColor, index) => (
@@ -116,7 +120,9 @@ const AllTypesView = () => {
           </$PaletteGrid>
         </>
       ) : (
-        <$Description>컬러 유형을 클릭해 보세요!</$Description>
+        <$Description>
+          <FormattedMessage id="clickType" />
+        </$Description>
       )}
     </$Wrapper>
   );

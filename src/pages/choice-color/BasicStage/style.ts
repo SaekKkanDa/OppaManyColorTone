@@ -17,10 +17,9 @@ export const $StatusBar = styled.div<{ width: string }>`
   transition: width ease 0.5s;
 `;
 
-export const $StatusContent = styled.div`
+export const $StatusContent = styled.h6`
   margin: 8px 0 24px;
   color: ${({ theme }) => theme.gray[600]};
-  font-family: 'yg-jalnan';
   font-size: 18px;
 `;
 

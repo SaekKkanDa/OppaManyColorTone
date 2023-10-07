@@ -87,18 +87,6 @@ export default class MyDcoument extends Document {
             href="/favicon/favicon-16x16.png"
           />
           <link rel="manifest" href="/favicon/site.webmanifest" />
-
-          {/* Google Fonts */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin=""
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
-            rel="stylesheet"
-          />
         </Head>
 
         <body>

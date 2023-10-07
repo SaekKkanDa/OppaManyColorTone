@@ -88,15 +88,8 @@ function ResultPage(): JSX.Element {
   }
 
   // HJ TODO: selector로 뺼 수 있음
-  const {
-    name,
-    textColor,
-    gridColors,
-    tags,
-    celebrities,
-    secondaryType,
-    worstType,
-  } = resultColorData[colorType];
+  const { textColor, gridColors, tags, celebrities, secondaryType, worstType } =
+    resultColorData[colorType];
 
   const [secondaryColor, worstColor] = [
     {

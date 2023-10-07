@@ -31,3 +31,8 @@ export const Result = atom({
   key: 'result',
   default: '',
 });
+
+export const Locale = atom({
+  key: 'locale',
+  default: 'ko-KR',
+});

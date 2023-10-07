@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
-import { CropImage } from '@Recoil/app';
+import { faShareNodes, faLanguage } from '@fortawesome/free-solid-svg-icons';
+import { CropImage, Locale } from '@Recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import omctDb from '@Utils/omctDb';
 import { canWebShare, webShare } from '@Utils/share';
@@ -14,13 +14,13 @@ import questionBubble from 'public/images/icon/question-bubble.png';
 import * as S from './style';
 import Image from 'next/image';
 import { FormattedMessage } from 'react-intl';
-
 function LandingPage() {
   const router = useRouter();
 
   const [numberOfUsers, setNumberOfUsers] = useState(0);
 
   const setUserImg = useSetRecoilState(CropImage);
+  const setLocale = useSetRecoilState(Locale);
 
   useEffect(() => {
     const getNumberOfUsers = async () => {
@@ -41,6 +41,10 @@ function LandingPage() {
   const handleShare = async () => {
     if (canWebShare) return await webShare();
     await copyUrl(location.href);
+  };
+
+  const handleLocale = () => {
+    setLocale((prev) => (prev === 'en-US' ? 'ko-KR' : 'en-US'));
   };
 
   return (
@@ -82,6 +86,11 @@ function LandingPage() {
             <S.ShareButton onClick={handleShare}>
               <FontAwesomeIcon icon={faShareNodes} size="2x" />
             </S.ShareButton>
+            <FontAwesomeIcon
+              onClick={handleLocale}
+              icon={faLanguage}
+              size="2x"
+            />
           </S.UserInfoWrapper>
 
           <S.StartButton onClick={onClickStartButton}>

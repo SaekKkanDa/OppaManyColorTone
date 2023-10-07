@@ -94,6 +94,19 @@ const AllTypesView = () => {
           <$ColorTypeTitle color={color[selectedIndex].textColor}>
             <FormattedMessage id={`${colorType}.name`} />
           </$ColorTypeTitle>
+          {/* <$TagWrapper>
+            {resultColorData[colorType].tags.map(
+              ({ keyword, backgroundColor, textColor }) => (
+                <$Tag
+                  key={keyword}
+                  backgroundColor={backgroundColor}
+                  textColor={textColor}
+                >
+                  {`#${keyword}`}
+                </$Tag>
+              )
+            )}
+          </$TagWrapper> */}
           <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
           <$PaletteGrid>
             {resultColorData[colorType].gridColors.map(

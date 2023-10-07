@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import shuffle from '@Utils/shuffle';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';

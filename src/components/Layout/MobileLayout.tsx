@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useViewportHeight from '@Hooks/useViewportHeight';
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -16,7 +16,7 @@ import EnLanguage from './../../../public/translations/en.json';
 function MobileLayout({ children }: React.PropsWithChildren) {
   const bgColor = useRecoilValue(globalBgColorAtom);
   const textColor = useRecoilValue(globalTextColorAtom);
-  const [locale, setLocale] = useRecoilState(Locale);
+  const [locale] = useRecoilState(Locale);
   useViewportHeight();
 
   const translationsForUsersLocale = {

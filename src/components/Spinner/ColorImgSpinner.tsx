@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import colorWheel from 'public/images/logo/color-wheel-3d.png';

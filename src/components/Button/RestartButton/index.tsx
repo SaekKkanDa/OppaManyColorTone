@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { BorderedButton } from '@Styles/theme';
 import ROUTE_PATH from '@Constant/routePath';

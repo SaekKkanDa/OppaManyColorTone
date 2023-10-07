@@ -11,7 +11,7 @@ export const $CroppedImageBox = styled(Image)`
 
 export const $FlexContainer = styled.div<{ isModalOpen: boolean }>`
   display: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'block')};
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100dvh;
   ${flexCustom('column', 'center', 'center')}
   padding: 40px 20px;
 `;

@@ -13,19 +13,19 @@ export const Indicator = styled(Image)`
   left: 50%;
   width: 48px;
   height: 48px;
-  animation: spinner 3s infinite linear;
+  animation: loading-spinner 3s infinite linear;
   transform: translate(-50%, -50%);
   z-index: 100;
 
-  @keyframes spinner {
+  @keyframes loading-spinner {
     0% {
-      transform: rotate(0deg);
+      transform: translate(-50%, -50%) rotate(0deg);
     }
     50% {
-      transform: rotate(180deg);
+      transform: translate(-50%, -50%) rotate(180deg);
     }
     100% {
-      transform: rotate(360deg);
+      transform: translate(-50%, -50%) rotate(360deg);
     }
   }
 `;

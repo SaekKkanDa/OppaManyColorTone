@@ -1,9 +1,13 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareNodes, faLanguage } from '@fortawesome/free-solid-svg-icons';
+import {
+  faShareFromSquare,
+  faLanguage,
+} from '@fortawesome/free-solid-svg-icons';
 import { CropImage, Locale } from '@Recoil/app';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
 import omctDb from '@Utils/omctDb';
@@ -83,8 +87,8 @@ function LandingPage() {
               {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
               <FormattedMessage id="userCount_2" />
             </S.UserCount>
-            <S.ShareButton onClick={handleShare}>
-              <FontAwesomeIcon icon={faShareNodes} size="2x" />
+            <S.ShareButton name="share" onClick={handleShare}>
+              <FontAwesomeIcon icon={faShareFromSquare} size="2x" />
             </S.ShareButton>
             <FontAwesomeIcon
               onClick={handleLocale}

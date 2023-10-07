@@ -41,6 +41,11 @@ export const SpinnerWrapper = styled.div`
   flex: 3 1 0;
 `;
 
+export const SpinnerLoadingArea = styled.div`
+  width: 240px;
+  height: 240px;
+`;
+
 export const AllTypesViewLink = styled(Link)`
   position: absolute;
   top: calc(50% - 80px);
@@ -121,7 +126,8 @@ export const UserCount = styled.div`
 `;
 
 export const ShareButton = styled.button`
-  color: ${({ theme }) => theme.gray[800]};
+  color: ${({ theme }) => theme.gray[500]};
+  font-size: 12px;
 
   &:active {
     color: ${({ theme }) => theme.gray[900]};

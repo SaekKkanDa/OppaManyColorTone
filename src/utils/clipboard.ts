@@ -1,5 +1,5 @@
 import { OmctErrorNo } from '@Constant/errorKeyValue';
-import { ShareError } from '@Pages/result/ShareSubPage';
+import { ShareError } from '@Utils/customError';
 
 export async function updateClipboard(newClip: string) {
   return navigator.clipboard.writeText(newClip);

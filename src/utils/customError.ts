@@ -17,3 +17,10 @@ export default class CustomError extends Error {
     this.message = msg;
   }
 }
+
+export class ShareError extends CustomError {
+  constructor(props: CustomErrorConstructor) {
+    super(props);
+    this.name = 'ShareError';
+  }
+}

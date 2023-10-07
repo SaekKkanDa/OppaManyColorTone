@@ -1,4 +1,5 @@
 import React from 'react';
+import Script from 'next/script';
 import Document, {
   Html,
   Head,
@@ -58,6 +59,13 @@ export default class MyDcoument extends Document {
           <meta
             name="naver-site-verification"
             content="4be41e9a6714ed8ff418f6bfaa1eb7fcb635871c"
+          />
+
+          {/* Google Adsense */}
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9551977219354865"
+            crossOrigin="anonymous"
           />
 
           {/* favicon: icons created by Freepik - Flaticon */}

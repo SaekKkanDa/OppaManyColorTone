@@ -1,19 +1,29 @@
+import localFont from 'next/font/local';
+import { Noto_Sans_KR } from 'next/font/google';
 import { createGlobalStyle } from 'styled-components';
 import ResetStyle from './resetStyle';
 import theme from './theme';
+
+const notoSansKr = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  display: 'swap',
+});
+
+const jalnan = localFont({
+  src: [
+    {
+      path: '../../public/fonts/JalnanOTF00.woff',
+      weight: 'normal',
+    },
+  ],
+});
 
 const GlobalStyle = createGlobalStyle`
   ${ResetStyle}
 
   :root {
-    --vh: 100%;
-  }
-
-  @font-face {
-    font-family: 'yg-jalnan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    --font-jalnan: ${jalnan.style.fontFamily}
   }
 
   * {
@@ -21,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: ${notoSansKr.style.fontFamily};
   }
 	
   body {
@@ -31,11 +41,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   div#__next > div > div {
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100dvh;
   }
 
   h1, h2, h3, h4, h5, h6, button {
-    font-family: 'yg-jalnan';
+    font-family: var(--font-jalnan);
   }
 
   button {

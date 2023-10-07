@@ -1,4 +1,5 @@
 import React from 'react';
+import Script from 'next/script';
 import Document, {
   Html,
   Head,
@@ -60,6 +61,13 @@ export default class MyDcoument extends Document {
             content="4be41e9a6714ed8ff418f6bfaa1eb7fcb635871c"
           />
 
+          {/* Google Adsense */}
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9551977219354865"
+            crossOrigin="anonymous"
+          />
+
           {/* favicon: icons created by Freepik - Flaticon */}
           <link
             rel="apple-touch-icon"
@@ -79,18 +87,6 @@ export default class MyDcoument extends Document {
             href="/favicon/favicon-16x16.png"
           />
           <link rel="manifest" href="/favicon/site.webmanifest" />
-
-          {/* Google Fonts */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin=""
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
-            rel="stylesheet"
-          />
         </Head>
 
         <body>

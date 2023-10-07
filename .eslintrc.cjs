@@ -10,6 +10,7 @@ module.exports = {
     'prettier',
     'plugin:@typescript-eslint/recommended',
     'plugin:@next/next/recommended',
+    'plugin:react/jsx-runtime',
   ],
   parser: '@typescript-eslint/parser',
   overrides: [],
@@ -24,6 +25,7 @@ module.exports = {
       'warn',
       { additionalHooks: '(useRecoilCallback|useRecoilTransaction_UNSTABLE)' },
     ],
+    '@typescript-eslint/no-empty-interface': 'off',
   },
   settings: {
     react: {

@@ -5,12 +5,10 @@ export function checkIfKakaoAndAlert() {
   const _isKakao = isKakao();
 
   if (_isKakao) {
-    alert(
-      '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
-    );
+    return '카카오 인앱 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰';
   }
 
-  return _isKakao;
+  return null;
 }
 
 export async function captureAndDownload(element: HTMLElement, name: string) {

@@ -38,7 +38,6 @@ function FaceDetection({
     if (!file.type.startsWith('image/')) {
       setIsModalOpen(false);
       setAlertModal('이미지 파일을 선택해 주세요.');
-      // alert('이미지 파일을 선택해 주세요.');
       return;
     }
 

@@ -27,9 +27,13 @@ function ShareSubPage({
   setAlertModal,
 }: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
+  const kakaoAlertMsg = checkIfKakaoAndAlert();
 
   const onClickCapture = async () => {
-    if (checkIfKakaoAndAlert() === true) return;
+    if (kakaoAlertMsg) {
+      setAlertModal(kakaoAlertMsg);
+      return;
+    }
 
     const wrapper = resultContainerRef.current;
     if (!wrapper) return;
@@ -39,13 +43,15 @@ function ShareSubPage({
   };
 
   const onClickLinkCopy = async () => {
-    if (checkIfKakaoAndAlert() === true) return;
+    if (kakaoAlertMsg) {
+      setAlertModal(kakaoAlertMsg);
+      return;
+    }
     copyUrl(location.href);
   };
 
   const onClickKakaoShare = () => {
     if (isLoading) {
-      // alert('로딩 중입니다. 다시 시도해주세요. 🥰');
       setAlertModal('다시 시도해주세요. 🥰');
     } else {
       kakaoShare();
@@ -53,15 +59,15 @@ function ShareSubPage({
   };
 
   const onClickShare = async () => {
-    if (checkIfKakaoAndAlert() === true) return;
+    if (kakaoAlertMsg) {
+      setAlertModal(kakaoAlertMsg);
+      return;
+    }
 
     if (isChrome() && isOSX()) {
       setAlertModal(
         'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
       );
-      // alert(
-      //   'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
-      // );
       return;
     }
 

@@ -69,9 +69,6 @@ function ResultPage(): JSX.Element {
 
   return (
     <S.Wrapper>
-      {alertModal && (
-        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
-      )}
       <S.ResultContainer ref={resultContainerRef}>
         <S.Title>
           <S.TitleBold color={textColor}>
@@ -140,7 +137,9 @@ function ResultPage(): JSX.Element {
           )
         )}
       </S.ResultContainer>
-
+      {alertModal && (
+        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+      )}
       <ShareSubPage
         resultContainerRef={resultContainerRef}
         colorType={colorType}

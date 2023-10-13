@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ModalContainer, ModalBackground, Button } from '@Styles/theme';
 
-function AlertModal() {
+interface AlertModalProps {
+  alertModal: string;
+  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
+}
+function AlertModal({ alertModal, setAlertModal }: AlertModalProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    alertModal ? setIsModalOpen(true) : setIsModalOpen(false);
+  }, [alertModal]);
+
   return (
-    <ModalContainer isModalOpen={false}>
+    <ModalContainer isModalOpen={isModalOpen}>
       <ModalBackground />
       <Modal>
-        <h1>링크 복사에 실패했어요...🥲</h1>
-        <Button>닫기</Button>
+        <h1>{alertModal}</h1>
+        <Button
+          onClick={() => {
+            setAlertModal('');
+          }}
+        >
+          닫기
+        </Button>
       </Modal>
     </ModalContainer>
   );
@@ -34,6 +50,9 @@ const Modal = styled.div`
   gap: 50px;
   font-size: 24px;
   font-weight: 500;
+  h1 {
+    line-height: 1.2;
+  }
   button {
     font-size: 20px;
   }

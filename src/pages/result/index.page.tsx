@@ -19,7 +19,6 @@ import {
 import { FormattedMessage } from 'react-intl';
 import Tag from '@Components/Tag/Tag';
 import AlertModal from '@Components/AlertModal/AlertModal';
-import { ModalContainer, ModalBackground, BorderedButton } from '@Styles/theme';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -70,7 +69,9 @@ function ResultPage(): JSX.Element {
 
   return (
     <S.Wrapper>
-      {alertModal && <AlertModal />}
+      {alertModal && (
+        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+      )}
       <S.ResultContainer ref={resultContainerRef}>
         <S.Title>
           <S.TitleBold color={textColor}>
@@ -143,6 +144,7 @@ function ResultPage(): JSX.Element {
       <ShareSubPage
         resultContainerRef={resultContainerRef}
         colorType={colorType}
+        setAlertModal={setAlertModal}
       />
     </S.Wrapper>
   );

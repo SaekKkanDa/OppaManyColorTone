@@ -22,11 +22,12 @@ import {
   $Notification,
   $CroppedImageBox,
 } from './style';
+import AlertModal from '@Components/AlertModal/AlertModal';
 
 function ImageUploadPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [alertModal, setAlertModal] = useState('');
   const imagePreviewURL = useRecoilState(CropImage)[0];
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
@@ -41,8 +42,7 @@ function ImageUploadPage() {
       setIsModalOpen(true);
       return;
     }
-
-    alert('다시 시도해 주세요.');
+    setAlertModal('다시 시도해 주세요.');
   };
 
   return (
@@ -53,11 +53,15 @@ function ImageUploadPage() {
             <FaceDetection
               imageFile={imageFile}
               setIsModalOpen={setIsModalOpen}
+              setAlertModal={setAlertModal}
             />
           </Modal>
           <ModalBackground />
         </>
       ) : null}
+      {alertModal && (
+        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+      )}
 
       <$FlexContainer isModalOpen={isModalOpen}>
         <$ImageBox>

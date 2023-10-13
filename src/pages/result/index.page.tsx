@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import resultColorData from '@Data/resultColorData';
 import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
@@ -18,6 +18,8 @@ import {
 
 import { FormattedMessage } from 'react-intl';
 import Tag from '@Components/Tag/Tag';
+import AlertModal from '@Components/AlertModal/AlertModal';
+import { ModalContainer, ModalBackground, BorderedButton } from '@Styles/theme';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -29,6 +31,9 @@ function ResultPage(): JSX.Element {
 
   const { data: colorType, status, error } = useLateColorType();
   const onClickAnotherResult = useNavigateByColorType();
+
+  // alert modal
+  const [alertModal, setAlertModal] = useState('');
 
   // conditional rendering
   if (status === 'loading') {
@@ -65,6 +70,7 @@ function ResultPage(): JSX.Element {
 
   return (
     <S.Wrapper>
+      {alertModal && <AlertModal />}
       <S.ResultContainer ref={resultContainerRef}>
         <S.Title>
           <S.TitleBold color={textColor}>

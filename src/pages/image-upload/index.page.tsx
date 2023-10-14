@@ -42,7 +42,7 @@ function ImageUploadPage() {
       setIsModalOpen(true);
       return;
     }
-    setAlertModal('다시 시도해 주세요.');
+    setAlertModal('alertRetry');
   };
 
   return (

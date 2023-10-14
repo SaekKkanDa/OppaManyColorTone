@@ -37,7 +37,7 @@ function FaceDetection({
 
     if (!file.type.startsWith('image/')) {
       setIsModalOpen(false);
-      setAlertModal('이미지 파일을 선택해 주세요.');
+      setAlertModal('alertSelectImg');
       return;
     }
 
@@ -76,10 +76,10 @@ function FaceDetection({
         const image = canvas.toDataURL('image/jpeg');
         setCropImage(image);
       } catch (error) {
-        errorMsg = '다시 시도해주세요';
+        errorMsg = 'alertRetry';
       }
     } else {
-      errorMsg = '이미지가 없습니다.';
+      errorMsg = 'alertNoImg';
     }
 
     setAlertModal(errorMsg);

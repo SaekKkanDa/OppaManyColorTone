@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ModalContainer, ModalBackground, Button } from '@Styles/theme';
+import { FormattedMessage } from 'react-intl';
 
 interface AlertModalProps {
   alertModal: string;
@@ -17,7 +18,9 @@ function AlertModal({ alertModal, setAlertModal }: AlertModalProps) {
     <ModalContainer isModalOpen={isModalOpen}>
       <ModalBackground />
       <Modal>
-        <h1>{alertModal}</h1>
+        <h1>
+          <FormattedMessage id={alertModal} />
+        </h1>
         <Button
           onClick={() => {
             setAlertModal('');

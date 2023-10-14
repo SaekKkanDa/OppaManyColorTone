@@ -47,12 +47,13 @@ function ShareSubPage({
       setAlertModal(kakaoAlertMsg);
       return;
     }
-    copyUrl(location.href);
+    const copyAlertMsg = await copyUrl(location.href);
+    setAlertModal(copyAlertMsg);
   };
 
   const onClickKakaoShare = () => {
     if (isLoading) {
-      setAlertModal('다시 시도해주세요. 🥰');
+      setAlertModal('alertRetry');
     } else {
       kakaoShare();
     }
@@ -65,9 +66,7 @@ function ShareSubPage({
     }
 
     if (isChrome() && isOSX()) {
-      setAlertModal(
-        'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
-      );
+      setAlertModal('alertMacOS');
       return;
     }
 

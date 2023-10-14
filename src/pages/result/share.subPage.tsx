@@ -18,13 +18,22 @@ import { captureAndDownload, checkIfKakaoAndAlert } from './share.logic';
 interface MenuSubPageProps {
   resultContainerRef: React.RefObject<HTMLDivElement>;
   colorType: string;
+  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
+function ShareSubPage({
+  resultContainerRef,
+  colorType,
+  setAlertModal,
+}: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
+  const kakaoAlertMsg = checkIfKakaoAndAlert();
 
   const onClickCapture = async () => {
-    if (checkIfKakaoAndAlert() === true) return;
+    if (kakaoAlertMsg) {
+      setAlertModal(kakaoAlertMsg);
+      return;
+    }
 
     const wrapper = resultContainerRef.current;
     if (!wrapper) return;
@@ -34,25 +43,30 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
   };
 
   const onClickLinkCopy = async () => {
-    if (checkIfKakaoAndAlert() === true) return;
-    copyUrl(location.href);
+    if (kakaoAlertMsg) {
+      setAlertModal(kakaoAlertMsg);
+      return;
+    }
+    const copyAlertMsg = await copyUrl(location.href);
+    setAlertModal(copyAlertMsg);
   };
 
   const onClickKakaoShare = () => {
     if (isLoading) {
-      alert('로딩 중입니다. 다시 시도해주세요. 🥰');
+      setAlertModal('alertRetry');
     } else {
       kakaoShare();
     }
   };
 
   const onClickShare = async () => {
-    if (checkIfKakaoAndAlert() === true) return;
+    if (kakaoAlertMsg) {
+      setAlertModal(kakaoAlertMsg);
+      return;
+    }
 
     if (isChrome() && isOSX()) {
-      alert(
-        'macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다.\n다른 브라우저에서 실행해 주세요. 🥰'
-      );
+      setAlertModal('alertMacOS');
       return;
     }
 

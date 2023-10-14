@@ -203,5 +203,12 @@
     "celebrities": ["조이", "채영", "조정석"],
     "secondaryType": "봄 브라이트",
     "worstType": "가을 뮤트"
-  }
+  },
+  "alertRetry": "다시 시도해 주세요. 🥰",
+  "alertSelectImg": "이미지 파일을 선택해 주세요. 🥰",
+  "alertNoImg": "이미지가 없습니다.",
+  "alertSuccessCopy": "링크 복사 성공! ✨",
+  "alertFailCopy": "링크 복사에 실패했어요...🥲",
+  "alertMacOS": "macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다. 다른 브라우저에서 실행해 주세요. 🥰",
+  "alertKakao": "카카오 인앱 브라우저에서는 지원하지 않는 기능입니다. 다른 브라우저에서 실행해 주세요. 🥰"
 }

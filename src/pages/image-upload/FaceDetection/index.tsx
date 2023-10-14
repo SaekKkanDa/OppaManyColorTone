@@ -12,9 +12,14 @@ import * as S from './style';
 interface FaceDetectionProps {
   imageFile: File;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
+function FaceDetection({
+  imageFile,
+  setIsModalOpen,
+  setAlertModal,
+}: FaceDetectionProps) {
   const [image, setImage] = useState('');
   const [scale, setScale] = useState(1);
   const [, setCropImage] = useRecoilState(CropImage);
@@ -25,7 +30,8 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
     const file = imageFile;
 
     if (!file.type.startsWith('image/')) {
-      alert('이미지 파일을 선택해 주세요.');
+      setIsModalOpen(false);
+      setAlertModal('alertSelectImg');
       return;
     }
 
@@ -57,19 +63,21 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   };
 
   const handleSave = () => {
+    let errorMsg = '';
     if (editor.current) {
       try {
         const canvas = editor.current.getImageScaledToCanvas();
         const image = canvas.toDataURL('image/jpeg');
-
         setCropImage(image);
-        setIsModalOpen(false);
       } catch (error) {
-        alert('다시 시도해 주세요.');
+        errorMsg = 'alertRetry';
       }
     } else {
-      alert('이미지가 없습니다.');
+      errorMsg = 'alertNoImg';
     }
+
+    setAlertModal(errorMsg);
+    setIsModalOpen(false);
   };
 
   return (

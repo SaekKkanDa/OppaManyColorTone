@@ -203,5 +203,12 @@
     "celebrities": ["Joy", "Chaeyoung", "Jungsuk Jo"],
     "secondaryType": "Bright Spring",
     "worstType": "Soft Autumn"
-  }
+  },
+  "alertRetry": "Please try again 🥰",
+  "alertSelectImg": "Upload a file from your library 🥰",
+  "alertNoImg": "No file chosen",
+  "alertSuccessCopy": "Copied Successfully! ✨",
+  "alertFailCopy": "Failed to copy...🥲",
+  "alertMacOS": "Chrome browser on Mac is not working. Open in another browser 🥰",
+  "alertKakao": "It is not working on kakaoTalk InAppBrowser.. Open in another browser 🥰"
 }

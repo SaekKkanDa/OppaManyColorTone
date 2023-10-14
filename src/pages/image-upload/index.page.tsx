@@ -1,21 +1,22 @@
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import FaceDetection from './FaceDetection';
-import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
-import { useRecoilState } from 'recoil';
 import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
+import AlertModal from '@Components/AlertModal/AlertModal';
+import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
+import FaceDetection from './FaceDetection';
 
 import * as S from './style';
 
 function ImageUploadPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [alertModal, setAlertModal] = useState('');
   const imagePreviewURL = useRecoilState(CropImage)[0];
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
@@ -30,8 +31,7 @@ function ImageUploadPage() {
       setIsModalOpen(true);
       return;
     }
-
-    alert('다시 시도해 주세요.');
+    setAlertModal('alertRetry');
   };
 
   return (
@@ -42,11 +42,15 @@ function ImageUploadPage() {
             <FaceDetection
               imageFile={imageFile}
               setIsModalOpen={setIsModalOpen}
+              setAlertModal={setAlertModal}
             />
           </Modal>
           <ModalBackground />
         </>
       ) : null}
+      {alertModal && (
+        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+      )}
 
       <S.FlexContainer isModalOpen={isModalOpen}>
         <S.ImageBox>

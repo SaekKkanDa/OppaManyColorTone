@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { useSetRecoilState } from 'recoil';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShareFromSquare,
   faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
 import { CropImage, Locale } from '@Recoil/app';
-import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import ColorChipSpinner from '@Components/ColorChipSpinner';
 import omctDb from '@Utils/omctDb';
 import { canWebShare, webShare } from '@Utils/share';
 import ROUTE_PATH from '@Constant/routePath';
 import { copyUrl } from '@Utils/clipboard';
 import questionBubble from 'public/images/icon/question-bubble.png';
 import * as S from './style';
-import Image from 'next/image';
-import { FormattedMessage } from 'react-intl';
+
 function LandingPage() {
   const router = useRouter();
 
@@ -66,7 +67,7 @@ function LandingPage() {
         </S.LandingTitleDiv>
 
         <S.SpinnerWrapper>
-          <ColorImgSpinner />
+          <ColorChipSpinner />
 
           <S.AllTypesViewLink href={ROUTE_PATH.allTypesView}>
             <Image
@@ -79,25 +80,24 @@ function LandingPage() {
         </S.SpinnerWrapper>
 
         <S.LandingBottomDiv>
-          <S.UserInfoWrapper>
-            <S.UserCount>
-              <FormattedMessage id="userCount_1" />{' '}
-              {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
-              <FormattedMessage id="userCount_2" />
-            </S.UserCount>
-            <S.ShareButton name="share" onClick={handleShare}>
-              <FontAwesomeIcon icon={faShareFromSquare} size="2x" />
-            </S.ShareButton>
-            <FontAwesomeIcon
-              onClick={handleLocale}
-              icon={faLanguage}
-              size="2x"
-            />
-          </S.UserInfoWrapper>
+          <S.UserCount>
+            <FormattedMessage id="userCount_1" />{' '}
+            {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
+            <FormattedMessage id="userCount_2" />
+          </S.UserCount>
 
           <S.StartButton onClick={onClickStartButton}>
             <FormattedMessage id="startButton" />
           </S.StartButton>
+
+          <S.IconButtonWrapper>
+            <S.IconButton onClick={handleShare}>
+              <FontAwesomeIcon icon={faShareFromSquare} size="2x" />
+            </S.IconButton>
+            <S.IconButton onClick={handleLocale}>
+              <FontAwesomeIcon icon={faLanguage} size="2x" />
+            </S.IconButton>
+          </S.IconButtonWrapper>
         </S.LandingBottomDiv>
       </S.LandingWrap>
     </>

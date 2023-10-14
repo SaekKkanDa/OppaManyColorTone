@@ -1,16 +1,16 @@
-import { $Explanation } from './style';
 import { FormattedMessage } from 'react-intl';
+import * as S from './style';
 
 function Guidance() {
   return (
-    <$Explanation>
+    <S.Explanation>
       <FormattedMessage id="explanation_1" />
       <p>
         <FormattedMessage id="explanation_2" />
         <br />
         <FormattedMessage id="explanation_3" />
       </p>
-    </$Explanation>
+    </S.Explanation>
   );
 }
 

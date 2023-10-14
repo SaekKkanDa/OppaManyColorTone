@@ -5,7 +5,7 @@ import { Button, flexCustom } from '@Styles/theme';
 export const LandingWrap = styled.div`
   ${flexCustom('column')}
   margin: 0 auto;
-  padding: 48px 0;
+  padding: 48px 0 36px;
   max-width: 400px;
   height: 100%;
   background-color: ${({ theme }) => theme.gray[100]};
@@ -114,24 +114,10 @@ export const LandingBottomDiv = styled.div`
   ${flexCustom('column')}
 `;
 
-export const UserInfoWrapper = styled.div`
-  ${flexCustom('row', 'center', 'center')}
-  column-gap: 8px;
-  margin-bottom: 20px;
-`;
-
 export const UserCount = styled.div`
+  margin-bottom: 20px;
   font-size: 18px;
   font-weight: 400;
-`;
-
-export const ShareButton = styled.button`
-  color: ${({ theme }) => theme.gray[500]};
-  font-size: 12px;
-
-  &:active {
-    color: ${({ theme }) => theme.gray[900]};
-  }
 `;
 
 export const StartButton = styled(Button)`
@@ -139,4 +125,19 @@ export const StartButton = styled(Button)`
   font-size: 40px;
   font-weight: 500;
   cursor: pointer;
+`;
+
+export const IconButtonWrapper = styled.div`
+  ${flexCustom('row', 'center', 'center')}
+  column-gap: 0.75rem;
+  margin-top: 16px;
+`;
+
+export const IconButton = styled.button`
+  color: ${({ theme }) => theme.gray[700]};
+  font-size: 12px;
+
+  &:active {
+    color: ${({ theme }) => theme.gray[900]};
+  }
 `;

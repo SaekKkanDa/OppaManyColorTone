@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
 import * as S from './style';
-import Palette from '@Components/Palette/Palette';
+import Palette from '@Components/Palette';
 import { Color } from '@Data/resultColorData';
 import ColorTransition, {
   ColorTransitionInstance,

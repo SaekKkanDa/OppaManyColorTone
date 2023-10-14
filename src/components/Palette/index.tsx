@@ -1,6 +1,6 @@
-import ColorPalette from '@Utils/colorPalette';
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import ColorPalette from '@Utils/colorPalette';
+import * as S from './style';
 
 interface Props {
   imgSrc: string;
@@ -44,13 +44,7 @@ function Palette({ imgSrc, colors, onClick }: Props) {
     };
   }, [imgSrc, colors]);
 
-  return <$Canvas ref={canvasRef} />;
+  return <S.Canvas ref={canvasRef} />;
 }
-
-const $Canvas = styled.canvas`
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-`;
 
 export default Palette;

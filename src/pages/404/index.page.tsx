@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { $FlexContainer, $Message, $Emoji, $HomeButton } from './style';
-import emoji from 'public/images/emoji/sad-emoji-3d.png';
 import { FormattedMessage } from 'react-intl';
+import emoji from 'public/images/emoji/sad-emoji-3d.png';
+import * as S from './style';
 
 const NotFound = () => {
   return (
-    <$FlexContainer>
-      <$Message>
+    <S.FlexContainer>
+      <S.Message>
         <FormattedMessage id="notFoundMsg" />
-      </$Message>
-      <$Emoji
+      </S.Message>
+      <S.Emoji
         src={emoji.src}
         alt="sad emoji"
         width={150}
@@ -18,11 +18,11 @@ const NotFound = () => {
       />
 
       <Link href="/">
-        <$HomeButton>
+        <S.HomeButton>
           <FormattedMessage id="restart" />
-        </$HomeButton>
+        </S.HomeButton>
       </Link>
-    </$FlexContainer>
+    </S.FlexContainer>
   );
 };
 

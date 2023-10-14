@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
 
-import * as S from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faLink, faShare } from '@fortawesome/free-solid-svg-icons';
 import kakaoIcon from 'public/images/icon/kakaoIcon.png';
@@ -11,9 +11,9 @@ import useKakaoShare from '@Hooks/useKakaoShare';
 import { copyUrl } from '@Utils/clipboard';
 import { webShare } from '@Utils/share';
 import { isChrome, isOSX } from '@Utils/userAgent';
-import RestartButton from '@Components/Button/RestartButton';
-import { FormattedMessage } from 'react-intl';
+import RestartButton from '@Pages/result/RestartButton';
 import { captureAndDownload, checkIfKakaoAndAlert } from './share.logic';
+import * as S from './style';
 
 interface MenuSubPageProps {
   resultContainerRef: React.RefObject<HTMLDivElement>;

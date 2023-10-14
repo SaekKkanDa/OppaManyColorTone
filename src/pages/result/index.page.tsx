@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 
 import resultColorData from '@Data/resultColorData';
-import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import ColorChipSpinner from '@Components/ColorChipSpinner';
 
-import RestartButton from '@Components/Button/RestartButton';
+import RestartButton from '@Pages/result/RestartButton';
 import LoadingIndicator from '@Components/LoadingIndicator';
 import useScrollTop from '@Hooks/useScrollTop';
 
@@ -17,7 +17,7 @@ import {
 } from './index.logic';
 
 import { FormattedMessage } from 'react-intl';
-import Tag from '@Components/Tag/Tag';
+import Tag from '@Components/Tag';
 import AlertModal from '@Components/AlertModal/AlertModal';
 
 // HJ TODO: 로직과 렌더링 관심 분리
@@ -46,7 +46,7 @@ function ResultPage(): JSX.Element {
         <S.Title>
           <FormattedMessage id="errorMsg" />
         </S.Title>
-        <ColorImgSpinner />
+        <ColorChipSpinner />
         <RestartButton />
       </S.LoadingWrapper>
     );

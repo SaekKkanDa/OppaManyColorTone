@@ -1,17 +1,12 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { FormattedMessage } from 'react-intl';
 import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
 import LoadingIndicator from '@Components/LoadingIndicator';
 import Guidance from '../Guidance';
-import { FormattedMessage } from 'react-intl';
 
-import {
-  $BonusStatusBox,
-  $BonusStatusContent,
-  $BonusColorBox,
-  $BonusColor,
-} from './style';
+import * as S from './style';
 
 interface BonusStageProps {
   userImg: string;
@@ -34,24 +29,24 @@ function BonusStage({ userImg, bonusColorTypes }: BonusStageProps) {
 
   return bonusColorTypes ? (
     <>
-      <$BonusStatusBox />
-      <$BonusStatusContent>
+      <S.BonusStatusBox />
+      <S.BonusStatusContent>
         <FormattedMessage id="bonusStatus" />
-      </$BonusStatusContent>
+      </S.BonusStatusContent>
 
       <Guidance />
 
-      <$BonusColorBox>
+      <S.BonusColorBox>
         {bonusColorOptions?.map(({ type, colors }, index) => (
-          <$BonusColor
+          <S.BonusColor
             key={type + index}
             colors={colors}
             onClick={() => onBonusClick(type)}
           >
             <Image src={userImg} alt="사용자 이미지" width={100} height={100} />
-          </$BonusColor>
+          </S.BonusColor>
         ))}
-      </$BonusColorBox>
+      </S.BonusColorBox>
     </>
   ) : (
     <LoadingIndicator />

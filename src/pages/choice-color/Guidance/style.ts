@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const $Explanation = styled.div`
+export const Explanation = styled.div`
   margin-bottom: 20px;
   font-size: 16px;
   line-height: 1.6em;

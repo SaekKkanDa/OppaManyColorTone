@@ -1,6 +1,6 @@
-import React from 'react';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
@@ -9,19 +9,8 @@ import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
 import { useRecoilState } from 'recoil';
 import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
-import { FormattedMessage } from 'react-intl';
 
-import {
-  $FlexContainer,
-  $Guidance,
-  $ImageBox,
-  $ImageLabel,
-  $SelectImgButton,
-  $InputFile,
-  $NextButton,
-  $Notification,
-  $CroppedImageBox,
-} from './style';
+import * as S from './style';
 
 function ImageUploadPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -59,17 +48,17 @@ function ImageUploadPage() {
         </>
       ) : null}
 
-      <$FlexContainer isModalOpen={isModalOpen}>
-        <$ImageBox>
+      <S.FlexContainer isModalOpen={isModalOpen}>
+        <S.ImageBox>
           {imagePreviewURL ? (
             <>
-              <$CroppedImageBox
+              <S.CroppedImageBox
                 src={imagePreviewURL}
                 alt="preview image"
                 width={150}
                 height={150}
               />
-              <$InputFile
+              <S.InputFile
                 ref={inputRef}
                 type="file"
                 name="image"
@@ -78,8 +67,8 @@ function ImageUploadPage() {
               />
             </>
           ) : (
-            <$ImageLabel>
-              <$InputFile
+            <S.ImageLabel>
+              <S.InputFile
                 ref={inputRef}
                 type="file"
                 name="image"
@@ -91,17 +80,17 @@ function ImageUploadPage() {
                 size="3x"
                 color={theme.gray[300]}
               />
-            </$ImageLabel>
+            </S.ImageLabel>
           )}
-        </$ImageBox>
+        </S.ImageBox>
 
-        <$SelectImgButton onClick={clickInput}>
+        <S.SelectImgButton onClick={clickInput}>
           <FormattedMessage id="selectImgButton" />
-        </$SelectImgButton>
-        <$Guidance>
+        </S.SelectImgButton>
+        <S.Guidance>
           <FormattedMessage id="guidance" />
-        </$Guidance>
-        <$Notification>
+        </S.Guidance>
+        <S.Notification>
           <h6>
             <FontAwesomeIcon icon={faFaceSmile} size="sm" />
             <FormattedMessage id="notification_1" />
@@ -109,14 +98,14 @@ function ImageUploadPage() {
           <FormattedMessage id="notification_2" />
           <br />
           <FormattedMessage id="notification_3" />
-        </$Notification>
+        </S.Notification>
 
         <Link href={ROUTE_PATH.choiceColor}>
-          <$NextButton disabled={!imagePreviewURL}>
+          <S.NextButton disabled={!imagePreviewURL}>
             <FormattedMessage id="nextButton" />
-          </$NextButton>
+          </S.NextButton>
         </Link>
-      </$FlexContainer>
+      </S.FlexContainer>
     </ModalContainer>
   );
 }

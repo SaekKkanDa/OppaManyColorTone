@@ -1,6 +1,6 @@
-import * as S from './style';
 import { FormattedMessage } from 'react-intl';
 import { Tag } from '@Data/resultColorData';
+import * as S from './style';
 
 interface TagContentProps {
   tags: Tag[];

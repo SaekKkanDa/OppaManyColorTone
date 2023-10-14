@@ -1,19 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { CropImage } from '@Recoil/app';
 import theme from '@Styles/theme';
-import { FormattedMessage } from 'react-intl';
 
-import {
-  $FlexContainer,
-  $InputScale,
-  $ScaleBox,
-  $Guidance,
-  $ConfirmButton,
-} from './style';
+import * as S from './style';
 
 interface FaceDetectionProps {
   imageFile: File;
@@ -79,7 +73,7 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   };
 
   return (
-    <$FlexContainer>
+    <S.FlexContainer>
       <div>
         <AvatarEditor
           ref={editor}
@@ -93,9 +87,9 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
           borderRadius={100}
         />
       </div>
-      <$ScaleBox>
+      <S.ScaleBox>
         <FontAwesomeIcon icon={faMinus} size="1x" color={theme.gray[900]} />
-        <$InputScale
+        <S.InputScale
           type="range"
           name="scale"
           onChange={OnChange}
@@ -104,16 +98,16 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
           step={0.1}
         />
         <FontAwesomeIcon icon={faPlus} size="1x" color={theme.gray[900]} />
-      </$ScaleBox>
-      <$Guidance>
+      </S.ScaleBox>
+      <S.Guidance>
         <FormattedMessage id="modalGuidance_1" />
         <br />
         <FormattedMessage id="modalGuidance_2" />
-      </$Guidance>
-      <$ConfirmButton onClick={handleSave}>
+      </S.Guidance>
+      <S.ConfirmButton onClick={handleSave}>
         <FormattedMessage id="confirmButton" />
-      </$ConfirmButton>
-    </$FlexContainer>
+      </S.ConfirmButton>
+    </S.FlexContainer>
   );
 }
 

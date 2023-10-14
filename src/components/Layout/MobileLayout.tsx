@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import styled from 'styled-components';
 import useViewportHeight from '@Hooks/useViewportHeight';
@@ -13,6 +12,17 @@ import flattenMessages from '@Utils/flattenMessages';
 import koLanguage from './../../../public/translations/ko.json';
 import EnLanguage from './../../../public/translations/en.json';
 
+interface MobileLayoutProps {
+  backgroundColor: string;
+  textColor: string;
+}
+
+const Wrapper = styled.div<MobileLayoutProps>`
+  margin: 0 auto;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ textColor }) => textColor};
+`;
+
 function MobileLayout({ children }: React.PropsWithChildren) {
   const bgColor = useRecoilValue(globalBgColorAtom);
   const textColor = useRecoilValue(globalTextColorAtom);
@@ -25,26 +35,15 @@ function MobileLayout({ children }: React.PropsWithChildren) {
   }[locale];
 
   return (
-    <$Wrapper backgroundColor={bgColor} textColor={textColor}>
+    <Wrapper backgroundColor={bgColor} textColor={textColor}>
       <IntlProvider
         locale={locale}
         messages={flattenMessages(translationsForUsersLocale)}
       >
         {children}
       </IntlProvider>
-    </$Wrapper>
+    </Wrapper>
   );
 }
-
-interface MobileLayoutProps {
-  backgroundColor: string;
-  textColor: string;
-}
-
-const $Wrapper = styled.div<MobileLayoutProps>`
-  margin: 0 auto;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ textColor }) => textColor};
-`;
 
 export default MobileLayout;

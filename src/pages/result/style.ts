@@ -67,8 +67,8 @@ export const ColorMatchTitle = styled.h2`
 `;
 
 export const ColorMatchGrid = styled.div`
-  margin-top: 12px;
   display: grid;
+  margin-top: 12px;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 5px;
@@ -124,11 +124,11 @@ export const CelebrityName = styled.div`
 
 // palette
 export const PaletteWrapper = styled.div`
-  width: 100%;
-  ${flexCustom('row', 'flex-start', 'center')}
   position: relative;
-  aspect-ratio: 1/1;
+  ${flexCustom('row', 'flex-start', 'center')}
   margin: 24px auto 0 auto;
+  width: 100%;
+  aspect-ratio: 1/1;
 `;
 
 const blink = keyframes`
@@ -157,11 +157,11 @@ export const MenuItemWrapper = styled.div`
 
 export const MenuItemButton = styled.button`
   ${flexCustom('column', 'center', 'center')}
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.gray[800]};
   padding: 10px;
   width: 48px;
   height: 48px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.gray[800]};
   aspect-ratio: 1/1;
   font-size: 48px;
   cursor: pointer;
@@ -173,9 +173,9 @@ export const MenuItemButton = styled.button`
 
 export const KakaoShareButton = styled.button`
   ${flexCustom('column', 'center', 'center')}
-  border-radius: 50%;
   width: 48px;
   height: 48px;
+  border-radius: 50%;
   aspect-ratio: 1/1;
   cursor: pointer;
 `;

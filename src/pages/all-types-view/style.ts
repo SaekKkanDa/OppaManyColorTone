@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { flexCustom } from '@Styles/theme';
-import { PieChart } from 'react-minimal-pie-chart';
+import { PieChart as _PieChart } from 'react-minimal-pie-chart';
 
 type PaletteGridItemProps = {
   backgroundColor: string;
@@ -11,7 +11,7 @@ type TagStyleProps = {
   textColor: string;
 };
 
-export const $Wrapper = styled.div`
+export const Wrapper = styled.div`
   ${flexCustom('column', 'center', 'flex-start')}
   width: 100%;
   max-width: 400px;
@@ -20,33 +20,33 @@ export const $Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const $BackButton = styled.button`
+export const BackButton = styled.button`
   align-self: flex-start;
   margin: -8px 0 0 -8px;
   font-size: 20px;
   cursor: pointer;
 `;
 
-export const $SubTitle = styled.span`
+export const SubTitle = styled.span`
   color: ${({ theme }) => theme.gray[300]};
 `;
 
-export const $Title = styled.h1`
+export const Title = styled.h1`
   padding-top: 16px;
   font-size: 1.6rem;
 `;
 
-export const $PieChart = styled(PieChart)`
+export const PieChart = styled(_PieChart)`
   max-height: calc(400px - 32px * 2);
   margin: 32px 0;
 `;
 
-export const $ColorTypeTitle = styled.h3`
+export const ColorTypeTitle = styled.h3`
   color: ${({ color }) => color};
   font-size: 1.4rem;
 `;
 
-export const $TagWrapper = styled.div`
+export const TagWrapper = styled.div`
   ${flexCustom('row', 'center', 'center')}
   flex-wrap: wrap;
   column-gap: 4px;
@@ -54,7 +54,7 @@ export const $TagWrapper = styled.div`
   padding: 20px 0;
 `;
 
-export const $Tag = styled.span<TagStyleProps>`
+export const Tag = styled.span<TagStyleProps>`
   ${flexCustom('row', 'flex-start', 'flex-start')}
   padding: 0.5em;
   border-radius: 1em;
@@ -64,7 +64,7 @@ export const $Tag = styled.span<TagStyleProps>`
   font-size: 14px;
 `;
 
-export const $PaletteGrid = styled.div`
+export const PaletteGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -73,7 +73,7 @@ export const $PaletteGrid = styled.div`
   margin: 20px 0;
 `;
 
-export const $PaletteGridItem = styled.div.attrs<PaletteGridItemProps>(
+export const PaletteGridItem = styled.div.attrs<PaletteGridItemProps>(
   ({ backgroundColor }) => ({
     style: {
       backgroundColor,
@@ -83,7 +83,7 @@ export const $PaletteGridItem = styled.div.attrs<PaletteGridItemProps>(
   aspect-ratio: 16/9;
 `;
 
-export const $Description = styled.small`
+export const Description = styled.small`
   color: ${({ theme }) => theme.gray[500]};
   font-size: 14px;
 `;

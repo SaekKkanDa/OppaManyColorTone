@@ -7,7 +7,7 @@ import {
   faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
 import { CropImage, Locale } from '@Recoil/app';
-import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import ColorChipSpinner from '@Components/ColorChipSpinner';
 import omctDb from '@Utils/omctDb';
 import { canWebShare, webShare } from '@Utils/share';
 import ROUTE_PATH from '@Constant/routePath';
@@ -66,7 +66,7 @@ function LandingPage() {
         </S.LandingTitleDiv>
 
         <S.SpinnerWrapper>
-          <ColorImgSpinner />
+          <ColorChipSpinner />
 
           <S.AllTypesViewLink href={ROUTE_PATH.allTypesView}>
             <Image

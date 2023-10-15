@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import {
-  $StatusBox,
-  $StatusContent,
-  $ColorBox,
-  $Color,
-} from '../BasicStage/style';
+import * as S from '../BasicStage/style';
 
-export const $BonusStatusBox = styled($StatusBox)`
+export const BonusStatusBox = styled(S.StatusBox)`
   background: -webkit-linear-gradient(
     90deg,
     ${({ theme }) => theme.gray[300]},
@@ -80,11 +75,11 @@ export const $BonusStatusBox = styled($StatusBox)`
   }
 `;
 
-export const $BonusStatusContent = styled($StatusContent)``;
+export const BonusStatusContent = styled(S.StatusContent)``;
 
-export const $BonusColorBox = styled($ColorBox)``;
+export const BonusColorBox = styled(S.ColorBox)``;
 
-export const $BonusColor = styled($Color)<{ colors: string[] }>`
+export const BonusColor = styled(S.Color)<{ colors: string[] }>`
   background: conic-gradient(
     ${({ colors }) => colors[0]} 120deg,
     ${({ colors }) => colors[2]} 120deg 240deg,

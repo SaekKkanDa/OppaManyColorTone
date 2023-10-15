@@ -1,31 +1,22 @@
-import React from 'react';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import FaceDetection from './FaceDetection';
-import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
-import { useRecoilState } from 'recoil';
 import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
+import AlertModal from '@Components/AlertModal/AlertModal';
+import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
+import FaceDetection from './FaceDetection';
 
-import {
-  $FlexContainer,
-  $Guidance,
-  $ImageBox,
-  $ImageLabel,
-  $SelectImgButton,
-  $InputFile,
-  $NextButton,
-  $Notification,
-  $CroppedImageBox,
-} from './style';
+import * as S from './style';
 
 function ImageUploadPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [alertModal, setAlertModal] = useState('');
   const imagePreviewURL = useRecoilState(CropImage)[0];
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
@@ -40,8 +31,7 @@ function ImageUploadPage() {
       setIsModalOpen(true);
       return;
     }
-
-    alert('다시 시도해 주세요.');
+    setAlertModal('alertRetry');
   };
 
   return (
@@ -52,23 +42,27 @@ function ImageUploadPage() {
             <FaceDetection
               imageFile={imageFile}
               setIsModalOpen={setIsModalOpen}
+              setAlertModal={setAlertModal}
             />
           </Modal>
           <ModalBackground />
         </>
       ) : null}
+      {alertModal && (
+        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+      )}
 
-      <$FlexContainer isModalOpen={isModalOpen}>
-        <$ImageBox>
+      <S.FlexContainer isModalOpen={isModalOpen}>
+        <S.ImageBox>
           {imagePreviewURL ? (
             <>
-              <$CroppedImageBox
+              <S.CroppedImageBox
                 src={imagePreviewURL}
                 alt="preview image"
                 width={150}
                 height={150}
               />
-              <$InputFile
+              <S.InputFile
                 ref={inputRef}
                 type="file"
                 name="image"
@@ -77,8 +71,8 @@ function ImageUploadPage() {
               />
             </>
           ) : (
-            <$ImageLabel>
-              <$InputFile
+            <S.ImageLabel>
+              <S.InputFile
                 ref={inputRef}
                 type="file"
                 name="image"
@@ -90,26 +84,32 @@ function ImageUploadPage() {
                 size="3x"
                 color={theme.gray[300]}
               />
-            </$ImageLabel>
+            </S.ImageLabel>
           )}
-        </$ImageBox>
+        </S.ImageBox>
 
-        <$SelectImgButton onClick={clickInput}>사진 선택</$SelectImgButton>
-        <$Guidance>실제와 비슷한 톤의 얼굴 사진을 선택해주세요.</$Guidance>
-        <$Notification>
+        <S.SelectImgButton onClick={clickInput}>
+          <FormattedMessage id="selectImgButton" />
+        </S.SelectImgButton>
+        <S.Guidance>
+          <FormattedMessage id="guidance" />
+        </S.Guidance>
+        <S.Notification>
           <h6>
             <FontAwesomeIcon icon={faFaceSmile} size="sm" />
-            안심하세요!
+            <FormattedMessage id="notification_1" />
           </h6>
-          본 진단은 사용자의 사진을 수집하지 않습니다.
+          <FormattedMessage id="notification_2" />
           <br />
-          사진은 본 진단 외 다른 목적으로 이용되지 않습니다.
-        </$Notification>
+          <FormattedMessage id="notification_3" />
+        </S.Notification>
 
         <Link href={ROUTE_PATH.choiceColor}>
-          <$NextButton disabled={!imagePreviewURL}>다음으로</$NextButton>
+          <S.NextButton disabled={!imagePreviewURL}>
+            <FormattedMessage id="nextButton" />
+          </S.NextButton>
         </Link>
-      </$FlexContainer>
+      </S.FlexContainer>
     </ModalContainer>
   );
 }

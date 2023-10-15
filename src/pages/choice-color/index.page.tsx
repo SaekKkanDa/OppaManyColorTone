@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { CropImage } from '@Recoil/app';
@@ -6,7 +6,7 @@ import useSelectBonusColorTypes from '@Hooks/useSelectBonusColorTypes';
 import choiceColorData from '@Data/choiceColorData';
 import BasicStage from './BasicStage';
 import BonusStage from './BonusStage';
-import { $Wrapper } from './style';
+import * as S from './style';
 
 function ChoiceColor() {
   const [selectedTypes, setSelectedTypes] = useState<ColorType[]>([]);
@@ -41,7 +41,7 @@ function ChoiceColor() {
   };
 
   return (
-    <$Wrapper>
+    <S.Wrapper>
       {stageNum < MAX_STAGE_NUM ? (
         <BasicStage
           userImg={userImg}
@@ -53,7 +53,7 @@ function ChoiceColor() {
       ) : (
         <BonusStage userImg={userImg} bonusColorTypes={bonusColorTypes} />
       )}
-    </$Wrapper>
+    </S.Wrapper>
   );
 }
 

@@ -1,24 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useRecoilState } from 'recoil';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { CropImage } from '@Recoil/app';
 import theme from '@Styles/theme';
-import {
-  $FlexContainer,
-  $InputScale,
-  $ScaleBox,
-  $Guidance,
-  $ConfirmButton,
-} from './style';
+
+import * as S from './style';
 
 interface FaceDetectionProps {
   imageFile: File;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
+function FaceDetection({
+  imageFile,
+  setIsModalOpen,
+  setAlertModal,
+}: FaceDetectionProps) {
   const [image, setImage] = useState('');
   const [scale, setScale] = useState(1);
   const [, setCropImage] = useRecoilState(CropImage);
@@ -29,7 +30,8 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
     const file = imageFile;
 
     if (!file.type.startsWith('image/')) {
-      alert('이미지 파일을 선택해 주세요.');
+      setIsModalOpen(false);
+      setAlertModal('alertSelectImg');
       return;
     }
 
@@ -61,23 +63,25 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
   };
 
   const handleSave = () => {
+    let errorMsg = '';
     if (editor.current) {
       try {
         const canvas = editor.current.getImageScaledToCanvas();
         const image = canvas.toDataURL('image/jpeg');
-
         setCropImage(image);
-        setIsModalOpen(false);
       } catch (error) {
-        alert('다시 시도해 주세요.');
+        errorMsg = 'alertRetry';
       }
     } else {
-      alert('이미지가 없습니다.');
+      errorMsg = 'alertNoImg';
     }
+
+    setAlertModal(errorMsg);
+    setIsModalOpen(false);
   };
 
   return (
-    <$FlexContainer>
+    <S.FlexContainer>
       <div>
         <AvatarEditor
           ref={editor}
@@ -91,9 +95,9 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
           borderRadius={100}
         />
       </div>
-      <$ScaleBox>
+      <S.ScaleBox>
         <FontAwesomeIcon icon={faMinus} size="1x" color={theme.gray[900]} />
-        <$InputScale
+        <S.InputScale
           type="range"
           name="scale"
           onChange={OnChange}
@@ -102,14 +106,16 @@ function FaceDetection({ imageFile, setIsModalOpen }: FaceDetectionProps) {
           step={0.1}
         />
         <FontAwesomeIcon icon={faPlus} size="1x" color={theme.gray[900]} />
-      </$ScaleBox>
-      <$Guidance>
-        옷을 제외하고 얼굴과 헤어만 포함되도록
+      </S.ScaleBox>
+      <S.Guidance>
+        <FormattedMessage id="modalGuidance_1" />
         <br />
-        영역을 설정해주세요.
-      </$Guidance>
-      <$ConfirmButton onClick={handleSave}>확인</$ConfirmButton>
-    </$FlexContainer>
+        <FormattedMessage id="modalGuidance_2" />
+      </S.Guidance>
+      <S.ConfirmButton onClick={handleSave}>
+        <FormattedMessage id="confirmButton" />
+      </S.ConfirmButton>
+    </S.FlexContainer>
   );
 }
 

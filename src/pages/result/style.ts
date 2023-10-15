@@ -1,15 +1,10 @@
 import Image from 'next/image';
-import styled from 'styled-components';
-import { flexCustom } from '@Styles/theme';
+import styled, { keyframes } from 'styled-components';
+import { Button, flexCustom } from '@Styles/theme';
 import checkIcon from 'public/images/icon/check.png';
 
 interface ColorItemStyleProps {
   backgroundColor: string;
-}
-
-interface TagStyleProps {
-  backgroundColor: string;
-  textColor: string;
 }
 
 export const Wrapper = styled.div`
@@ -44,24 +39,6 @@ export const TitleBold = styled.span`
   color: ${(props) => props.color};
 `;
 
-export const TagWrapper = styled.div`
-  ${flexCustom('row', 'center', 'center')}
-  flex-wrap: wrap;
-  column-gap: 4px;
-  row-gap: 6px;
-  margin-top: 24px;
-`;
-
-export const Tag = styled.span<TagStyleProps>`
-  ${flexCustom('row', 'flex-start', 'flex-start')}
-  padding: 0.5em;
-  border-radius: 1em;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ theme, textColor }) =>
-    ({ light: theme.white, dark: theme.gray[900] }[textColor])};
-  font-size: 14px;
-`;
-
 export const Description = styled.ul`
   ${flexCustom('column', 'flex-start', 'flex-start')}
   row-gap: 0.5em;
@@ -90,8 +67,8 @@ export const ColorMatchTitle = styled.h2`
 `;
 
 export const ColorMatchGrid = styled.div`
-  margin-top: 12px;
   display: grid;
+  margin-top: 12px;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 5px;
@@ -143,4 +120,89 @@ export const CelebrityName = styled.div`
   text-align: center;
   font-weight: 500;
   font-family: 'Noto Sans KR', sans-serif;
+`;
+
+// palette
+export const PaletteWrapper = styled.div`
+  position: relative;
+  ${flexCustom('row', 'flex-start', 'center')}
+  margin: 24px auto 0 auto;
+  width: 100%;
+  aspect-ratio: 1/1;
+`;
+
+const blink = keyframes`
+  50% {
+    opacity: 0;
+  }
+`;
+
+export const InteractionInfo = styled.div`
+  position: absolute;
+  top: 15px;
+  animation: ${blink} 1.5s linear infinite;
+  color: white;
+  font-size: 0.9rem;
+`;
+
+// share
+export const MenuContainer = styled.div`
+  ${flexCustom('row', 'inherit', 'space-around')}
+  padding: 36px 32px;
+`;
+
+export const MenuItemWrapper = styled.div`
+  ${flexCustom('column', 'center', 'center')}
+`;
+
+export const MenuItemButton = styled.button`
+  ${flexCustom('column', 'center', 'center')}
+  padding: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.gray[800]};
+  aspect-ratio: 1/1;
+  font-size: 48px;
+  cursor: pointer;
+
+  svg {
+    width: 100%;
+  }
+`;
+
+export const KakaoShareButton = styled.button`
+  ${flexCustom('column', 'center', 'center')}
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+`;
+
+export const MenuItemImg = styled(Image)`
+  max-width: 100%;
+`;
+
+export const MenuItemName = styled.div`
+  margin-top: 4px;
+  text-align: center;
+  font-size: 12px;
+`;
+
+export const ButtonsWrapper = styled.div`
+  ${flexCustom('row', 'center', 'center')}
+  column-gap: 12px;
+  padding: 0 32px 36px;
+
+  button,
+  a {
+    flex: 1 1 0;
+    width: 100%;
+    font-size: 20px;
+  }
+`;
+
+export const AllTypesButton = styled(Button)`
+  border: 2px solid ${({ theme }) => theme.gray[800]};
 `;

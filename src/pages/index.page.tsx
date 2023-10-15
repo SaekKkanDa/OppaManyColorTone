@@ -1,18 +1,21 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { useSetRecoilState } from 'recoil';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
-import { CropImage } from '@Recoil/app';
-import ColorImgSpinner from '@Components/Spinner/ColorImgSpinner';
+import {
+  faShareFromSquare,
+  faLanguage,
+} from '@fortawesome/free-solid-svg-icons';
+import { CropImage, Locale } from '@Recoil/app';
+import ColorChipSpinner from '@Components/ColorChipSpinner';
 import omctDb from '@Utils/omctDb';
 import { canWebShare, webShare } from '@Utils/share';
 import ROUTE_PATH from '@Constant/routePath';
 import { copyUrl } from '@Utils/clipboard';
 import questionBubble from 'public/images/icon/question-bubble.png';
 import * as S from './style';
-import Image from 'next/image';
 
 function LandingPage() {
   const router = useRouter();
@@ -20,6 +23,7 @@ function LandingPage() {
   const [numberOfUsers, setNumberOfUsers] = useState(0);
 
   const setUserImg = useSetRecoilState(CropImage);
+  const setLocale = useSetRecoilState(Locale);
 
   useEffect(() => {
     const getNumberOfUsers = async () => {
@@ -42,18 +46,28 @@ function LandingPage() {
     await copyUrl(location.href);
   };
 
+  const handleLocale = () => {
+    setLocale((prev) => (prev === 'en-US' ? 'ko-KR' : 'en-US'));
+  };
+
   return (
     <>
       <S.LandingWrap>
         <S.LandingTitleDiv>
           <S.LandingTitle>
-            오빠! <S.TitleHighlight>톤</S.TitleHighlight> 많아?
+            <FormattedMessage id="landingTitle_1" />{' '}
+            <S.TitleHighlight>
+              <FormattedMessage id="titleHighlight" />
+            </S.TitleHighlight>{' '}
+            <FormattedMessage id="landingTitle_2" />
           </S.LandingTitle>
-          <S.LandingSubTitle>퍼스널 컬러 자가진단</S.LandingSubTitle>
+          <S.LandingSubTitle>
+            <FormattedMessage id="landingSubTitle" />
+          </S.LandingSubTitle>
         </S.LandingTitleDiv>
 
         <S.SpinnerWrapper>
-          <ColorImgSpinner />
+          <ColorChipSpinner />
 
           <S.AllTypesViewLink href={ROUTE_PATH.allTypesView}>
             <Image
@@ -66,18 +80,24 @@ function LandingPage() {
         </S.SpinnerWrapper>
 
         <S.LandingBottomDiv>
-          <S.UserInfoWrapper>
-            <S.UserCount>
-              지금까지{' '}
-              {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
-              명이 진단했어요!
-            </S.UserCount>
-            <S.ShareButton onClick={handleShare}>
-              <FontAwesomeIcon icon={faShareNodes} size="2x" />
-            </S.ShareButton>
-          </S.UserInfoWrapper>
+          <S.UserCount>
+            <FormattedMessage id="userCount_1" />{' '}
+            {numberOfUsers ? numberOfUsers.toLocaleString() : '1,000'}
+            <FormattedMessage id="userCount_2" />
+          </S.UserCount>
 
-          <S.StartButton onClick={onClickStartButton}>시작하기</S.StartButton>
+          <S.StartButton onClick={onClickStartButton}>
+            <FormattedMessage id="startButton" />
+          </S.StartButton>
+
+          <S.IconButtonWrapper>
+            <S.IconButton onClick={handleShare}>
+              <FontAwesomeIcon icon={faShareFromSquare} size="2x" />
+            </S.IconButton>
+            <S.IconButton onClick={handleLocale}>
+              <FontAwesomeIcon icon={faLanguage} size="2x" />
+            </S.IconButton>
+          </S.IconButtonWrapper>
         </S.LandingBottomDiv>
       </S.LandingWrap>
     </>

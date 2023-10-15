@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
 import resultColorData from '@Data/resultColorData';
 import theme from '@Styles/theme';
-import {
-  $Wrapper,
-  $BackButton,
-  $SubTitle,
-  $Title,
-  $Description,
-  $PieChart,
-  $ColorTypeTitle,
-  $TagWrapper,
-  $Tag,
-  $PaletteGrid,
-  $PaletteGridItem,
-} from './style';
+import Tag from '@Components/Tag';
+import * as S from './style';
 
 const defaultLabelStyle = {
   fontSize: '4px',
@@ -37,16 +27,19 @@ const AllTypesView = () => {
   const colorType = selectedIndex !== undefined && color[selectedIndex].type;
 
   return (
-    <$Wrapper>
-      <$BackButton onClick={() => router.back()}>
+    <S.Wrapper>
+      <S.BackButton onClick={() => router.back()}>
         <FontAwesomeIcon icon={faArrowLeft} />
-      </$BackButton>
+      </S.BackButton>
 
-      <$Title>
-        <$SubTitle>한 눈에 보는 </$SubTitle>퍼스널 컬러
-      </$Title>
+      <S.Title>
+        <S.SubTitle>
+          <FormattedMessage id="allTypeView_1" />
+        </S.SubTitle>
+        <FormattedMessage id="allTypeView_2" />
+      </S.Title>
 
-      <$PieChart
+      <S.PieChart
         data={color.map(({ name }, index) => ({
           title: name.replace(' ', ''),
           color:
@@ -86,39 +79,40 @@ const AllTypesView = () => {
 
       {colorType ? (
         <>
-          <$ColorTypeTitle color={color[selectedIndex].textColor}>
-            {color[selectedIndex].name}
-          </$ColorTypeTitle>
-
-          <$TagWrapper>
+          <S.ColorTypeTitle color={color[selectedIndex].textColor}>
+            <FormattedMessage id={`${colorType}.name`} />
+          </S.ColorTypeTitle>
+          {/* <S.TagWrapper>
             {resultColorData[colorType].tags.map(
               ({ keyword, backgroundColor, textColor }) => (
-                <$Tag
+                <S.Tag
                   key={keyword}
                   backgroundColor={backgroundColor}
                   textColor={textColor}
                 >
                   {`#${keyword}`}
-                </$Tag>
+                </S.Tag>
               )
             )}
-          </$TagWrapper>
-
-          <$PaletteGrid>
+          </S.TagWrapper> */}
+          <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
+          <S.PaletteGrid>
             {resultColorData[colorType].gridColors.map(
               (backgroundColor, index) => (
-                <$PaletteGridItem
+                <S.PaletteGridItem
                   key={selectedIndex + backgroundColor + index}
                   backgroundColor={backgroundColor}
                 />
               )
             )}
-          </$PaletteGrid>
+          </S.PaletteGrid>
         </>
       ) : (
-        <$Description>컬러 유형을 클릭해 보세요!</$Description>
+        <S.Description>
+          <FormattedMessage id="clickType" />
+        </S.Description>
       )}
-    </$Wrapper>
+    </S.Wrapper>
   );
 };
 

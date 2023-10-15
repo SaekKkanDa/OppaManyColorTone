@@ -1,4 +1,3 @@
-import React from 'react';
 import indicatorImg from 'public/images/icon/color-spinner.png';
 import * as S from './style';
 

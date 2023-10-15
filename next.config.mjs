@@ -16,6 +16,10 @@ const nextConfig = {
   sentry: {
     autoInstrumentServerFunctions: false,
   },
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 /**

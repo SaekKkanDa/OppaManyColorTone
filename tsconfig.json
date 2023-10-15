@@ -8,10 +8,12 @@
       "@Constant/*": ["./src/constant/*"],
       "@Data/*": ["./src/data/*"],
       "@Hooks/*": ["./src/hooks/*"],
+      "@Libs/*": ["./src/libs/*"],
       "@Pages/*": ["./src/pages/*"],
       "@Recoil/*": ["./src/recoil/*"],
       "@Styles/*": ["./src/styles/*"],
-      "@Utils/*": ["./src/utils/*"]
+      "@Utils/*": ["./src/utils/*"],
+      "@Translations/*": ["./src/translations/*"]
     },
     "allowJs": true,
     "jsx": "preserve",
@@ -40,5 +42,5 @@
     "@types/**/*d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/libs"]
 }

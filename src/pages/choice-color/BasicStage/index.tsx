@@ -1,15 +1,10 @@
-import React from 'react';
 import Image from 'next/image';
+import { FormattedMessage } from 'react-intl';
 import shuffle from '@Utils/shuffle';
 import type { ChoiceColorDataType } from '@Data/choiceColorData';
 import Guidance from '../Guidance';
-import {
-  $StatusBox,
-  $StatusBar,
-  $StatusContent,
-  $ColorBox,
-  $Color,
-} from './style';
+
+import * as S from './style';
 
 interface BasicStageProps {
   userImg: string;
@@ -28,26 +23,26 @@ function BasicStage({
 }: BasicStageProps) {
   return (
     <>
-      <$StatusBox>
-        <$StatusBar width={`${(stageNum + 1) * (100 / MAX_STAGE_NUM)}%`} />
-      </$StatusBox>
-      <$StatusContent>
-        {stageNum + 1}/{MAX_STAGE_NUM} 단계
-      </$StatusContent>
+      <S.StatusBox>
+        <S.StatusBar width={`${(stageNum + 1) * (100 / MAX_STAGE_NUM)}%`} />
+      </S.StatusBox>
+      <S.StatusContent>
+        {stageNum + 1}/{MAX_STAGE_NUM} <FormattedMessage id="statusContent" />
+      </S.StatusContent>
 
       <Guidance />
 
-      <$ColorBox>
+      <S.ColorBox>
         {shuffle(basicColorOptions).map((item) => (
-          <$Color
+          <S.Color
             key={item.id}
             color={item.color}
             onClick={() => onBasicClick(item.type)}
           >
             <Image src={userImg} alt="사용자 이미지" width={100} height={100} />
-          </$Color>
+          </S.Color>
         ))}
-      </$ColorBox>
+      </S.ColorBox>
     </>
   );
 }

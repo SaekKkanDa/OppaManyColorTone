@@ -1,0 +1,214 @@
+{
+  "landingTitle_1": "Oppa",
+  "titleHighlight": " Colors",
+  "landingTitle_2": " ",
+  "landingSubTitle": "Personal Color Analysis",
+  "userCount_1": "We have",
+  "userCount_2": " users!",
+  "startButton": "Get Started",
+  "selectImgButton": "Select Image",
+  "guidance": "Upload a clear headshot snapped in natural lighting.",
+  "notification_1": "Note",
+  "notification_2": "We value your privacy.",
+  "notification_3": "We will never share or sell your images.",
+  "nextButton": "Next",
+  "modalGuidance_1": "Be sure to include at least part of your hair and face",
+  "modalGuidance_2": " ",
+  "confirmButton": "Next",
+  "statusContent": " Stage",
+  "explanation_1": "Choose the color looks best on you",
+  "explanation_2": "The color looks good on you gives you",
+  "explanation_3": "more even toned, healthy looking skin",
+  "bonusStatus": "Last Stage",
+  "errorMsg": "We have encountered an error",
+  "resultTitle": "Your Seasonal Color is",
+  "celebrities": "Celebrities",
+  "interactionInfo": "Click the color!",
+  "saveResult": "Save",
+  "copyUrl": "Copy",
+  "kakaotalk": "Kakao",
+  "shareResult": "Share",
+  "allTypes": "More types",
+  "restart": "Restart",
+  "notFoundMsg": "Access Denied",
+  "allTypeView_1": " ",
+  "allTypeView_2": "Seasonal Color Palette",
+  "clickType": "Click the Type!",
+  "secondaryTypeTitle": "Sister Palettes",
+  "worstTypeTitle": "Avoid this Palettes",
+  "springbright": {
+    "name": "Bright Spring",
+    "keyword": ["Colorful", "Vivid", "Contrast", "Fruits"],
+    "descriptions": [
+      "The Bright Spring color palette is reminiscent of exotic summer holidays.",
+      "From tropical waters to remote islands, these are the most saturated colors out of the twelve seasons.",
+      "Toned-down colors will dampen your natural brightness.",
+      "Cool colors will clash with your naturally warmer coloring.",
+      "Your coloring has warmer undertones, meaning gold flatters your skin more than silver."
+    ],
+    "celebrities": ["IU", "Suzy", "Junho Lee"],
+    "secondaryType": "Bright Winter",
+    "worstType": "Soft Summer"
+  },
+  "springwarm": {
+    "name": "True Spring",
+    "keyword": ["Warm", "Fresh", "Lovely", "Spring sun"],
+    "descriptions": [
+      "True Spring is the color season reminiscent of sunshine, tropical islands with turquoise water, yellow sand, lush green leaves and juicy fruit.",
+      "Feel free to combine neighboring hues, such as yellow and green.",
+      "Orangey reds, and peachy pinks are naturally look good on you.",
+      "True black and white are too cool and can make you look sallow.",
+      "The best color combinations for your outfits are similarly contrasting."
+    ],
+    "celebrities": ["Inna Yoo", "Jessica", "Jungwoo(nct)"],
+    "secondaryType": "True Autumn",
+    "worstType": "True Winter"
+  },
+  "springlight": {
+    "name": "Light Spring",
+    "keyword": ["Light", "Delicate", "Playful", "Candies"],
+    "descriptions": [
+      "Light Spring combines lightness with warmth.",
+      "Aim for at least one bright color in your outfit to achieve a colorful look.",
+      "You may be able to wear both warm and cool metals.",
+      "But gold is the more foolproof choice.",
+      "Overly bright and saturated colors make you disappear behind them."
+    ],
+    "celebrities": ["YoonaH", "Jimin Han", "Jongsuk Lee"],
+    "secondaryType": "Light Summer",
+    "worstType": "Dark Winter"
+  },
+  "summerlight": {
+    "name": "Light Summer",
+    "keyword": ["Pure", "Delicate", "Colorful", "Pinkish"],
+    "descriptions": [
+      "Light Summer is the color season reminiscent of mild summer mornings full of coolness and gentleness.",
+      "Light Summer combines lightness with coolness.",
+      "Pair a neutral with a brighter color, such as a medium grey with a brighter rose.",
+      "Due to the lightness of your natural coloring, your least flattering colors are dark.",
+      "Black near your face will make your delicate coloring disappear."
+    ],
+    "celebrities": ["Yejin Son", "Youngae Lee", "YooYeon Seok"],
+    "secondaryType": "Light Spring",
+    "worstType": "Dark Autumn"
+  },
+  "summercool": {
+    "name": "True Summer",
+    "keyword": ["Cool", "Gentle", "Refreshing", "Blue Sea"],
+    "descriptions": [
+      "True Summer colors are like a dive into cold water - gentle, calming and refreshing.",
+      "You can use darker greys, blues and browns as dark neutrals for your outfits.",
+      "Light sand tones, very light greys are more suitable for you.",
+      "Warm and earthy colors with yellow undertones will clash with your natural coolness.",
+      "The best metals for True Summer are silver, white gold and platinum."
+    ],
+    "celebrities": ["Taeyeon", "Tiffany", "Seunggi Lee"],
+    "secondaryType": "True Winter",
+    "worstType": "True Autumn"
+  },
+  "summermute": {
+    "name": "Soft Summer",
+    "keyword": ["Soft", "Dreamlike", "Cloudy", "Misty dawn"],
+    "descriptions": [
+      "The Soft Summer color palette contains highly desaturated, greyed out colors that would make other color seasons look washed out.",
+      "Greyish dark browns, sand tones, and muted browns will make you look bright.",
+      "True black and true white, which is a Winter color are not flattering on a Soft Summer.",
+      "Avoid rich, warm colors, like orangey reds and earthy browns.",
+      "Wearing rose gold works is a foolproof choice."
+    ],
+    "celebrities": ["Taeri Kim", "Jihyun Jun", "Dohyun Lee"],
+    "secondaryType": "Soft Autumn",
+    "worstType": "Bright Spring"
+  },
+  "autumnmute": {
+    "name": "Soft Autumn",
+    "keyword": ["Soft", "Classic", "Relaxed", "Cappuccino"],
+    "descriptions": [
+      "Soft Autumn draws on the typical depth of color and warmth of Autumn.",
+      "They are the colors of nuts and seeds and the first fields ready to harvest.",
+      "The best colors for this season are gentle colors, such as olive greens and delicate reds and pinks.",
+      "Vibrant colors, such as intense oranges, will overpower you and may even make you look clownish.",
+      "Wood and other natural materials also make great accessories for you."
+    ],
+    "celebrities": ["Hyojin Gong", "Sooyoung", "GongYoo"],
+    "secondaryType": "Soft Summer",
+    "worstType": "Bright Winter"
+  },
+  "autumnwarm": {
+    "name": "True Autumn",
+    "keyword": ["Warm", "Graceful", "Plentiful", "Golden"],
+    "descriptions": [
+      "The True Autumn palette contains warm greens, golden yellows, orangey reds and lots of golden browns.",
+      "Dark browns and slightly-olive greens are the best the dark neutrals for True Autumn.",
+      "Variations of beige, cream, and ecru are the best version of white.",
+      "Pastel pink or ice blue, will clash with your natural warmth and richness and will make you look off.",
+      "Greenish, grassy stones such as amber complement the beauty of True Autumn."
+    ],
+    "celebrities": ["Sekyung Shin", "Heesun Kim", "Minho Lee"],
+    "secondaryType": "True Spring",
+    "worstType": "True Summer"
+  },
+  "autumndeep": {
+    "name": "Dark Autumn",
+    "keyword": ["Depth", "Luxury", "Sunset", "Mystery"],
+    "descriptions": [
+      "Dark Autumn is the color season reminiscent of late autumn evenings.",
+      "The range of colors is quite broad, but the focus lies on golden hues such as mustard yellow, oranges and reds.",
+      "Dark chocolate browns will complement your warmer coloring more than true black.",
+      "White, pastel and other toned-down colors, such as dusty blues and pinks, will make your naturally rich colouring look off and washed out.",
+      "A large range of metals will look flattering on you."
+    ],
+    "celebrities": ["Jennie", "Heejung Kim", "Seungho Yoo"],
+    "secondaryType": "Dark Winter",
+    "worstType": "Light Summer"
+  },
+  "winterdeep": {
+    "name": "Dark Winter",
+    "keyword": ["Cold", "Clear", "Icy Forest", "Evening Walk"],
+    "descriptions": [
+      "Dark Winter is the color season reminiscent of deep winter nights.",
+      "These colors are dark and cool, just like when the moon tints the night sky bright.",
+      "Since black is part of the Winter palette, you can even pull off an all-black look.",
+      "True white is also part of the Dark Winter palette.",
+      "But always pair it with a darker color to achieve high contrast."
+    ],
+    "celebrities": ["Hanee Lee", "Jisoo", "Seungwon Cha"],
+    "secondaryType": "Dark Autumn",
+    "worstType": "Light Spring"
+  },
+  "wintercool": {
+    "name": "True Winter",
+    "keyword": ["Cool", "Highly Contrasting", "Fancy", "Snowy"],
+    "descriptions": [
+      "True Winter is the color season reminiscent of winter in its prime.",
+      "White, snowy landscapes contrast with bare trees and the darkest of nights.",
+      "Black and white is the classic combination and will look truly striking on you.",
+      "Avoid warm, earthy colors, such as golden browns and rusty oranges.",
+      "Diamonds, rubies and sapphires are great stone choices for True Winter."
+    ],
+    "celebrities": ["Karina", "Seulgi", "Soohyun Kim"],
+    "secondaryType": "True Summer",
+    "worstType": "True Autumn"
+  },
+  "winterbright": {
+    "name": "Bright Winter",
+    "keyword": ["Uncommon", "Clear", "Bright", "Cool"],
+    "descriptions": [
+      "Bright Winter is the color season reminiscent of when the winter sun illuminates the snow-white expanses.",
+      "The colors are extreme – extremely intense, light, dark and vibrant.",
+      "Don’t be afraid to combine unlike colors, such as hot pink and teal.",
+      "Black or white alone, or black and white, are not intense enough for your coloring",
+      "Add a brighter color such as limelight, Rose Red and Palace Blue to lift your outfit."
+    ],
+    "celebrities": ["Joy", "Chaeyoung", "Jungsuk Jo"],
+    "secondaryType": "Bright Spring",
+    "worstType": "Soft Autumn"
+  },
+  "alertRetry": "Please try again 🥰",
+  "alertSelectImg": "Upload a file from your library 🥰",
+  "alertNoImg": "No file chosen",
+  "alertSuccessCopy": "Copied Successfully! ✨",
+  "alertFailCopy": "Failed to copy...🥲",
+  "alertMacOS": "Chrome browser on Mac is not working. Open in another browser 🥰",
+  "alertKakao": "It is not working on kakaoTalk InAppBrowser.. Open in another browser 🥰"
+}

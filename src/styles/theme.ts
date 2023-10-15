@@ -68,13 +68,14 @@ type ModalContainerProps = {
 export const ModalContainer = styled.div<ModalContainerProps>`
   position: relative;
   height: 100%;
-  max-height: ${({ isModalOpen }) =>
-    isModalOpen ? 'calc(var(--vh,1vh) * 100)' : 'none'};
+  max-height: ${({ isModalOpen }) => (isModalOpen ? '100dvh' : 'none')};
   overflow: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'auto')};
 `;
 
 export const ModalBackground = styled.div`
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.gray[500]};

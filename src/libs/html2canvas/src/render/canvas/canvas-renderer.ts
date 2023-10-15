@@ -303,6 +303,8 @@ export class CanvasRenderer extends Renderer {
         if (container instanceof ImageElementContainer) {
             try {
                 const image = await this.context.cache.match(container.src);
+                container.intrinsicWidth = image.naturalWidth;
+                container.intrinsicHeight = image.naturalHeight;
                 this.renderReplacedElement(container, curves, image);
             } catch (e) {
                 this.context.logger.error(`Error loading image ${container.src}`);

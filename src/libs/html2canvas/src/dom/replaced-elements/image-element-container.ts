@@ -9,8 +9,8 @@ export class ImageElementContainer extends ElementContainer {
   constructor(context: Context, img: HTMLImageElement) {
     super(context, img);
     this.src = img.currentSrc || img.src;
-    this.intrinsicWidth = img.naturalWidth * Math.floor(devicePixelRatio);
-    this.intrinsicHeight = img.naturalHeight * Math.floor(devicePixelRatio);
+    this.intrinsicWidth = img.naturalWidth;
+    this.intrinsicHeight = img.naturalHeight;
     this.context.cache.addImage(this.src);
   }
 }

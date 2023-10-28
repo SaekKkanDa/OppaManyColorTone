@@ -138,7 +138,11 @@ function ResultPage(): JSX.Element {
         )}
       </S.ResultContainer>
       {alertModal && (
-        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+        <AlertModal
+          alertModal={alertModal}
+          setAlertModal={setAlertModal}
+          smallTextSize={false}
+        />
       )}
       <ShareSubPage
         resultContainerRef={resultContainerRef}

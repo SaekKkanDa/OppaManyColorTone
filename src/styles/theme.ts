@@ -33,6 +33,7 @@ export const flexCustom = (
 export const Button = styled.button`
   padding: 16px 0;
   width: 320px;
+  max-width: 100%;
   border-radius: 20px;
 
   background-color: ${theme.gray[800]};

@@ -7,6 +7,6 @@ export const Wrapper = styled.div`
   gap: 10px;
   margin: 0 auto;
   padding: 20px;
-  max-width: 400px;
+  max-width: var(--viewport-max-width);
   height: 100%;
 `;

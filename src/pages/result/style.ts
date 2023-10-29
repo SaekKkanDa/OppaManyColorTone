@@ -10,7 +10,7 @@ interface ColorItemStyleProps {
 export const Wrapper = styled.div`
   ${flexCustom('column', 'inherit', 'flex-start')}
   margin: 0 auto;
-  max-width: 400px;
+  max-width: var(--viewport-max-width);
 `;
 
 export const ResultContainer = styled.div`
@@ -21,7 +21,7 @@ export const ResultContainer = styled.div`
 export const LoadingWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 40px;
-  max-width: 400px;
+  max-width: var(--viewport-max-width);
   margin: 0 auto;
   padding: 48px 32px 30px 36px;
 `;

@@ -12,7 +12,7 @@ export const Modal = styled.div`
   gap: 16px;
 
   width: calc(100% - 64px);
-  max-width: calc(400px - 64px);
+  max-width: calc(var(--viewport-max-width) - 64px);
   padding: 24px 16px;
   border-radius: 20px;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),

@@ -20,7 +20,6 @@ export const Modal = styled.div`
   background-color: ${({ theme }) => theme.gray[50]};
   color: ${({ theme }) => theme.gray[800]};
 
-  word-break: keep-all;
   white-space: break-spaces;
 
   button {
@@ -31,7 +30,8 @@ export const Modal = styled.div`
 export const Title = styled.h6``;
 
 export const Message = styled.div<{ $textSize: 'sm' | 'md' }>`
-  font-size: ${({ $textSize }) => $textSize === 'sm' && '0.875rem'};
-  text-align: initial;
   margin-bottom: 0.5rem;
+  font-size: ${({ $textSize }) => $textSize === 'sm' && '0.875rem'};
+  line-height: 1.4;
+  text-align: initial;
 `;

@@ -22,8 +22,8 @@
   "explanation_3": "피부색이 균일하고 맑아 보이는 색이 잘 어울리는 색입니다.",
   "colorChoiceGuideTitle": "잘 어울리는 색 고르는 🍯TIP",
   "colorChoiceGuideExplanation_1": "색이 눈에 들어오는 게 아니라 ‘내’가 돋보여야 합니다!",
-  "colorChoiceGuideExplanation_2": "안 어울리는 색은? 🙁\n❌ 너무 더워보여요\n❌ 얼굴과 색이 분리되어 보여요",
-  "colorChoiceGuideExplanation_3": "잘 어울리는 색은? 😊\n⭕️ 얼굴 윤곽이 살아나요\n⭕️ 콧대랑 턱라인이 날렵해보여요",
+  "colorChoiceGuideExplanation_2": "안 어울리는 색은? 🙁\n❌ 너무 더워 보여요\n❌ 얼굴과 색이 분리되어 보여요",
+  "colorChoiceGuideExplanation_3": "잘 어울리는 색은? 😊\n⭕️ 얼굴 윤곽이 살아나요\n⭕️ 콧대와 턱 라인이 날렵해 보여요",
   "bonusStatus": "마지막 단계",
   "errorMsg": "예기치 못한 상황이 발생했습니다.",
   "resultTitle": "당신의 퍼스널 컬러는",
@@ -215,5 +215,6 @@
   "alertSuccessCopy": "링크 복사 성공! ✨",
   "alertFailCopy": "링크 복사에 실패했어요...🥲",
   "alertMacOS": "macOS 환경의 크롬 브라우저에서는 지원하지 않는 기능입니다. 다른 브라우저에서 실행해 주세요. 🥰",
-  "alertKakao": "카카오 인앱 브라우저에서는 지원하지 않는 기능입니다. 다른 브라우저에서 실행해 주세요. 🥰"
+  "alertKakao": "카카오 인앱 브라우저에서는 지원하지 않는 기능입니다. 다른 브라우저에서 실행해 주세요. 🥰",
+  "alertNotSupportedBrowser": "현재 브라우저에서는 지원하지 않는 기능입니다. 다른 브라우저에서 실행해 주세요. 🥰"
 }

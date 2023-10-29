@@ -9,7 +9,7 @@ import kakaoIcon from 'public/images/icon/kakaoIcon.png';
 import ROUTE_PATH from '@Constant/routePath';
 import useKakaoShare from '@Hooks/useKakaoShare';
 import { copyUrl } from '@Utils/clipboard';
-import { webShare } from '@Utils/share';
+import { canWebShare, webShare } from '@Utils/share';
 import { isChrome, isOSX } from '@Utils/userAgent';
 import RestartButton from '@Pages/result/RestartButton';
 import { captureAndDownload, checkIfKakaoAndAlert } from './share.logic';
@@ -67,6 +67,11 @@ function ShareSubPage({
 
     if (isChrome() && isOSX()) {
       setAlertMessage('alertMacOS');
+      return;
+    }
+
+    if (!canWebShare) {
+      setAlertMessage('alertNotSupportedBrowser');
       return;
     }
 

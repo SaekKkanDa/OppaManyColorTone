@@ -1,36 +1,49 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import AlertModal from '@Components/AlertModal/AlertModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
+import AlertModal from '@Components/AlertModal';
 
 import * as S from './style';
 
 function Guidance() {
-  // alert modal
-  const [alertModal, setAlertModal] = useState('');
+  const [isOpenGuideModal, setIsOpenGuideModal] = useState(false);
 
-  const onClickQuestionIcon = () => {
-    setAlertModal('colorChoiceExplanation');
+  const handleOpenGuideModal = () => {
+    setIsOpenGuideModal(true);
   };
 
   return (
-    <S.Explanation>
+    <S.Guidance>
       <FormattedMessage id="explanation_1" />{' '}
-      <FontAwesomeIcon icon={faCircleQuestion} onClick={onClickQuestionIcon} />
-      {alertModal && (
+      <button onClick={handleOpenGuideModal}>
+        <FontAwesomeIcon icon={faCircleQuestion} />
+      </button>
+      {isOpenGuideModal && (
         <AlertModal
-          alertModal={alertModal}
-          setAlertModal={setAlertModal}
-          smallTextSize={true}
-        />
+          isOpen={isOpenGuideModal}
+          title="colorChoiceGuideTitle"
+          handleClose={() => setIsOpenGuideModal(false)}
+        >
+          <S.ColorChoiceGuideWrapper>
+            {[
+              'colorChoiceGuideExplanation_1',
+              'colorChoiceGuideExplanation_2',
+              'colorChoiceGuideExplanation_3',
+            ].map((messageId) => (
+              <p key={messageId}>
+                <FormattedMessage id={messageId} />
+              </p>
+            ))}
+          </S.ColorChoiceGuideWrapper>
+        </AlertModal>
       )}
-      <p>
+      <S.Explanation>
         <FormattedMessage id="explanation_2" />
         <br />
         <FormattedMessage id="explanation_3" />
-      </p>
-    </S.Explanation>
+      </S.Explanation>
+    </S.Guidance>
   );
 }
 

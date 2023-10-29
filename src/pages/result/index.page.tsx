@@ -1,13 +1,16 @@
 import { useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import resultColorData from '@Data/resultColorData';
-import ColorChipSpinner from '@Components/ColorChipSpinner';
 
 import RestartButton from '@Pages/result/RestartButton';
-import LoadingIndicator from '@Components/LoadingIndicator';
 import useScrollTop from '@Hooks/useScrollTop';
 
-import * as S from './style';
+import ColorChipSpinner from '@Components/ColorChipSpinner';
+import LoadingIndicator from '@Components/LoadingIndicator';
+import Tag from '@Components/Tag';
+import AlertModal from '@Components/AlertModal';
+
 import ShareSubPage from './share.subPage';
 import PaletteSubPage from './palette.subPage';
 import {
@@ -15,10 +18,7 @@ import {
   useNavigateByColorType,
   useLateColorType,
 } from './index.logic';
-
-import { FormattedMessage } from 'react-intl';
-import Tag from '@Components/Tag';
-import AlertModal from '@Components/AlertModal/AlertModal';
+import * as S from './style';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -32,7 +32,7 @@ function ResultPage(): JSX.Element {
   const onClickAnotherResult = useNavigateByColorType();
 
   // alert modal
-  const [alertModal, setAlertModal] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
 
   // conditional rendering
   if (status === 'loading') {
@@ -137,17 +137,18 @@ function ResultPage(): JSX.Element {
           )
         )}
       </S.ResultContainer>
-      {alertModal && (
+      {alertMessage && (
         <AlertModal
-          alertModal={alertModal}
-          setAlertModal={setAlertModal}
-          smallTextSize={false}
-        />
+          isOpen={!!alertMessage}
+          handleClose={() => setAlertMessage('')}
+        >
+          <FormattedMessage id={alertMessage} />
+        </AlertModal>
       )}
       <ShareSubPage
         resultContainerRef={resultContainerRef}
         colorType={colorType}
-        setAlertModal={setAlertModal}
+        setAlertMessage={setAlertMessage}
       />
     </S.Wrapper>
   );

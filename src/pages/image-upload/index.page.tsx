@@ -7,16 +7,15 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
-import AlertModal from '@Components/AlertModal/AlertModal';
+import AlertModal from '@Components/AlertModal';
 import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
 import FaceDetection from './FaceDetection';
-
 import * as S from './style';
 
 function ImageUploadPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [alertModal, setAlertModal] = useState('');
+  const [isOpenImageUploadModal, setIsOpenImageUploadModal] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const imagePreviewURL = useRecoilState(CropImage)[0];
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
@@ -28,31 +27,36 @@ function ImageUploadPage() {
   const selectImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setImageFile(event.target.files[0]);
-      setIsModalOpen(true);
+      setIsOpenImageUploadModal(true);
       return;
     }
-    setAlertModal('alertRetry');
+    setAlertMessage('alertRetry');
   };
 
   return (
-    <ModalContainer isModalOpen={isModalOpen}>
-      {isModalOpen && imageFile ? (
+    <ModalContainer isOpen={isOpenImageUploadModal}>
+      {isOpenImageUploadModal && imageFile ? (
         <>
           <Modal>
             <FaceDetection
               imageFile={imageFile}
-              setIsModalOpen={setIsModalOpen}
-              setAlertModal={setAlertModal}
+              setAlertMessage={setAlertMessage}
+              handleClose={() => setIsOpenImageUploadModal(false)}
             />
           </Modal>
           <ModalBackground />
         </>
       ) : null}
-      {alertModal && (
-        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
+      {alertMessage && (
+        <AlertModal
+          isOpen={!!alertMessage}
+          handleClose={() => setAlertMessage('')}
+        >
+          <FormattedMessage id={alertMessage} />
+        </AlertModal>
       )}
 
-      <S.FlexContainer isModalOpen={isModalOpen}>
+      <S.FlexContainer isOpen={isOpenImageUploadModal}>
         <S.ImageBox>
           {imagePreviewURL ? (
             <>

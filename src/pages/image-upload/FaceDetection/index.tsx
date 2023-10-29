@@ -11,14 +11,14 @@ import * as S from './style';
 
 interface FaceDetectionProps {
   imageFile: File;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
+  handleClose: () => void;
 }
 
 function FaceDetection({
   imageFile,
-  setIsModalOpen,
-  setAlertModal,
+  setAlertMessage,
+  handleClose,
 }: FaceDetectionProps) {
   const [image, setImage] = useState('');
   const [scale, setScale] = useState(1);
@@ -30,8 +30,8 @@ function FaceDetection({
     const file = imageFile;
 
     if (!file.type.startsWith('image/')) {
-      setIsModalOpen(false);
-      setAlertModal('alertSelectImg');
+      handleClose();
+      setAlertMessage('alertSelectImg');
       return;
     }
 
@@ -47,7 +47,7 @@ function FaceDetection({
 
       throw Error('이미지 파일을 불러오는 데 오류가 발생했습니다.');
     };
-  }, [imageFile]);
+  }, [handleClose, imageFile, setAlertMessage]);
 
   const OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -76,8 +76,8 @@ function FaceDetection({
       errorMsg = 'alertNoImg';
     }
 
-    setAlertModal(errorMsg);
-    setIsModalOpen(false);
+    setAlertMessage(errorMsg);
+    handleClose();
   };
 
   return (

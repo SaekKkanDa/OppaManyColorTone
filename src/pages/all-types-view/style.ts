@@ -14,7 +14,7 @@ type TagStyleProps = {
 export const Wrapper = styled.div`
   ${flexCustom('column', 'center', 'flex-start')}
   width: 100%;
-  max-width: 400px;
+  max-width: var(--viewport-max-width);
   height: 100%;
   padding: 32px;
   margin: 0 auto;
@@ -37,7 +37,7 @@ export const Title = styled.h1`
 `;
 
 export const PieChart = styled(_PieChart)`
-  max-height: calc(400px - 32px * 2);
+  max-height: calc(var(--viewport-max-width) - 32px * 2);
   margin: 32px 0;
 `;
 

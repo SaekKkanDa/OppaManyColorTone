@@ -18,20 +18,20 @@ import * as S from './style';
 interface MenuSubPageProps {
   resultContainerRef: React.RefObject<HTMLDivElement>;
   colorType: string;
-  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ShareSubPage({
   resultContainerRef,
   colorType,
-  setAlertModal,
+  setAlertMessage,
 }: MenuSubPageProps) {
   const { isLoading, kakaoShare } = useKakaoShare();
   const kakaoAlertMsg = checkIfKakaoAndAlert();
 
   const onClickCapture = async () => {
     if (kakaoAlertMsg) {
-      setAlertModal(kakaoAlertMsg);
+      setAlertMessage(kakaoAlertMsg);
       return;
     }
 
@@ -44,16 +44,16 @@ function ShareSubPage({
 
   const onClickLinkCopy = async () => {
     if (kakaoAlertMsg) {
-      setAlertModal(kakaoAlertMsg);
+      setAlertMessage(kakaoAlertMsg);
       return;
     }
     const copyAlertMsg = await copyUrl(location.href);
-    setAlertModal(copyAlertMsg);
+    setAlertMessage(copyAlertMsg);
   };
 
   const onClickKakaoShare = () => {
     if (isLoading) {
-      setAlertModal('alertRetry');
+      setAlertMessage('alertRetry');
     } else {
       kakaoShare();
     }
@@ -61,12 +61,12 @@ function ShareSubPage({
 
   const onClickShare = async () => {
     if (kakaoAlertMsg) {
-      setAlertModal(kakaoAlertMsg);
+      setAlertMessage(kakaoAlertMsg);
       return;
     }
 
     if (isChrome() && isOSX()) {
-      setAlertModal('alertMacOS');
+      setAlertMessage('alertMacOS');
       return;
     }
 

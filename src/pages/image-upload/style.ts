@@ -9,8 +9,8 @@ export const CroppedImageBox = styled(Image)`
   z-index: 1;
 `;
 
-export const FlexContainer = styled.div<{ isModalOpen: boolean }>`
-  display: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'block')};
+export const FlexContainer = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? 'hidden' : 'block')};
   height: 100dvh;
   ${flexCustom('column', 'center', 'center')}
   padding: 40px 20px;

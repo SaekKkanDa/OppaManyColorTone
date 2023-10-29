@@ -1,4 +1,5 @@
 {
+  "confirm": "Confirm",
   "landingTitle_1": "Oppa",
   "titleHighlight": " Colors",
   "landingTitle_2": " ",
@@ -19,6 +20,10 @@
   "explanation_1": "Choose the color looks best on you",
   "explanation_2": "The color looks good on you gives you",
   "explanation_3": "more even toned, healthy looking skin",
+  "colorChoiceGuideTitle": "How to choose best color",
+  "colorChoiceGuideExplanation_1": "색이 눈에 들어오는 게 아니라 ‘내’가 돋보여야 합니다!",
+  "colorChoiceGuideExplanation_2": "안 어울리는 색은? 🙁\n❌ 너무 더워보여요\n❌ 얼굴과 색이 분리되어 보여요",
+  "colorChoiceGuideExplanation_3": "잘 어울리는 색은? 😊\n⭕️ 얼굴 윤곽이 살아나요\n⭕️ 콧대랑 턱라인이 날렵해보여요",
   "bonusStatus": "Last Stage",
   "errorMsg": "We have encountered an error",
   "resultTitle": "Your Seasonal Color is",

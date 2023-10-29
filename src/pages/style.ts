@@ -6,7 +6,7 @@ export const LandingWrap = styled.div`
   ${flexCustom('column')}
   margin: 0 auto;
   padding: 48px 0 36px;
-  max-width: 400px;
+  max-width: var(--viewport-max-width);
   height: 100%;
   background-color: ${({ theme }) => theme.gray[100]};
 `;

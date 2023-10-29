@@ -23,7 +23,8 @@ const GlobalStyle = createGlobalStyle`
   ${ResetStyle}
 
   :root {
-    --font-jalnan: ${jalnan.style.fontFamily}
+    --font-jalnan: ${jalnan.style.fontFamily};
+    --viewport-max-width: 400px;
   }
 
   * {

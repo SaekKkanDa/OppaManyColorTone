@@ -214,6 +214,7 @@
   "alertNoImg": "No file chosen",
   "alertSuccessCopy": "Copied Successfully! ✨",
   "alertFailCopy": "Failed to copy...🥲",
-  "alertMacOS": "Chrome browser on Mac is not working. Open in another browser 🥰",
-  "alertKakao": "It is not working on kakaoTalk InAppBrowser.. Open in another browser 🥰"
+  "alertMacOS": "Chrome browser on Mac is not working. Open in another browser. 🥰",
+  "alertKakao": "It is not working on kakaoTalk InAppBrowser. Open in another browser. 🥰",
+  "alertNotSupportedBrowser": "It is not working on this browser. Open in another browser. 🥰"
 }

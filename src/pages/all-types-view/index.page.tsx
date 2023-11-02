@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
@@ -14,7 +14,11 @@ const defaultLabelStyle = {
   fontFamily: "'Noto Sans KR', sans-serif",
 };
 
-const AllTypesView = () => {
+interface AllTypesViewProps {
+  intl: any;
+}
+
+const AllTypesView = ({ intl }: AllTypesViewProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );
@@ -40,14 +44,17 @@ const AllTypesView = () => {
       </S.Title>
 
       <S.PieChart
-        data={color.map(({ name }, index) => ({
-          title: name.replace(' ', ''),
-          color:
-            hoveredIndex === index || selectedIndex === index
-              ? color[index].textColor
-              : theme.gray[50],
-          value: 1,
-        }))}
+        data={color.map(({ type }, index) => {
+          const message = intl.formatMessage({ id: `${type}.name` });
+          return {
+            title: message,
+            color:
+              hoveredIndex === index || selectedIndex === index
+                ? color[index].textColor
+                : theme.gray[50],
+            value: 1,
+          };
+        })}
         label={({ dataEntry }) => dataEntry.title}
         labelStyle={(index) => ({
           ...defaultLabelStyle,
@@ -116,4 +123,4 @@ const AllTypesView = () => {
   );
 };
 
-export default AllTypesView;
+export default injectIntl(AllTypesView);

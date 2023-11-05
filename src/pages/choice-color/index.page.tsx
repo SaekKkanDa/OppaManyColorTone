@@ -7,6 +7,7 @@ import choiceColorData from '@Data/choiceColorData';
 import BasicStage from './BasicStage';
 import BonusStage from './BonusStage';
 import * as S from './style';
+import { AdSense } from '@Components/AdSense';
 
 function ChoiceColor() {
   const [selectedTypes, setSelectedTypes] = useState<ColorType[]>([]);
@@ -53,6 +54,7 @@ function ChoiceColor() {
       ) : (
         <BonusStage userImg={userImg} bonusColorTypes={bonusColorTypes} />
       )}
+      <AdSense data-ad-slot={'2551404503'} />
     </S.Wrapper>
   );
 }

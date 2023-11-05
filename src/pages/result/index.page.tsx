@@ -19,6 +19,7 @@ import {
   useLateColorType,
 } from './index.logic';
 import * as S from './style';
+import { AdSense } from '@Components/AdSense';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -150,6 +151,7 @@ function ResultPage(): JSX.Element {
         colorType={colorType}
         setAlertMessage={setAlertMessage}
       />
+      <AdSense data-ad-slot={'2551404503'} />
     </S.Wrapper>
   );
 }

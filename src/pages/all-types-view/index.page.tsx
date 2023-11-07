@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import {
+  FormattedMessage,
+  WrappedComponentProps,
+  injectIntl,
+} from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
@@ -14,11 +18,7 @@ const defaultLabelStyle = {
   fontFamily: "'Noto Sans KR', sans-serif",
 };
 
-interface AllTypesViewProps {
-  intl: any;
-}
-
-const AllTypesView = ({ intl }: AllTypesViewProps) => {
+const AllTypesView = ({ intl }: WrappedComponentProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );

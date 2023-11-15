@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import Head from 'next/head';
 import { FormattedMessage } from 'react-intl';
 
 import { createConsecutiveNumbers } from '@Base/utils/arrExtension';
@@ -65,6 +66,13 @@ function ResultPage(): JSX.Element {
 
   return (
     <S.Wrapper>
+      <Head>
+        <link
+          rel="canonical"
+          href="https://omct.web.app/result?colorType=springwarm"
+        />
+      </Head>
+
       <S.ResultContainer ref={resultContainerRef}>
         <S.Title>
           <S.TitleBold color={textColor}>

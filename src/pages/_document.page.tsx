@@ -9,7 +9,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-export default class MyDcoument extends Document {
+export default class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
@@ -42,11 +42,22 @@ export default class MyDcoument extends Document {
     return (
       <Html>
         <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+
           {/* og tag */}
-          <meta property="og:title" content="오빠 톤 많아?" />
+          <meta
+            property="og:title"
+            content="오빠 톤 많아? 퍼스널 컬러 자가진단"
+          />
           <meta property="og:image" content="/preview/og-image.png" />
           <meta property="og:url" content="https://omct.web.app" />
-          <meta property="og:description" content="퍼스널 컬러 자가진단" />
+          <meta
+            property="og:description"
+            content="퍼스널 컬러 자가진단 온라인 무료 테스트"
+          />
 
           {/* Google Search Console */}
           <meta

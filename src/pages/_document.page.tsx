@@ -43,11 +43,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-
-          <meta
             name="application-name"
             content="오빠 톤 많아? 퍼스널 컬러 자가진단"
           ></meta>

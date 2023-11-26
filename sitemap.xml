@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://omct.web.app/</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/all-types-view</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=springbright</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=springwarm</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=springlight</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=summerlight</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=summercool</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=summermute</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=autumnmute</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=autumnwarm</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=autumndeep</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=winterdeep</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=wintercool</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/result?colorType=winterbright</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://omct.web.app/image-upload</loc>
+  <lastmod>2023-11-05T00:28:50+00:00</lastmod>
+  <priority>0.20</priority>
+</url>
+
+
+</urlset>

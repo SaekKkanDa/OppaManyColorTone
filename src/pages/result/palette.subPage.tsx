@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import * as S from './style';
 import Palette from '@Components/Palette';
@@ -9,6 +9,7 @@ import ColorTransition, {
 import { useChangeTheme } from './palette.logic';
 import useCropImg from '@Hooks/useCropImg';
 import { FormattedMessage } from 'react-intl';
+import { useTrigger } from '@Base/hooks/useTrigger';
 
 interface PaletteSubPageProps {
   colors: Color[];
@@ -16,13 +17,13 @@ interface PaletteSubPageProps {
 
 function PaletteSubPage({ colors }: PaletteSubPageProps) {
   const transitionRef = useRef<ColorTransitionInstance>(null);
-  const [isBeforeClick, setIsBeforeClick] = useState(false);
+  const { isTriggered: isBeforeClick, trigger } = useTrigger({});
+  const changeTheme = useChangeTheme();
 
   const cropImg = useCropImg();
 
-  const changeTheme = useChangeTheme();
   const onClickPalette = (color: string) => {
-    setIsBeforeClick(true);
+    !isBeforeClick && trigger();
     transitionRef.current?.play(color);
     changeTheme(color);
   };

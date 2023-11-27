@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
 
 const theme = {
@@ -20,9 +21,9 @@ const theme = {
 export default theme;
 
 export const flexCustom = (
-  flexDirection = 'initial',
-  alignItems = 'center',
-  justifyContent = 'center'
+  flexDirection: CSSProperties['flexDirection'] = 'initial',
+  alignItems: CSSProperties['alignItems'] = 'center',
+  justifyContent: CSSProperties['justifyContent'] = 'center'
 ) => css`
   display: flex;
   flex-direction: ${flexDirection};
@@ -33,6 +34,7 @@ export const flexCustom = (
 export const Button = styled.button`
   padding: 16px 0;
   width: 320px;
+  max-width: 100%;
   border-radius: 20px;
 
   background-color: ${theme.gray[800]};
@@ -62,14 +64,14 @@ export const BorderedButton = styled(Button)`
 `;
 
 type ModalContainerProps = {
-  isModalOpen: boolean;
+  isOpen: boolean;
 };
 
 export const ModalContainer = styled.div<ModalContainerProps>`
   position: relative;
   height: 100%;
-  max-height: ${({ isModalOpen }) => (isModalOpen ? '100dvh' : 'none')};
-  overflow: ${({ isModalOpen }) => (isModalOpen ? 'hidden' : 'auto')};
+  max-height: ${({ isOpen }) => (isOpen ? '100dvh' : 'none')};
+  overflow: ${({ isOpen }) => (isOpen ? 'hidden' : 'auto')};
 `;
 
 export const ModalBackground = styled.div`
@@ -78,7 +80,7 @@ export const ModalBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.gray[500]};
+  background-color: ${({ theme }) => theme.gray[800]};
   opacity: 0.5;
   z-index: 10;
 `;

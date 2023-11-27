@@ -1,13 +1,17 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import Head from 'next/head';
+import { FormattedMessage } from 'react-intl';
+
+import { createConsecutiveNumbers } from '@Base/utils/arrExtension';
+import useScrollTop from '@Base/hooks/useScrollTop';
 
 import resultColorData from '@Data/resultColorData';
-import ColorChipSpinner from '@Components/ColorChipSpinner';
-
 import RestartButton from '@Pages/result/RestartButton';
+import ColorChipSpinner from '@Components/ColorChipSpinner';
 import LoadingIndicator from '@Components/LoadingIndicator';
-import useScrollTop from '@Hooks/useScrollTop';
+import Tag from '@Components/Tag';
+import { AdSense } from '@Components/AdSense';
 
-import * as S from './style';
 import ShareSubPage from './share.subPage';
 import PaletteSubPage from './palette.subPage';
 import {
@@ -15,24 +19,17 @@ import {
   useNavigateByColorType,
   useLateColorType,
 } from './index.logic';
-
-import { FormattedMessage } from 'react-intl';
-import Tag from '@Components/Tag';
-import AlertModal from '@Components/AlertModal/AlertModal';
+import * as S from './style';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
   const resultContainerRef = useRef<HTMLDivElement>(null);
 
-  // hooks
   useScrollTop();
   useClearPageTheme();
 
   const { data: colorType, status, error } = useLateColorType();
-  const onClickAnotherResult = useNavigateByColorType();
-
-  // alert modal
-  const [alertModal, setAlertModal] = useState('');
+  const navigateByColorType = useNavigateByColorType();
 
   // conditional rendering
   if (status === 'loading') {
@@ -69,6 +66,13 @@ function ResultPage(): JSX.Element {
 
   return (
     <S.Wrapper>
+      <Head>
+        <link
+          rel="canonical"
+          href="https://omct.web.app/result?colorType=springwarm"
+        />
+      </Head>
+
       <S.ResultContainer ref={resultContainerRef}>
         <S.Title>
           <S.TitleBold color={textColor}>
@@ -81,7 +85,7 @@ function ResultPage(): JSX.Element {
         <Tag tags={tags} colorType={colorType} />
 
         <S.Description>
-          {[0, 1, 2, 3, 4].map((index, number) => (
+          {createConsecutiveNumbers(5).map((index, number) => (
             <li key={index}>
               <FormattedMessage id={`${colorType}.descriptions.${number}`} />
             </li>
@@ -117,7 +121,7 @@ function ResultPage(): JSX.Element {
           ({ title, type, name, textColor, bestColors }) => (
             <S.ColorMatchButton
               key={name}
-              onClick={() => onClickAnotherResult(type)}
+              onClick={() => navigateByColorType(type)}
             >
               <S.ColorMatchTitle>
                 <FormattedMessage id={`${title}Title`} />
@@ -137,14 +141,11 @@ function ResultPage(): JSX.Element {
           )
         )}
       </S.ResultContainer>
-      {alertModal && (
-        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
-      )}
       <ShareSubPage
         resultContainerRef={resultContainerRef}
         colorType={colorType}
-        setAlertModal={setAlertModal}
       />
+      <AdSense data-ad-slot={'2551404503'} />
     </S.Wrapper>
   );
 }

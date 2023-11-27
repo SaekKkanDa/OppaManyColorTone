@@ -6,10 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faLink, faShare } from '@fortawesome/free-solid-svg-icons';
 import kakaoIcon from 'public/images/icon/kakaoIcon.png';
 
+import { isEmpty, isFalse } from '@Base/utils/check';
+import AlertModal from '@Components/AlertModal';
+import { useModal } from '@Base/hooks/useModal';
 import ROUTE_PATH from '@Constant/routePath';
 import useKakaoShare from '@Hooks/useKakaoShare';
 import { copyUrl } from '@Utils/clipboard';
-import { webShare } from '@Utils/share';
+import { canWebShare, webShare } from '@Utils/share';
 import { isChrome, isOSX } from '@Utils/userAgent';
 import RestartButton from '@Pages/result/RestartButton';
 import { captureAndDownload, checkIfKakaoAndAlert } from './share.logic';
@@ -18,25 +21,28 @@ import * as S from './style';
 interface MenuSubPageProps {
   resultContainerRef: React.RefObject<HTMLDivElement>;
   colorType: string;
-  setAlertModal: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function ShareSubPage({
-  resultContainerRef,
-  colorType,
-  setAlertModal,
-}: MenuSubPageProps) {
+function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
+  // alert modal
+  const {
+    isOpen: isOpenAlertModal,
+    message: alertModalMessage,
+    open: openAlertModal,
+    close: closeAlertModal,
+  } = useModal({ defaultMessage: '' });
+
   const { isLoading, kakaoShare } = useKakaoShare();
   const kakaoAlertMsg = checkIfKakaoAndAlert();
 
   const onClickCapture = async () => {
     if (kakaoAlertMsg) {
-      setAlertModal(kakaoAlertMsg);
+      openAlertModal(kakaoAlertMsg);
       return;
     }
 
     const wrapper = resultContainerRef.current;
-    if (!wrapper) return;
+    if (isFalse(wrapper)) return;
 
     const imgName = `${colorType}-result.png`;
     captureAndDownload(wrapper, imgName);
@@ -44,16 +50,16 @@ function ShareSubPage({
 
   const onClickLinkCopy = async () => {
     if (kakaoAlertMsg) {
-      setAlertModal(kakaoAlertMsg);
+      openAlertModal(kakaoAlertMsg);
       return;
     }
     const copyAlertMsg = await copyUrl(location.href);
-    setAlertModal(copyAlertMsg);
+    openAlertModal(copyAlertMsg);
   };
 
   const onClickKakaoShare = () => {
     if (isLoading) {
-      setAlertModal('alertRetry');
+      openAlertModal('alertRetry');
     } else {
       kakaoShare();
     }
@@ -61,12 +67,17 @@ function ShareSubPage({
 
   const onClickShare = async () => {
     if (kakaoAlertMsg) {
-      setAlertModal(kakaoAlertMsg);
+      openAlertModal(kakaoAlertMsg);
       return;
     }
 
     if (isChrome() && isOSX()) {
-      setAlertModal('alertMacOS');
+      openAlertModal('alertMacOS');
+      return;
+    }
+
+    if (!canWebShare) {
+      openAlertModal('alertNotSupportedBrowser');
       return;
     }
 
@@ -126,6 +137,11 @@ function ShareSubPage({
         </Link>
         <RestartButton />
       </S.ButtonsWrapper>
+      {isOpenAlertModal && !isEmpty(alertModalMessage) && (
+        <AlertModal isOpen={isOpenAlertModal} handleClose={closeAlertModal}>
+          <FormattedMessage id={alertModalMessage} />
+        </AlertModal>
+      )}
     </>
   );
 }

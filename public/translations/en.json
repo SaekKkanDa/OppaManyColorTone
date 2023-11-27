@@ -1,4 +1,5 @@
 {
+  "confirm": "Confirm",
   "landingTitle_1": "Oppa",
   "titleHighlight": " Colors",
   "landingTitle_2": " ",
@@ -16,9 +17,13 @@
   "modalGuidance_2": " ",
   "confirmButton": "Next",
   "statusContent": " Stage",
-  "explanation_1": "Choose the color looks best on you",
-  "explanation_2": "The color looks good on you gives you",
-  "explanation_3": "more even toned, healthy looking skin",
+  "explanation_1": "Choose a color that looks best on you.",
+  "explanation_2": "The color that looks good on you gives you",
+  "explanation_3": "even tone and healthy looking skin.",
+  "colorChoiceGuideTitle": "Tips for choosing the right color",
+  "colorChoiceGuideExplanation_1": "\"You\" are the one that needs to be focused on, not the color.",
+  "colorChoiceGuideExplanation_2": "With a mismatch? 🙁\n❌ You look too hot / too cold.\n❌ Faces and colors look separate.",
+  "colorChoiceGuideExplanation_3": "With a match? 😊\n⭕️ Facial contours come alive.\n⭕️ Your nose and jawline look sharp.",
   "bonusStatus": "Last Stage",
   "errorMsg": "We have encountered an error",
   "resultTitle": "Your Seasonal Color is",
@@ -209,6 +214,7 @@
   "alertNoImg": "No file chosen",
   "alertSuccessCopy": "Copied Successfully! ✨",
   "alertFailCopy": "Failed to copy...🥲",
-  "alertMacOS": "Chrome browser on Mac is not working. Open in another browser 🥰",
-  "alertKakao": "It is not working on kakaoTalk InAppBrowser.. Open in another browser 🥰"
+  "alertMacOS": "Chrome browser on Mac is not working. Open in another browser. 🥰",
+  "alertKakao": "It is not working on kakaoTalk InAppBrowser. Open in another browser. 🥰",
+  "alertNotSupportedBrowser": "It is not working on this browser. Open in another browser. 🥰"
 }

@@ -1,18 +1,14 @@
-import { useState, useMemo, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import { CropImage } from '@Recoil/app';
+import { useState, useMemo } from 'react';
 import useSelectBonusColorTypes from '@Hooks/useSelectBonusColorTypes';
 import choiceColorData from '@Data/choiceColorData';
 import BasicStage from './BasicStage';
 import BonusStage from './BonusStage';
 import * as S from './style';
 import { AdSense } from '@Components/AdSense';
+import useCropImg from '@Hooks/useCropImg';
 
 function ChoiceColor() {
   const [selectedTypes, setSelectedTypes] = useState<ColorType[]>([]);
-
-  const router = useRouter();
 
   const stageNum = selectedTypes.length;
   const MAX_STAGE_NUM = choiceColorData.length;
@@ -27,15 +23,7 @@ function ChoiceColor() {
     MAX_STAGE_NUM
   );
 
-  const userImg = useRecoilValue(CropImage);
-
-  // HJ TODO: fallback component 필요 ?
-  useEffect(() => {
-    if (!router) return;
-    if (!userImg) {
-      router.push('/no-image');
-    }
-  }, [router, userImg]);
+  const userImg = useCropImg();
 
   const onBasicClick = (type: ColorType) => {
     setSelectedTypes((prev) => [...prev, type]);

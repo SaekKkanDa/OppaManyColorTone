@@ -1,6 +1,7 @@
 import { FormattedMessage } from 'react-intl';
-import { ModalContainer, ModalBackground, Button } from '@Styles/theme';
+import { ModalBackground, Button } from '@Styles/theme';
 import * as S from './style';
+import { ModalBase } from '@Base/components/ModalBase';
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -17,8 +18,11 @@ const AlertModal = ({
   handleClose,
 }: AlertModalProps & React.PropsWithChildren) => {
   return (
-    <ModalContainer isOpen={isOpen}>
-      <ModalBackground onClick={handleClose} />
+    <ModalBase
+      isOpen={isOpen}
+      backdropComponent={<ModalBackground />}
+      onClose={handleClose}
+    >
       <S.Modal>
         {title && (
           <S.Title>
@@ -31,7 +35,7 @@ const AlertModal = ({
           <FormattedMessage id="confirm" />
         </Button>
       </S.Modal>
-    </ModalContainer>
+    </ModalBase>
   );
 };
 

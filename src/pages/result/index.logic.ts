@@ -22,7 +22,7 @@ export function useLateColorType() {
       return colorType;
     }
 
-    return null;
+    return 'springbright';
   }, [router.isReady, router.query]);
 
   const status: LateStatus = useMemo(() => {

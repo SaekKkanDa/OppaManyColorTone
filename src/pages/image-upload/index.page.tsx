@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { FormattedMessage } from 'react-intl';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
@@ -9,14 +10,21 @@ import { CropImage } from '@Recoil/app';
 import ROUTE_PATH from '@Constant/routePath';
 import AlertModal from '@Components/AlertModal';
 import theme, { Modal, ModalBackground, ModalContainer } from '@Styles/theme';
+import { useModal } from '@Base/hooks/useModal';
+
 import FaceDetection from './FaceDetection';
 import * as S from './style';
 
 function ImageUploadPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [isOpenImageUploadModal, setIsOpenImageUploadModal] = useState(false);
+
+  const {
+    isOpen: isOpenImageUploadModal,
+    open: openImageUploadModal,
+    close: closeImageUploadModal,
+  } = useModal({});
   const [alertMessage, setAlertMessage] = useState('');
-  const imagePreviewURL = useRecoilState(CropImage)[0];
+  const imagePreviewURL = useRecoilValue(CropImage);
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
@@ -27,7 +35,7 @@ function ImageUploadPage() {
   const selectImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setImageFile(event.target.files[0]);
-      setIsOpenImageUploadModal(true);
+      openImageUploadModal();
       return;
     }
     setAlertMessage('alertRetry');
@@ -41,7 +49,7 @@ function ImageUploadPage() {
             <FaceDetection
               imageFile={imageFile}
               setAlertMessage={setAlertMessage}
-              handleClose={() => setIsOpenImageUploadModal(false)}
+              handleClose={closeImageUploadModal}
             />
           </Modal>
           <ModalBackground />
@@ -109,7 +117,8 @@ function ImageUploadPage() {
         </S.Notification>
 
         <Link href={ROUTE_PATH.choiceColor}>
-          <S.NextButton disabled={!imagePreviewURL}>
+          {/* <S.NextButton disabled={!imagePreviewURL}> */}
+          <S.NextButton>
             <FormattedMessage id="nextButton" />
           </S.NextButton>
         </Link>

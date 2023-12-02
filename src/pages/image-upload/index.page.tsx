@@ -117,8 +117,7 @@ function ImageUploadPage() {
         </S.Notification>
 
         <Link href={ROUTE_PATH.choiceColor}>
-          {/* <S.NextButton disabled={!imagePreviewURL}> */}
-          <S.NextButton>
+          <S.NextButton disabled={!imagePreviewURL}>
             <FormattedMessage id="nextButton" />
           </S.NextButton>
         </Link>

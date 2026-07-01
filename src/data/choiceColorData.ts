@@ -37,8 +37,8 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 3,
       theme: 'pink',
-      color: '#fc6d7a',
-      name: 'begonia',
+      color: '#c4646a',
+      name: 'dusty coral',
       season: 'autumn',
       tone: 'warm',
       type: 'autumnwarm',
@@ -133,8 +133,8 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 1,
       theme: 'blue',
-      color: '#016cb0',
-      name: 'honolulu blue',
+      color: '#5cbcd1',
+      name: 'light warm sky',
       season: 'spring',
       tone: 'warm',
       type: 'springwarm',
@@ -151,8 +151,8 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 3,
       theme: 'blue',
-      color: '#07447f',
-      name: 'dark cerulean',
+      color: '#2f6c78',
+      name: 'deep teal blue',
       season: 'autumn',
       tone: 'warm',
       type: 'autumnwarm',
@@ -180,8 +180,8 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 2,
       theme: 'red',
-      color: '#da0b56',
-      name: 'debian red',
+      color: '#b56b7d',
+      name: 'dusty rose',
       season: 'summer',
       tone: 'mute',
       type: 'summermute',
@@ -209,7 +209,7 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 1,
       theme: 'pink',
-      color: '#fadadd',
+      color: '#f7cdd0',
       name: 'pale pink',
       season: 'spring',
       tone: 'light',
@@ -218,7 +218,7 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 2,
       theme: 'pink',
-      color: '#fedef4',
+      color: '#fcd3ee',
       name: 'pink lace',
       season: 'summer',
       tone: 'light',
@@ -350,8 +350,8 @@ const choiceColorData: ChoiceColorDataType[][] = [
     {
       id: 4,
       theme: 'mint',
-      color: '#01b3bb',
-      name: 'turquoise',
+      color: '#015862',
+      name: 'deep dark teal',
       season: 'winter',
       tone: 'deep',
       type: 'winterdeep',

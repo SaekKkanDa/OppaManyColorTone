@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
@@ -52,7 +52,7 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
     },
   });
 
-  const kakaoAlertMsg = checkIfKakaoAndAlert();
+  const kakaoAlertMsg = useCheckKakao();
 
   const onClickCapture = async () => {
     if (kakaoAlertMsg) {
@@ -128,3 +128,21 @@ function ShareSubPage({ resultContainerRef, colorType }: MenuSubPageProps) {
   );
 }
 export default ShareSubPage;
+
+//#region sub components
+//#endregion
+
+//#region logics
+// HJ TODO: 더 좋은 방법이 있을텐데..
+const useCheckKakao = () => {
+  const [kakaoAlert, setKakaoAlert] = useState('');
+  useEffect(() => {
+    setKakaoAlert(checkIfKakaoAndAlert());
+  }, []);
+
+  return kakaoAlert;
+};
+//#endregion
+
+//#region styled components
+//#endregion

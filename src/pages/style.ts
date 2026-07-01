@@ -6,7 +6,6 @@ export const bgColor = '#2f2f37';
 export const PageWrapper = styled.div`
   width: 100%;
   height: 200dvh;
-  overflow-y: scroll;
   scroll-snap-type: y mandatory;
 `;
 

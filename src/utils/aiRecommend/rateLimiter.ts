@@ -42,10 +42,25 @@ function secondsUntilUtcMidnight(now = new Date()): number {
   return Math.max(1, Math.floor((next.getTime() - now.getTime()) / 1000));
 }
 
+const LOCAL_IPS = new Set([
+  '127.0.0.1',
+  '::1',
+  '::ffff:127.0.0.1',
+  'localhost',
+  'unknown',
+]);
+
 export async function checkAndConsume(
   sessionId: string,
   ip: string,
 ): Promise<RateLimitResult> {
+  if (LOCAL_IPS.has(ip)) {
+    return {
+      ok: true,
+      sessionRemaining: SESSION_MAX,
+      ipRemaining: IP_DAILY_MAX,
+    };
+  }
   const db = getAdminDb();
   const now = new Date();
   const dayKey = todayKey(now);

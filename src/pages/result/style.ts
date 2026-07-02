@@ -177,7 +177,7 @@ export const MenuItemName = styled.div`
 export const ButtonWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 0.5rem;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1.5rem 0.75rem;
 `;
 
 export const AllTypesButton = BorderedButton;

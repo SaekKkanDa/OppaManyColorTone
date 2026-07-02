@@ -18,11 +18,15 @@ const defaultLabelStyle = {
   fontFamily: "'Noto Sans KR', sans-serif",
 };
 
+const DEFAULT_SELECTED_INDEX = color.findIndex(
+  ({ type }) => type === 'springbright'
+);
+
 const AllTypesView = () => {
   const { t } = useTranslation('common');
 
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
-    undefined
+    DEFAULT_SELECTED_INDEX
   );
   const [hoveredIndex, setHoveredIndex] = useState<number | undefined>(
     undefined
@@ -90,6 +94,19 @@ const AllTypesView = () => {
           </S.ColorTypeTitle>
 
           <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
+
+          <S.CelebrityCard borderColor={color[selectedIndex].textColor}>
+            <S.CelebrityImage
+              src={resultColorData[colorType].celebrities[0].imageURL}
+              alt={t(`${colorType}.celebrities.0`)}
+              width={96}
+              height={96}
+            />
+            <S.CelebrityName>
+              {t(`${colorType}.celebrities.0`)}
+            </S.CelebrityName>
+          </S.CelebrityCard>
+
           <S.PaletteGrid>
             {resultColorData[colorType].gridColors.map(
               (backgroundColor, index) => (

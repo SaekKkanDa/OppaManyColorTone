@@ -4,7 +4,7 @@ import { FieldValue } from 'firebase-admin/firestore';
 
 import { getAdminDb } from './adminDb';
 
-export const SESSION_MAX = 9;
+export const SESSION_MAX = 10;
 export const IP_DAILY_MAX = 30;
 
 const COLLECTION = 'aiRecommendRateLimit';

@@ -54,5 +54,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_OPPAMANYCOLORTONE_5FB42 }}'
           channelId: live
           projectId: oppamanycolortone-5fb42
+          firebaseToolsVersion: '13.29.1'
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks

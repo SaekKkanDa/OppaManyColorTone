@@ -5,6 +5,7 @@ import { type GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18NextConfig from '@Root/next-i18next.config';
 import { useSetRecoilState } from 'recoil';
 import Spline from '@splinetool/react-spline';
 import { Application } from '@splinetool/runtime';
@@ -180,7 +181,7 @@ export default function Home() {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'], nextI18NextConfig)),
     },
   };
 };

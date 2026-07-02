@@ -13,6 +13,7 @@
       "@Styles/*": ["./src/styles/*"],
       "@Utils/*": ["./src/utils/*"],
       "@Base/*": ["./base/*"],
+      "@Root/*": ["./*"],
       "public/*": ["./public/*"]
     },
     "allowJs": true,

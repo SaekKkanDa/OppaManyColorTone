@@ -21,6 +21,55 @@ _오빠! 톤 많아? 퍼스널 컬러 자가진단_
 
 > Github 링크: https://github.com/SaekKkanDa/OppaManyColorTone
 
+## 🗺 서비스 흐름
+
+랜딩부터 결과 페이지까지의 전체 사용자 여정. 각 문항에서 AI 추천은 옵션이며 스킵 가능.
+
+```mermaid
+flowchart TD
+  Start([사용자 진입]) --> Landing["/ (랜딩)"]
+  Landing --> Upload["/image-upload<br/>사진 업로드 + 얼굴 감지 + 크롭"]
+  Upload --> Choice["/choice-color<br/>진단 시작"]
+
+  subgraph Basic["BasicStage — 9문항 반복"]
+    direction TB
+    BQ[문항 N/9<br/>4개 컬러 옵션 렌더]
+    BQ --> BAI{{✨ AI 추천 받기?}}
+    BAI -- 클릭 --> BAIFlow[[AI 추천]]
+    BAI -- 스킵 --> BPick[유저가 옵션 선택]
+    BAIFlow --> BHilite["추천 옵션 하이라이트<br/>+ 이유 배너"]
+    BHilite --> BPick
+    BPick --> BNext{다음 문항?}
+    BNext -- 예 --> BQ
+  end
+
+  Choice --> Basic
+  BNext -- 아니오<br/>(9문항 완료) --> Score[최빈값 스코어링<br/>+ 축별 tie-breaking]
+  Score --> Winner{승자 명확?}
+
+  Winner -- 아니오<br/>(동률·애매) --> Bonus
+  Winner -- 예 --> Result
+
+  subgraph Bonus["BonusStage — 정제"]
+    direction TB
+    BoQ["후보 타입 2~4개의<br/>대표 컬러 세트 표시"]
+    BoQ --> BoAI{{✨ AI 추천 받기?}}
+    BoAI -- 클릭 --> BoAIFlow[[AI 추천]]
+    BoAI -- 스킵 --> BoPick[유저가 타입 선택]
+    BoAIFlow --> BoHilite[하이라이트]
+    BoHilite --> BoPick
+  end
+
+  Bonus --> BoPick
+  BoPick --> Result[/"/result?colorType=X<br/>최종 결과 표시"/]
+  Result --> Share([공유·재시작])
+
+  style BAIFlow fill:#fce4ec
+  style BoAIFlow fill:#fce4ec
+```
+
+> AI 추천 세부 (프롬프트·모델 라우팅·레이트 리밋 등) 는 [docs/domain/ai-color-recommendation.md](./docs/domain/ai-color-recommendation.md) 참조.
+
 ## ✨ Installation
 
 ```bash

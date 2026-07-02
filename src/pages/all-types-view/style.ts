@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 import { flexCustom, layout } from '@Styles/theme';
 import { PieChart as _PieChart } from 'react-minimal-pie-chart';
 
@@ -65,6 +66,29 @@ export const Tag = styled.span<TagStyleProps>`
   color: ${({ theme, textColor }) =>
     ({ light: theme.white, dark: theme.gray[900] }[textColor])};
   font-size: 14px;
+`;
+
+export const CelebrityCard = styled.div<{ borderColor: string }>`
+  ${flexCustom('column', 'center', 'center')}
+  row-gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border: 1.5px solid ${({ borderColor }) => borderColor};
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.white};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+`;
+
+export const CelebrityImage = styled(Image)`
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+export const CelebrityName = styled.span`
+  color: ${({ theme }) => theme.gray[700]};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: 500;
 `;
 
 export const PaletteGrid = styled.div`

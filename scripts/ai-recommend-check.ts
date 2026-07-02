@@ -15,43 +15,23 @@
  *   - mini / full 각각의 응답 JSON, latency, tokens
  *   - confidence 비교 (임계값 0.7 튜닝 참고)
  *
- * ⚠ 이 스크립트의 SYSTEM_PROMPT / USER_PROMPT 는 Phase 1 에서
- *   src/utils/aiRecommend/prompt.ts 로 이동될 예정. 그 전까지는 여기와
- *   API 라우트가 동일 문구를 유지하도록 주의.
+ * 프롬프트는 src/utils/aiRecommend/prompt.ts 에서 공유되며 API 라우트와
+ * 동일 문구를 사용한다.
  */
 import { readFile } from 'node:fs/promises';
 import { extname } from 'node:path';
 
 import OpenAI from 'openai';
 
-type OptionInput = {
-  type: string;
-  color: string;
-  name?: string;
-};
+import { SYSTEM_PROMPT, buildUserText } from '../src/utils/aiRecommend/prompt';
+import type { AiRecommendOption } from '../src/utils/aiRecommend/schema';
 
-const DEFAULT_OPTIONS: OptionInput[] = [
+const DEFAULT_OPTIONS: AiRecommendOption[] = [
   { type: 'springwarm', color: '#ff6448', name: '봄 웜 (레드오렌지)' },
   { type: 'summercool', color: '#1cace1', name: '여름 쿨 (스카이블루)' },
   { type: 'autumndeep', color: '#7d5544', name: '가을 딥 (다크브라운)' },
   { type: 'winterbright', color: '#f91893', name: '겨울 브라이트 (핫핑크)' },
 ];
-
-const SYSTEM_PROMPT = `You are a professional Korean personal color consultant.
-
-Given a user's face photo and 4 color candidates, choose which single color best suits the person based on their skin undertone, eye color, and hair color.
-
-You MUST respond with a JSON object matching this schema exactly:
-{
-  "recommendedType": string,   // one of the provided option types, verbatim. If the image has no clear face, return "NONE".
-  "reasoning": string,          // 1-2 sentences in Korean
-  "confidence": number          // 0.0 - 1.0
-}
-
-Do NOT include any text outside the JSON object.`;
-
-const buildUserText = (options: OptionInput[]) =>
-  `옵션:\n${JSON.stringify(options, null, 2)}\n\n가장 어울리는 하나를 골라주세요.`;
 
 const MIME_BY_EXT: Record<string, string> = {
   '.jpg': 'image/jpeg',
@@ -86,7 +66,7 @@ async function callModel(
   openai: OpenAI,
   model: string,
   dataUri: string,
-  options: OptionInput[],
+  options: AiRecommendOption[],
 ): Promise<CallResult> {
   const started = Date.now();
   const completion = await openai.chat.completions.create({
@@ -169,7 +149,7 @@ async function main() {
 
   const { imagePath, optionsPath, only } = parseCliArgs(process.argv);
   const dataUri = await toDataUri(imagePath);
-  const options: OptionInput[] = optionsPath
+  const options: AiRecommendOption[] = optionsPath
     ? JSON.parse(await readFile(optionsPath, 'utf-8'))
     : DEFAULT_OPTIONS;
 

@@ -23,6 +23,11 @@ const nextConfig = {
     ],
   },
   i18n,
+  experimental: {
+    outputFileTracingIncludes: {
+      '/**/*': ['./next-i18next.config.js', './public/locales/**/*'],
+    },
+  },
 };
 
 const sentryWebpackPluginOptions = {

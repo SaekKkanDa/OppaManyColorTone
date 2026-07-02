@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useRef, useState } from 'react';
+import { LegacyRef, useEffect, useRef } from 'react';
 
 declare global {
   interface Window {
@@ -10,11 +10,8 @@ export interface AdSenseProps {
   'data-ad-slot': string;
 }
 
-const UNFILLED_CHECK_DELAY_MS = 3000;
-
 export function AdSense(props: AdSenseProps) {
   const adRef = useRef<HTMLModElement | null>(null);
-  const [isUnfilled, setIsUnfilled] = useState(false);
 
   useEffect(() => {
     if (!adRef.current) return;
@@ -26,18 +23,7 @@ export function AdSense(props: AdSenseProps) {
     } catch (e) {
       console.error('AdSense error', e);
     }
-
-    const timer = setTimeout(() => {
-      const status = adRef.current?.getAttribute('data-ad-status');
-      if (status === 'unfilled' || adRef.current?.innerHTML.trim() === '') {
-        setIsUnfilled(true);
-      }
-    }, UNFILLED_CHECK_DELAY_MS);
-
-    return () => clearTimeout(timer);
   }, []);
-
-  if (isUnfilled) return null;
 
   return (
     <ins

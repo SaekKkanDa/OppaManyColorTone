@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es6",
-    "baseUrl": "./",
     "paths": {
       "@Components/*": ["./src/components/*"],
       "@Constant/*": ["./src/constant/*"],
@@ -13,7 +12,8 @@
       "@Recoil/*": ["./src/recoil/*"],
       "@Styles/*": ["./src/styles/*"],
       "@Utils/*": ["./src/utils/*"],
-      "@Base/*": ["./base/*"]
+      "@Base/*": ["./base/*"],
+      "public/*": ["./public/*"]
     },
     "allowJs": true,
     "jsx": "preserve",
@@ -27,7 +27,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "plugins": [

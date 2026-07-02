@@ -68,8 +68,8 @@ function FaceDetection({
     let errorMsg = '';
     if (editor.current) {
       try {
-        const canvas = editor.current.getImageScaledToCanvas();
-        const image = canvas.toDataURL('image/jpeg');
+        const canvas = editor.current.getImage();
+        const image = canvas.toDataURL('image/jpeg', 0.95);
         setCropImage(image);
       } catch (error) {
         errorMsg = 'alertRetry';

@@ -1,14 +1,21 @@
 import { useTranslation } from 'next-i18next';
 
-import type { ChoiceColorDataType } from '@Data/choiceColorData';
 import { useAiRecommend } from '@Hooks/useAiRecommend';
 
 import * as S from './style';
 
+export type AiRecommendChoice = {
+  type: ColorType;
+  color: string;
+  name?: string;
+  season: ColorSeason;
+  tone: ColorTone;
+};
+
 interface AiRecommendButtonProps {
   stageNum: number;
   userImg: string;
-  options: ChoiceColorDataType[];
+  options: AiRecommendChoice[];
   privacyHref?: string;
 }
 
@@ -27,7 +34,13 @@ function AiRecommendButton({
   const handleRequest = () => {
     void request(
       userImg,
-      options.map((o) => ({ type: o.type, color: o.color, name: o.name })),
+      options.map((o) => ({
+        type: o.type,
+        color: o.color,
+        name: o.name,
+        season: o.season,
+        tone: o.tone,
+      })),
     );
   };
 

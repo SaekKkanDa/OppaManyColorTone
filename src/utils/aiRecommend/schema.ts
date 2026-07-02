@@ -21,10 +21,15 @@ const HEX_COLOR_REGEX = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
 const DATA_URI_REGEX = /^data:image\/(jpeg|jpg|png|webp);base64,/;
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 
+const seasonSchema = z.enum(['spring', 'summer', 'autumn', 'winter']);
+const toneSchema = z.enum(['warm', 'cool', 'bright', 'mute', 'light', 'deep']);
+
 const optionSchema = z.object({
   type: colorTypeSchema,
   color: z.string().regex(HEX_COLOR_REGEX, 'must be a hex color like #ff6448'),
   name: z.string().max(60).optional(),
+  season: seasonSchema,
+  tone: toneSchema,
 });
 
 export const aiRecommendRequestSchema = z.object({
@@ -38,7 +43,7 @@ export const aiRecommendRequestSchema = z.object({
       const approxBytes = Math.ceil(payloadLength * 0.75);
       return approxBytes <= MAX_IMAGE_BYTES;
     }, `image payload exceeds ${MAX_IMAGE_BYTES} bytes after base64 decode`),
-  stageNum: z.number().int().min(0).max(8),
+  stageNum: z.number().int().min(0).max(9),
   sessionId: z.string().uuid(),
   options: z.array(optionSchema).length(4),
 });

@@ -30,7 +30,7 @@ function respondError(
   res: NextApiResponse,
   code: AiRecommendErrorCode,
   message: string,
-  retryAfterSeconds?: number,
+  retryAfterSeconds?: number
 ): void {
   const body: AiRecommendError = {
     error: code,
@@ -60,7 +60,7 @@ function extractIp(req: NextApiRequest): string {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ): Promise<void> {
   if (process.env.NEXT_PUBLIC_ENABLE_AI_RECOMMEND !== 'true') {
     res.status(404).end();
@@ -78,7 +78,7 @@ export default async function handler(
     respondError(
       res,
       'INVALID_INPUT',
-      parsed.error.issues.map((i) => i.message).join('; '),
+      parsed.error.issues.map((i) => i.message).join('; ')
     );
     return;
   }
@@ -103,7 +103,7 @@ export default async function handler(
       rate.scope === 'session'
         ? 'session request limit reached'
         : 'daily IP request limit reached',
-      rate.retryAfterSeconds,
+      rate.retryAfterSeconds
     );
     return;
   }
@@ -120,6 +120,8 @@ export default async function handler(
     res.status(200).json(body);
   } catch (err) {
     if (err instanceof AiRecommendServiceError) {
+      // eslint-disable-next-line no-console
+      console.error('[ai-recommend] service error', err.code, err.message);
       if (err.code === 'NO_FACE_DETECTED') {
         respondError(res, 'NO_FACE_DETECTED', err.message);
         return;

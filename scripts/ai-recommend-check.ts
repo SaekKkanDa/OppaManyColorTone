@@ -27,10 +27,10 @@ import { SYSTEM_PROMPT, buildUserText } from '../src/utils/aiRecommend/prompt';
 import type { AiRecommendOption } from '../src/utils/aiRecommend/schema';
 
 const DEFAULT_OPTIONS: AiRecommendOption[] = [
-  { type: 'springwarm', color: '#ff6448', name: '봄 웜 (레드오렌지)' },
-  { type: 'summercool', color: '#1cace1', name: '여름 쿨 (스카이블루)' },
-  { type: 'autumndeep', color: '#7d5544', name: '가을 딥 (다크브라운)' },
-  { type: 'winterbright', color: '#f91893', name: '겨울 브라이트 (핫핑크)' },
+  { type: 'springwarm', color: '#ff6448', name: '봄 웜 (레드오렌지)', season: 'spring', tone: 'warm' },
+  { type: 'summercool', color: '#1cace1', name: '여름 쿨 (스카이블루)', season: 'summer', tone: 'cool' },
+  { type: 'autumndeep', color: '#7d5544', name: '가을 딥 (다크브라운)', season: 'autumn', tone: 'deep' },
+  { type: 'winterbright', color: '#f91893', name: '겨울 브라이트 (핫핑크)', season: 'winter', tone: 'bright' },
 ];
 
 const MIME_BY_EXT: Record<string, string> = {

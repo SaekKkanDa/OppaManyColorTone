@@ -16,7 +16,8 @@ export type ModelKey = keyof typeof MODEL_IDS;
 
 export const CONFIDENCE_THRESHOLD = 0.7;
 const MAX_TOKENS = 200;
-const TEMPERATURE = 0.3;
+const TEMPERATURE = 0;
+const SEED = 42;
 
 let cachedClient: OpenAI | null = null;
 
@@ -59,6 +60,7 @@ async function callModel(
       response_format: { type: 'json_object' },
       max_tokens: MAX_TOKENS,
       temperature: TEMPERATURE,
+      seed: SEED,
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         {

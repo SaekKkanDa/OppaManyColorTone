@@ -238,7 +238,7 @@
     "loading": "AI is analyzing...",
     "privacyLink": "About AI usage",
     "result": {
-      "prefix": "AI suggests"
+      "prefix": "AI's pick of these 4"
     },
     "error": {
       "generic": "We can't get a recommendation right now",

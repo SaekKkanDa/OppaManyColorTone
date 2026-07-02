@@ -120,8 +120,6 @@ export default async function handler(
     res.status(200).json(body);
   } catch (err) {
     if (err instanceof AiRecommendServiceError) {
-      // eslint-disable-next-line no-console
-      console.error('[ai-recommend] service error', err.code, err.message);
       if (err.code === 'NO_FACE_DETECTED') {
         respondError(res, 'NO_FACE_DETECTED', err.message);
         return;

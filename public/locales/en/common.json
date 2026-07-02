@@ -232,5 +232,28 @@
   "myTestUrl": "Your Personal Color Test Link",
   "shareMyTestUrl": "Share My Test",
   "onboarding1": "Choose a card that looks best on you\namong the four cards.",
-  "onboarding-confirm": "Confirm"
+  "onboarding-confirm": "Confirm",
+  "aiRecommend": {
+    "button": "✨ Get AI recommendation",
+    "loading": "AI is analyzing...",
+    "privacyLink": "About AI usage",
+    "result": {
+      "prefix": "AI's pick of these 4"
+    },
+    "error": {
+      "generic": "We can't get a recommendation right now",
+      "rateLimited": "You've used all your recommendations for today",
+      "noFace": "We couldn't see the face clearly",
+      "retry": "Try again"
+    },
+    "consent": {
+      "title": "Please agree to use AI color recommendations.",
+      "purpose": "Purpose: providing AI-based color recommendations",
+      "data": "Data sent: a downscaled face image (max 800×800)",
+      "destination": "Sent to: OpenAI (gpt-4o-mini / gpt-4o) API",
+      "retention": "Retention: discarded immediately after the response, not stored",
+      "openaiPolicy": "OpenAI does not use API data for training, though a 30-day abuse-monitoring log may exist.",
+      "guide": "You can decline. If you decline, AI recommendation will be disabled."
+    }
+  }
 }

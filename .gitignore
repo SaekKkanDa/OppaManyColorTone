@@ -35,5 +35,8 @@ dist-ssr
 # TypeScript incremental build cache
 *.tsbuildinfo
 
+# Claude Code local settings (개인별)
+.claude/settings.local.json
+
 # firebase
 .firebase

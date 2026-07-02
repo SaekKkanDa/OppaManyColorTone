@@ -6,7 +6,12 @@ import ROUTE_PATH from '@Constant/routePath';
 import LoadingIndicator from '@Components/LoadingIndicator';
 import Guidance from '../Guidance';
 
+import AiRecommendButton from '@Components/AiRecommend';
+import { getSeasonToneByType } from '@Utils/aiRecommend/typeMeta';
+
 import * as S from './style';
+
+const BONUS_STAGE_NUM = 9;
 
 interface BonusStageProps {
   userImg: string;
@@ -55,6 +60,23 @@ function BonusStage({
           </S.BonusColor>
         ))}
       </S.BonusColorBox>
+
+      {bonusColorOptions ? (
+        <AiRecommendButton
+          stageNum={BONUS_STAGE_NUM}
+          userImg={userImg}
+          options={bonusColorOptions.map(({ type, colors }) => {
+            const { season, tone } = getSeasonToneByType(type);
+            return {
+              type,
+              color: colors[0],
+              name: type,
+              season,
+              tone,
+            };
+          })}
+        />
+      ) : null}
     </>
   ) : (
     <LoadingIndicator />

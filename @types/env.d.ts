@@ -16,5 +16,10 @@ declare namespace NodeJS {
 
     // Common
     NEXT_PUBLIC_RELEASE_VERSION: string;
+
+    // AI Color Recommendation
+    NEXT_PUBLIC_ENABLE_AI_RECOMMEND?: 'true' | 'false';
+    OPENAI_API_KEY?: string;
+    FIREBASE_SERVICE_ACCOUNT_JSON?: string;
   }
 }

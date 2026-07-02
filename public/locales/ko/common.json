@@ -232,5 +232,28 @@
   "myTestUrl": "내 퍼스널 컬러 진단 링크",
   "shareMyTestUrl": "내 진단 공유하기",
   "onboarding1": "4개의 카드 중 얼굴과 잘 어울리는\n카드를 선택해주세요",
-  "onboarding-confirm": "확인"
+  "onboarding-confirm": "확인",
+  "aiRecommend": {
+    "button": "✨ AI 추천 받기",
+    "loading": "AI가 분석 중...",
+    "privacyLink": "AI 이용 안내",
+    "result": {
+      "prefix": "이 4가지 중 AI 픽"
+    },
+    "error": {
+      "generic": "지금은 추천을 받을 수 없어요",
+      "rateLimited": "오늘 사용 가능 횟수를 모두 사용했어요",
+      "noFace": "얼굴이 잘 보이지 않아요",
+      "retry": "다시 시도"
+    },
+    "consent": {
+      "title": "AI 색상 추천 이용에 동의해 주세요.",
+      "purpose": "이용 목적: AI 기반 컬러 추천 제공",
+      "data": "전송 항목: 축소된 얼굴 이미지 (최대 800×800)",
+      "destination": "전송 대상: OpenAI (gpt-4o-mini / gpt-4o) API",
+      "retention": "보유 및 이용 기간: 서버 응답 후 즉시 폐기, 저장하지 않음",
+      "openaiPolicy": "OpenAI는 API 데이터를 학습에 사용하지 않으며, abuse monitoring 목적의 30일 로그가 존재할 수 있어요.",
+      "guide": "동의를 거부할 수 있으며, 거부 시 AI 추천 기능 이용이 제한됩니다."
+    }
+  }
 }

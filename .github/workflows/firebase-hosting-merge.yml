@@ -36,6 +36,8 @@ jobs:
           NEXT_PUBLIC_KAKAO_API_KEY=${{ secrets.KAKAO_API_KEY }}\n\
           NEXT_PUBLIC_SENTRY_DSN=${{ vars.SENTRY_DSN }}\n\
           SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}\n\
+          NEXT_PUBLIC_ENABLE_AI_RECOMMEND=${{ vars.ENABLE_AI_RECOMMEND || 'false' }}\n\
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}\n\
           PROD=${{ true }}" >> ".env"
 
       - name: Debugging .env fle

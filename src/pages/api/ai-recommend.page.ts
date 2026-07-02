@@ -10,7 +10,7 @@ import {
   type AiRecommendErrorCode,
   type AiRecommendResponse,
 } from '@Utils/aiRecommend/schema';
-import { checkAndConsume } from '@Utils/aiRecommend/rateLimiter';
+import { checkAndConsume, refund } from '@Utils/aiRecommend/rateLimiter';
 
 export const config = {
   api: {
@@ -119,6 +119,12 @@ export default async function handler(
     };
     res.status(200).json(body);
   } catch (err) {
+    // 유저에게 결과를 주지 못한 실패는 quota 를 되돌려줘서 재시도 시
+    // 이중 차감되지 않도록 한다.
+    await refund(sessionId, ip).catch((refundErr) => {
+      // eslint-disable-next-line no-console
+      console.error('[ai-recommend] refund failed', refundErr);
+    });
     if (err instanceof AiRecommendServiceError) {
       if (err.code === 'NO_FACE_DETECTED') {
         respondError(res, 'NO_FACE_DETECTED', err.message);

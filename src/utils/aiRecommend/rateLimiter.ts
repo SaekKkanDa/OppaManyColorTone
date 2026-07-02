@@ -4,7 +4,7 @@ import { FieldValue } from 'firebase-admin/firestore';
 
 import { getAdminDb } from './adminDb';
 
-export const SESSION_MAX = 9;
+export const SESSION_MAX = 10;
 export const IP_DAILY_MAX = 30;
 
 const COLLECTION = 'aiRecommendRateLimit';
@@ -120,5 +120,40 @@ export async function checkAndConsume(
       sessionRemaining: SESSION_MAX - (sessionCount + 1),
       ipRemaining: IP_DAILY_MAX - (ipCount + 1),
     };
+  });
+}
+
+export async function refund(sessionId: string, ip: string): Promise<void> {
+  if (LOCAL_IPS.has(ip)) return;
+
+  const db = getAdminDb();
+  const dayKey = todayKey();
+  const ipDocId = `ip_${hashIp(ip)}_${dayKey}`;
+  const sessionDocId = `session_${sessionId}`;
+
+  const ipRef = db.collection(COLLECTION).doc(ipDocId);
+  const sessionRef = db.collection(COLLECTION).doc(sessionDocId);
+
+  await db.runTransaction(async (tx) => {
+    const [ipSnap, sessionSnap] = await Promise.all([
+      tx.get(ipRef),
+      tx.get(sessionRef),
+    ]);
+
+    const sessionCount = (sessionSnap.data()?.count as number | undefined) ?? 0;
+    if (sessionSnap.exists && sessionCount > 0) {
+      tx.update(sessionRef, {
+        count: FieldValue.increment(-1),
+        lastAt: FieldValue.serverTimestamp(),
+      });
+    }
+
+    const ipCount = (ipSnap.data()?.count as number | undefined) ?? 0;
+    if (ipSnap.exists && ipCount > 0) {
+      tx.update(ipRef, {
+        count: FieldValue.increment(-1),
+        lastAt: FieldValue.serverTimestamp(),
+      });
+    }
   });
 }

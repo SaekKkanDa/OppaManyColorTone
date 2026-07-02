@@ -232,5 +232,19 @@
   "myTestUrl": "Your Personal Color Test Link",
   "shareMyTestUrl": "Share My Test",
   "onboarding1": "Choose a card that looks best on you\namong the four cards.",
-  "onboarding-confirm": "Confirm"
+  "onboarding-confirm": "Confirm",
+  "aiRecommend": {
+    "button": "✨ Get AI recommendation",
+    "loading": "AI is analyzing...",
+    "privacyLink": "About AI usage",
+    "result": {
+      "prefix": "AI suggests"
+    },
+    "error": {
+      "generic": "We can't get a recommendation right now",
+      "rateLimited": "You've used all your recommendations for today",
+      "noFace": "We couldn't see the face clearly",
+      "retry": "Try again"
+    }
+  }
 }

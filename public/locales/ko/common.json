@@ -232,5 +232,19 @@
   "myTestUrl": "내 퍼스널 컬러 진단 링크",
   "shareMyTestUrl": "내 진단 공유하기",
   "onboarding1": "4개의 카드 중 얼굴과 잘 어울리는\n카드를 선택해주세요",
-  "onboarding-confirm": "확인"
+  "onboarding-confirm": "확인",
+  "aiRecommend": {
+    "button": "✨ AI 추천 받기",
+    "loading": "AI가 분석 중...",
+    "privacyLink": "AI 이용 안내",
+    "result": {
+      "prefix": "AI 추천"
+    },
+    "error": {
+      "generic": "지금은 추천을 받을 수 없어요",
+      "rateLimited": "오늘 사용 가능 횟수를 모두 사용했어요",
+      "noFace": "얼굴이 잘 보이지 않아요",
+      "retry": "다시 시도"
+    }
+  }
 }

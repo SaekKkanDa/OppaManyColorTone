@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Read .nvmrc
         id: node_version
-        run: echo ::set-output name=NODE_VERSION:$(cat .nvmrc)
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{steps.node_version.outputs.NODE_VERSION}}
 
@@ -54,6 +54,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_OPPAMANYCOLORTONE_5FB42 }}'
           channelId: live
           projectId: oppamanycolortone-5fb42
-          firebaseToolsVersion: '13.35.1'
+          firebaseToolsVersion: '14.11.1'
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+          NODE_OPTIONS: '--dns-result-order=ipv4first'

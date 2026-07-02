@@ -16,6 +16,7 @@ import { withLoadingRouter } from '@Components/WithLoadingRouter/withLoadingRout
 import { OnboardingPage } from '@Pages/choice-color/subpages/onboadring.subpage';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18NextConfig from '@Root/next-i18next.config';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -113,7 +114,7 @@ function ChoiceColor() {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'], nextI18NextConfig)),
     },
   };
 };

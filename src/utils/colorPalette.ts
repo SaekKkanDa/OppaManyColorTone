@@ -21,6 +21,7 @@ class ColorPalette {
   private m_colors: string[];
   private m_width: number;
   private m_height: number;
+  private m_dpr: number;
   private m_isInitialized: boolean;
   private m_mousePoint: MousePoint;
   private m_onClick?: (color: string) => void;
@@ -41,8 +42,9 @@ class ColorPalette {
     this.m_isInitialized = false;
     this.m_colors = colors;
     this.m_isCircle = isCircle;
-    this.m_width = canvas.width;
-    this.m_height = canvas.height;
+    this.m_dpr = window.devicePixelRatio || 1;
+    this.m_width = canvas.width / this.m_dpr;
+    this.m_height = canvas.height / this.m_dpr;
     this.m_mousePoint = { isValid: false, x: 0, y: 0, angle: 0 };
     this.m_onClick = onClick;
 
@@ -52,8 +54,11 @@ class ColorPalette {
     this.m_ctx = ctx;
     this.m_ctx.shadowColor = this.BlurColor;
 
+    // scale context so drawing uses CSS-pixel coordinates
+    ctx.scale(this.m_dpr, this.m_dpr);
+
     // change coordinate from left-top to center
-    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.translate(this.m_width / 2, this.m_height / 2);
 
     // caching image element
     LoadImage(imgSrc).then((img) => {

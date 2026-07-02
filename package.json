@@ -34,6 +34,7 @@
     "css-line-break": "^2.1.0",
     "eslint-config-prettier": "^8.6.0",
     "firebase": "^9.17.1",
+    "firebase-admin": "^14.1.0",
     "i18next": "^23.12.2",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.5.2",

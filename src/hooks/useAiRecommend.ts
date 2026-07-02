@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import {
   aiRecommendCacheState,
+  aiRecommendConsentState,
   aiRecommendSessionIdState,
   aiRecommendUsageRemainingState,
   type AiRecommendCacheEntry,
@@ -45,6 +46,8 @@ export function useAiRecommend(stageNum: number) {
   const [cache, setCache] = useRecoilState(aiRecommendCacheState);
   const setUsageRemaining = useSetRecoilState(aiRecommendUsageRemainingState);
   const usageRemaining = useRecoilValue(aiRecommendUsageRemainingState);
+  const [consent, setConsent] = useRecoilState(aiRecommendConsentState);
+  const [isConsentModalOpen, setIsConsentModalOpen] = useState(false);
 
   const [status, setStatus] = useState<AiRecommendStatus>(
     enabled ? 'idle' : 'disabled',
@@ -68,14 +71,13 @@ export function useAiRecommend(stageNum: number) {
     }
   }, [cached, status]);
 
-  const request = useCallback(
-    async (userImg: string, options: AiRecommendOption[]): Promise<void> => {
-      if (!enabled) return;
-      if (cache[stageNum]) {
-        setStatus('success');
-        return;
-      }
+  const pendingArgsRef = useRef<{
+    userImg: string;
+    options: AiRecommendOption[];
+  } | null>(null);
 
+  const performRequest = useCallback(
+    async (userImg: string, options: AiRecommendOption[]): Promise<void> => {
       setStatus('loading');
       setError(null);
 
@@ -136,8 +138,41 @@ export function useAiRecommend(stageNum: number) {
       });
       setStatus(code === 'RATE_LIMITED' ? 'rateLimited' : 'error');
     },
-    [cache, enabled, sessionId, setCache, setSessionId, setUsageRemaining, stageNum],
+    [sessionId, setCache, setSessionId, setUsageRemaining, stageNum],
   );
+
+  const request = useCallback(
+    async (userImg: string, options: AiRecommendOption[]): Promise<void> => {
+      if (!enabled) return;
+      if (cache[stageNum]) {
+        setStatus('success');
+        return;
+      }
+      if (consent !== 'granted') {
+        pendingArgsRef.current = { userImg, options };
+        setIsConsentModalOpen(true);
+        return;
+      }
+      await performRequest(userImg, options);
+    },
+    [cache, consent, enabled, performRequest, stageNum],
+  );
+
+  const agreeConsent = useCallback(async () => {
+    setConsent('granted');
+    setIsConsentModalOpen(false);
+    const pending = pendingArgsRef.current;
+    pendingArgsRef.current = null;
+    if (pending) {
+      await performRequest(pending.userImg, pending.options);
+    }
+  }, [performRequest, setConsent]);
+
+  const denyConsent = useCallback(() => {
+    setConsent('denied');
+    setIsConsentModalOpen(false);
+    pendingArgsRef.current = null;
+  }, [setConsent]);
 
   const clearError = useCallback(() => {
     if (status === 'error') {
@@ -154,5 +189,9 @@ export function useAiRecommend(stageNum: number) {
     usageRemaining,
     request,
     clearError,
+    consent,
+    isConsentModalOpen,
+    agreeConsent,
+    denyConsent,
   };
 }

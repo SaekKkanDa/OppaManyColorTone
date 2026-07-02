@@ -1,8 +1,17 @@
 import { atom } from 'recoil';
 
+import { localStorageEffect } from '@Recoil/recoilExtension';
 import type { AiRecommendResponse } from '@Utils/aiRecommend/schema';
 
 const KEY_PREFIX = 'aiRecommend';
+
+export type AiRecommendConsent = 'granted' | 'denied' | null;
+
+export const aiRecommendConsentState = atom<AiRecommendConsent>({
+  key: `${KEY_PREFIX}_consent`,
+  default: null,
+  effects: [localStorageEffect('aiRecommendConsent')],
+});
 
 export type AiRecommendCacheEntry = {
   recommendedType: AiRecommendResponse['recommendedType'];

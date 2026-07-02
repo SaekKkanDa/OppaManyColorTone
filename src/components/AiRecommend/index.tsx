@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next';
 
 import { useAiRecommend } from '@Hooks/useAiRecommend';
 
+import AiConsentModal from './AiConsentModal';
 import * as S from './style';
 
 export type AiRecommendChoice = {
@@ -26,8 +27,17 @@ function AiRecommendButton({
   privacyHref,
 }: AiRecommendButtonProps) {
   const { t } = useTranslation('common');
-  const { enabled, status, error, cached, request, clearError } =
-    useAiRecommend(stageNum);
+  const {
+    enabled,
+    status,
+    error,
+    cached,
+    request,
+    clearError,
+    isConsentModalOpen,
+    agreeConsent,
+    denyConsent,
+  } = useAiRecommend(stageNum);
 
   if (!enabled) return null;
 
@@ -107,6 +117,13 @@ function AiRecommendButton({
           {t('aiRecommend.privacyLink')}
         </S.PrivacyLink>
       ) : null}
+      <AiConsentModal
+        isOpen={isConsentModalOpen}
+        onAgree={() => {
+          void agreeConsent();
+        }}
+        onDisagree={denyConsent}
+      />
     </S.Wrapper>
   );
 }

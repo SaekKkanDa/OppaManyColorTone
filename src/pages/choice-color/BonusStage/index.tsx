@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
+import { useRecoilValue } from 'recoil';
 import getBonusColorOptions from '@Utils/getBonusColorOptions';
 import ROUTE_PATH from '@Constant/routePath';
 import LoadingIndicator from '@Components/LoadingIndicator';
@@ -8,6 +9,7 @@ import Guidance from '../Guidance';
 
 import AiRecommendButton from '@Components/AiRecommend';
 import { getSeasonToneByType } from '@Utils/aiRecommend/typeMeta';
+import { aiRecommendCacheState } from '@Recoil/aiRecommend';
 
 import * as S from './style';
 
@@ -33,6 +35,9 @@ function BonusStage({
     ? getBonusColorOptions(bonusColorTypes)
     : null;
 
+  const aiRecommendCache = useRecoilValue(aiRecommendCacheState);
+  const recommendedType = aiRecommendCache[BONUS_STAGE_NUM]?.recommendedType;
+
   const onBonusClick = (type: ColorType) => {
     const params = new URLSearchParams(searchParams);
     params.set('colorType', type);
@@ -54,6 +59,7 @@ function BonusStage({
             key={type + index}
             colors={colors}
             isSelected={colors.includes(selectedColor)}
+            isRecommended={type === recommendedType}
             onClick={() => onBonusClick(type)}
           >
             <Image src={userImg} alt="사용자 이미지" width={100} height={100} />

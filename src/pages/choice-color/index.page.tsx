@@ -4,7 +4,6 @@ import choiceColorData, { ChoiceColorDataType } from '@Data/choiceColorData';
 import BasicStage from './BasicStage';
 import BonusStage from './BonusStage';
 import * as S from './style';
-import { AdSense } from '@Components/AdSense';
 import useCropImg from '@Hooks/useCropImg';
 import shuffle from '@Utils/shuffle';
 import { useSearchParams } from 'next/navigation';

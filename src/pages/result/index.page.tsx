@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18NextConfig from '@Root/next-i18next.config';
 
 import { createConsecutiveNumbers } from '@Base/utils/arrExtension';
 import useScrollTop from '@Base/hooks/useScrollTop';
@@ -153,7 +154,7 @@ function ResultPage(): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'], nextI18NextConfig)),
     },
   };
 };

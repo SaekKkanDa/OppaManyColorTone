@@ -17,6 +17,7 @@ import * as S from './style';
 
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18NextConfig from '@Root/next-i18next.config';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 
@@ -124,7 +125,7 @@ function LandingPage() {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'], nextI18NextConfig)),
     },
   };
 };

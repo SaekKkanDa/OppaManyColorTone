@@ -56,7 +56,7 @@ graph TB
   end
 
   subgraph Server["Server (API on Firebase Cloud Functions)"]
-    API[/pages/api/ai-recommend.page.ts]
+    API["/pages/api/ai-recommend.page.ts"]
     Sch[Zod 스키마 검증]
     RL["rateLimiter.ts<br/>checkAndConsume / refund"]
     OAI["openaiClient.ts<br/>하이브리드 라우팅"]
@@ -86,7 +86,7 @@ graph TB
   RL --> OAI
   OAI <--> OpenAI
   API --> AIB
-  GH -.env 주입.-> API
+  GH -. env 주입 .-> API
 ```
 
 ### 1.2 배포 아키텍처
@@ -406,9 +406,9 @@ Firestore 카운터, `refund` 로 실패 시 환원. localhost bypass.
 
 ```mermaid
 sequenceDiagram
-  participant C as Client<br/>(AiRecommendButton)
-  participant API as /api/ai-recommend
-  participant OAI as OpenAI<br/>(gpt-4o-mini → gpt-4o)
+  participant C as "Client<br/>(AiRecommendButton)"
+  participant API as "/api/ai-recommend"
+  participant OAI as "OpenAI<br/>(gpt-4o-mini → gpt-4o)"
 
   C->>C: 이미지 800×800 리사이즈
   C->>API: POST { 이미지(base64), 4옵션 }

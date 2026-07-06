@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
@@ -41,6 +42,8 @@ function generateSessionId(): string {
 
 export function useAiRecommend(stageNum: number) {
   const enabled = process.env.NEXT_PUBLIC_ENABLE_AI_RECOMMEND === 'true';
+  const { locale: routerLocale } = useRouter();
+  const locale: 'ko' | 'en' = routerLocale === 'en' ? 'en' : 'ko';
 
   const [sessionId, setSessionId] = useRecoilState(aiRecommendSessionIdState);
   const [cache, setCache] = useRecoilState(aiRecommendCacheState);
@@ -103,6 +106,7 @@ export function useAiRecommend(stageNum: number) {
             stageNum,
             sessionId: activeSessionId,
             options,
+            locale,
           }),
         });
       } catch {
@@ -138,7 +142,7 @@ export function useAiRecommend(stageNum: number) {
       });
       setStatus(code === 'RATE_LIMITED' ? 'rateLimited' : 'error');
     },
-    [sessionId, setCache, setSessionId, setUsageRemaining, stageNum],
+    [locale, sessionId, setCache, setSessionId, setUsageRemaining, stageNum],
   );
 
   const request = useCallback(

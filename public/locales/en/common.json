@@ -36,7 +36,7 @@
   "shareResult": "Share",
   "restart": "Start Over",
   "notFoundMsg": "Page not found.",
-  "allTypeView_1": "See all",
+  "allTypeView_1": "See all ",
   "allTypeView_2": "12 Color Seasons",
   "clickType": "Tap a season to see more!",
   "secondaryTypeTitle": "Also looks great on you",
@@ -191,7 +191,7 @@
       "Go for clean, crisp fabrics — silk and other lustrous winter materials look especially beautiful on you.",
       "Lemon yellow works for you, but warmer, golden yellows are harder to pull off."
     ],
-    "celebrities": ["Karina", "Seulgi", "Soohyun Kim"],
+    "celebrities": ["Karina", "Seulgi", "V (BTS)"],
     "secondaryType": "True Summer",
     "worstType": "True Autumn"
   },

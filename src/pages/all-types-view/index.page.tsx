@@ -10,14 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import color from '@Data/color';
 import resultColorData from '@Data/resultColorData';
-import theme from '@Styles/theme';
 import Tag from '@Components/Tag';
+import CompassChart from './CompassChart';
 import * as S from './style';
-
-const defaultLabelStyle = {
-  fontSize: '4px',
-  fontFamily: "'Noto Sans KR', sans-serif",
-};
 
 const DEFAULT_SELECTED_INDEX = color.findIndex(
   ({ type }) => type === 'springbright'
@@ -37,6 +32,10 @@ const AllTypesView = () => {
 
   const colorType = selectedIndex !== undefined && color[selectedIndex].type;
 
+  const handleSelect = (index: number) => {
+    setSelectedIndex((prev) => (prev === index ? undefined : index));
+  };
+
   return (
     <S.Wrapper>
       <S.BackButton onClick={() => router.back()}>
@@ -48,44 +47,11 @@ const AllTypesView = () => {
         {t('allTypeView_2')}
       </S.Title>
 
-      <S.PieChart
-        data={color.map(({ type }, index) => {
-          return {
-            title: t(`${type}.name`),
-            color:
-              hoveredIndex === index || selectedIndex === index
-                ? color[index].textColor
-                : theme.gray[50],
-            value: 1,
-          };
-        })}
-        label={({ dataEntry }) => dataEntry.title}
-        labelStyle={(index) => ({
-          ...defaultLabelStyle,
-          fill:
-            hoveredIndex === index || selectedIndex === index
-              ? 'white'
-              : color[index].textColor,
-          fontWeight: '500',
-          whiteSpace: 'pre-line',
-          pointerEvents: 'none',
-        })}
-        labelPosition={80}
-        startAngle={-90}
-        radius={45}
-        segmentsStyle={{ transition: 'stroke 0.3s', cursor: 'pointer' }}
-        segmentsShift={(index) => (index === selectedIndex ? 5 : 1)}
-        onClick={(_, index) => {
-          setSelectedIndex((prevSelected) =>
-            index === prevSelected ? undefined : index
-          );
-        }}
-        onMouseOver={(_, index) => {
-          setHoveredIndex(index);
-        }}
-        onMouseOut={() => {
-          setHoveredIndex(undefined);
-        }}
+      <CompassChart
+        selectedIndex={selectedIndex}
+        hoveredIndex={hoveredIndex}
+        onSelect={handleSelect}
+        onHover={setHoveredIndex}
       />
 
       {colorType ? (
@@ -96,17 +62,22 @@ const AllTypesView = () => {
 
           <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
 
-          <S.CelebrityCard borderColor={color[selectedIndex].textColor}>
-            <S.CelebrityImage
-              src={resultColorData[colorType].celebrities[0].imageURL}
-              alt={t(`${colorType}.celebrities.0`)}
-              width={96}
-              height={96}
-            />
-            <S.CelebrityName>
-              {t(`${colorType}.celebrities.0`)}
-            </S.CelebrityName>
-          </S.CelebrityCard>
+          <S.CelebritiesRow>
+            {resultColorData[colorType].celebrities.map((celeb, idx) => (
+              <S.CelebrityItem key={celeb.name + idx}>
+                <S.CelebrityImage
+                  src={celeb.imageURL}
+                  alt={t(`${colorType}.celebrities.${idx}`)}
+                  width={76}
+                  height={76}
+                  $borderColor={color[selectedIndex].textColor}
+                />
+                <S.CelebrityName>
+                  {t(`${colorType}.celebrities.${idx}`)}
+                </S.CelebrityName>
+              </S.CelebrityItem>
+            ))}
+          </S.CelebritiesRow>
 
           <S.PaletteGrid>
             {resultColorData[colorType].gridColors.map(

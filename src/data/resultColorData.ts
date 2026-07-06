@@ -1041,7 +1041,7 @@ const winterCool: ColorResult = {
   celebrities: [
     { name: '카리나', imageURL: resultImg.celebrity.karina },
     { name: '슬기', imageURL: resultImg.celebrity.seulki },
-    { name: '김수현', imageURL: resultImg.celebrity.kimsoohyun },
+    { name: '뷔', imageURL: resultImg.celebrity.btsv },
   ],
   secondaryType: 'summercool',
   worstType: 'autumnwarm',

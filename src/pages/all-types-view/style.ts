@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { flexCustom, layout } from '@Styles/theme';
-import { PieChart as _PieChart } from 'react-minimal-pie-chart';
 
 type PaletteGridItemProps = {
   backgroundColor: string;
@@ -34,11 +33,6 @@ export const Title = styled.h1`
   font-size: ${({ theme }) => theme.font.size['1.5xl']};
 `;
 
-export const PieChart = styled(_PieChart)`
-  max-height: calc(var(--viewport-max-width) - 32px * 2);
-  margin: 32px 0;
-`;
-
 export const ColorTypeWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 1rem;
@@ -68,27 +62,31 @@ export const Tag = styled.span<TagStyleProps>`
   font-size: 14px;
 `;
 
-export const CelebrityCard = styled.div<{ borderColor: string }>`
-  ${flexCustom('column', 'center', 'center')}
-  row-gap: 0.5rem;
-  padding: 1rem 1.25rem;
-  border: 1.5px solid ${({ borderColor }) => borderColor};
-  border-radius: 12px;
-  background-color: ${({ theme }) => theme.white};
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+export const CelebritiesRow = styled.div`
+  ${flexCustom('row', 'center', 'space-around')}
+  width: 100%;
+  padding: 0.25rem 0;
 `;
 
-export const CelebrityImage = styled(Image)`
-  width: 96px;
-  height: 96px;
+export const CelebrityItem = styled.div`
+  ${flexCustom('column', 'center', 'center')}
+  row-gap: 0.5rem;
+`;
+
+export const CelebrityImage = styled(Image)<{ $borderColor: string }>`
+  width: 76px;
+  height: 76px;
+  border: 1.5px solid ${({ $borderColor }) => $borderColor};
   border-radius: 50%;
   object-fit: cover;
+  background-color: ${({ theme }) => theme.white};
 `;
 
 export const CelebrityName = styled.span`
   color: ${({ theme }) => theme.gray[700]};
   font-size: ${({ theme }) => theme.font.size.sm};
   font-weight: 500;
+  text-align: center;
 `;
 
 export const PaletteGrid = styled.div`

@@ -82,7 +82,7 @@ export default async function handler(
     );
     return;
   }
-  const { imageBase64, sessionId, options } = parsed.data;
+  const { imageBase64, sessionId, options, locale } = parsed.data;
 
   const ip = extractIp(req);
 
@@ -109,7 +109,7 @@ export default async function handler(
   }
 
   try {
-    const recommendation = await getRecommendation(imageBase64, options);
+    const recommendation = await getRecommendation(imageBase64, options, locale);
     const body: AiRecommendResponse = {
       recommendedType: recommendation.recommendedType,
       reasoning: recommendation.reasoning,

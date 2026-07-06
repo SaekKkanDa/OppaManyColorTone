@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 
-import { SYSTEM_PROMPT, buildUserText } from './prompt';
+import { buildSystemPrompt, buildUserText, type PromptLocale } from './prompt';
 import {
   aiOpenaiResponseSchema,
   type AiOpenaiResponse,
@@ -51,6 +51,7 @@ async function callModel(
   modelKey: ModelKey,
   dataUri: string,
   options: AiRecommendOption[],
+  locale: PromptLocale,
 ): Promise<AiOpenaiResponse> {
   const client = getClient();
   let completion;
@@ -62,12 +63,12 @@ async function callModel(
       temperature: TEMPERATURE,
       seed: SEED,
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: buildSystemPrompt(locale) },
         {
           role: 'user',
           content: [
             { type: 'image_url', image_url: { url: dataUri, detail: 'low' } },
-            { type: 'text', text: buildUserText(options) },
+            { type: 'text', text: buildUserText(options, locale) },
           ],
         },
       ],
@@ -130,8 +131,9 @@ export type HybridResult = {
 export async function getRecommendation(
   dataUri: string,
   options: AiRecommendOption[],
+  locale: PromptLocale,
 ): Promise<HybridResult> {
-  const miniResult = await callModel('mini', dataUri, options);
+  const miniResult = await callModel('mini', dataUri, options, locale);
 
   if (miniResult.recommendedType === 'NONE') {
     throw new AiRecommendServiceError(
@@ -151,7 +153,7 @@ export async function getRecommendation(
   }
 
   try {
-    const fullResult = await callModel('full', dataUri, options);
+    const fullResult = await callModel('full', dataUri, options, locale);
     if (fullResult.recommendedType === 'NONE') {
       throw new AiRecommendServiceError(
         'NO_FACE_DETECTED',

@@ -46,6 +46,7 @@ export const aiRecommendRequestSchema = z.object({
   stageNum: z.number().int().min(0).max(9),
   sessionId: z.string().uuid(),
   options: z.array(optionSchema).length(4),
+  locale: z.enum(['ko', 'en']).default('ko'),
 });
 
 export const aiOpenaiResponseSchema = z.object({

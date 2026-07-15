@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import { flexCustom, layout } from '@Styles/theme';
 
 type PaletteGridItemProps = {
@@ -60,33 +59,6 @@ export const Tag = styled.span<TagStyleProps>`
   color: ${({ theme, textColor }) =>
     ({ light: theme.white, dark: theme.gray[900] }[textColor])};
   font-size: 14px;
-`;
-
-export const CelebritiesRow = styled.div`
-  ${flexCustom('row', 'center', 'space-around')}
-  width: 100%;
-  padding: 0.25rem 0;
-`;
-
-export const CelebrityItem = styled.div`
-  ${flexCustom('column', 'center', 'center')}
-  row-gap: 0.5rem;
-`;
-
-export const CelebrityImage = styled(Image)<{ $borderColor: string }>`
-  width: 76px;
-  height: 76px;
-  border: 1.5px solid ${({ $borderColor }) => $borderColor};
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: ${({ theme }) => theme.white};
-`;
-
-export const CelebrityName = styled.span`
-  color: ${({ theme }) => theme.gray[700]};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: 500;
-  text-align: center;
 `;
 
 export const PaletteGrid = styled.div`

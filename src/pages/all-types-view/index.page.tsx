@@ -52,6 +52,15 @@ const AllTypesView = () => {
         hoveredIndex={hoveredIndex}
         onSelect={handleSelect}
         onHover={setHoveredIndex}
+        celebrityIndex={0}
+      />
+
+      <CompassChart
+        selectedIndex={selectedIndex}
+        hoveredIndex={hoveredIndex}
+        onSelect={handleSelect}
+        onHover={setHoveredIndex}
+        celebrityIndex={2}
       />
 
       {colorType ? (
@@ -61,23 +70,6 @@ const AllTypesView = () => {
           </S.ColorTypeTitle>
 
           <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
-
-          <S.CelebritiesRow>
-            {resultColorData[colorType].celebrities.map((celeb, idx) => (
-              <S.CelebrityItem key={celeb.name + idx}>
-                <S.CelebrityImage
-                  src={celeb.imageURL}
-                  alt={t(`${colorType}.celebrities.${idx}`)}
-                  width={76}
-                  height={76}
-                  $borderColor={color[selectedIndex].textColor}
-                />
-                <S.CelebrityName>
-                  {t(`${colorType}.celebrities.${idx}`)}
-                </S.CelebrityName>
-              </S.CelebrityItem>
-            ))}
-          </S.CelebritiesRow>
 
           <S.PaletteGrid>
             {resultColorData[colorType].gridColors.map(

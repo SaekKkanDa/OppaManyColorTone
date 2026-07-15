@@ -58,3 +58,21 @@ export const SEASON_LABELS = [
   { key: 'autumn', label: '가을 AUTUMN', angle: 225, anchorIndex: 7 },
   { key: 'winter', label: '겨울 WINTER', angle: 315, anchorIndex: 10 },
 ] as const;
+
+// Maps each of the 12 color types (by their index in color[]) to the axis
+// label that best characterizes it. The two "Warm" axes (spring vs autumn)
+// and two "Cool" axes (summer vs winter) are disambiguated by suffix.
+export const TYPE_INDEX_TO_AXIS_KEY = [
+  'bright', // 0  springbright
+  'warm-spring', // 1  springwarm
+  'light', // 2  springlight
+  'light', // 3  summerlight
+  'cool-summer', // 4  summercool
+  'mute', // 5  summermute
+  'mute', // 6  autumnmute
+  'warm-autumn', // 7  autumnwarm
+  'deep', // 8  autumndeep
+  'deep', // 9  winterdeep
+  'cool-winter', // 10 wintercool
+  'bright', // 11 winterbright
+] as const;

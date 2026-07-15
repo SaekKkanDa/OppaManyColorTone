@@ -12,6 +12,7 @@ import {
   CHART_SIZE,
   OUTER_RADIUS,
   SEASON_LABELS,
+  TYPE_INDEX_TO_AXIS_KEY,
   getAvatarAngleDeg,
   polarToCartesian,
 } from './constants';
@@ -22,6 +23,7 @@ type Props = {
   hoveredIndex: number | undefined;
   onSelect: (index: number) => void;
   onHover: (index: number | undefined) => void;
+  celebrityIndex?: number;
 };
 
 const SEASON_LABEL_OFFSET = OUTER_RADIUS + 22;
@@ -33,8 +35,20 @@ function quadrantPath(startAngleDeg: number): string {
   return `M ${CENTER} ${CENTER} L ${start.x} ${start.y} A ${OUTER_RADIUS} ${OUTER_RADIUS} 0 0 1 ${end.x} ${end.y} Z`;
 }
 
-function CompassChart({ selectedIndex, hoveredIndex, onSelect, onHover }: Props) {
+function CompassChart({
+  selectedIndex,
+  hoveredIndex,
+  onSelect,
+  onHover,
+  celebrityIndex = 0,
+}: Props) {
   const { t } = useTranslation('common');
+
+  const activeIndex = hoveredIndex ?? selectedIndex;
+  const highlightedAxisKey =
+    activeIndex !== undefined ? TYPE_INDEX_TO_AXIS_KEY[activeIndex] : undefined;
+  const highlightColor =
+    activeIndex !== undefined ? color[activeIndex].textColor : undefined;
 
   return (
     <S.Wrapper>
@@ -122,19 +136,21 @@ function CompassChart({ selectedIndex, hoveredIndex, onSelect, onHover }: Props)
 
         <circle cx={CENTER} cy={CENTER} r="5" fill="#8a6d3b" />
 
-        {/* 6 axis labels inside the center circle */}
+        {/* 8 axis labels inside the center circle */}
         {AXIS_LABELS.map(({ key, label, angle }) => {
           const { x, y } = polarToCartesian(angle, AXIS_LABEL_RADIUS);
+          const isHighlighted = key === highlightedAxisKey;
           return (
             <text
               key={key}
               x={x}
               y={y + 3}
               textAnchor="middle"
-              fontSize="10"
+              fontSize={isHighlighted ? 11 : 10}
               fontFamily="'Noto Sans KR', sans-serif"
-              fontWeight="500"
-              fill="#7a5c2a"
+              fontWeight={isHighlighted ? 700 : 500}
+              fill={isHighlighted && highlightColor ? highlightColor : '#7a5c2a'}
+              style={{ transition: 'font-size 160ms ease, fill 160ms ease' }}
             >
               {label}
             </text>
@@ -163,7 +179,8 @@ function CompassChart({ selectedIndex, hoveredIndex, onSelect, onHover }: Props)
           getAvatarAngleDeg(index),
           AVATAR_RING_RADIUS
         );
-        const representative = resultColorData[type].celebrities[0];
+        const celebs = resultColorData[type].celebrities;
+        const representative = celebs[celebrityIndex] ?? celebs[0];
         const isActive =
           selectedIndex === index || hoveredIndex === index;
         return (

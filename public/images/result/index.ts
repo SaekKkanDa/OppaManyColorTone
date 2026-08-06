@@ -49,6 +49,7 @@ import seulki from './celebrity/seulki.png';
 import chaeyoung from './celebrity/chaeyoung.png';
 import jojungseok from './celebrity/jojungseok.png';
 import jessica from './celebrity/jessica.png';
+import byeonwooseok from './celebrity/byeonwooseok.png';
 
 import stylingSpring from './styling/stylingSpring.jpeg';
 import stylingSpringBright from './styling/stylingSpringBright.jpeg';
@@ -109,6 +110,7 @@ const resultImg = {
     chaeyoung,
     jojungseok,
     jessica,
+    byeonwooseok,
   },
 
   styling: {

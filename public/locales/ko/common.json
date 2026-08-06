@@ -38,6 +38,8 @@
   "notFoundMsg": "잘못된 접근입니다.",
   "allTypeView_1": "한 눈에 보는 ",
   "allTypeView_2": "퍼스널 컬러",
+  "allTypeView_female": "여자",
+  "allTypeView_male": "남자",
   "clickType": "컬러 유형을 클릭해 보세요!",
   "secondaryTypeTitle": "이것도 좋아요",
   "worstTypeTitle": "이건 피하세요",
@@ -93,7 +95,7 @@
       "흰 티셔츠에 청바지 조합이 청량하게 잘 어울려요.",
       "어두운 가을 타입의 색은 잘 어울리지 않고, 힙하고 펑키한 스트릿 패션과는 거리가 있어요."
     ],
-    "celebrities": ["손예진", "이영애", "유연석"],
+    "celebrities": ["손예진", "이영애", "차은우"],
     "secondaryType": "봄 라이트",
     "worstType": "가을 딥"
   },
@@ -205,7 +207,7 @@
       "유광 재질이 잘 어울려서 광택감 있는 가죽 의상이나 반짝거리는 화려한 액세서리도 잘 소화해요.",
       "자잘한 무늬, 흐릿하고 탁한 색, 대비감 없이 비슷한 색의 코디는 겨울 브라이트의 매력을 떨어뜨리니 피해주세요."
     ],
-    "celebrities": ["조이", "채영", "조정석"],
+    "celebrities": ["조이", "채영", "변우석"],
     "secondaryType": "봄 브라이트",
     "worstType": "가을 뮤트"
   },

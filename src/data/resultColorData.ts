@@ -394,7 +394,7 @@ const summerLight: ColorResult = {
   celebrities: [
     { name: '손예진', imageURL: resultImg.celebrity.sonyejin },
     { name: '이영애', imageURL: resultImg.celebrity.leeyoungae },
-    { name: '유연석', imageURL: resultImg.celebrity.youyeonseok },
+    { name: '차은우', imageURL: resultImg.celebrity.chaeunwoo },
   ],
   secondaryType: 'springlight',
   worstType: 'autumndeep',
@@ -1133,7 +1133,7 @@ const winterBright: ColorResult = {
   celebrities: [
     { name: '조이', imageURL: resultImg.celebrity.joy },
     { name: '채영', imageURL: resultImg.celebrity.chaeyoung },
-    { name: '조정석', imageURL: resultImg.celebrity.jojungseok },
+    { name: '변우석', imageURL: resultImg.celebrity.byeonwooseok },
   ],
   secondaryType: 'springbright',
   worstType: 'autumnmute',

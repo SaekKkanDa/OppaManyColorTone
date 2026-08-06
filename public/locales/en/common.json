@@ -38,6 +38,8 @@
   "notFoundMsg": "Page not found.",
   "allTypeView_1": "See all ",
   "allTypeView_2": "12 Color Seasons",
+  "allTypeView_female": "Women",
+  "allTypeView_male": "Men",
   "clickType": "Tap a season to see more!",
   "secondaryTypeTitle": "Also looks great on you",
   "worstTypeTitle": "Avoid this palette",
@@ -51,7 +53,7 @@
       "You wear bright, high-saturation colors beautifully — the more vivid, the better.",
       "Avoid muted, grayed-out colors — they'll make your face look dull."
     ],
-    "celebrities": ["IU", "Suzy", "Junho Lee"],
+    "celebrities": ["Suzy", "IU", "Junho Lee"],
     "secondaryType": "Bright Winter",
     "worstType": "Soft Summer"
   },
@@ -93,7 +95,7 @@
       "A crisp white tee with jeans looks effortlessly fresh on you.",
       "Dark autumn tones don't flatter you, and edgy streetwear isn't quite your vibe."
     ],
-    "celebrities": ["Yejin Son", "Youngae Lee", "Yeonseok Yoo"],
+    "celebrities": ["Yejin Son", "Youngae Lee", "Eunwoo Cha"],
     "secondaryType": "Light Spring",
     "worstType": "Dark Autumn"
   },
@@ -177,7 +179,7 @@
       "Contrast is your secret weapon — accents of vivid or bright color really work for you.",
       "Avoid fine prints and hazy, watercolor-style patterns with low contrast."
     ],
-    "celebrities": ["Hanee Lee", "Jisoo", "Seungwon Cha"],
+    "celebrities": ["Jisoo", "Hanee Lee", "Seungwon Cha"],
     "secondaryType": "Dark Autumn",
     "worstType": "Light Spring"
   },
@@ -205,7 +207,7 @@
       "Glossy fabrics look great on you — think polished leather and sparkling statement accessories.",
       "Tiny prints, muted colors, and low-contrast outfits will dim your natural spark — best avoided."
     ],
-    "celebrities": ["Joy", "Chaeyoung", "Jungsuk Jo"],
+    "celebrities": ["Joy", "Chaeyoung", "Wooseok Byeon"],
     "secondaryType": "Bright Spring",
     "worstType": "Soft Autumn"
   },

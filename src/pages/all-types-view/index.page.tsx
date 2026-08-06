@@ -18,6 +18,13 @@ const DEFAULT_SELECTED_INDEX = color.findIndex(
   ({ type }) => type === 'springbright'
 );
 
+type GenderTab = 'female' | 'male';
+
+const GENDER_TABS: { key: GenderTab; labelKey: string; celebrityIndex: number }[] = [
+  { key: 'female', labelKey: 'allTypeView_female', celebrityIndex: 0 },
+  { key: 'male', labelKey: 'allTypeView_male', celebrityIndex: 2 },
+];
+
 const AllTypesView = () => {
   const { t } = useTranslation('common');
 
@@ -27,6 +34,7 @@ const AllTypesView = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | undefined>(
     undefined
   );
+  const [genderTab, setGenderTab] = useState<GenderTab>('female');
 
   const router = useRouter();
 
@@ -35,6 +43,9 @@ const AllTypesView = () => {
   const handleSelect = (index: number) => {
     setSelectedIndex((prev) => (prev === index ? undefined : index));
   };
+
+  const activeCelebrityIndex =
+    GENDER_TABS.find(({ key }) => key === genderTab)?.celebrityIndex ?? 0;
 
   return (
     <S.Wrapper>
@@ -47,20 +58,27 @@ const AllTypesView = () => {
         {t('allTypeView_2')}
       </S.Title>
 
-      <CompassChart
-        selectedIndex={selectedIndex}
-        hoveredIndex={hoveredIndex}
-        onSelect={handleSelect}
-        onHover={setHoveredIndex}
-        celebrityIndex={0}
-      />
+      <S.TabList role="tablist">
+        {GENDER_TABS.map(({ key, labelKey }) => (
+          <S.TabButton
+            key={key}
+            type="button"
+            role="tab"
+            aria-selected={genderTab === key}
+            $isActive={genderTab === key}
+            onClick={() => setGenderTab(key)}
+          >
+            {t(labelKey)}
+          </S.TabButton>
+        ))}
+      </S.TabList>
 
       <CompassChart
         selectedIndex={selectedIndex}
         hoveredIndex={hoveredIndex}
         onSelect={handleSelect}
         onHover={setHoveredIndex}
-        celebrityIndex={2}
+        celebrityIndex={activeCelebrityIndex}
       />
 
       {colorType ? (

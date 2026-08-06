@@ -53,10 +53,10 @@ export const AXIS_LABELS = [
 // color[] for the "true"/neutral sub-type of that season (springwarm=1, etc.),
 // used only to pick a theme text color for the label.
 export const SEASON_LABELS = [
-  { key: 'spring', label: '봄 SPRING', angle: 45, anchorIndex: 1 },
-  { key: 'summer', label: '여름 SUMMER', angle: 135, anchorIndex: 4 },
-  { key: 'autumn', label: '가을 AUTUMN', angle: 225, anchorIndex: 7 },
-  { key: 'winter', label: '겨울 WINTER', angle: 315, anchorIndex: 10 },
+  { key: 'spring', label: 'SPRING', angle: 45, anchorIndex: 1 },
+  { key: 'summer', label: 'SUMMER', angle: 135, anchorIndex: 4 },
+  { key: 'autumn', label: 'AUTUMN', angle: 225, anchorIndex: 7 },
+  { key: 'winter', label: 'WINTER', angle: 315, anchorIndex: 10 },
 ] as const;
 
 // Maps each of the 12 color types (by their index in color[]) to the axis

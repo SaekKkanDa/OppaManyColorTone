@@ -32,6 +32,32 @@ export const Title = styled.h1`
   font-size: ${({ theme }) => theme.font.size['1.5xl']};
 `;
 
+export const TabList = styled.div`
+  ${flexCustom('row', 'center', 'center')}
+  gap: 0.5rem;
+  margin-top: 1rem;
+`;
+
+type TabButtonProps = {
+  $isActive: boolean;
+};
+
+export const TabButton = styled.button<TabButtonProps>`
+  padding: 0.5rem 1.75rem;
+  border-radius: 999px;
+  border: 1px solid
+    ${({ theme, $isActive }) => ($isActive ? theme.gray[800] : theme.gray[300])};
+  background-color: ${({ theme, $isActive }) =>
+    $isActive ? theme.gray[800] : 'transparent'};
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.white : theme.gray[600]};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: ${({ $isActive }) => ($isActive ? 600 : 500)};
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease,
+    border-color 160ms ease;
+`;
+
 export const ColorTypeWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 1rem;

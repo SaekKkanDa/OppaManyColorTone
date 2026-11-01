@@ -8,6 +8,8 @@
   "viewAllTypesButton": "컬러 유형 전체보기",
   "guideButton": "퍼스널 컬러 가이드",
   "startButton": "시작하기",
+  "scrollDownLabel": "아래로 이동",
+  "scrollUpLabel": "위로 이동",
   "selectImg": "사진 선택",
   "guidance": "실제와 비슷한 톤의 얼굴 사진을 선택해주세요.",
   "notification_1": "안심하세요!",

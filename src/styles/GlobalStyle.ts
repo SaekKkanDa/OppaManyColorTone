@@ -3,12 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 import ResetStyle from './resetStyle';
 import theme from './theme';
 
-const pretendard = localFont({
-  src: '../../public/fonts/PretendardVariable.woff2',
-  display: 'swap',
-  weight: '45 920',
-});
-
 const moyamoya = localFont({
   src: '../../public/fonts/Cafe24Moyamoya-Face-v1.0.woff2',
 });
@@ -17,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   ${ResetStyle}
 
   :root {
-    --font-pretendard: ${pretendard.style.fontFamily};
+    --font-pretendard: "Pretendard Variable";
     --font-moyamoya: ${moyamoya.style.fontFamily};
     --viewport-max-width: 430px;
   }
@@ -27,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-family: ${pretendard.style.fontFamily}, "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   }
 	
   body {

@@ -1,0 +1,137 @@
+{
+  "privacy": {
+    "title": "Privacy Policy",
+    "effectiveDate": "Effective date: November 1, 2026",
+    "intro": "SaekKkanDa (\"we\") runs Litmus Face (https://omct.web.app, the \"Service\"). We care about your privacy and follow applicable laws, including the Personal Information Protection Act of Korea. This policy explains what information the Service collects and why, how long we keep it, and who helps us process it.",
+    "sections": [
+      {
+        "title": "1. What we collect and why",
+        "paragraphs": [
+          "You can use the Service without signing up. We do not collect information that directly identifies you, such as your name or contact details."
+        ],
+        "items": [
+          "Face photo: The photo you pick for your personal color test is processed only inside your browser. During the regular test, it is never sent to or stored on our servers.",
+          "Shared photo: If you use \"Share My Test\", your photo is uploaded to Google Firebase Storage so others can take the test with the same photo. The file name is a hash of the photo's contents and is not linked to any other information.",
+          "AI color recommendation (optional): Only if you agree, a downscaled face image (up to 800×800) is sent to the OpenAI API to get a recommendation. We do not store this image.",
+          "AI recommendation usage records: To prevent abuse, we store a random session ID, a one-way hash of your IP address (it cannot be turned back into the original IP), and the number and time of requests.",
+          "Usage data: To improve the Service, we use Google Analytics and Google Tag Manager to collect pages visited, time spent, and device and browser information through cookies.",
+          "Error data: To fix problems, we use Sentry to collect error details and browser information. For some visits, and for visits where an error occurs, Sentry may record how the screen was used (session replay). All on-screen text is masked, and photos and other media are not recorded.",
+          "Browser storage: Whether you agreed to AI recommendations and whether you have seen the intro guide are saved in your browser's localStorage. This information is never sent to our servers.",
+          "Test count: Each time a test is completed, we only add one to the total number of participants. Nothing that identifies you is stored."
+        ]
+      },
+      {
+        "title": "2. How long we keep it",
+        "items": [
+          "Shared photos: Deleted automatically 7 days after upload. After that, the share link no longer works.",
+          "AI recommendation images: Not stored on our servers and discarded right after the response. OpenAI may keep API request logs for up to 30 days to monitor abuse.",
+          "AI recommendation usage records: Deleted automatically 7 days after they are recorded.",
+          "Usage and error data: Kept and deleted according to the retention policies of each provider (Google, Sentry)."
+        ]
+      },
+      {
+        "title": "3. Service providers and international transfers",
+        "paragraphs": [
+          "We use the services below. Your information may be processed on servers outside Korea, mainly in the United States."
+        ],
+        "items": [
+          "Google LLC: Website hosting and data storage (Firebase), usage analytics (Google Analytics, Google Tag Manager), and ads (Google AdSense)",
+          "OpenAI, L.L.C.: AI color recommendation (only if you agree)",
+          "Functional Software, Inc. (Sentry): Error monitoring"
+        ]
+      },
+      {
+        "title": "4. Ads and cookies",
+        "paragraphs": [
+          "The Service shows ads from Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites.",
+          "Google's use of advertising cookies enables it and its partners to serve ads to you based on your visits to this site and/or other sites on the Internet. You can opt out of personalized ads and data collection as follows."
+        ],
+        "items": [
+          "Turn off personalized ads from Google: https://adssettings.google.com",
+          "Opt out of third-party vendors' cookies for personalized ads: https://www.aboutads.info/choices",
+          "Opt out of Google Analytics: https://tools.google.com/dlpage/gaoptout",
+          "How Google uses information from sites that use its services: https://policies.google.com/technologies/partner-sites",
+          "You can also block or delete cookies in your browser settings. Some features may not work properly if you do."
+        ]
+      },
+      {
+        "title": "5. Your rights",
+        "items": [
+          "To delete a shared photo before the 7 days are up, email us with the share link. We will delete it as soon as we confirm the request.",
+          "You can withdraw your consent to AI recommendations by clearing this site's data in your browser. You will be asked again the next time you use the feature.",
+          "For any other request to access, correct, or delete your information, contact us below and we will handle it promptly."
+        ]
+      },
+      {
+        "title": "6. Contact",
+        "items": [
+          "Operator: SaekKkanDa",
+          "Email: oppamanycolortone@gmail.com",
+          "GitHub: https://github.com/SaekKkanDa/OppaManyColorTone/issues"
+        ]
+      },
+      {
+        "title": "7. Changes to this policy",
+        "paragraphs": [
+          "If we change this policy, we will post the update on this page with a new effective date."
+        ]
+      }
+    ]
+  },
+  "about": {
+    "title": "About Litmus Face",
+    "intro": "Litmus Face is a free self-test that helps you find your personal color with a single photo. No appointment needed: hold different colors up to your face and see for yourself which ones suit you best.",
+    "sections": [
+      {
+        "title": "What is personal color?",
+        "paragraphs": [
+          "Your personal color is the family of colors that naturally harmonizes with your skin, hair, and eye color. The right colors make your face look bright and fresh, while the wrong ones can make you look dull or tired.",
+          "Litmus Face uses 12 color types: each of the four seasons is split into three tones. Spring is Warm, Bright, and Light; Summer is Cool, Mute, and Light; Autumn is Warm, Mute, and Deep; and Winter is Cool, Deep, and Bright."
+        ]
+      },
+      {
+        "title": "How the test works",
+        "items": [
+          "Upload a photo where your face is clearly visible. The photo stays in your browser and is never stored on our servers.",
+          "You go through 9 rounds. Each round shows four colors from the same color family next to your photo, and you pick the one that suits you best.",
+          "Across the 9 rounds, colors from all 12 types appear three times each, and the type you pick most often becomes your result.",
+          "If several types tie, a bonus round compares their colors once more to decide your final type.",
+          "On the result page, you can see your palette, the types that work well and those to avoid, and celebrities who share your type."
+        ]
+      },
+      {
+        "title": "More features",
+        "items": [
+          "See All 12 Types: Compare the traits and palettes of every type at a glance.",
+          "Share My Test: Create a link with your photo and ask friends to pick colors for you.",
+          "AI Color Recommendation: When you can't decide, get a suggestion from AI after giving your consent."
+        ]
+      },
+      {
+        "title": "Tips for an accurate result",
+        "items": [
+          "Use a photo taken in natural daylight. Warm indoor lighting and filters can change how your skin tone looks.",
+          "A bare or lightly made-up face works best.",
+          "Turn off night mode (blue light filter) and keep your screen bright enough while taking the test.",
+          "Self-test results can vary with your photo and screen. Use them as a helpful reference."
+        ]
+      },
+      {
+        "title": "Who we are",
+        "paragraphs": [
+          "Litmus Face is built and run by the team SaekKkanDa. Our source code is open on GitHub: https://github.com/SaekKkanDa/OppaManyColorTone"
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "Have feedback or a question? Reach us here."
+        ],
+        "items": [
+          "Email: oppamanycolortone@gmail.com",
+          "GitHub: https://github.com/SaekKkanDa/OppaManyColorTone/issues"
+        ]
+      }
+    ]
+  }
+}

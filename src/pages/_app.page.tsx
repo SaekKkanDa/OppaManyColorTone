@@ -1,9 +1,5 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import i18n from 'i18next';
-import Backend from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
 import { appWithTranslation } from 'next-i18next';
 
 import Script from 'next/script';
@@ -23,22 +19,6 @@ import i18nextConfig from '../../next-i18next.config';
 
 config.autoAddCss = false;
 
-// i18n 초기화
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    lng: 'en',
-    react: {
-      useSuspense: false,
-    },
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
-    },
-  });
-
 const App = ({ Component, pageProps }: AppProps) => {
   const isLoading = useLoading();
 
@@ -46,7 +26,23 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>리트머스 페이스 - 퍼스널 컬러 자가진단 테스트</title>
+        {/* 기본값. 각 페이지의 PageHead 가 같은 key 로 덮어쓴다. */}
+        <title key="title">리트머스 페이스 - 퍼스널 컬러 자가진단 테스트</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content="리트머스 페이스 - 퍼스널 컬러 자가진단"
+        />
+        <meta
+          key="description"
+          name="description"
+          content="퍼스널 컬러 자가진단 온라인 무료 테스트. 내 퍼스널 컬러는 뭘까? 한 번쯤 궁금한 적 있지 않나요? 하지만 퍼스널 컬러 진단 받으러 가려면 비싸고... 귀찮죠. 내 사진 한 장으로 직접! 비용 없이 빠르고 간편하게! 나의 퍼스널 컬러를 찾아보아요."
+        />
+        <meta
+          key="og:description"
+          property="og:description"
+          content="퍼스널 컬러 자가진단 온라인 무료 테스트. 내 퍼스널 컬러는 뭘까? 한 번쯤 궁금한 적 있지 않나요? 하지만 퍼스널 컬러 진단 받으러 가려면 비싸고... 귀찮죠. 내 사진 한 장으로 직접! 비용 없이 빠르고 간편하게! 나의 퍼스널 컬러를 찾아보아요."
+        />
       </Head>
 
       {/* Google Adsense */}

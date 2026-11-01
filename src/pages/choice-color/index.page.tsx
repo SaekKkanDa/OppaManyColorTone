@@ -17,6 +17,8 @@ import { OnboardingPage } from '@Pages/choice-color/subpages/onboadring.subpage'
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '@Root/next-i18next.config';
+import { useTranslation } from 'next-i18next';
+import PageHead from '@Components/PageHead';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -119,4 +121,18 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   };
 };
 
-export default withLoadingRouter(Page);
+const LoadingRoutedPage = withLoadingRouter(Page);
+
+// PageHead 는 서버 렌더링에도 포함되도록 클라이언트 전용 래퍼 밖에 둔다.
+const ChoiceColorPage = () => {
+  const { t } = useTranslation('common');
+
+  return (
+    <>
+      <PageHead title={t('meta.choiceColorTitle')} noindex />
+      <LoadingRoutedPage />
+    </>
+  );
+};
+
+export default ChoiceColorPage;

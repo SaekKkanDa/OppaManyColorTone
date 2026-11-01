@@ -1,11 +1,11 @@
 {
   "confirm": "Confirm",
-  "landingTitle": "Litmus Face",
-  "landingSubTitle": "Personal Color\nSelf-Test",
+  "landingSubTitle": "Personal Color Self-Test",
   "userCount_1": "So far,",
   "userCount_2": " ",
   "shareButton": "Share",
   "viewAllTypesButton": "See All 12 Seasons",
+  "guideButton": "Personal Color Guide",
   "userCount_3": "people have tested!",
   "startButton": "Get Started",
   "selectImg": "Choose Photo",
@@ -257,5 +257,63 @@
       "openaiPolicy": "OpenAI doesn't use API data for training. Logs may be retained for up to 30 days for abuse monitoring.",
       "guide": "You can decline. If you do, the AI recommendation feature will be unavailable."
     }
+  },
+  "meta": {
+    "homeTitle": "Litmus Face - Free Personal Color Self-Test",
+    "homeDescription": "Find your personal color from a single photo. Try palettes against your face and discover which of the 12 seasonal types suits you best. Free and quick.",
+    "allTypesTitle": "All 12 Personal Color Types | Litmus Face",
+    "allTypesDescription": "Explore all 12 personal color seasons, from Bright Spring to Dark Winter, with their key traits, palettes, and celebrity examples.",
+    "resultTitle": "{{typeName}} Personal Color | Litmus Face",
+    "resultDescription": "Get to know {{typeName}}: its signature palette, your best and worst colors, and celebrities who share this personal color type.",
+    "imageUploadTitle": "Upload Your Photo | Litmus Face",
+    "imageUploadDescription": "Upload a photo that shows your true skin tone to start your free personal color self-test.",
+    "choiceColorTitle": "Pick Your Colors | Litmus Face",
+    "myTestShareTitle": "Share My Test | Litmus Face",
+    "aboutTitle": "About | Litmus Face",
+    "aboutDescription": "Learn how Litmus Face finds your personal color: the 12 seasonal types, how the 9-round color test works, and tips for an accurate result.",
+    "privacyTitle": "Privacy Policy | Litmus Face",
+    "privacyDescription": "How Litmus Face handles your photos and data, including shared photos, AI recommendations, analytics, ads, and cookies.",
+    "typeTitle": "{{typeName}}: Traits and Best Colors | Litmus Face",
+    "guideTitle": "Personal Color Guide: Warm vs. Cool and the 12 Types | Litmus Face",
+    "guideDescription": "What personal color is, how to tell warm from cool undertones, the traits of all 12 seasonal types, and tips for an accurate self-test."
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "contact": "Contact"
+  },
+  "typePage": {
+    "breadcrumbGuide": "Personal Color Guide",
+    "features": "Key traits",
+    "bestColors": "Colors that suit you",
+    "avoidColors": "Colors to avoid",
+    "makeup": "Makeup tips",
+    "fashion": "Style tips",
+    "hairAndAccessories": "Hair & accessories",
+    "celebrities": "Celebrities with this type",
+    "compare": "Compared with similar types",
+    "secondaryType": "Works well with",
+    "worstType": "Opposite type",
+    "ctaTitle": "Which type are you?",
+    "ctaButton": "Find My Personal Color",
+    "allTypes": "See All 12 Types",
+    "detailLink": "Learn more about {{typeName}}"
+  },
+  "season": {
+    "spring": "Spring",
+    "summer": "Summer",
+    "autumn": "Autumn",
+    "winter": "Winter"
+  },
+  "homeIntro": {
+    "title": "Find your personal color with a single photo",
+    "paragraphs": [
+      "A free self-test that finds your personal color by holding different colors up to your photo. Pick the best one in each of 9 rounds, and we'll tell you which of the 12 types is yours.",
+      "Your photo is never stored on our servers."
+    ],
+    "guideLink": "Read the Personal Color Guide"
+  },
+  "guidePage": {
+    "typeListTitle": "Explore each of the 12 types"
   }
 }

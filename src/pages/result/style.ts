@@ -1,5 +1,7 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
+import SiteFooter from '@Components/SiteFooter';
 import { BorderedButton, flexCustom } from '@Styles/theme';
 import checkIcon from 'public/images/icon/check.png';
 
@@ -10,6 +12,10 @@ interface ColorItemStyleProps {
 export const Wrapper = styled.div`
   ${flexCustom('column', 'inherit', 'flex-start')}
   width: 100%;
+`;
+
+export const Footer = styled(SiteFooter)`
+  padding: 1.5rem 0 2rem;
 `;
 
 export const MainWrapper = styled.div`
@@ -47,6 +53,14 @@ export const Description = styled.ul`
     padding-left: 1rem;
     background: url(${checkIcon.src}) 0 0.4em / 10px 10px no-repeat;
   }
+`;
+
+export const DetailLink = styled(Link)`
+  align-self: center;
+  color: ${({ theme }) => theme.gray[700]};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: 600;
+  text-decoration: underline;
 `;
 
 export const SubDescriptionWrapper = styled.div`

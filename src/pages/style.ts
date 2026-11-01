@@ -37,6 +37,24 @@ export const TopSentinel = styled.div`
   pointer-events: none;
 `;
 
+export const SceneImageWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+`;
+
+// styled-components 가 fetchPriority 를 걸러내서 그대로 넘기도록 지정한다
+export const SceneImage = styled.img.withConfig({
+  shouldForwardProp: () => true,
+})`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: none;
+  translate: -50% -50%;
+`;
+
 export const TitleWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 0.25rem;

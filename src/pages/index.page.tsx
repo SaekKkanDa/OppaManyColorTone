@@ -8,7 +8,6 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '@Root/next-i18next.config';
 import { useSetRecoilState } from 'recoil';
-import type { Application } from '@splinetool/runtime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBookOpen,
@@ -24,7 +23,6 @@ import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
 import * as S from './style';
 import PageHead from '@Components/PageHead';
-import LazySplineScene from '@Components/LazySplineScene';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 import { getNumberOfUsersForSsr } from '@Utils/numberOfUsers.server';
@@ -121,11 +119,6 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
     });
   };
 
-  const onLoadSpline = (app: Application) => {
-    app.setZoom(0.15);
-    app.setBackgroundColor(S.bgColor);
-  };
-
   return (
     <S.PageWrapper>
       <PageHead
@@ -155,15 +148,16 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
           )}
         </S.LanguageButton>
 
-        <LazySplineScene
-          scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
-          poster={{
-            src: '/images/home/spline-poster.webp',
-            width: 430,
-            height: 329,
-          }}
-          onLoad={onLoadSpline}
-        />
+        {/* 런타임이 무거워 3D(components/LazySplineScene) 대신 캡처 이미지를 쓴다 */}
+        <S.SceneImageWrapper>
+          <S.SceneImage
+            src="/images/home/spline-poster.webp"
+            width={430}
+            height={329}
+            alt=""
+            fetchPriority="high"
+          />
+        </S.SceneImageWrapper>
 
         <S.ScrollButton
           $isInViewBottom={isInViewBottom}

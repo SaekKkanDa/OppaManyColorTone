@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -8,6 +9,7 @@ import PageHead from '@Components/PageHead';
 import TypeLinkGrid from '@Components/TypeLinkGrid';
 import { COLOR_TYPES } from '@Constant/colorTypes';
 import ROUTE_PATH from '@Constant/routePath';
+import * as S from './style';
 
 function GuidePage() {
   const { t } = useTranslation(['guide', 'common']);
@@ -44,6 +46,9 @@ function GuidePage() {
         sections={sections}
       >
         <TypeLinkGrid title={t('guidePage.typeListTitle', { ns: 'common' })} />
+        <S.HomeButton as={Link} href={ROUTE_PATH.landing}>
+          {t('guidePage.homeButton', { ns: 'common' })}
+        </S.HomeButton>
       </InfoArticle>
     </>
   );

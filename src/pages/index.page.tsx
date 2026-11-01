@@ -126,47 +126,49 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
         description={t('meta.homeDescription')}
         path={ROUTE_PATH.landing}
       />
-      <S.IntroTop>
-        <S.TitleWrapper>
-          <S.Title>{t('landingSubTitle')}</S.Title>
-        </S.TitleWrapper>
-
-        <S.IntroContent>
-          <S.IntroTitle>{t('homeIntro.title')}</S.IntroTitle>
-          {introParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </S.IntroContent>
-      </S.IntroTop>
-
-      <S.TopPage>
+      <S.FirstScreen>
         <S.TopSentinel ref={topRef} aria-hidden />
-        <S.LanguageButton onClick={handleToggleLanguage}>
-          {withDefault(
-            { [cLocales.ko]: 'ENG', [cLocales.en]: '한국어' }[currentLocale],
-            '한국어'
-          )}
-        </S.LanguageButton>
+        <S.IntroTop>
+          <S.TitleWrapper>
+            <S.Title>{t('landingSubTitle')}</S.Title>
+          </S.TitleWrapper>
 
-        {/* 런타임이 무거워 3D(components/LazySplineScene) 대신 캡처 이미지를 쓴다 */}
-        <S.SceneImageWrapper>
-          <S.SceneImage
-            src="/images/home/spline-poster.webp"
-            width={430}
-            height={329}
-            alt=""
-            fetchPriority="high"
-          />
-        </S.SceneImageWrapper>
+          <S.IntroContent>
+            <S.IntroTitle>{t('homeIntro.title')}</S.IntroTitle>
+            {introParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </S.IntroContent>
+        </S.IntroTop>
 
-        <S.ScrollButton
-          $isInViewBottom={isInViewBottom}
-          onClick={handleScroll}
-          aria-label={t(isInViewBottom ? 'scrollUpLabel' : 'scrollDownLabel')}
-        >
-          <FontAwesomeIcon icon={faChevronDown} />
-        </S.ScrollButton>
-      </S.TopPage>
+        <S.TopPage>
+          <S.LanguageButton onClick={handleToggleLanguage}>
+            {withDefault(
+              { [cLocales.ko]: 'ENG', [cLocales.en]: '한국어' }[currentLocale],
+              '한국어'
+            )}
+          </S.LanguageButton>
+
+          {/* 런타임이 무거워 3D(components/LazySplineScene) 대신 캡처 이미지를 쓴다 */}
+          <S.SceneImageWrapper>
+            <S.SceneImage
+              src="/images/home/color-blocks.webp"
+              width={430}
+              height={228}
+              alt=""
+              fetchPriority="high"
+            />
+          </S.SceneImageWrapper>
+
+          <S.ScrollButton
+            $isInViewBottom={isInViewBottom}
+            onClick={handleScroll}
+            aria-label={t(isInViewBottom ? 'scrollUpLabel' : 'scrollDownLabel')}
+          >
+            <FontAwesomeIcon icon={faChevronDown} />
+          </S.ScrollButton>
+        </S.TopPage>
+      </S.FirstScreen>
 
       <S.BottomPage ref={bottomPageRef}>
         <S.UserCountMessage ref={bottomRef} $isInViewBottom={isInViewBottom}>

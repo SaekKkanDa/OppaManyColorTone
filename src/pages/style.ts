@@ -15,10 +15,20 @@ const preventTextSelection = css`
   user-select: none;
 `;
 
+/** 첫 화면. 소개 문구 아래 남은 공간을 이미지(TopPage)가 채운다 */
+export const FirstScreen = styled.div`
+  position: relative;
+  ${flexCustom('column', 'stretch', 'flex-start')}
+  width: 100%;
+  min-height: 100dvh;
+  background-color: ${bgColor};
+`;
+
 export const TopPage = styled.div`
   position: relative;
+  flex: 1 1 0;
   width: 100%;
-  height: 85dvh;
+  min-height: 11rem;
   background-color: ${bgColor};
   scroll-snap-align: start;
   ${preventTextSelection}
@@ -37,10 +47,10 @@ export const TopSentinel = styled.div`
   pointer-events: none;
 `;
 
+/** 아래 여백은 화면 하단에 고정된 시작 버튼 자리 (bottom 2.5rem + 버튼 높이 + 그림자) */
 export const SceneImageWrapper = styled.div`
   position: absolute;
-  inset: 0;
-  overflow: hidden;
+  inset: 0 1.5rem 7.25rem;
   pointer-events: none;
 `;
 
@@ -48,11 +58,10 @@ export const SceneImageWrapper = styled.div`
 export const SceneImage = styled.img.withConfig({
   shouldForwardProp: () => true,
 })`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: none;
-  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
 `;
 
 export const TitleWrapper = styled.div`
@@ -249,10 +258,16 @@ export const IntroTop = styled.section`
   row-gap: 2.5rem;
   width: 100%;
   /* 오른쪽 위에 고정된 언어 버튼과 겹치지 않도록 위 여백을 둔다 */
-  padding: 4.5rem 1.5rem 9rem;
+  padding: 4.5rem 1.5rem 2.5rem;
   background-color: ${bgColor};
   color: ${({ theme }) => theme.gray[200]};
   word-break: keep-all;
+
+  /* 세로가 짧은 화면에서도 이미지 자리를 남긴다 */
+  @media (max-height: 700px) {
+    row-gap: 1.25rem;
+    padding-top: 3rem;
+  }
 `;
 
 export const IntroContent = styled.div`
@@ -260,6 +275,7 @@ export const IntroContent = styled.div`
   row-gap: 1rem;
   width: 100%;
   max-width: var(--viewport-max-width);
+  font-size: 0.9375rem;
   line-height: 1.7;
 `;
 

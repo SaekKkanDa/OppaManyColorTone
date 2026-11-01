@@ -1,9 +1,5 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import i18n from 'i18next';
-import Backend from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
 import { appWithTranslation } from 'next-i18next';
 
 import Script from 'next/script';
@@ -22,22 +18,6 @@ import { LoadingProvider } from '@Components/Contexts/LoadingContext';
 import i18nextConfig from '../../next-i18next.config';
 
 config.autoAddCss = false;
-
-// i18n 초기화
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    lng: 'en',
-    react: {
-      useSuspense: false,
-    },
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
-    },
-  });
 
 const App = ({ Component, pageProps }: AppProps) => {
   const isLoading = useLoading();

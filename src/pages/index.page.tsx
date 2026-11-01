@@ -19,7 +19,6 @@ import {
 import { useIntersectionObserver } from '@Base/hooks/useIntersectionObserver';
 import { useCountUp } from '@Base/hooks/useCountUp';
 import { CropImage } from '@Recoil/app';
-import omctDb from '@Utils/omctDb';
 import { canWebShare, webShare } from '@Utils/share';
 import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
@@ -80,7 +79,9 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
   useEffect(() => {
     if (initialNumberOfUsers !== null) return;
 
+    // 서버에서 숫자를 못 읽었을 때만 쓰므로, Firebase SDK 를 이때 불러온다
     const getNumberOfUsers = async () => {
+      const { default: omctDb } = await import('@Utils/omctDb');
       setNumberOfUsers(await omctDb.getNumberOfUsers());
     };
 

@@ -77,6 +77,7 @@ function ResultPage(): JSX.Element {
           typeName: t(`${colorType}.name`),
         })}
         path={`${ROUTE_PATH.result}?colorType=${colorType}`}
+        noindex
       />
 
       <S.ResultContainer ref={resultContainerRef}>

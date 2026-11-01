@@ -39,7 +39,6 @@ const sentryWebpackPluginOptions = {
 const sentryOptions = {
   widenClientFileUpload: true,
   transpileClientSDK: true,
-  tunnelRoute: '/monitoring',
   hideSourceMaps: true,
   disableLogger: true,
 };

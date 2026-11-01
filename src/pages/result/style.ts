@@ -57,9 +57,11 @@ export const Description = styled.ul`
 
 export const DetailLink = styled(Link)`
   align-self: center;
+  margin: 0.75rem 0;
   color: ${({ theme }) => theme.gray[700]};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: 600;
+  font-family: var(--font-moyamoya);
+  font-size: ${({ theme }) => theme.font.size.lg};
+  font-weight: 500;
   text-decoration: underline;
 `;
 

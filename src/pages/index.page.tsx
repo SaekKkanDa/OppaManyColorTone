@@ -8,7 +8,6 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '@Root/next-i18next.config';
 import { useSetRecoilState } from 'recoil';
-import type { Application } from '@splinetool/runtime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBookOpen,
@@ -19,13 +18,11 @@ import {
 import { useIntersectionObserver } from '@Base/hooks/useIntersectionObserver';
 import { useCountUp } from '@Base/hooks/useCountUp';
 import { CropImage } from '@Recoil/app';
-import omctDb from '@Utils/omctDb';
 import { canWebShare, webShare } from '@Utils/share';
 import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
 import * as S from './style';
 import PageHead from '@Components/PageHead';
-import LazySplineScene from '@Components/LazySplineScene';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 import { getNumberOfUsersForSsr } from '@Utils/numberOfUsers.server';
@@ -80,7 +77,9 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
   useEffect(() => {
     if (initialNumberOfUsers !== null) return;
 
+    // 서버에서 숫자를 못 읽었을 때만 쓰므로, Firebase SDK 를 이때 불러온다
     const getNumberOfUsers = async () => {
+      const { default: omctDb } = await import('@Utils/omctDb');
       setNumberOfUsers(await omctDb.getNumberOfUsers());
     };
 
@@ -120,11 +119,6 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
     });
   };
 
-  const onLoadSpline = (app: Application) => {
-    app.setZoom(0.15);
-    app.setBackgroundColor(S.bgColor);
-  };
-
   return (
     <S.PageWrapper>
       <PageHead
@@ -132,46 +126,49 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
         description={t('meta.homeDescription')}
         path={ROUTE_PATH.landing}
       />
-      <S.IntroTop>
-        <S.TitleWrapper>
-          <S.Title>{t('landingSubTitle')}</S.Title>
-        </S.TitleWrapper>
-
-        <S.IntroContent>
-          <S.IntroTitle>{t('homeIntro.title')}</S.IntroTitle>
-          {introParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </S.IntroContent>
-      </S.IntroTop>
-
-      <S.TopPage>
+      <S.FirstScreen>
         <S.TopSentinel ref={topRef} aria-hidden />
-        <S.LanguageButton onClick={handleToggleLanguage}>
-          {withDefault(
-            { [cLocales.ko]: 'ENG', [cLocales.en]: '한국어' }[currentLocale],
-            '한국어'
-          )}
-        </S.LanguageButton>
+        <S.IntroTop>
+          <S.TitleWrapper>
+            <S.Title>{t('landingSubTitle')}</S.Title>
+          </S.TitleWrapper>
 
-        <LazySplineScene
-          scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
-          poster={{
-            src: '/images/home/spline-poster.webp',
-            width: 430,
-            height: 329,
-          }}
-          onLoad={onLoadSpline}
-        />
+          <S.IntroContent>
+            <S.IntroTitle>{t('homeIntro.title')}</S.IntroTitle>
+            {introParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </S.IntroContent>
+        </S.IntroTop>
 
-        <S.ScrollButton
-          $isInViewBottom={isInViewBottom}
-          onClick={handleScroll}
-          aria-label={t(isInViewBottom ? 'scrollUpLabel' : 'scrollDownLabel')}
-        >
-          <FontAwesomeIcon icon={faChevronDown} />
-        </S.ScrollButton>
-      </S.TopPage>
+        <S.TopPage>
+          <S.LanguageButton onClick={handleToggleLanguage}>
+            {withDefault(
+              { [cLocales.ko]: 'ENG', [cLocales.en]: '한국어' }[currentLocale],
+              '한국어'
+            )}
+          </S.LanguageButton>
+
+          {/* 런타임이 무거워 3D(components/LazySplineScene) 대신 캡처 이미지를 쓴다 */}
+          <S.SceneImageWrapper>
+            <S.SceneImage
+              src="/images/home/color-blocks.webp"
+              width={430}
+              height={228}
+              alt=""
+              fetchPriority="high"
+            />
+          </S.SceneImageWrapper>
+
+          <S.ScrollButton
+            $isInViewBottom={isInViewBottom}
+            onClick={handleScroll}
+            aria-label={t(isInViewBottom ? 'scrollUpLabel' : 'scrollDownLabel')}
+          >
+            <FontAwesomeIcon icon={faChevronDown} />
+          </S.ScrollButton>
+        </S.TopPage>
+      </S.FirstScreen>
 
       <S.BottomPage ref={bottomPageRef}>
         <S.UserCountMessage ref={bottomRef} $isInViewBottom={isInViewBottom}>

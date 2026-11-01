@@ -153,6 +153,7 @@ export const CtaButton = styled(Link)`
   border-radius: 1.25rem;
   background-color: ${({ theme }) => theme.gray[800]};
   color: ${({ theme }) => theme.white};
+  font-family: var(--font-moyamoya); /* <a> 라서 위 제목과 같은 글꼴을 직접 지정 */
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1;

@@ -1,4 +1,6 @@
-import { LegacyRef, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+
+import * as S from './style';
 
 declare global {
   interface Window {
@@ -26,8 +28,8 @@ export function AdSense(props: AdSenseProps) {
   }, []);
 
   return (
-    <ins
-      ref={adRef as LegacyRef<HTMLModElement>}
+    <S.AdSlot
+      ref={adRef}
       className="adsbygoogle"
       style={{
         display: 'block',

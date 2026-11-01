@@ -6,6 +6,8 @@ const ROUTE_PATH = {
   choiceColor: '/choice-color',
   result: '/result',
   allTypesView: '/all-types-view',
+  about: '/about',
+  privacy: '/privacy',
 };
 
 export default ROUTE_PATH;

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import SiteFooter from '@Components/SiteFooter';
 import { Button, flexCustom } from '@Styles/theme';
 
 export const bgColor = '#2f2f37';
@@ -212,4 +213,10 @@ export const MiniButton = styled.button`
     border-color: ${({ theme }) => theme.gray[300]};
     color: ${({ theme }) => theme.gray[300]};
   }
+`;
+
+export const Footer = styled(SiteFooter)`
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
 `;

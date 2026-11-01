@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 
 import { GetServerSideProps } from 'next';
@@ -24,6 +23,8 @@ import {
   useLateColorType,
 } from './index.logic';
 import * as S from './style';
+import PageHead from '@Components/PageHead';
+import ROUTE_PATH from '@Constant/routePath';
 
 // HJ TODO: 로직과 렌더링 관심 분리
 function ResultPage(): JSX.Element {
@@ -70,12 +71,13 @@ function ResultPage(): JSX.Element {
 
   return (
     <S.Wrapper>
-      <Head>
-        <link
-          rel="canonical"
-          href="https://omct.web.app/result?colorType=springwarm"
-        />
-      </Head>
+      <PageHead
+        title={t('meta.resultTitle', { typeName: t(`${colorType}.name`) })}
+        description={t('meta.resultDescription', {
+          typeName: t(`${colorType}.name`),
+        })}
+        path={`${ROUTE_PATH.result}?colorType=${colorType}`}
+      />
 
       <S.ResultContainer ref={resultContainerRef}>
         <S.MainWrapper>
@@ -147,6 +149,7 @@ function ResultPage(): JSX.Element {
         colorType={colorType}
       />
       <AdSense data-ad-slot={'2551404503'} />
+      <S.Footer tone="inherit" />
     </S.Wrapper>
   );
 }

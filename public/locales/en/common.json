@@ -257,5 +257,26 @@
       "openaiPolicy": "OpenAI doesn't use API data for training. Logs may be retained for up to 30 days for abuse monitoring.",
       "guide": "You can decline. If you do, the AI recommendation feature will be unavailable."
     }
+  },
+  "meta": {
+    "homeTitle": "Litmus Face - Free Personal Color Self-Test",
+    "homeDescription": "Find your personal color from a single photo. Try palettes against your face and discover which of the 12 seasonal types suits you best. Free and quick.",
+    "allTypesTitle": "All 12 Personal Color Types | Litmus Face",
+    "allTypesDescription": "Explore all 12 personal color seasons, from Bright Spring to Dark Winter, with their key traits, palettes, and celebrity examples.",
+    "resultTitle": "{{typeName}} Personal Color | Litmus Face",
+    "resultDescription": "Get to know {{typeName}}: its signature palette, your best and worst colors, and celebrities who share this personal color type.",
+    "imageUploadTitle": "Upload Your Photo | Litmus Face",
+    "imageUploadDescription": "Upload a photo that shows your true skin tone to start your free personal color self-test.",
+    "choiceColorTitle": "Pick Your Colors | Litmus Face",
+    "myTestShareTitle": "Share My Test | Litmus Face",
+    "aboutTitle": "About | Litmus Face",
+    "aboutDescription": "Learn how Litmus Face finds your personal color: the 12 seasonal types, how the 9-round color test works, and tips for an accurate result.",
+    "privacyTitle": "Privacy Policy | Litmus Face",
+    "privacyDescription": "How Litmus Face handles your photos and data, including shared photos, AI recommendations, analytics, ads, and cookies."
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "contact": "Contact"
   }
 }

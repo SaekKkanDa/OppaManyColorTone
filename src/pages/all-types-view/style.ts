@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { flexCustom, layout } from '@Styles/theme';
+import SiteFooter from '@Components/SiteFooter';
 
 type PaletteGridItemProps = {
   backgroundColor: string;
@@ -108,4 +109,9 @@ export const PaletteGridItem = styled.div.attrs<PaletteGridItemProps>(
 export const Description = styled.small`
   color: ${({ theme }) => theme.gray[500]};
   font-size: 14px;
+`;
+
+export const Footer = styled(SiteFooter)`
+  margin-top: auto;
+  padding-top: 2.5rem;
 `;

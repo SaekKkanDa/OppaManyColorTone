@@ -25,6 +25,7 @@ import { imageFileState, shareModalState } from './imageUpload.atom';
 import ShareModalSubPage from './subpages/shareModal.subpage';
 import FaceDetection from './FaceDetection';
 import * as S from './style';
+import PageHead from '@Components/PageHead';
 
 function ImageUploadPage() {
   const router = useRouter();
@@ -67,6 +68,11 @@ function ImageUploadPage() {
 
   return (
     <>
+      <PageHead
+        title={t('meta.imageUploadTitle')}
+        description={t('meta.imageUploadDescription')}
+        path={ROUTE_PATH.imageUpload}
+      />
       <ModalContainer isOpen={isOpenImageUploadModal}>
         {isOpenImageUploadModal && isNotNil(imageFile) && (
           <>

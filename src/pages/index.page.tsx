@@ -23,6 +23,7 @@ import { canWebShare, webShare } from '@Utils/share';
 import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
 import * as S from './style';
+import PageHead from '@Components/PageHead';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 
@@ -115,6 +116,11 @@ export default function Home() {
 
   return (
     <S.PageWrapper>
+      <PageHead
+        title={t('meta.homeTitle')}
+        description={t('meta.homeDescription')}
+        path={ROUTE_PATH.landing}
+      />
       <S.TopPage>
         <S.LanguageButton onClick={handleToggleLanguage}>
           {withDefault(
@@ -173,6 +179,8 @@ export default function Home() {
             {t('viewAllTypesButton')}
           </S.MiniButton>
         </S.MiniButtonWrapper>
+
+        <S.Footer tone="dark" />
       </S.BottomPage>
     </S.PageWrapper>
   );

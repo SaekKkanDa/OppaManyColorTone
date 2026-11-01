@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styled, { keyframes } from 'styled-components';
+import SiteFooter from '@Components/SiteFooter';
 import { BorderedButton, flexCustom } from '@Styles/theme';
 import checkIcon from 'public/images/icon/check.png';
 
@@ -10,6 +11,10 @@ interface ColorItemStyleProps {
 export const Wrapper = styled.div`
   ${flexCustom('column', 'inherit', 'flex-start')}
   width: 100%;
+`;
+
+export const Footer = styled(SiteFooter)`
+  padding: 1.5rem 0 2rem;
 `;
 
 export const MainWrapper = styled.div`

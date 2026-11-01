@@ -257,5 +257,26 @@
       "openaiPolicy": "OpenAI는 API 데이터를 학습에 사용하지 않으며, abuse monitoring 목적의 30일 로그가 존재할 수 있어요.",
       "guide": "동의를 거부할 수 있으며, 거부 시 AI 추천 기능 이용이 제한됩니다."
     }
+  },
+  "meta": {
+    "homeTitle": "리트머스 페이스 - 퍼스널 컬러 자가진단 테스트",
+    "homeDescription": "사진 한 장으로 나의 퍼스널 컬러를 무료로 찾아보세요. 얼굴에 여러 컬러를 대어 보며 12가지 퍼스널 컬러 유형 중 나에게 어울리는 타입을 빠르고 간편하게 진단할 수 있어요.",
+    "allTypesTitle": "퍼스널 컬러 12가지 유형 전체보기 | 리트머스 페이스",
+    "allTypesDescription": "봄 브라이트부터 겨울 딥까지, 12가지 퍼스널 컬러 유형의 특징과 팔레트, 대표 연예인을 한눈에 확인해 보세요.",
+    "resultTitle": "{{typeName}} 퍼스널 컬러 | 리트머스 페이스",
+    "resultDescription": "{{typeName}}의 대표 팔레트, 잘 어울리는 컬러와 피해야 할 컬러, 같은 유형의 연예인을 알아보세요.",
+    "imageUploadTitle": "사진 올리기 | 리트머스 페이스",
+    "imageUploadDescription": "실제 피부 톤이 잘 드러나는 사진을 올리고 무료 퍼스널 컬러 자가진단을 시작해 보세요.",
+    "choiceColorTitle": "컬러 고르기 | 리트머스 페이스",
+    "myTestShareTitle": "내 진단 공유하기 | 리트머스 페이스",
+    "aboutTitle": "서비스 소개 | 리트머스 페이스",
+    "aboutDescription": "리트머스 페이스가 퍼스널 컬러를 찾는 방법을 소개해요. 12가지 유형, 9번의 컬러 선택으로 진행되는 진단 방식, 정확하게 진단하는 팁을 확인해 보세요.",
+    "privacyTitle": "개인정보처리방침 | 리트머스 페이스",
+    "privacyDescription": "리트머스 페이스가 사진과 이용 정보를 어떻게 다루는지 안내해요. 공유용 사진, AI 추천, 이용 통계, 광고와 쿠키에 대한 내용을 담고 있어요."
+  },
+  "footer": {
+    "about": "서비스 소개",
+    "privacy": "개인정보처리방침",
+    "contact": "문의"
   }
 }

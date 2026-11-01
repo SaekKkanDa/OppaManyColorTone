@@ -13,6 +13,8 @@ import resultColorData from '@Data/resultColorData';
 import Tag from '@Components/Tag';
 import CompassChart from './CompassChart';
 import * as S from './style';
+import PageHead from '@Components/PageHead';
+import ROUTE_PATH from '@Constant/routePath';
 
 const DEFAULT_SELECTED_INDEX = color.findIndex(
   ({ type }) => type === 'springbright'
@@ -49,6 +51,11 @@ const AllTypesView = () => {
 
   return (
     <S.Wrapper>
+      <PageHead
+        title={t('meta.allTypesTitle')}
+        description={t('meta.allTypesDescription')}
+        path={ROUTE_PATH.allTypesView}
+      />
       <S.BackButton onClick={() => router.back()}>
         <FontAwesomeIcon icon={faChevronLeft} />
       </S.BackButton>
@@ -103,6 +110,7 @@ const AllTypesView = () => {
       ) : (
         <S.Description>{t('clickType')}</S.Description>
       )}
+      <S.Footer />
     </S.Wrapper>
   );
 };

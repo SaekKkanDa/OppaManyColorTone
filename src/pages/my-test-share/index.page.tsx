@@ -1,5 +1,5 @@
 import { useSearchParams } from 'next/navigation';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { copyUrl } from '@Utils/clipboard';
@@ -10,9 +10,13 @@ import ROUTE_PATH from '@Constant/routePath';
 import AlertModal from '@Components/AlertModal';
 import { isEmpty } from '@Base/utils/check';
 import * as S from './style';
+import PageHead from '@Components/PageHead';
 import { useRouter } from 'next/router';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18NextConfig from '@Root/next-i18next.config';
 
 const MyTestShare = () => {
   const { t } = useTranslation();
@@ -46,6 +50,7 @@ const MyTestShare = () => {
 
   return (
     <S.PageWrapper>
+      <PageHead title={t('meta.myTestShareTitle')} noindex />
       <S.ContentWrapper>
         <S.GuideWrapper>
           <S.GuideMain>{t('myTestUrlCreated')}</S.GuideMain>
@@ -74,6 +79,18 @@ const MyTestShare = () => {
       )}
     </S.PageWrapper>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(
+        locale ?? 'en',
+        ['common'],
+        nextI18NextConfig
+      )),
+    },
+  };
 };
 
 export default MyTestShare;

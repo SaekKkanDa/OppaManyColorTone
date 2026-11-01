@@ -91,6 +91,9 @@ function ResultPage(): JSX.Element {
               <li key={index}>{t(`${colorType}.descriptions.${number}`)}</li>
             ))}
           </S.Description>
+          <S.DetailLink href={`${ROUTE_PATH.types}/${colorType}`}>
+            {t('typePage.detailLink', { typeName: t(`${colorType}.name`) })}
+          </S.DetailLink>
         </S.MainWrapper>
 
         <S.SubDescriptionWrapper>

@@ -1,12 +1,12 @@
 {
   "confirm": "확인",
-  "landingTitle": "리트머스 페이스",
   "landingSubTitle": "퍼스널 컬러 자가진단",
   "userCount_1": "지금까지",
   "userCount_2": "명이",
   "userCount_3": "진단했어요!",
   "shareButton": "공유하기",
   "viewAllTypesButton": "컬러 유형 전체보기",
+  "guideButton": "퍼스널 컬러 가이드",
   "startButton": "시작하기",
   "selectImg": "사진 선택",
   "guidance": "실제와 비슷한 톤의 얼굴 사진을 선택해주세요.",
@@ -272,11 +272,48 @@
     "aboutTitle": "서비스 소개 | 리트머스 페이스",
     "aboutDescription": "리트머스 페이스가 퍼스널 컬러를 찾는 방법을 소개해요. 12가지 유형, 9번의 컬러 선택으로 진행되는 진단 방식, 정확하게 진단하는 팁을 확인해 보세요.",
     "privacyTitle": "개인정보처리방침 | 리트머스 페이스",
-    "privacyDescription": "리트머스 페이스가 사진과 이용 정보를 어떻게 다루는지 안내해요. 공유용 사진, AI 추천, 이용 통계, 광고와 쿠키에 대한 내용을 담고 있어요."
+    "privacyDescription": "리트머스 페이스가 사진과 이용 정보를 어떻게 다루는지 안내해요. 공유용 사진, AI 추천, 이용 통계, 광고와 쿠키에 대한 내용을 담고 있어요.",
+    "typeTitle": "{{typeName}} 특징과 어울리는 컬러 | 리트머스 페이스",
+    "guideTitle": "퍼스널 컬러 가이드 - 웜톤·쿨톤 구분법과 12가지 유형 | 리트머스 페이스",
+    "guideDescription": "퍼스널 컬러가 무엇인지, 웜톤과 쿨톤을 구분하는 방법, 사계절 12가지 유형의 특징과 셀프 진단 팁을 한 번에 정리했어요."
   },
   "footer": {
     "about": "서비스 소개",
     "privacy": "개인정보처리방침",
     "contact": "문의"
+  },
+  "typePage": {
+    "breadcrumbGuide": "퍼스널 컬러 가이드",
+    "features": "이런 특징이 있어요",
+    "bestColors": "잘 어울리는 컬러",
+    "avoidColors": "피하면 좋은 컬러",
+    "makeup": "메이크업 팁",
+    "fashion": "코디 팁",
+    "hairAndAccessories": "헤어 · 액세서리",
+    "celebrities": "같은 유형의 연예인",
+    "compare": "비슷한 유형과 비교하기",
+    "secondaryType": "함께 어울리는 유형",
+    "worstType": "정반대 유형",
+    "ctaTitle": "나는 어떤 유형일까?",
+    "ctaButton": "내 퍼스널 컬러 진단하기",
+    "allTypes": "12가지 유형 전체보기",
+    "detailLink": "{{typeName}} 자세히 보기"
+  },
+  "season": {
+    "spring": "봄",
+    "summer": "여름",
+    "autumn": "가을",
+    "winter": "겨울"
+  },
+  "homeIntro": {
+    "title": "사진 한 장으로 알아보는 나의 퍼스널 컬러",
+    "paragraphs": [
+      "내 얼굴 사진에 여러 컬러를 대어 보며 퍼스널 컬러를 찾는 무료 자가진단이에요. 9번 동안 가장 잘 어울리는 색을 고르면 12가지 유형 중 내 타입을 알려 드려요.",
+      "사진은 서버에 저장되지 않아요."
+    ],
+    "guideLink": "퍼스널 컬러 가이드 읽어보기"
+  },
+  "guidePage": {
+    "typeListTitle": "12가지 유형 자세히 보기"
   }
 }

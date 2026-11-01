@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -26,7 +27,13 @@ function AboutPage() {
         title={t('about.title', { ns: 'legal' })}
         intro={t('about.intro', { ns: 'legal' })}
         sections={Array.isArray(sections) ? sections : []}
-      />
+      >
+        <p>
+          <Link href={ROUTE_PATH.guide}>
+            {t('homeIntro.guideLink', { ns: 'common' })}
+          </Link>
+        </p>
+      </InfoArticle>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
 import SiteFooter from '@Components/SiteFooter';
 import { BorderedButton, flexCustom } from '@Styles/theme';
@@ -52,6 +53,14 @@ export const Description = styled.ul`
     padding-left: 1rem;
     background: url(${checkIcon.src}) 0 0.4em / 10px 10px no-repeat;
   }
+`;
+
+export const DetailLink = styled(Link)`
+  align-self: center;
+  color: ${({ theme }) => theme.gray[700]};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: 600;
+  text-decoration: underline;
 `;
 
 export const SubDescriptionWrapper = styled.div`

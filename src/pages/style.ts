@@ -6,7 +6,6 @@ export const bgColor = '#2f2f37';
 
 export const PageWrapper = styled.div`
   width: 100%;
-  height: 200dvh;
   scroll-snap-type: y mandatory;
 `;
 
@@ -19,17 +18,26 @@ const preventTextSelection = css`
 export const TopPage = styled.div`
   position: relative;
   width: 100%;
-  height: 50%;
+  height: 85dvh;
   background-color: ${bgColor};
   scroll-snap-align: start;
   ${preventTextSelection}
 `;
 
-export const TitleWrapper = styled.div`
+/**
+ * 첫 화면 맨 위의 보이지 않는 표시 요소.
+ * 이 요소가 보이면 첫 화면으로 판단하고(참여자 수 숨김), 화살표 버튼의 스크롤 목적지로도 쓴다.
+ */
+export const TopSentinel = styled.div`
   position: absolute;
-  top: 2rem;
-  z-index: 2;
-  padding: 2.5rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  pointer-events: none;
+`;
+
+export const TitleWrapper = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 0.25rem;
   width: 100%;
@@ -37,19 +45,9 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   color: ${({ theme }) => theme.gray[50]};
   text-shadow: 2px 2px 1px ${({ theme }) => theme.gray[800]};
-  pointer-events: none;
-`;
-
-export const Subtitle = styled.h2`
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.gray[350]};
-  text-shadow: 1px 1px 1px ${({ theme }) => theme.gray[800]};
-  line-height: 1.125;
-  white-space: pre-line;
   pointer-events: none;
 `;
 
@@ -152,8 +150,8 @@ export const BottomPage = styled.div`
   ${flexCustom('column', 'center', 'center')}
   row-gap: 2.5rem;
   width: 100%;
-  height: 50%;
-  padding: 2.5rem 1.5rem 7.5rem;
+  min-height: 100dvh;
+  padding: 1rem 1.5rem 7.5rem;
   background-image: ${({ theme }) =>
     `linear-gradient(to bottom, ${bgColor} 25%, ${theme.gray[600]})`};
   scroll-snap-align: end;
@@ -202,7 +200,9 @@ export const MiniButton = styled.button`
   border: 1px solid ${({ theme }) => theme.gray[200]};
   border-radius: 1.5rem;
   color: ${({ theme }) => theme.gray[200]};
+  font-family: var(--font-moyamoya); /* 링크(<a>)로 쓸 때도 버튼과 같은 글꼴 */
   line-height: 1;
+  text-decoration: none;
 
   & svg {
     flex-basis: 1rem;
@@ -215,8 +215,37 @@ export const MiniButton = styled.button`
   }
 `;
 
+/**
+ * 버튼 바로 아래에 둔다. BottomPage 의 아래 여백(7.5rem) 덕분에
+ * 화면 하단에 고정된 시작 버튼에 가려지지 않는다.
+ */
 export const Footer = styled(SiteFooter)`
-  position: absolute;
-  bottom: 1.5rem;
-  left: 0;
+  /* BottomPage 의 row-gap(2.5rem) + 3.5rem = 버튼과 푸터 사이 6rem */
+  margin-top: 3.5rem;
+`;
+
+/** 홈 맨 위의 서비스 소개 문구. 첫 화면(TopPage)과 같은 배경색 */
+export const IntroTop = styled.section`
+  ${flexCustom('column', 'center', 'flex-start')}
+  row-gap: 2.5rem;
+  width: 100%;
+  /* 오른쪽 위에 고정된 언어 버튼과 겹치지 않도록 위 여백을 둔다 */
+  padding: 4.5rem 1.5rem 9rem;
+  background-color: ${bgColor};
+  color: ${({ theme }) => theme.gray[200]};
+  word-break: keep-all;
+`;
+
+export const IntroContent = styled.div`
+  ${flexCustom('column', 'stretch', 'flex-start')}
+  row-gap: 1rem;
+  width: 100%;
+  max-width: var(--viewport-max-width);
+  line-height: 1.7;
+`;
+
+export const IntroTitle = styled.h2`
+  color: ${({ theme }) => theme.gray[350]};
+  font-size: 1.2rem;
+  line-height: 1.4;
 `;

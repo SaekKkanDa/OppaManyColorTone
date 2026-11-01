@@ -26,6 +26,7 @@ import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
 import * as S from './style';
 import PageHead from '@Components/PageHead';
+import SilentErrorBoundary from '@Components/SilentErrorBoundary';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 import { getNumberOfUsersForSsr } from '@Utils/numberOfUsers.server';
@@ -154,14 +155,17 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
           )}
         </S.LanguageButton>
 
-        <Spline
-          scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-          onLoad={onLoadSpline}
-        />
+        {/* WebGL 을 쓸 수 없는 환경에서는 3D 장면만 빠지고 페이지는 그대로 동작한다 */}
+        <SilentErrorBoundary>
+          <Spline
+            scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            onLoad={onLoadSpline}
+          />
+        </SilentErrorBoundary>
 
         <S.ScrollButton $isInViewBottom={isInViewBottom} onClick={handleScroll}>
           <FontAwesomeIcon icon={faChevronDown} />

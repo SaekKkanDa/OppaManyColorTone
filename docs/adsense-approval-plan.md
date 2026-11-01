@@ -15,18 +15,19 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 
 | Phase | 내용 | 상태 |
 | --- | --- | --- |
-| 0 | 공식 거절 사유 확인 | ⬜ 미확인 |
-| 1 | 기술 정리 (sitemap, 번역 노출, 메타 태그, canonical) | ✅ 구현 완료 · 로컬 검증 · 미배포 |
-| 2 | 개인정보처리방침 · 소개 · 문의 페이지 | ✅ 구현 완료 · 로컬 검증 · 미배포 |
-| 2-GCP | 7일 자동 삭제 설정 (Storage 수명 주기, Firestore TTL) | ✅ Storage 완료 · 🔄 TTL 상태 확인 필요 |
-| 3 | 콘텐츠 보강 (12타입 상세, 가이드 글, 홈 소개) | ⬜ 시작 전 |
+| 0 | 공식 거절 사유 확인 | 🔄 거절 메일 없음 · AdSense 사이트 세부정보 · 정책 센터 확인 필요 |
+| 1 | 기술 정리 (sitemap, 번역 노출, 메타 태그, canonical) | ✅ `develop` 머지 (#325) · 운영 미배포 |
+| 2 | 개인정보처리방침 · 소개 · 문의 페이지 | ✅ `develop` 머지 (#325) · 운영 미배포 |
+| 2-GCP | 7일 자동 삭제 설정 (Storage 수명 주기, Firestore TTL) | ✅ 완료 (Storage 수명 주기 · Firestore TTL Serving) |
+| 3 | 콘텐츠 보강 (12타입 상세, 가이드 글, 홈 소개) | ✅ 구현 완료 · 로컬 검증 · 본문 검토 대기 · 미배포 |
 | 4 | Search Console 등록 후 재신청 | ⬜ 시작 전 |
 
 **다음 할 일**
-1. Firestore TTL 정책 상태가 **Serving**인지 확인
-2. Phase 1·2 커밋 → `develop` PR → `production` 릴리스로 배포
-3. 배포 후 운영에서 `/robots.txt`, `/sitemap.xml`, `/about`, `/privacy`가 200인지 확인
-4. Phase 0 (거절 메일 확인), Phase 3 착수
+1. Phase 3 본문(`types.json` 12타입 · `guide.json`) 검토 → 커밋 → `develop` PR
+2. `develop` → `production` 릴리스로 Phase 1~3 한 번에 배포
+3. 배포 후 운영에서 `/robots.txt`, `/sitemap.xml`, `/about`, `/privacy`, `/guide`, `/types/*`가 200인지 확인
+4. Phase 4: Search Console에 sitemap 제출 → 색인 대기 → 재신청
+5. Phase 0: 거절 메일은 오지 않음. AdSense **사이트 → omct.web.app 세부정보**와 **정책 센터**에서 사유 확인 (없으면 "사유 미공개"로 기록)
 
 ---
 
@@ -56,7 +57,7 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | 4 | `robots.txt`, `sitemap.xml` 404 | 두 파일이 `public/`이 아니라 저장소 루트에 있어서 배포되지 않음 | 중간 | ✅ Phase 1 |
 | 5 | 모든 페이지의 `<title>`이 같음 | `_app.page.tsx`에 하나로 고정. 페이지별 description 없음 | 중간 | ✅ Phase 1 |
 | 6 | 결과 페이지 canonical이 모두 `springwarm` | `src/pages/result/index.page.tsx`에 하드코딩 → 12개 결과 페이지가 하나의 중복 페이지로 취급될 수 있음 | 높음 | ✅ Phase 1 |
-| 7 | 참여자 수가 "0 people"로 보임 | 서버 HTML에서 카운터 값이 0이고, 브라우저에서 불러온 뒤에 바뀜 | 낮음 | 보류 |
+| 7 | 참여자 수가 "0 people"로 보임 | 서버 HTML에서 카운터 값이 0이고, 브라우저에서 불러온 뒤에 바뀜 | 낮음 | ✅ Phase 3 |
 
 광고 슬롯이 `/result` 한 곳뿐인 점은 거절 사유가 아니다. 심사는 광고 개수가 아니라 사이트 전체 콘텐츠를 본다.
 
@@ -66,7 +67,7 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 
 ### Phase 0. 공식 거절 사유 확인
 
-- [ ] AdSense에서 온 거절 메일 확인
+- [x] AdSense에서 온 거절 메일 확인 → 메일 없음 (2026-11-01)
 - [ ] AdSense → 사이트(Sites) 메뉴 / 정책 센터에서 사이트별 검토 결과 확인
 - [ ] 사유가 2장 진단과 다르면 이 문서를 업데이트하고 우선순위 재조정
 
@@ -83,7 +84,7 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 - [x] 결과 페이지 canonical을 실제 `colorType`과 로케일 기준으로 수정
 - [x] `/choice-color`, `/my-test-share`는 `noindex` (사용자별 진행·공유 화면)
   - `/choice-color`는 클라이언트 전용 래퍼(`withLoadingRouter`) 밖에 `PageHead`를 둬야 서버 HTML에 들어감
-- [ ] 참여자 수 카운터: **보류**. 카운트업 애니메이션이 0에서 시작하는 구조라, 서버 렌더링 값을 바꾸려면 애니메이션 동작부터 정해야 함
+- [x] 참여자 수 카운터: Phase 3에서 해결 (서버에서 실제 숫자를 넣고 카운트업 유지)
 
 **로컬 검증 (운영 빌드, 2026-11-01)**: 모든 대상 페이지 200, 페이지별 제목·canonical 정상, `/landing-temp` 404, 번역 키 노출 없음. `i18n-translation-reviewer`로 새 문구를 검토했고, 영어 홈 description을 155자 이내로 줄임.
 
@@ -117,7 +118,7 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | 대상 | 설정 | 상태 |
 | --- | --- | --- |
 | 공유용 사진 | Cloud Storage → 버킷 `oppamanycolortone-5fb42.appspot.com` → Lifecycle → Delete object, Age 7일, Prefix `personal-images/` | ✅ 2026-11-01 생성 확인 |
-| AI 추천 이용 기록 | Firestore → `(default)` → TTL → Collection group `aiRecommendRateLimit`, Timestamp field `lastAt`, Expiration offset 7 days | 🔄 입력 확인, **Serving 상태 확인 필요** |
+| AI 추천 이용 기록 | Firestore → `(default)` → TTL → Collection group `aiRecommendRateLimit`, Timestamp field `lastAt`, Expiration offset 7 days | ✅ 2026-11-01 Serving 확인 |
 
 - TTL은 새 필드를 만들지 않고 기존 `lastAt`에 오프셋을 줬다. 세션·IP 문서 모두 이용할 때마다 `lastAt`을 갱신하므로 "마지막 이용 후 7일"이 되고, 기존 문서도 바로 삭제 대상이 된다. 그래서 코드 변경이 없다.
 - 버킷 Protection이 Soft Delete라서, 수명 주기로 지운 파일도 소프트 삭제 보관 기간 동안은 복구 가능한 상태로 남는다. 공개 접근은 불가능하다. 복구용 안전장치라 유지한다.
@@ -133,9 +134,27 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | --- | --- | --- |
 | 12타입 상세 페이지 | 타입마다 설명, 팔레트, 잘 어울리는 색과 피해야 할 색, 대표 연예인, 메이크업·코디 팁. SSG로 생성 | `resultColorData.ts`, `common.json`의 기존 데이터 활용. 타입당 글 1,000자 이상 목표 |
 | 퍼스널 컬러 가이드 글 | 퍼스널 컬러란, 웜/쿨 구분법, 4계절 12타입 체계, 자가진단 팁 | `docs/domain/personal-color-algorithm.md`, `/about` 문구 기반 |
-| 홈 소개 섹션 | 시작 버튼 아래에 서비스 설명, 진단 원리, 타입 목록 링크 | 홈 글자 수를 늘리고 내부 링크 확보 |
+| 홈 소개 섹션 | 첫 화면에 서비스 설명, 진단 화면에 가이드 버튼 | 홈 글자 수를 늘리고 내부 링크 확보 |
 
 > 도메인 정확성은 `personal-color-domain-expert`, 번역은 `i18n-translation-reviewer` 에이전트로 검토한다.
+
+**구현 (브랜치 `feat/adsense-phase3-content`)**
+
+- [x] `/types/[type]`: 12타입 × ko/en = 24페이지 SSG (`getStaticPaths` fallback false). 본문은 `public/locales/{ko,en}/types.json` (타입당 한글 약 1,900~2,500자). 12타입 전체 JSON이 커서(페이지 데이터 150kB) i18n 네임스페이스로 넘기지 않고, `getStaticProps`에서 해당 타입 본문만 props로 넘긴다
+  - 구성: 이동 경로, 이름·키워드·요약, 팔레트, 개요, 특징, 잘 어울리는/피할 컬러(스와치+설명), 메이크업, 코디, 헤어·액세서리, 연예인, 비슷한 유형 비교(함께 어울리는 유형 · 정반대 유형 링크), 진단 CTA
+- [x] `/guide`: `public/locales/{ko,en}/guide.json` (한글 약 4,000자, 8개 섹션). 12타입 한 줄 요약과 하단 12타입 목록은 각 상세 페이지로 링크. 자주 묻는 질문은 Q와 A를 줄바꿈해 표시
+- [x] 홈: 순서는 제목("퍼스널 컬러 자가진단") → 소개 문구 → 3D → 참여자 수 · 버튼(공유하기 · 컬러 유형 전체보기 · 퍼스널 컬러 가이드) → 푸터
+  - 소개 문구는 짧게 두 문단 (`homeIntro`). 기존 "리트머스 페이스" 큰 제목은 없앰
+  - 가이드 버튼은 `<a href="/guide">` 링크라 검색엔진이 따라갈 수 있음
+  - 푸터는 버튼 아래 일반 흐름에 두어 하단 고정 시작 버튼에 가리지 않음
+  - 페이지 높이는 `200dvh` 고정에서 내용 길이로 바꿈. 화살표 버튼은 첫 화면/참여자 수 화면 위치로 `scrollIntoView`
+  - 첫 화면 판단은 3D 영역 맨 위의 작은 표시 요소(`TopSentinel`)로 함. 3D 영역 전체를 관찰하면 참여자 수 화면에서도 일부가 걸쳐 보여 숫자가 숨겨지는 문제가 있었음
+- [x] 내부 링크: 결과 페이지·전체보기 → "<타입> 자세히 보기", 소개 → 가이드
+- [x] 홈 참여자 수: `getServerSideProps`에서 Firebase Admin으로 읽어 서버 HTML에 실제 숫자를 넣음 (`src/utils/numberOfUsers.server.ts`)
+  - 같은 서버 인스턴스에서 60초 캐시, 1.5초 안에 못 읽으면 숫자 없이 그리고 브라우저에서 기존처럼 불러옴
+  - 화면에 보이기 전에는 실제 숫자, 보이면 0부터 카운트업 (애니메이션 유지)
+  - CDN 캐시(`s-maxage`)는 쓰지 않음. `/` 의 언어 감지 리다이렉트가 캐시된 응답에 가려질 수 있어서
+- [x] `sitemap.xml`: `/guide`와 `/types/*` 추가 (34 → 60개 URL)
 
 ### Phase 4. 재신청
 
@@ -155,7 +174,7 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | 0. 사유 확인 | 당일 | |
 | 1. 기술 정리 | 완료 | 배포만 남음 |
 | 2. 정책 페이지 | 완료 | 배포만 남음 |
-| 3. 콘텐츠 보강 | 1~2주 | 12타입 × ko/en 글 작성. 타입별로 나눠 배포 권장 |
+| 3. 콘텐츠 보강 | 구현 완료 | 본문 검토 후 배포 |
 | 4. 색인 대기 후 재신청 | 1~2주 | |
 
 ---
@@ -173,6 +192,5 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 **남은 결정**
 
 - [ ] AdSense 공식 거절 사유는 무엇인가? (Phase 0)
-- [ ] 참여자 수 카운터: 서버 HTML에 실제 숫자를 넣을지, 카운트업 애니메이션을 유지할지
 - [ ] 12타입 상세 페이지 URL 구조: `/types/[type]`처럼 새로 만들까, 기존 `/result?colorType=`를 확장할까?
 - [ ] 콘텐츠 글은 직접 쓸까, 초안을 받아 검수할까?

@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { type GetServerSideProps } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -11,6 +12,7 @@ import Spline from '@splinetool/react-spline';
 import { Application } from '@splinetool/runtime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faBookOpen,
   faChevronDown,
   faShareNodes,
   faSwatchbook,
@@ -26,18 +28,28 @@ import * as S from './style';
 import PageHead from '@Components/PageHead';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
+import { getNumberOfUsersForSsr } from '@Utils/numberOfUsers.server';
 
-export default function Home() {
-  const [numberOfUsers, setNumberOfUsers] = useState(0);
+interface HomeProps {
+  /** 서버에서 읽은 진단 참여자 수. 읽지 못하면 null 이고 브라우저에서 불러온다. */
+  initialNumberOfUsers: number | null;
+}
+
+export default function Home({ initialNumberOfUsers }: HomeProps) {
+  const [numberOfUsers, setNumberOfUsers] = useState(initialNumberOfUsers ?? 0);
   const [isInViewBottom, setIsInViewBottom] = useState(false);
   const [isRunningStartTransition, setIsRunningStartTransition] =
     useState(false);
   const router = useRouter();
+  const bottomPageRef = useRef<HTMLDivElement>(null);
 
   const setUserImg = useSetRecoilState(CropImage);
 
   const { t, i18n } = useTranslation('common');
   const currentLocale = i18n.language;
+  const introParagraphs = t('homeIntro.paragraphs', {
+    returnObjects: true,
+  }) as string[];
 
   const { ref: topRef } = useIntersectionObserver(
     (entry: IntersectionObserverEntry) => {
@@ -66,12 +78,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (initialNumberOfUsers !== null) return;
+
     const getNumberOfUsers = async () => {
       setNumberOfUsers(await omctDb.getNumberOfUsers());
     };
 
     getNumberOfUsers();
-  }, []);
+  }, [initialNumberOfUsers]);
 
   useEffect(() => {
     setUserImg('');
@@ -86,11 +100,8 @@ export default function Home() {
   };
 
   const handleScroll = () => {
-    if (typeof window !== 'undefined')
-      scrollTo({
-        top: isInViewBottom ? 0 : document.body.scrollHeight,
-        behavior: 'smooth',
-      });
+    const target = isInViewBottom ? topRef.current : bottomPageRef.current;
+    target?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleViewAllType = () => {
@@ -121,18 +132,27 @@ export default function Home() {
         description={t('meta.homeDescription')}
         path={ROUTE_PATH.landing}
       />
+      <S.IntroTop>
+        <S.TitleWrapper>
+          <S.Title>{t('landingSubTitle')}</S.Title>
+        </S.TitleWrapper>
+
+        <S.IntroContent>
+          <S.IntroTitle>{t('homeIntro.title')}</S.IntroTitle>
+          {introParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </S.IntroContent>
+      </S.IntroTop>
+
       <S.TopPage>
+        <S.TopSentinel ref={topRef} aria-hidden />
         <S.LanguageButton onClick={handleToggleLanguage}>
           {withDefault(
             { [cLocales.ko]: 'ENG', [cLocales.en]: '한국어' }[currentLocale],
             '한국어'
           )}
         </S.LanguageButton>
-
-        <S.TitleWrapper ref={topRef}>
-          <S.Title>{t('landingTitle')}</S.Title>
-          <S.Subtitle>{t('landingSubTitle')}</S.Subtitle>
-        </S.TitleWrapper>
 
         <Spline
           scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
@@ -148,11 +168,14 @@ export default function Home() {
         </S.ScrollButton>
       </S.TopPage>
 
-      <S.BottomPage>
+      <S.BottomPage ref={bottomPageRef}>
         <S.UserCountMessage ref={bottomRef} $isInViewBottom={isInViewBottom}>
           {t('userCount_1')}
           <S.UserCountWrapper>
-            <S.UserCount>{userCount.toLocaleString()}</S.UserCount>
+            {/* 화면에 보이기 전(서버 HTML 포함)에는 실제 숫자, 보이면 0부터 카운트업 */}
+            <S.UserCount>
+              {(isInViewBottom ? userCount : numberOfUsers).toLocaleString()}
+            </S.UserCount>
             {t('userCount_2')}
           </S.UserCountWrapper>
           {t('userCount_3')}
@@ -178,6 +201,10 @@ export default function Home() {
             <FontAwesomeIcon icon={faSwatchbook} />
             {t('viewAllTypesButton')}
           </S.MiniButton>
+          <S.MiniButton as={Link} href={ROUTE_PATH.guide}>
+            <FontAwesomeIcon icon={faBookOpen} />
+            {t('guideButton')}
+          </S.MiniButton>
         </S.MiniButtonWrapper>
 
         <S.Footer tone="dark" />
@@ -186,9 +213,12 @@ export default function Home() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
+  locale,
+}) => {
   return {
     props: {
+      initialNumberOfUsers: await getNumberOfUsersForSsr(),
       ...(await serverSideTranslations(locale ?? 'en', ['common'], nextI18NextConfig)),
     },
   };

@@ -1,4 +1,5 @@
-import { Fragment } from 'react';
+import { Fragment, ReactNode } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { flexCustom, layout } from '@Styles/theme';
@@ -8,6 +9,8 @@ export interface InfoSection {
   title: string;
   paragraphs?: string[];
   items?: string[];
+  /** items 와 같은 순서의 내부 링크. 값이 있는 항목은 링크로 렌더링한다. */
+  itemLinks?: (string | undefined)[];
 }
 
 interface InfoArticleProps {
@@ -16,6 +19,8 @@ interface InfoArticleProps {
   sections: InfoSection[];
   /** 개인정보처리방침 시행일 등 제목 아래 보조 문구 */
   meta?: string;
+  /** 본문 섹션 뒤, 푸터 앞에 붙는 추가 콘텐츠 */
+  children?: ReactNode;
 }
 
 // URL / 이메일 끝에 붙은 문장부호(, . ))는 링크에서 뺀다.
@@ -47,7 +52,13 @@ function Linkified({ text }: { text: string }) {
 }
 
 /** 소개 / 개인정보처리방침처럼 글 위주 페이지의 공통 레이아웃 */
-function InfoArticle({ title, intro, sections, meta }: InfoArticleProps) {
+function InfoArticle({
+  title,
+  intro,
+  sections,
+  meta,
+  children,
+}: InfoArticleProps) {
   return (
     <Wrapper>
       <Article>
@@ -67,15 +78,24 @@ function InfoArticle({ title, intro, sections, meta }: InfoArticleProps) {
             ))}
             {section.items && (
               <List>
-                {section.items.map((item) => (
-                  <li key={item}>
-                    <Linkified text={item} />
-                  </li>
-                ))}
+                {section.items.map((item, index) => {
+                  const href = section.itemLinks?.[index];
+                  return (
+                    <li key={item}>
+                      {href ? (
+                        <Link href={href}>{item}</Link>
+                      ) : (
+                        <Linkified text={item} />
+                      )}
+                    </li>
+                  );
+                })}
               </List>
             )}
           </Section>
         ))}
+
+        {children}
       </Article>
 
       <SiteFooter />
@@ -136,4 +156,9 @@ const List = styled.ul`
   row-gap: 0.5rem;
   padding-left: 1.25rem;
   list-style: disc;
+
+  /* 항목 안의 \n 을 줄바꿈으로 보여준다 (예: 가이드 FAQ 의 Q / A) */
+  li {
+    white-space: pre-line;
+  }
 `;

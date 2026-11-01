@@ -106,6 +106,10 @@ const AllTypesView = () => {
               )
             )}
           </S.PaletteGrid>
+
+          <S.DetailLink href={`${ROUTE_PATH.types}/${colorType}`}>
+            {t('typePage.detailLink', { typeName: t(`${colorType}.name`) })}
+          </S.DetailLink>
         </S.ColorTypeWrapper>
       ) : (
         <S.Description>{t('clickType')}</S.Description>

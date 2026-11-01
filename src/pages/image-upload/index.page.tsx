@@ -72,6 +72,7 @@ function ImageUploadPage() {
         title={t('meta.imageUploadTitle')}
         description={t('meta.imageUploadDescription')}
         path={ROUTE_PATH.imageUpload}
+        noindex
       />
       <ModalContainer isOpen={isOpenImageUploadModal}>
         {isOpenImageUploadModal && isNotNil(imageFile) && (

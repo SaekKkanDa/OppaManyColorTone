@@ -49,6 +49,7 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.gray[50]};
   text-shadow: 2px 2px 1px ${({ theme }) => theme.gray[800]};
   pointer-events: none;
+  white-space: pre-line;
 `;
 
 export const LanguageButton = styled.button`

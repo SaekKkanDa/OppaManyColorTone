@@ -16,17 +16,17 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | Phase | 내용 | 상태 |
 | --- | --- | --- |
 | 0 | 공식 거절 사유 확인 | 🔄 거절 메일 없음 · AdSense 사이트 세부정보 · 정책 센터 확인 필요 |
-| 1 | 기술 정리 (sitemap, 번역 노출, 메타 태그, canonical) | ✅ `develop` 머지 (#325) · 운영 미배포 |
-| 2 | 개인정보처리방침 · 소개 · 문의 페이지 | ✅ `develop` 머지 (#325) · 운영 미배포 |
+| 1 | 기술 정리 (sitemap, 번역 노출, 메타 태그, canonical) | ✅ 운영 반영 (#325) |
+| 2 | 개인정보처리방침 · 소개 · 문의 페이지 | ✅ 운영 반영 (#325) |
 | 2-GCP | 7일 자동 삭제 설정 (Storage 수명 주기, Firestore TTL) | ✅ 완료 (Storage 수명 주기 · Firestore TTL Serving) |
-| 3 | 콘텐츠 보강 (12타입 상세, 가이드 글, 홈 소개) | ✅ 구현 완료 · 로컬 검증 · 본문 검토 대기 · 미배포 |
-| 4 | Search Console 등록 후 재신청 | ⬜ 시작 전 |
+| 3 | 콘텐츠 보강 (12타입 상세, 가이드 글, 홈 소개) | ✅ 운영 반영 (#326) |
+| 4 | Search Console 등록 후 재신청 | 🔄 sitemap 제출함 (2026-11-01) · 처리 대기 · 색인 범위 정리 미배포 |
 
 **다음 할 일**
-1. Phase 3 본문(`types.json` 12타입 · `guide.json`) 검토 → 커밋 → `develop` PR
-2. `develop` → `production` 릴리스로 Phase 1~3 한 번에 배포
-3. 배포 후 운영에서 `/robots.txt`, `/sitemap.xml`, `/about`, `/privacy`, `/guide`, `/types/*`가 200인지 확인
-4. Phase 4: Search Console에 sitemap 제출 → 색인 대기 → 재신청
+1. 색인 범위 정리(Phase 4) PR 머지 → `production` 배포
+2. 배포 후 운영 sitemap이 34개 URL인지, `/result`와 `/image-upload`에 `noindex`가 있는지 확인
+3. Search Console에 sitemap 다시 제출 → 상태가 "성공"인지 확인. 1주일이 지나도 "가져올 수 없음"이면 URL 검사의 실제 URL 테스트로 원인 확인
+4. 주요 페이지 색인 확인 → 재신청
 5. Phase 0: 거절 메일은 오지 않음. AdSense **사이트 → omct.web.app 세부정보**와 **정책 센터**에서 사유 확인 (없으면 "사유 미공개"로 기록)
 
 ---
@@ -58,8 +58,9 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | 5 | 모든 페이지의 `<title>`이 같음 | `_app.page.tsx`에 하나로 고정. 페이지별 description 없음 | 중간 | ✅ Phase 1 |
 | 6 | 결과 페이지 canonical이 모두 `springwarm` | `src/pages/result/index.page.tsx`에 하드코딩 → 12개 결과 페이지가 하나의 중복 페이지로 취급될 수 있음 | 높음 | ✅ Phase 1 |
 | 7 | 참여자 수가 "0 people"로 보임 | 서버 HTML에서 카운터 값이 0이고, 브라우저에서 불러온 뒤에 바뀜 | 낮음 | ✅ Phase 3 |
+| 8 | 글이 적은 페이지가 sitemap의 43% | 60개 중 `/result` 24개, `/image-upload` 2개. 본문 글자 수(`springwarm`, 영어/한국어): `/result` 약 830/470자, `/types` 약 4,540/2,690자. `/image-upload`(영어) 약 225자 | 높음 | 🔄 Phase 4 (미배포) |
 
-광고 슬롯이 `/result` 한 곳뿐인 점은 거절 사유가 아니다. 심사는 광고 개수가 아니라 사이트 전체 콘텐츠를 본다.
+광고 슬롯이 `/result` 한 곳뿐인 점은 거절 사유가 아니다. 심사는 광고 개수가 아니라 사이트 전체 콘텐츠를 본다. 단, Phase 4에서 `/result`를 `noindex`로 바꾸면서 광고 슬롯은 색인 대상이 아닌 페이지에만 남는다.
 
 ---
 
@@ -158,8 +159,15 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 
 ### Phase 4. 재신청
 
-- [ ] Phase 1~3 배포 완료
-- [ ] Google Search Console에 sitemap(`https://omct.web.app/sitemap.xml`) 제출
+- [x] Phase 1~3 배포 완료 (2026-11-01 운영에서 `/robots.txt`, `/sitemap.xml`, `/about`, `/privacy`, `/guide`, `/types/*` 200 확인)
+- [x] Google Search Console에 sitemap(`https://omct.web.app/sitemap.xml`) 제출 (2026-11-01)
+  - 제출 직후 상태는 "가져올 수 없음". 운영 파일은 200, XML 정상, robots 허용이라 처리 대기로 판단. Google 쪽 접근 여부는 아직 확인하지 못함
+- [x] 색인 범위 정리 구현 (미배포)
+  - `sitemap.xml`: `/result?colorType=*` 24개와 `/image-upload` 2개 제거 (60 → 34개 URL)
+  - `/result`, `/image-upload`에 `noindex` 추가. sitemap에서 빼기만 하면 다른 경로로 색인될 수 있어서
+  - canonical을 `/types`로 돌리지 않음. 두 페이지 내용이 달라 Google이 무시할 수 있어서
+  - 공유 링크와 `/result` → `/types` 링크는 그대로 동작
+- [ ] 색인 범위 정리 배포 후 sitemap 다시 제출
 - [ ] 주요 페이지가 색인됐는지 확인 (보통 1~2주)
 - [ ] AdSense에서 정책 준수 체크박스 체크 후 "다시 제출"
 
@@ -172,9 +180,9 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 | Phase | 예상 소요 | 비고 |
 | --- | --- | --- |
 | 0. 사유 확인 | 당일 | |
-| 1. 기술 정리 | 완료 | 배포만 남음 |
-| 2. 정책 페이지 | 완료 | 배포만 남음 |
-| 3. 콘텐츠 보강 | 구현 완료 | 본문 검토 후 배포 |
+| 1. 기술 정리 | 완료 | 운영 반영 |
+| 2. 정책 페이지 | 완료 | 운영 반영 |
+| 3. 콘텐츠 보강 | 완료 | 운영 반영 |
 | 4. 색인 대기 후 재신청 | 1~2주 | |
 
 ---
@@ -188,9 +196,9 @@ Google AdSense 계정이 "승인되지 않음" 상태로 거절된 원인을 추
 - [x] 문의처 → `oppamanycolortone@gmail.com` + GitHub Issues
 - [x] 공유용 사진 보관 기간 → 업로드 후 7일 자동 삭제
 - [x] AI 추천 이용 기록 보관 기간 → 마지막 이용 후 7일 자동 삭제 (공유 사진과 맞춤)
+- [x] 12타입 상세 페이지 URL 구조 → `/types/[type]`을 색인 대상으로 쓰고, `/result`와 `/image-upload`는 `noindex`
 
 **남은 결정**
 
 - [ ] AdSense 공식 거절 사유는 무엇인가? (Phase 0)
-- [ ] 12타입 상세 페이지 URL 구조: `/types/[type]`처럼 새로 만들까, 기존 `/result?colorType=`를 확장할까?
 - [ ] 콘텐츠 글은 직접 쓸까, 초안을 받아 검수할까?

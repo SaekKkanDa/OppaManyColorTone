@@ -5,6 +5,8 @@ import theme from './theme';
 
 const moyamoya = localFont({
   src: '../../public/fonts/Cafe24Moyamoya-Face-v1.0.woff2',
+  // 199KB 라서 preload 하면 첫 화면에 필요한 다른 리소스와 대역폭을 경쟁한다
+  preload: false,
 });
 
 const GlobalStyle = createGlobalStyle`

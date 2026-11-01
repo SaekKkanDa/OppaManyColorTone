@@ -95,11 +95,11 @@ export default class MyDocument extends Document {
 
           {/*
             Pretendard 공식 분할 서브셋. unicode-range 로 화면에 쓰인 글자가 든 파일만 내려받는다.
-            CSS 가 16KB 라 스크립트로 넣어서 첫 화면 렌더링을 막지 않게 한다.
+            첫 화면을 먼저 그리도록, 첫 페인트 직후에 스크립트로 CSS 를 넣는다.
           */}
           <script
             dangerouslySetInnerHTML={{
-              __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='${PRETENDARD_CSS}';document.head.appendChild(l)})()`,
+              __html: `requestAnimationFrame(function(){requestAnimationFrame(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='${PRETENDARD_CSS}';document.head.appendChild(l)})})`,
             }}
           />
           <noscript>

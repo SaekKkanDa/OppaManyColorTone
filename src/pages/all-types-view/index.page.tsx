@@ -96,17 +96,6 @@ const AllTypesView = () => {
 
           <Tag colorType={colorType} tags={resultColorData[colorType].tags} />
 
-          <S.PaletteGrid>
-            {resultColorData[colorType].gridColors.map(
-              (backgroundColor, index) => (
-                <S.PaletteGridItem
-                  key={selectedIndex + backgroundColor + index}
-                  backgroundColor={backgroundColor}
-                />
-              )
-            )}
-          </S.PaletteGrid>
-
           <S.DetailLink href={`${ROUTE_PATH.types}/${colorType}`}>
             {t('typePage.detailLink', { typeName: t(`${colorType}.name`) })}
           </S.DetailLink>

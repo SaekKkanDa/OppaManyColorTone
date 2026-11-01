@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import { flexCustom, layout } from '@Styles/theme';
 import SiteFooter from '@Components/SiteFooter';
 
-type PaletteGridItemProps = {
-  backgroundColor: string;
-};
-
 type TagStyleProps = {
   backgroundColor: string;
   textColor: string;
@@ -89,24 +85,6 @@ export const Tag = styled.span<TagStyleProps>`
   font-size: 14px;
 `;
 
-export const PaletteGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 2px;
-  width: 100%;
-`;
-
-export const PaletteGridItem = styled.div.attrs<PaletteGridItemProps>(
-  ({ backgroundColor }) => ({
-    style: {
-      backgroundColor,
-    },
-  })
-)<PaletteGridItemProps>`
-  aspect-ratio: 16/9;
-`;
-
 export const Description = styled.small`
   color: ${({ theme }) => theme.gray[500]};
   font-size: 14px;
@@ -117,9 +95,13 @@ export const Footer = styled(SiteFooter)`
   padding-top: 2.5rem;
 `;
 
+/** 결과 페이지의 자세히 보기 링크(result/style.ts)와 같은 모양 */
 export const DetailLink = styled(Link)`
+  align-self: center;
+  margin: 0.75rem 0;
   color: ${({ theme }) => theme.gray[700]};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: 600;
+  font-family: var(--font-moyamoya);
+  font-size: ${({ theme }) => theme.font.size.lg};
+  font-weight: 500;
   text-decoration: underline;
 `;

@@ -6,6 +6,9 @@
 import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
+  // 운영 배포에서만 보낸다. 개발 서버(yarn dev)의 에러는 제외
+  enabled: process.env.NODE_ENV === 'production',
+
   dsn: "https://9a3b5d02657d4031b2f5f2c1b33f0e44@o4504803405332480.ingest.sentry.io/4505216542572544",
 
   // Adjust this value in production, or use tracesSampler for greater control

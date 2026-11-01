@@ -9,6 +9,8 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
+const PRETENDARD_CSS = '/fonts/pretendard/pretendardvariable-dynamic-subset.css';
+
 export default class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext
@@ -90,6 +92,19 @@ export default class MyDocument extends Document {
             href="/favicon/favicon-16x16.png"
           />
           <link rel="manifest" href="/favicon/site.webmanifest" />
+
+          {/*
+            Pretendard 공식 분할 서브셋. unicode-range 로 화면에 쓰인 글자가 든 파일만 내려받는다.
+            CSS 가 16KB 라 스크립트로 넣어서 첫 화면 렌더링을 막지 않게 한다.
+          */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='${PRETENDARD_CSS}';document.head.appendChild(l)})()`,
+            }}
+          />
+          <noscript>
+            <link rel="stylesheet" href={PRETENDARD_CSS} />
+          </noscript>
         </Head>
 
         <body>

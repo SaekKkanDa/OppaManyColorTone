@@ -13,7 +13,7 @@ Sentry.init({
   dsn: 'https://9a3b5d02657d4031b2f5f2c1b33f0e44@o4504803405332480.ingest.sentry.io/4505216542572544',
 
   // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: 1,
+  tracesSampleRate: 0.1,
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
@@ -23,13 +23,38 @@ Sentry.init({
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
   replaysSessionSampleRate: 0.1,
-
-  // You can remove this option if you're not planning to use the Sentry Session Replay feature:
-  integrations: [
-    new Sentry.Replay({
-      // Additional Replay configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
-    }),
-  ],
 });
+
+// Replay 는 번들이 커서 첫 로드에서 빼고, 페이지 로드가 끝난 뒤 유휴 시간에 불러온다.
+// 그 전에 난 에러에는 리플레이가 붙지 않는다.
+const loadReplay = async () => {
+  try {
+    const { Replay } = await import('@sentry/replay');
+    Sentry.getCurrentHub()
+      .getClient()
+      ?.addIntegration?.(
+        new Replay({
+          maskAllText: true,
+          blockAllMedia: true,
+        })
+      );
+  } catch {
+    // 청크를 받지 못해도 에러 수집에는 영향이 없다
+  }
+};
+
+const scheduleLoadReplay = () => {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(loadReplay);
+  } else {
+    setTimeout(loadReplay, 2000);
+  }
+};
+
+if (Sentry.getCurrentHub().getClient()?.getOptions().enabled) {
+  if (document.readyState === 'complete') {
+    scheduleLoadReplay();
+  } else {
+    window.addEventListener('load', scheduleLoadReplay, { once: true });
+  }
+}

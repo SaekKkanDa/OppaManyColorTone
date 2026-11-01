@@ -27,7 +27,7 @@ function MobileLayout({ children }: React.PropsWithChildren) {
   useViewportHeight();
 
   return (
-    <Wrapper backgroundColor={bgColor} textColor={textColor}>
+    <Wrapper as="main" backgroundColor={bgColor} textColor={textColor}>
       {children}
     </Wrapper>
   );

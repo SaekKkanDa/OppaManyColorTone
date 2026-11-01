@@ -40,9 +40,6 @@ jobs:
           OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}\n\
           PROD=${{ true }}" >> ".env"
 
-      - name: Debugging .env fle
-        run: cat ".env"
-
       - name: Install dependencies
         run: yarn install
 

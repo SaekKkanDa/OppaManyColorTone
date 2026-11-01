@@ -8,8 +8,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '@Root/next-i18next.config';
 import { useSetRecoilState } from 'recoil';
-import Spline from '@splinetool/react-spline';
-import { Application } from '@splinetool/runtime';
+import type { Application } from '@splinetool/runtime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBookOpen,
@@ -26,7 +25,7 @@ import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
 import * as S from './style';
 import PageHead from '@Components/PageHead';
-import SilentErrorBoundary from '@Components/SilentErrorBoundary';
+import LazySplineScene from '@Components/LazySplineScene';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 import { getNumberOfUsersForSsr } from '@Utils/numberOfUsers.server';
@@ -155,19 +154,21 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
           )}
         </S.LanguageButton>
 
-        {/* WebGL 을 쓸 수 없는 환경에서는 3D 장면만 빠지고 페이지는 그대로 동작한다 */}
-        <SilentErrorBoundary>
-          <Spline
-            scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            onLoad={onLoadSpline}
-          />
-        </SilentErrorBoundary>
+        <LazySplineScene
+          scene="https://prod.spline.design/hZ8jGzxERn1B-4De/scene.splinecode"
+          poster={{
+            src: '/images/home/spline-poster.webp',
+            width: 430,
+            height: 329,
+          }}
+          onLoad={onLoadSpline}
+        />
 
-        <S.ScrollButton $isInViewBottom={isInViewBottom} onClick={handleScroll}>
+        <S.ScrollButton
+          $isInViewBottom={isInViewBottom}
+          onClick={handleScroll}
+          aria-label={t(isInViewBottom ? 'scrollUpLabel' : 'scrollDownLabel')}
+        >
           <FontAwesomeIcon icon={faChevronDown} />
         </S.ScrollButton>
       </S.TopPage>

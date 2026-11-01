@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import * as Sentry from '@sentry/nextjs';
 
 import {
   AiRecommendServiceError,
@@ -41,6 +42,18 @@ function respondError(
     res.setHeader('Retry-After', String(retryAfterSeconds));
   }
   res.status(ERROR_HTTP_STATUS[code]).json(body);
+}
+
+/**
+ * 처리된(catch 된) 서버 에러를 Sentry 로 보낸다.
+ * Functions 인스턴스가 응답 후 멈출 수 있으므로 응답 전에 flush 한다.
+ */
+async function reportError(
+  err: unknown,
+  stage: 'rate_limiter' | 'refund' | 'recommendation'
+): Promise<void> {
+  Sentry.captureException(err, { tags: { api: 'ai-recommend', stage } });
+  await Sentry.flush(2000).catch(() => undefined);
 }
 
 function extractIp(req: NextApiRequest): string {
@@ -92,6 +105,7 @@ export default async function handler(
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('[ai-recommend] rate limiter failure', err);
+    await reportError(err, 'rate_limiter');
     respondError(res, 'INTERNAL_ERROR', 'rate limiter unavailable');
     return;
   }
@@ -124,12 +138,15 @@ export default async function handler(
     await refund(sessionId, ip).catch((refundErr) => {
       // eslint-disable-next-line no-console
       console.error('[ai-recommend] refund failed', refundErr);
+      return reportError(refundErr, 'refund');
     });
     if (err instanceof AiRecommendServiceError) {
+      // 얼굴 미검출은 사용자 입력 문제라 Sentry 로 보내지 않는다.
       if (err.code === 'NO_FACE_DETECTED') {
         respondError(res, 'NO_FACE_DETECTED', err.message);
         return;
       }
+      await reportError(err, 'recommendation');
       if (err.code === 'AI_UNAVAILABLE') {
         respondError(res, 'AI_UNAVAILABLE', err.message);
         return;
@@ -139,6 +156,7 @@ export default async function handler(
     }
     // eslint-disable-next-line no-console
     console.error('[ai-recommend] unhandled error', err);
+    await reportError(err, 'recommendation');
     respondError(res, 'INTERNAL_ERROR', 'unexpected server error');
   }
 }

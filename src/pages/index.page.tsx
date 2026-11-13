@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { type GetServerSideProps } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -23,6 +24,7 @@ import { copyUrl } from '@Utils/clipboard';
 import ROUTE_PATH from '@Constant/routePath';
 import * as S from './style';
 import PageHead from '@Components/PageHead';
+import { SITE_NAME, SITE_URL } from '@Constant/site';
 import { cLocales } from '@Constant/locales';
 import { withDefault } from '@Base/utils/dataExtension';
 import { getNumberOfUsersForSsr } from '@Utils/numberOfUsers.server';
@@ -133,6 +135,22 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
         description={t('meta.homeDescription')}
         path={ROUTE_PATH.landing}
       />
+      <Head>
+        {/* 검색 결과의 사이트 이름 (https://developers.google.com/search/docs/appearance/site-names) */}
+        <script
+          key="website-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: SITE_NAME.en,
+              alternateName: SITE_NAME.ko,
+              url: SITE_URL,
+            }),
+          }}
+        />
+      </Head>
       <S.FirstScreen>
         <S.TopSentinel ref={topRef} aria-hidden />
         <S.IntroTop>

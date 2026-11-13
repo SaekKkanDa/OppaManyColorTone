@@ -108,7 +108,14 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
   };
 
   const handleShare = async () => {
-    if (canWebShare) return await webShare();
+    if (canWebShare) {
+      try {
+        await webShare();
+        return;
+      } catch {
+        // 공유 실패 시 URL 복사로 대체
+      }
+    }
     const messageId = await copyUrl(location.href);
     alert(t(`${messageId}`));
   };

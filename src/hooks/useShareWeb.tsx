@@ -29,8 +29,12 @@ export const useShareWeb = ({ onSuccess, onError }: Props) => {
       return;
     }
 
-    await webShare();
-    onSuccess?.();
+    try {
+      const shared = await webShare();
+      if (shared) onSuccess?.();
+    } catch {
+      onError?.(EOmctErrorNo.SHARE_NOT_SUPPORT_FUNCTION);
+    }
   }, [onError, onSuccess]);
 
   return share;

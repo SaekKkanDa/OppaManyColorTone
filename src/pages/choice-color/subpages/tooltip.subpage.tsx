@@ -1,20 +1,20 @@
-import { onboardingState } from '@Pages/choice-color/choiceColor.atom';
 import { BorderedButton, flexCustom } from '@Styles/theme';
 import { useTranslation } from 'react-i18next';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 // HJ TODO: base component로 구현
-export const Tooltip = () => {
+interface TooltipProps {
+  messageKey: string;
+}
+
+export const Tooltip = ({ messageKey }: TooltipProps) => {
   const { t } = useTranslation();
-  const [, setIsOnboarding] = useRecoilState(onboardingState);
 
   return (
     <STooltipContainer>
-      <SParagraphy>{t('onboarding1')}</SParagraphy>
-      <SButton onClick={() => setIsOnboarding(false)}>
-        {t('onboarding-confirm')}
-      </SButton>
+      <SParagraphy>{t(messageKey)}</SParagraphy>
+      {/* 다음 단계로 넘어가는 건 OnboardingPage 의 body 클릭 처리가 맡는다 */}
+      <SButton>{t('onboarding-confirm')}</SButton>
       <STooltipArrow />
     </STooltipContainer>
   );
@@ -37,12 +37,12 @@ const STooltipContainer = styled.div`
   ${flexCustom('column', 'center', 'center')}
   gap: 8px;
   position: absolute;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  width: fit-content;
+  top: 0;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100vw - 3rem);
   background: ${({ theme }) => theme.gray[100]};
-  transform: translateY(calc(-100% - 20px));
+  transform: translate(-50%, calc(-100% - 20px));
   padding: 8px 12px;
   border-radius: 8px;
 `;

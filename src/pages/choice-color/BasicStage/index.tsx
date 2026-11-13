@@ -5,7 +5,10 @@ import Guidance from '../Guidance';
 
 import * as S from './style';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { onboardingElState } from '@Pages/choice-color/choiceColor.atom';
+import {
+  onboardingAiButtonElState,
+  onboardingElState,
+} from '@Pages/choice-color/choiceColor.atom';
 import { useEffect, useRef } from 'react';
 import { isNotNil } from '@Base/utils/check';
 
@@ -34,6 +37,7 @@ function BasicStage({
   // HJ TODO: 더 좋은 방법이 있을 것 같음...
   const colorBoxElRef = useRef<HTMLDivElement>(null);
   const setOnboardingEl = useSetRecoilState(onboardingElState);
+  const setOnboardingAiButtonEl = useSetRecoilState(onboardingAiButtonElState);
 
   useEffect(() => {
     const colorBoxEl = colorBoxElRef.current;
@@ -74,6 +78,7 @@ function BasicStage({
         stageNum={stageNum}
         userImg={userImg}
         options={basicColorOptions}
+        buttonAnchorRef={setOnboardingAiButtonEl}
       />
     </>
   );

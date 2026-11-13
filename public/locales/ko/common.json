@@ -236,6 +236,7 @@
   "myTestUrl": "내 퍼스널 컬러 진단 링크",
   "shareMyTestUrl": "내 진단 공유하기",
   "onboarding1": "4개의 카드 중 얼굴과 잘 어울리는\n카드를 선택해주세요",
+  "onboarding2": "잘 모르겠다면 AI에게\n추천을 받아보세요",
   "onboarding-confirm": "확인",
   "aiRecommend": {
     "button": "✨ AI 추천 받기",

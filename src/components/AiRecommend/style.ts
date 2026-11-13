@@ -13,6 +13,11 @@ export const Wrapper = styled.div`
   padding: 0.75rem 0;
 `;
 
+export const ButtonAnchor = styled.div`
+  position: relative;
+  display: inline-flex;
+`;
+
 export const Button = styled.button<{ isDisabled?: boolean }>`
   ${flexCustom('row', 'center', 'center')}
   column-gap: 0.375rem;

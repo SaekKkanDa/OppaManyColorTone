@@ -236,6 +236,7 @@
   "myTestUrl": "My Personal Color Test Link",
   "shareMyTestUrl": "Share My Test",
   "onboarding1": "Choose the card that\nlooks best on your face.",
+  "onboarding2": "Not sure which one?\nGet AI's pick.",
   "onboarding-confirm": "OK",
   "aiRecommend": {
     "button": "✨ Get AI's pick",

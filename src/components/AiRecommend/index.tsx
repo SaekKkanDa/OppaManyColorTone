@@ -1,3 +1,4 @@
+import type { Ref } from 'react';
 import { useTranslation } from 'next-i18next';
 
 import { useAiRecommend } from '@Hooks/useAiRecommend';
@@ -18,6 +19,8 @@ interface AiRecommendButtonProps {
   userImg: string;
   options: AiRecommendChoice[];
   privacyHref?: string;
+  /** 온보딩에서 버튼을 강조할 때 쓰는 기준 요소 */
+  buttonAnchorRef?: Ref<HTMLDivElement>;
 }
 
 function AiRecommendButton({
@@ -25,6 +28,7 @@ function AiRecommendButton({
   userImg,
   options,
   privacyHref,
+  buttonAnchorRef,
 }: AiRecommendButtonProps) {
   const { t } = useTranslation('common');
   const {
@@ -103,9 +107,11 @@ function AiRecommendButton({
     }
 
     return (
-      <S.Button type="button" onClick={handleRequest}>
-        {t('aiRecommend.button')}
-      </S.Button>
+      <S.ButtonAnchor ref={buttonAnchorRef}>
+        <S.Button type="button" onClick={handleRequest}>
+          {t('aiRecommend.button')}
+        </S.Button>
+      </S.ButtonAnchor>
     );
   };
 

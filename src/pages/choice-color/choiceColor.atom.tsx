@@ -13,3 +13,8 @@ export const onboardingElState = atom<null | HTMLElement>({
   key: `${KEY_PREFIX}_onboardingEl`,
   default: null,
 });
+
+export const onboardingAiButtonElState = atom<null | HTMLElement>({
+  key: `${KEY_PREFIX}_onboardingAiButtonEl`,
+  default: null,
+});

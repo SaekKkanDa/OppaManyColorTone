@@ -6,6 +6,7 @@ import Script from 'next/script';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { useLoading } from '@Hooks/useLoading';
+import { useAfterPageLoad } from '@Hooks/useAfterPageLoad';
 import LoadingIndicator from '@Components/LoadingIndicator';
 import MobileLayout from '@Components/Layout/MobileLayout';
 import GlobalStyle from '@Styles/GlobalStyle';
@@ -21,6 +22,7 @@ config.autoAddCss = false;
 
 const App = ({ Component, pageProps }: AppProps) => {
   const isLoading = useLoading();
+  const isPageLoaded = useAfterPageLoad();
 
   return (
     <>
@@ -50,13 +52,16 @@ const App = ({ Component, pageProps }: AppProps) => {
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9551977219354865"
         crossOrigin="anonymous"
+        strategy="lazyOnload"
       />
 
-      {/* Google Analytics 4 + Google Tag */}
-      <GoogleAnalytics gaId="G-MSP07W6675" />
-
-      {/* Google Tag Manager */}
-      <GoogleTagManager gtmId="GTM-59DR9LFK" />
+      {/* Google Analytics 4 + Google Tag Manager: 첫 화면을 다 그린 뒤 불러온다 */}
+      {isPageLoaded && (
+        <>
+          <GoogleAnalytics gaId="G-MSP07W6675" />
+          <GoogleTagManager gtmId="GTM-59DR9LFK" />
+        </>
+      )}
 
       <RecoilRoot>
         <GlobalStyle />

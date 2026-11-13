@@ -144,11 +144,9 @@ export default function Home({ initialNumberOfUsers }: HomeProps) {
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: SITE_NAME[currentLocale] ?? SITE_NAME.en,
-              alternateName: Object.values(SITE_NAME).filter(
-                (name) => name !== (SITE_NAME[currentLocale] ?? SITE_NAME.en)
-              ),
-              url: `${SITE_URL}${currentLocale === cLocales.ko ? '/ko' : ''}`,
+              name: SITE_NAME.en,
+              alternateName: SITE_NAME.ko,
+              url: SITE_URL,
             }),
           }}
         />
